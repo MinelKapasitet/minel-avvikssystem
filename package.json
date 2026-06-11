@@ -1,0 +1,12 @@
+{
+    "name": "minel-avvikssystem",
+        "version": "2.1.0",
+        "description": "Minel HMS Avvikssystem – RUH og avviksregistrering",
+        "main": "server.js",
+        "scripts": {
+          "start": "node server.js"
+    },
+  "engines": {
+        "node": ">=22.0.0"
+  }
+}
