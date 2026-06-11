@@ -1,0 +1,8 @@
+data/
+uploads/
+config.json
+node_modules/
+*.exe
+sea-prep.blob
+server-bundle.js
+.env
