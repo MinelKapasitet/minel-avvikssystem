@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard â€“ Minel Avvikssystem</title>
+  <style>
+    :root {
+      --primary: #1a3d6e;
+      --primary-light: #2557a7;
+      --accent: #f59e0b;
+      --success: #16a34a;
+      --warning: #d97706;
+      --danger: #dc2626;
+      --purple: #7c3aed;
+      --orange: #ea580c;
+      --bg: #f0f4f8;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --radius: 10px;
+      --shadow: 0 1px 6px rgba(0,0,0,0.07);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+    }
+
+    /* â”€â”€â”€ Topbar â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .topbar {
+      background: var(--primary);
+      color: white;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      position: sticky; top: 0; z-index: 200;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 12px; }
+    .topbar-logo { font-size: 22px; }
+    .topbar-title { font-size: 18px; font-weight: 700; }
+    .topbar-sub   { font-size: 12px; opacity: 0.7; }
+    .topbar-right { display: flex; gap: 10px; align-items: center; }
+    .btn-primary {
+      background: var(--accent);
+      color: #1a1a1a;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-primary:hover { background: #e18a00; }
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 1.5px solid rgba(255,255,255,0.4);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .btn-outline:hover { background: rgba(255,255,255,0.1); }
+
+    /* â”€â”€â”€ Layout â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .page { max-width: 1400px; margin: 0 auto; padding: 24px; }
+
+    /* â”€â”€â”€ Stat cards â”€â”€â”€â”€â”€â”€â”€ */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .stat-card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow);
+      border-left: 4px solid transparent;
+    }
+    .stat-card.total   { border-color: var(--primary); }
+    .stat-card.open    { border-color: var(--danger); }
+    .stat-card.month   { border-color: var(--accent); }
+    .stat-card.closed  { border-color: var(--success); }
+    .stat-card .number { font-size: 32px; font-weight: 800; line-height: 1; }
+    .stat-card .label  { font-size: 12px; color: var(--text-muted); margin-top: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-card.total .number   { color: var(--primary); }
+    .stat-card.open .number    { color: var(--danger); }
+    .stat-card.month .number   { color: var(--warning); }
+    .stat-card.closed .number  { color: var(--success); }
+
+    /* â”€â”€â”€ Filter bar â”€â”€â”€â”€â”€â”€â”€ */
+    .filter-bar {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 16px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .filter-group { display: flex; flex-direction: column; gap: 4px; }
+    .filter-group label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); }
+    .filter-group select,
+    .filter-group input {
+      padding: 8px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      font-size: 13px;
+      font-family: inherit;
+      color: var(--text);
+      background: white;
+      min-width: 140px;
+      appearance: none;
+    }
+    .filter-group select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; padding-right: 30px; }
+    .filter-group input[type=search] { min-width: 200px; }
+    .filter-actions { display: flex; gap: 8px; margin-left: auto; align-items: flex-end; }
+    .btn-sm {
+      padding: 8px 14px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-blue { background: var(--primary); color: white; }
+    .btn-blue:hover { background: var(--primary-light); }
+    .btn-gray { background: var(--border); color: var(--text); }
+    .btn-gray:hover { background: #cbd5e1; }
+
+    /* â”€â”€â”€ Table â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .table-wrap {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .table-header {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+    }
+    .table-header h2 { font-size: 15px; font-weight: 700; }
+    .count-badge {
+      background: var(--bg);
+      color: var(--text-muted);
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .data-table th {
+      background: #f8fafc;
+      padding: 10px 14px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .data-table th:hover { color: var(--text); }
+    .data-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: #f8fafc; cursor: pointer; }
+
+    /* Badges */
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .badge-ruh      { background: #fef3c7; color: #92400e; }
+    .badge-avvik    { background: #fee2e2; color: #991b1b; }
+    .badge-nearuhell{ background: #ede9fe; color: #5b21b6; }
+    .badge-farlig   { background: #ffedd5; color: #9a3412; }
+    .badge-ny       { background: #fee2e2; color: #991b1b; }
+    .badge-under    { background: #fef3c7; color: #92400e; }
+    .badge-lukket   { background: #dcfce7; color: #166534; }
+    .badge-lav      { background: #dcfce7; color: #166534; }
+    .badge-middels  { background: #fef3c7; color: #92400e; }
+    .badge-hoy      { background: #fee2e2; color: #991b1b; }
+
+    .empty-state {
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    .empty-state .icon { font-size: 40px; margin-bottom: 12px; }
+    .empty-state p { font-size: 15px; }
+
+    /* â”€â”€â”€ Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      z-index: 500;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 16px;
+      overflow-y: auto;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: white;
+      border-radius: 14px;
+      width: 100%;
+      max-width: 680px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .modal-header {
+      background: var(--primary);
+      color: white;
+      padding: 18px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-header h2 { font-size: 16px; font-weight: 700; }
+    .modal-close {
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 30px; height: 30px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .modal-body { padding: 24px; }
+    .detail-row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .detail-item { flex: 1; min-width: 140px; }
+    .detail-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .detail-value { font-size: 14px; color: var(--text); }
+    .detail-text {
+      background: #f8fafc;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .detail-img {
+      width: 100%;
+      max-height: 260px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 16px;
+    }
+    .divider { height: 1px; background: var(--border); margin: 20px 0; }
+    .follow-up-section h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: var(--text);
+    }
+    .follow-up-section label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+    .follow-up-section select,
+    .follow-up-section input,
+    .follow-up-section textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text);
+      margin-bottom: 12px;
+      background: white;
+      appearance: none;
+    }
+    .follow-up-section textarea { resize: none; min-height: 80px; }
+    .modal-footer {
+      padding: 16px 24px;
+      background: #f8fafc;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      border-top: 1px solid var(--border);
+    }
+    .btn-danger { background: var(--danger); color: white; }
+    .btn-save   { background: var(--success); color: white; }
+
+    /* â”€â”€â”€ QR modal â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+    .qr-info {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 14px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .qr-link {
+      font-family: monospace;
+      font-size: 13px;
+      background: #f0f4f8;
+      padding: 10px 12px;
+      border-radius: 7px;
+      word-break: break-all;
+      color: var(--primary);
+    }
+
+    /* Project manager modal */
+    .proj-list { list-style: none; margin-bottom: 14px; }
+    .proj-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 8px;
+      font-size: 14px;
+    }
+    .proj-item-name { font-weight: 600; }
+    .proj-item-num  { color: var(--text-muted); font-size: 12px; }
+    .proj-add-row   { display: flex; gap: 8px; margin-top: 4px; }
+    .proj-add-row input { flex: 1; padding: 9px 12px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; }
+    .proj-add-row input:focus { border-color: var(--primary-light); outline: none; }
+
+    @media (max-width: 768px) {
+      .filter-bar { gap: 8px; }
+      .filter-group select, .filter-group input { min-width: 120px; }
+      .data-table th:nth-child(4),
+      .data-table td:nth-child(4) { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Topbar -->
+<div class="topbar">
+  <div class="topbar-left">
+    <span class="topbar-logo">âš¡</span>
+    <div>
+      <div class="topbar-title">Minel Avvikssystem</div>
+      <div class="topbar-sub">PL/DL Dashboard</div>
+    </div>
+  </div>
+  <div class="topbar-right">
+    <button class="btn-outline" onclick="openProjectModal()">Prosjekter</button>
+    <button class="btn-primary" onclick="openQRModal()">ğŸ“± QR-lenke</button>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- Stats -->
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat-card total"><div class="number" id="stat-total">â€“</div><div class="label">Totalt registrert</div></div>
+    <div class="stat-card open"> <div class="number" id="stat-open">â€“</div> <div class="label">Ã…pne / ikke lukket</div></div>
+    <div class="stat-card month"><div class="number" id="stat-month">â€“</div><div class="label">Denne mÃ¥neden</div></div>
+    <div class="stat-card closed"><div class="number" id="stat-closed">â€“</div><div class="label">Lukket</div></div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label>Prosjekt</label>
+      <select id="f-project"><option value="">Alle prosjekter</option></select>
+    </div>
+    <div class="filter-group">
+      <label>Type</label>
+      <select id="f-type">
+        <option value="">Alle typer</option>
+        <option>RUH</option>
+        <option>Avvik</option>
+        <option>NÃ¦ruhell</option>
+        <option>Farlig tilstand</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Status</label>
+      <select id="f-status">
+        <option value="">Alle statuser</option>
+        <option>Ny</option>
+        <option>Under behandling</option>
+        <option>Lukket</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Alvorlighet</label>
+      <select id="f-severity">
+        <option value="">Alle</option>
+        <option>Lav</option>
+        <option>Middels</option>
+        <option>HÃ¸y</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>Fra dato</label>
+      <input type="date" id="f-from">
+    </div>
+    <div class="filter-group">
+      <label>Til dato</label>
+      <input type="date" id="f-to">
+    </div>
+    <div class="filter-group">
+      <label>SÃ¸k</label>
+      <input type="search" id="f-search" placeholder="SÃ¸k i beskrivelse, navnâ€¦">
+    </div>
+    <div class="filter-actions">
+      <button class="btn-sm btn-blue" onclick="loadReports()">Vis</button>
+      <button class="btn-sm btn-gray" onclick="resetFilters()">Nullstill</button>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrap">
+    <div class="table-header">
+      <h2>Registrerte avvik</h2>
+      <span class="count-badge" id="rowCount">â€“</span>
+    </div>
+    <table class="data-table" id="dataTable">
+      <thead>
+        <tr>
+          <th>Dato</th>
+          <th>Type</th>
+          <th>Qlv.</th>
+          <th>Prosjekt</th>
+          <th>Beskrivelse</th>
+          <th>Innmelder</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <tr><td colspan="7"><div class="empty-state"><div class="icon">ğŸ“‹</div><p>Laster dataâ€¦</p></div></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- â”€â”€â”€ Detail modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<div class="modal-overlay" id="detailModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h2 id="modalTitle">Avvik â€“ detaljer</h2>
+      <button class="modal-close" onclick="closeModal('detailModal')">âœ•</button>
+    </div>
+    <div class="modal-body">
+      <div class="detail-row">
+        <div class="detail-item"><div class="detail-label">Type</div><div id="d-type"></div></div>
+        <div class="detail-item"><div class="detail-label">Alvorlighetsgrad</div><div id="d-severity"></div></div>
+        <div class="detail-item"><div class="detail-label">Status</div><div id="d-status"></div></div>
+        <div class="detail-item"><div class="detail-label">Dato</div><div class="detail-value" id="d-date"></div></div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-item"><div class="detail-label">Innmelder</div><div class="detail-value" id="d-reporter"></div></div>
+        <div class="detail-item"><div class="detail-label">Firma</div><div class="detail-value" id="d-company"></div></div>
+        <div class="detail-item"><div class="detail-label">Telefon</div><div class="detail-value" id="d-phone"></div></div>
+        <div class="detail-item"><div class="detail-label">Prosjekt</div><div class="detail-value" id="d-project"></div></div>
+      </div>
+      <div class="detail-label">Lokasjon</div>
+      <div class="detail-value" id="d-location" style="margin-bottom:12px;"></div>
+      <div class="detail-label">Beskrivelse</div>
+      <div class="detail-text" id="d-description"></div>
+      <div id="d-immediate-wrap">
+        <div class="detail-label">Umiddelbare tiltak</div>
+        <div class="detail-text" id="d-immediate"></div>
+      </div>
+      <img id="d-image" class="detail-img" src="" alt="Bilde" style="display:none;">
+
+      <div class="divider"></div>
+      <div class="follow-up-section">
+        <h3>OppfÃ¸lging</h3>
+        <label>Oppdater status</label>
+        <select id="fu-status">
+          <option>Ny</option>
+          <option>Under behandling</option>
+          <option>Lukket</option>
+        </select>
+        <label>Ansvarlig person</label>
+        <input type="text" id="fu-assigned" placeholder="Navn pÃ¥ ansvarlig">
+        <label>Kommentar / tiltak</label>
+        <textarea id="fu-comment" placeholder="Beskriv tiltak, vedtak eller oppfÃ¸lgingâ€¦"></textarea>
+        <label>Registrert av (ditt navn)</label>
+        <input type="text" id="fu-by" placeholder="Ditt navn">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-sm btn-gray" onclick="closeModal('detailModal')">Avbryt</button>
+      <button class="btn-sm btn-save" onclick="saveFollowUp()">Lagre oppfÃ¸lging</button>
+    </div>
+  </div>
+</div>
+
+<!-- â”€â”€â”€ QR Modal â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+<div class="modal-overlay" id="qrModal">
+  <div class="modal" style="max-width:480px;">
+    <div class="modal-header">
+      <h2>ğŸ“± Registreringslenke</h2>
+      <button class="modal-close" onclick="closeModal('qrModal')">âœ•</button>
+    </div>
+    <div class="modal-body">
+      <div class="qr-info">
+        Del denne lenken (eller QR-koden) med elektrikere pÃ¥ prosjektet â€“ ingen in¹±½¥¹œ­É•Ù•Ì¸”™å±±•È¥¹¸¹…Ù¸½œ™¥Éµ„Í•±Ø°Ï”•­ÍÑ•É¹”•±•­ÑÉ¥­•É”­…¸½Ï”‰ÉÕ­”‘•¸¸(€€€€€€ğ½‘¥Øø(€€€€€€ñ‘¥Ø±…ÍÌô‰™¥±Ñ•ÈµÉ½ÕÀˆÍÑå±”ô‰µ…É¥¸µ‰½ÑÑ½´èÄÑÁàìˆø(€€€€€€€€ñ±…‰•°ùY•±œÁÉ½Í©•­Ğğ½±…‰•°ø(€€€€€€€€ñÍ•±•Ğ¥ô‰ÅÈµÁÉ½©•Ğˆ½¹¡…¹”ô‰ÕÁ‘…Ñ•EI1¥¹¬ ¤ˆø(€€€€€€€€€€ñ½ÁÑ¥½¸Ù…±Õ”ôˆˆù±±”ÁÉ½Í©•­Ñ•Èğ½½ÁÑ¥½¸ø(€€€€€€€€ğ½Í•±•Ğø(€€€€€€ğ½‘¥Øø(€€€€€€ñ‘¥Ø±…ÍÌô‰‘•Ñ…¥°µ±…‰•°ˆÍÑå±”ô‰µ…É¥¸µ‰½ÑÑ½´èÙÁàìˆù1•¹­”ƒ”‘•±”ğ½‘¥Øø(€€€€€€ñ‘¥Ø±…ÍÌô‰ÅÈµ±¥¹¬ˆ¥ô‰ÅÈµ±¥¹¬µ‘¥ÍÁ±…äˆøğ½‘¥Øø(€€€€€€ñ‰Èø(€€€€€€ñ‰ÕÑÑ½¸±…ÍÌô‰‰Ñ¸µÍ´‰Ñ¸µ‰±Õ”ˆ½¹±¥¬ô‰½ÁåEI1¥¹¬ ¤ˆÍÑå±”ô‰İ¥‘Ñ èÄÀÀ”íÁ…‘‘¥¹œèÄÁÁàìˆù-½Á¥•È±•¹­”ğ½‰ÕÑÑ½¸ø(€€€€ğ½‘¥Øø(€€ğ½‘¥Øø(ğ½‘¥Øø((ğ„´´ƒŠRŠRŠR AÉ½©•Ğµ½‘…°ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR €´´ø(ñ‘¥Ø±…ÍÌô‰µ½‘…°µ½Ù•É±…äˆ¥ô‰ÁÉ½©•Ñ5½‘…°ˆø(€€ñ‘¥Ø±…ÍÌô‰µ½‘…°ˆÍÑå±”ô‰µ…àµİ¥‘Ñ èĞàÁÁàìˆø(€€€€ñ‘¥Ø±…ÍÌô‰µ½‘…°µ¡•…‘•Èˆø(€€€€€€ñ ÈùAÉ½Í©•­Ñ•Èğ½ Èø(€€€€€€ñ‰ÕÑÑ½¸±…ÍÌô‰µ½‘…°µ±½Í”ˆ½¹±¥¬ô‰±½Í•5½‘…° ÁÉ½©•Ñ5½‘…°œ¤ˆûŠrTğ½‰ÕÑÑ½¸ø(€€€€ğ½‘¥Øø(€€€€ñ‘¥Ø±…ÍÌô‰µ½‘…°µ‰½‘äˆø(€€€€€€ñÕ°±…ÍÌô‰ÁÉ½¨µ±¥ÍĞˆ¥ô‰ÁÉ½¨µ±¥ÍĞˆøğ½Õ°ø(€€€€€€ñ‘¥Ø±…ÍÌô‰‘¥Ù¥‘•Èˆøğ½‘¥Øø(€€€€€€ñ‘¥Ø±…ÍÌô‰™½±±½ÜµÕÀµÍ•Ñ¥½¸ˆø(€€€€€€€€ñ Ìù1•œÑ¥°¹åÑĞÁÉ½Í©•­Ğğ½ Ìø(€€€€€€€€ñ‘¥Ø±…ÍÌô‰ÁÉ½¨µ…‘µÉ½Üˆø(€€€€€€€€€€ñ¥¹ÁÕĞÑåÁ”ô‰Ñ•áĞˆ¥ô‰¹•ÜµÁÉ½¨µ¹…µ”ˆÁ±…•¡½±‘•Èô‰AÉ½Í©•­Ñ¹…Ù¸€¨ˆø(€€€€€€€€€€ñ¥¹ÁÕĞÑåÁ”ô‰Ñ•áĞˆ¥ô‰¹•ÜµÁÉ½¨µ¹Õ´ˆÁ±…•¡½±‘•Èô‰AÉ½Í©•­Ñ¹È¸€¡Ù…±™É¤¤ˆÍÑå±”ô‰µ…àµİ¥‘Ñ èÄØÁÁàìˆø(€€€€€€€€€€ñ‰ÕÑÑ½¸±…ÍÌô‰‰Ñ¸µÍ´‰Ñ¸µ‰±Õ”ˆ½¹±¥¬ô‰…‘‘AÉ½©•Ğ ¤ˆù1•œÑ¥°ğ½‰ÕÑÑ½¸ø(€€€€€€€€ğ½‘¥Øø(€€€€€€ğ½‘¥Øø(€€€€ğ½‘¥Øø(€€ğ½‘¥Øø(ğ½‘¥Øø((ñÍÉ¥ÁĞø(€±•ĞÕÉÉ•¹ÑI•Á½ÉÑ%€ô¹Õ±°ì(€±•Ğ…±±AÉ½©•ÑÌ€ômtì((€€¼¼ƒŠRŠRŠR !•±Á•ÉÌƒŠRŠRŠRŠRŠRRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR (€™Õ¹Ñ¥½¸ÑåÁ•	…‘”¡ÑåÁ”¤ì(€€€½¹ÍĞµ…À€ôì(€€€€€€IU œè€‰…‘”µÉÕ œ°(€€€€€€ÙÙ¥¬œè€‰…‘”µ…ÙÙ¥¬œ°(€€€€€€;™ÉÕ¡•±°œè€‰…‘”µ¹•…ÉÕ¡•±°œ°(€€€€€€…É±¥œÑ¥±ÍÑ…¹œè€‰…‘”µ™…É±¥œœ°(€€€ôì(€€€É•ÑÕÉ¸€ñÍÁ…¸±…ÍÌô‰‰…‘”€‘íµ…ÁmÑåÁ•tñğ€œôˆø‘íÑåÁ•ôğ½ÍÁ…¸ù€ì(€ô(€™Õ¹Ñ¥½¸ÍÑ…ÑÕÍ	…‘”¡Ì¤ì(€€€½¹ÍĞµ…À€ôì€9äœè€‰…‘”µ¹äœ°€U¹‘•È‰•¡…¹‘±¥¹œœè€‰…‘”µÕ¹‘•Èœ°€1Õ­­•Ğœè€‰…‘”µ±Õ­­•Ğœôì(€€€É•ÑÕÉ¸€ñÍÁ…¸±…ÍÌô‰‰…‘”€‘íµ…ÁmÍtñğ€œôˆø‘íÍôğ½ÍÁ…¸ù€ì(€ô(€™Õ¹Ñ¥½¸Í•Ù	…‘”¡Ì¤ì(€€€½¹ÍĞµ…À€ôì€1…Øœè€‰…‘”µ±…Øœ°€5¥‘‘•±Ìœè€‰…‘”µµ¥‘‘•±Ìœ°€#áäœè€‰…‘”µ¡½äœôì(€€€É•ÑÕÉ¸€ñÍÁ…¸±…ÍÌô‰‰…‘”€‘íµ…ÁmÍtñğ€œôˆø‘íÍôğ½ÍÁ…¸ù€ì(€ô(€™Õ¹Ñ¥½¸™µÑ…Ñ”¡¤ì(€€€¥˜€ …¤É•ÑÕÉ¸€ŸŠLœì(€€€É•ÑÕÉ¸¹•Ü…Ñ”¡¤¹Ñ½1½…±•…Ñ•MÑÉ¥¹œ ¹¼µ9<œ°ì‘…äèœÈµ‘¥¥Ğœ°µ½¹Ñ èœÈµ‘¥¥Ğœ°å•…ÈèœÈµ‘¥¥Ğœ°¡½ÕÈèœÈµ‘¥¥Ğœ°µ¥¹ÕÑ”èœÈµ‘¥¥Ğœô¤ì(€ô(€™Õ¹Ñ¥½¸ÑÉÕ¹…Ñ”¡Ì°¸ôØÀ¤ì(€€€¥˜€ …Ì¤É•ÑÕÉ¸€ŸŠLœì(€€€É•ÑÕÉ¸Ì¹±•¹Ñ €ø¸€üÌ¹Í±¥” À°¸¤€¬€ŸŠ˜œ€èÌì(€ô((€€¼¼ƒŠRŠRŠR 1½…‘…Ñ„ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR (€…Íå¹Œ™Õ¹Ñ¥½¸±½…‘AÉ½©•ÑÌ ¤ì(€€€½¹ÍĞÉ•Ì€ô…İ…¥Ğ™•Ñ  œ½…Á¤½ÁÉ½©•ÑÌœ¤ì(€€€…±±AÉ½©•ÑÌ€ô…İ…¥ĞÉ•Ì¹©Í½¸ ¤ì(€€€½¹ÍĞÍ•±•Ñ½ÉÌ€ôl˜µÁÉ½©•Ğœ°€ÅÈµÁÉ½©•Ğtì(€€€Í•±•Ñ½ÉÌ¹™½É… ¡¥€ôøì(€€€€€½¹ÍĞÍ•°€ô‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å%¡¥¤ì(€€€€€½¹ÍĞÕÈ€ôÍ•°¹Ù…±Õ”ì(€€€€€İ¡¥±”€¡Í•°¹½ÁÑ¥½¹Ì¹±•¹Ñ €ø€Ä¤Í•°¹É•µ½Ù” Ä¤ì(€€€€€…±±AÉ½©•ÑÌ¹™½É… ¡À€ôøì(€€€€€€€½¹ÍĞ½ÁĞ€ô¹•Ü=ÁÑ¥½¸¡À¹¹Õµ‰•È€ü€‘íÀ¹¹…µ•ô€ ‘íÀ¹¹Õµ‰•Éô¥€€èÀ¹¹…µ”°À¹¥¤ì(€€€€€€€Í•°¹…‘¡½ÁĞ¤ì(€€€€€ô¤ì(€€€€€¥˜€¡ÕÈ¤Í•°¹Ù…±Õ”€ôÕÈì(€€€ô¤ì(€€€É•¹‘•ÉAÉ½©•Ñ1¥ÍĞ ¤ì(€ô((€…Íå¹Œ™Õ¹Ñ¥½¸±½…‘MÑ…ÑÌ ¤ì(€€€½¹ÍĞÁ¥€ô‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ˜µÁÉ½©•Ğœ¤¹Ù…±Õ”ì(€€€½¹ÍĞÕÉ°€ô€œ½…Á¤½ÍÑ…ÑÌœ€¬€¡Á¥€ü€ıÁÉ½©•Ñ}¥ô‘íÁ¥‘õ€€è€œœ¤ì(€€€½¹ÍĞÌ€ô…İ…¥Ğ™•Ñ ¡ÕÉ°¤¹Ñ¡•¸¡È€ôøÈ¹©Í½¸ ¤¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ÍÑ…ĞµÑ½Ñ…°œ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÌ¹Ñ½Ñ…°ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ÍÑ…Ğµ½Á•¸œ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÌ¹½Á•¸ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ÍÑ…Ğµµ½¹Ñ œ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÌ¹Ñ¡¥Í5½¹Ñ ì(€€€½¹ÍĞ±½Í•€ôÌ¹‰åMÑ…ÑÕÌ¹™¥¹¡à€ôøà¹ÍÑ…ÑÕÌ€ôôô€1Õ­­•Ğœ¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ÍÑ…Ğµ±½Í•œ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ô±½Í•€ü±½Í•¹½Õ¹Ğ€è€Àì(€ô((€…Íå¹Œ™Õ¹Ñ¥½¸±½…‘I•Á½ÉÑÌ ¤ì(€€€½¹ÍĞÁ…É…µÌ€ô¹•ÜUI1M•…É¡A…É…µÌ ¤ì(€€€½¹ÍĞ˜€ô€¡¥¤€ôø‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å%¡¥¤¹Ù…±Õ”ì(€€€¥˜€¡˜ ˜µÁÉ½©•Ğœ¤¤€Á…É…µÌ¹Í•Ğ ÁÉ½©•Ñ}¥œ°˜ ˜µÁÉ½©•Ğœ¤¤ì(€€€¥˜€¡˜ ˜µÑåÁ”œ¤¤€€€€Á…É…µÌ¹Í•Ğ ÑåÁ”œ°˜ ˜µÑåÁ”œ¤¤ì(€€€¥˜€¡˜ ˜µÍÑ…ÑÕÌœ¤¤€€Á…É…µÌ¹Í•Ğ ÍÑ…ÑÕÌœ°˜ ˜µÍÑ…ÑÕÌœ¤¤ì(€€€¥˜€¡˜ ˜µÍ•Ù•É¥Ñäœ¤¤Á…É…µÌ¹Í•Ğ Í•Ù•É¥Ñäœ°˜ ˜µÍ•Ù•É¥Ñäœ¤¤ì(€€€¥˜€¡˜ ˜µ™É½´œ¤¤€€€€Á…É…µÌ¹Í•Ğ ™É½´œ°˜ ˜µ™É½´œ¤¤ì(€€€¥˜€¡˜ ˜µÑ¼œ¤¤€€€€€€Á…É…µÌ¹Í•Ğ Ñ¼œ°˜ ˜µÑ¼œ¤¤ì(€€€¥˜€¡˜ ˜µÍ•…É œ¤¤€€Á…É…µÌ¹Í•Ğ Í•…É œ°˜ ˜µÍ•…É œ¤¤ì((€€€½¹ÍĞmÉ•Á½ÉÑÍt€ô…İ…¥ĞAÉ½µ¥Í”¹…±°¡l(€€€€€™•Ñ  œ½…Á¤½É•Á½ÉÑÌüœ€¬Á…É…µÌ¤¹Ñ¡•¸¡È€ôøÈ¹©Í½¸ ¤¤°(€€€€€±½…‘MÑ…ÑÌ ¤(€€€t¤ì((€€€½¹ÍĞÑ‰½‘ä€ô‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% Ñ…‰±•	½‘äœ¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% É½İ½Õ¹Ğœ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÉ•Á½ÉÑÌ¹±•¹Ñ ì((€€€¥˜€ …É•Á½ÉÑÌ¹±•¹Ñ ¤ì(€€€€€Ñ‰½‘ä¹¥¹¹•É!Q50€ô€ñÑÈøñÑ½±ÍÁ…¸ôˆÜˆøñ‘¥Ø±…ÍÌô‰•µÁÑäµÍÑ…Ñ”ˆøñ‘¥Ø±…ÍÌô‰¥½¸ˆûÂ~R4ğ½‘¥ØøñÀù%¹•¸…ÙÙ¥¬™Õ¹¹•Ğµ•‘¥ÍÍ”™¥±ÑÉ•¹”¸ğ½Àøğ½‘¥Øøğ½Ñøğ½ÑÈù€ì(€€€€€É•ÑÕÉ¸ì(€€€ô((€€€Ñ‰½‘ä¹¥¹¹•É!Q50€ôÉ•Á½ÉÑÌ¹µ…À¡È€ôø€(€€€€€€ñÑÈ½¹±¥¬ô‰½Á•¹•Ñ…¥° œ‘íÈ¹¥‘ôœ¤ˆø(€€€€€€€€ñÑÍÑå±”ô‰İ¡¥Ñ”µÍÁ…”é¹½İÉ…Àí½±½ÈéÙ…È ´µÑ•áĞµµÕÑ•¤í™½¹ĞµÍ¥é”èÄÉÁàìˆø‘í™µÑ…Ñ”¡È¹É•…Ñ•‘}…Ğ¥ôğ½Ñø(€€€€€€€€ñÑø‘íÑåÁ•	…‘”¡È¹ÑåÁ”¥ôğ½Ñø(€€€€€€€€ñÑø‘íÍ•Ù	…‘”¡È¹Í•Ù•É¥Ñä¥ôğ½Ñø(€€€€€€€€ñÑÍÑå±”ô‰½±½ÈéÙ…È ´µÑ•áĞµµÕÑ•¤í™½¹ĞµÍ¥é”èÄÍÁàìˆø‘íÈ¹ÁÉ½©•Ñ}¹…µ”ñğ€ŸŠLôğ½Ñø(€€€€€€€€ñÑÍÑå±”ô‰µ…àµİ¥‘Ñ èÌÀÁÁàìˆø‘íÑÉÕ¹…Ñ”¡È¹‘•ÍÉ¥ÁÑ¥½¸¥ôğ½Ñø(€€€€€€€€ñÑÍÑå±”ô‰İ¡¥Ñ”µÍÁ…”é¹½İÉ…Àí™½¹ĞµÍ¥é”èÄÍÁàìˆø‘íÈ¹É•Á½ÉÑ•É}¹…µ•ôñ‰ÈøñÍÁ…¸ÍÑå±”ô‰½±½ÈéÙ…È ´µÑ•áĞµµÕÑ•¤í™½¹ĞµÍ¥é”èÄÅÁàìˆø‘íÈ¹É•Á½ÉÑ•É}½µÁ…¹åôğ½ÍÁ…¸øğ½Ñø(€€€€€€€€ñÑø‘íÍÑ…ÑÕÍ	…‘”¡È¹ÍÑ…ÑÕÌ¥ôğ½Ñø(€€€€€€ğ½ÑÈø(€€€€¤¹©½¥¸ œœ¤ì(€ô((€™Õ¹Ñ¥½¸É•Í•Ñ¥±Ñ•ÉÌ ¤ì(€€€l˜µÁÉ½©•Ğœ°˜µÑåÁ”œ°˜µÍÑ…ÑÕÌœ°˜µÍ•Ù•É¥Ñät¹™½É… ¡¥€ôø‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å%¡¥¤¹Ù…±Õ”€ô€œœ¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ˜µ™É½´œ¤¹Ù…±Õ”€ô€œœì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ˜µÑ¼œ¤¹Ù…±Õ”€ô€œœì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ˜µÍ•…É œ¤¹Ù…±Õ”€ô€œœì(€€€±½…‘I•Á½ÉÑÌ ¤ì(€ô((€€¼¼ƒŠRŠRŠR •Ñ…¥°µ½‘…°ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR (€…Íå¹Œ™Õ¹Ñ¥½¸½Á•¹•Ñ…¥°¡¥¤ì(€€€ÕÉÉ•¹ÑI•Á½ÉÑ%€ô¥ì(€€€½¹ÍĞÈ€ô…İ…¥Ğ™•Ñ ¡€½…Á¤½É•Á½ÉÑÌ¼‘í¥‘õ€¤¹Ñ¡•¸¡É•Ì€ôøÉ•Ì¹©Í½¸ ¤¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µ½‘…±Q¥Ñ±”œ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ô€‘íÈ¹ÑåÁ•ôƒŠL€‘í™µÑ…Ñ”¡È¹É•…Ñ•‘}…Ğ¥õ€ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µÑåÁ”œ¤¹¥¹¹•É!Q50€ôÑåÁ•	…‘”¡È¹ÑåÁ”¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µÍ•Ù•É¥Ñäœ¤¹¥¹¹•É!Q50€ôÍ•Ù	…‘”¡È¹Í•Ù•É¥Ñä¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µÍÑ…ÑÕÌœ¤¹¥¹¹•É!Q50€ôÍÑ…ÑÕÍ	…‘”¡È¹ÍÑ…ÑÕÌ¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µ‘…Ñ”œ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ô™µÑ…Ñ”¡È¹É•…Ñ•‘}…Ğ¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µÉ•Á½ÉÑ•Èœ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÈ¹É•Á½ÉÑ•É}¹…µ”ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µ½µÁ…¹äœ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÈ¹É•Á½ÉÑ•É}½µÁ…¹äì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µÁ¡½¹”œ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÈ¹É•Á½ÉÑ•É}Á¡½¹”ñğ€ŸŠLœì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µÁÉ½©•Ğœ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÈ¹ÁÉ½©•Ñ}¹…µ”ñğ€ŸŠLœì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µ±½…Ñ¥½¸œ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÈ¹±½…Ñ¥½¸ñğ€ŸŠLœì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µ‘•ÍÉ¥ÁÑ¥½¸œ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÈ¹‘•ÍÉ¥ÁÑ¥½¸ì((€€€½¹ÍĞ¥µµ]É…À€ô‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µ¥µµ•‘¥…Ñ”µİÉ…Àœ¤ì(€€€¥˜€¡È¹¥µµ•‘¥…Ñ•}…Ñ¥½¸¤ì(€€€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µ¥µµ•‘¥…Ñ”œ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÈ¹¥µµ•‘¥…Ñ•}…Ñ¥½¸ì(€€€€€¥µµ]É…À¹ÍÑå±”¹‘¥ÍÁ±…ä€ô€‰±½¬œì(€€€ô•±Í”ì¥µµ]É…À¹ÍÑå±”¹‘¥ÍÁ±…ä€ô€¹½¹”œìô((€€€½¹ÍĞ¥µœ€ô‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% µ¥µ…”œ¤ì(€€€¥˜€¡È¹¥µ…•}Á…Ñ ¤ì¥µœ¹ÍÉŒ€ôÈ¹¥µ…•}Á…Ñ ì¥µœ¹ÍÑå±”¹‘¥ÍÁ±…ä€ô€‰±½¬œìô(€€€•±Í”¥µœ¹ÍÑå±”¹‘¥ÍÁ±…ä€ô€¹½¹”œì((€€€€¼¼AÉ”µ™¥±°™½±±½ÜµÕÀ(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ™ÔµÍÑ…ÑÕÌœ¤¹Ù…±Õ”€ôÈ¹ÍÑ…ÑÕÌñğ€9äœì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ™Ôµ…ÍÍ¥¹•œ¤¹Ù…±Õ”€ôÈ¹…ÍÍ¥¹•‘}Ñ¼ñğ€œœì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ™Ôµ½µµ•¹Ğœ¤¹Ù…±Õ”€ôÈ¹™½±±½İ}ÕÁ}½µµ•¹Ğñğ€œœì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ™Ôµ‰äœ¤¹Ù…±Õ”€ôÈ¹™½±±½İ}ÕÁ}‰äñğ€œœì((€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ‘•Ñ…¥±5½‘…°œ¤¹±…ÍÍ1¥ÍĞ¹…‘ ½Á•¸œ¤ì(€ô((€…Íå¹Œ™Õ¹Ñ¥½¸Í…Ù•½±±½İUÀ ¤ì(€€€½¹ÍĞ‰½‘ä€ôì(€€€€€ÍÑ…ÑÕÌè€€€€€€€€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ™ÔµÍÑ…ÑÕÌœ¤¹Ù…±Õ”°(€€€€€…ÍÍ¥¹•‘}Ñ¼è€€€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ™Ôµ…ÍÍ¥¹•œ¤¹Ù…±Õ”°(€€€€€™½±±½İ}ÕÁ}½µµ•¹Ğé‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ™Ôµ½µµ•¹Ğœ¤¹Ù…±Õ”°(€€€€€™½±±½İ}ÕÁ}‰äè€€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ™Ôµ‰äœ¤¹Ù…±Õ”°(€€€ôì(€€€…İ…¥Ğ™•Ñ ¡€½…Á¤½É•Á½ÉÑÌ¼‘íÕÉÉ•¹ÑI•Á½ÉÑ%‘õ€°ì(€€€€€µ•Ñ¡½è€AUPœ°(€€€€€¡•…‘•ÉÌèì€½¹Ñ•¹ĞµQåÁ”œè€…ÁÁ±¥…Ñ¥½¸½©Í½¸œô°(€€€€€‰½‘äè)M=8¹ÍÑÉ¥¹¥™ä¡‰½‘ä¤(€€€ô¤ì(€€€±½Í•5½‘…° ‘•Ñ…¥±5½‘…°œ¤ì(€€€±½…‘I•Á½ÉÑÌ ¤ì(€ô((€€¼¼ƒŠRŠRŠR EHµ½‘…°ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR (€™Õ¹Ñ¥½¸½Á•¹EI5½‘…° ¤ì(€€€ÕÁ‘…Ñ•EI1¥¹¬ ¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ÅÉ5½‘…°œ¤¹±…ÍÍ1¥ÍĞ¹…‘ ½Á•¸œ¤ì(€ô(€™Õ¹Ñ¥½¸ÕÁ‘…Ñ•EI1¥¹¬ ¤ì(€€€½¹ÍĞÁ¥€ô‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ÅÈµÁÉ½©•Ğœ¤¹Ù…±Õ”ì(€€€½¹ÍĞ‰…Í”€ôİ¥¹‘½Ü¹±½…Ñ¥½¸¹½É¥¥¸€¬€œ¼œì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ÅÈµ±¥¹¬µ‘¥ÍÁ±…äœ¤¹Ñ•áÑ½¹Ñ•¹Ğ€ôÁ¥€ü‰…Í”€¬€œıÁÉ½©•Ğôœ€¬Á¥€è‰…Í”ì(€ô(€™Õ¹Ñ¥½¸½ÁåEI1¥¹¬ ¤ì(€€€¹…Ù¥…Ñ½È¹±¥Á‰½…É¹İÉ¥Ñ•Q•áĞ¡‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ÅÈµ±¥¹¬µ‘¥ÍÁ±…äœ¤¹Ñ•áÑ½¹Ñ•¹Ğ¤(€€€€€€¹Ñ¡•¸  ¤€ôø…±•ÉĞ 1•¹­”­½Á¥•ÉĞ„œ¤¤ì(€ô((€€¼¼ƒŠRŠRŠR AÉ½©•Ğµ½‘…°ƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR (€™Õ¹Ñ¥½¸½Á•¹AÉ½©•Ñ5½‘…° ¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ÁÉ½©•Ñ5½‘…°œ¤¹±…ÍÍ1¥ÍĞ¹…‘ ½Á•¸œ¤ì(€€€É•¹‘•ÉAÉ½©•Ñ1¥ÍĞ ¤ì(€ô(€™Õ¹Ñ¥½¸É•¹‘•ÉAÉ½©•Ñ1¥ÍĞ ¤ì(€€€½¹ÍĞÕ°€ô‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ÁÉ½¨µ±¥ÍĞœ¤ì(€€€¥˜€ ……±±AÉ½©•ÑÌ¹±•¹Ñ ¤ì(€€€€€Õ°¹¥¹¹•É!Q50€ô€œñ±¤ÍÑå±”ô‰½±½ÈéÙ…È ´µÑ•áĞµµÕÑ•¤í™½¹ĞµÍ¥é”èÄÍÁàìˆù%¹•¸ÁÉ½Í©•­Ñ•È•¹»”¸ğ½±¤øœì(€€€€€É•ÑÕÉ¸ì(€€€ô(€€€Õ°¹¥¹¹•É!Q50€ô…±±AÉ½©•ÑÌ¹µ…À¡À€ôø€(€€€€€€ñ±¤±…ÍÌô‰ÁÉ½¨µ¥Ñ•´ˆø(€€€€€€€€ñ‘¥Øø(€€€€€€€€€€ñÍÁ…¸±…ÍÌô‰ÁÉ½¨µ¥Ñ•´µ¹…µ”ˆø‘íÀ¹¹…µ•ôğ½ÍÁ…¸ø(€€€€€€€€€€‘íÀ¹¹Õµ‰•È€ü€ñÍÁ…¸±…ÍÌô‰ÁÉ½¨µ¥Ñ•´µ¹Õ´ˆøƒŠL€‘íÀ¹¹Õµ‰•Éôğ½ÍÁ…¸ù€€è€œô(€€€€€€€€ğ½‘¥Øø(€€€€€€€€ñ‰ÕÑÑ½¸±…ÍÌô‰‰Ñ¸µÍ´‰Ñ¸µÉ…äˆÍÑå±”ô‰™½¹ĞµÍ¥é”èÄÉÁàìˆ½¹±¥¬ô‰‘•±•Ñ•AÉ½©•Ğ œ‘íÀ¹¥‘ôœ°€œ‘íÀ¹¹…µ”¹É•Á±…” ¼œ½œ°€‰qpœˆ¥ôœ¤ˆùM±•ÑĞğ½‰ÕÑÑ½¸ø(€€€€€€ğ½±¤ø(€€€€¤¹©½¥¸ œœ¤ì(€ô(€…Íå¹Œ™Õ¹Ñ¥½¸…‘‘AÉ½©•Ğ ¤ì(€€€½¹ÍĞ¹…µ”€ô‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ¹•ÜµÁÉ½¨µ¹…µ”œ¤¹Ù…±Õ”¹ÑÉ¥´ ¤ì(€€€½¹ÍĞ¹Õµ‰•È€ô‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ¹•ÜµÁÉ½¨µ¹Õ´œ¤¹Ù…±Õ”¹ÑÉ¥´ ¤ì(€€€¥˜€ …¹…µ”¤É•ÑÕÉ¸ì(€€€…İ…¥Ğ™•Ñ  œ½…Á¤½ÁÉ½©•ÑÌœ°ì(€€€€€µ•Ñ¡½è€A=MPœ°(€€€€€¡•…‘•ÉÌèì€½¹Ñ•¹ĞµQåÁ”œè€…ÁÁ±¥…Ñ¥½¸½©Í½¸œô°(€€€€€‰½‘äè)M=8¹ÍÑÉ¥¹¥™ä¡ì¹…µ”°¹Õµ‰•Èô¤(€€€ô¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ¹•ÜµÁÉ½¨µ¹…µ”œ¤¹Ù…±Õ”€ô€œœì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å% ¹•ÜµÁÉ½¨µ¹Õ´œ¤¹Ù…±Õ”€ô€œœì(€€€…İ…¥Ğ±½…‘AÉ½©•ÑÌ ¤ì(€ô(€…Íå¹Œ™Õ¹Ñ¥½¸‘•±•Ñ•AÉ½©•Ğ¡¥°¹…µ”¤ì(€€€¥˜€ …½¹™¥É´¡M±•ÑĞÁÉ½Í©•­Ñ•Ğ€ˆ‘í¹…µ•ôˆü­Í¥ÍÑ•É•¹‘”…ÙÙ¥¬‰•¡½±‘•Ì¹€¤¤É•ÑÕÉ¸ì(€€€…İ…¥Ğ™•Ñ ¡€½…Á¤½ÁÉ½©•ÑÌ¼‘í¥‘õ€°ìµ•Ñ¡½è€1Qœô¤ì(€€€…İ…¥Ğ±½…‘AÉ½©•ÑÌ ¤ì(€ô((€™Õ¹Ñ¥½¸±½Í•5½‘…°¡¥¤ì(€€€‘½Õµ•¹Ğ¹•Ñ±•µ•¹Ñ	å%¡¥¤¹±…ÍÍ1¥ÍĞ¹É•µ½Ù” ½Á•¸œ¤ì(€ô(€€¼¼±½Í”½¸½Ù•É±…ä±¥¬(€‘½Õµ•¹Ğ¹ÅÕ•ÉåM•±•Ñ½É±° œ¹µ½‘…°µ½Ù•É±…äœ¤¹™½É… ¡•°€ôøì(€€€•°¹…‘‘Ù•¹Ñ1¥ÍÑ•¹•È ±¥¬œ°”€ôøì¥˜€¡”¹Ñ…É•Ğ€ôôô•°¤•°¹±…ÍÍ1¥ÍĞ¹É•µ½Ù” ½Á•¸œ¤ìô¤ì(€ô¤ì((€€¼¼ƒŠRŠRŠR %¹¥ĞƒŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠRŠR (€€¡…Íå¹Œ€ ¤€ôøì(€€€…İ…¥Ğ±½…‘AÉ½©•ÑÌ ¤ì(€€€±½…‘I•Á½ÉÑÌ ¤ì(€ô¤ ¤ì(ğ½ÍÉ¥ÁĞø(ğ½‰½‘äø(ğ½¡Ñµ°ø(
