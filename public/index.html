@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Avviksregistrering – Minel</title>
+  <style>
+    :root {
+      --primary: #1a3d6e;
+      --primary-light: #2557a7;
+      --accent: #f59e0b;
+      --danger: #dc2626;
+      --warning: #d97706;
+      --success: #16a34a;
+      --bg: #f0f4f8;
+      --card: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #cbd5e1;
+      --radius: 12px;
+      --shadow: 0 2px 12px rgba(0,0,0,0.08);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    /* Header */
+    .header {
+      background: var(--primary);
+      color: white;
+      padding: 18px 20px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    .header h1 {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .header p {
+      font-size: 13px;
+      opacity: 0.75;
+      margin-top: 2px;
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    /* Form container */
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      margin-top: 20px;
+    }
+    .section-label:first-child { margin-top: 0; }
+
+    /* Cards */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 16px;
+      box-shadow: var(--shadow);
+      margin-bottom: 12px;
+    }
+
+    /* Type buttons */
+    .type-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .type-btn {
+      border: 2px solid var(--border);
+      background: white;
+      border-radius: 10px;
+      padding: 14px 10px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.15s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .type-btn .icon { font-size: 28px; }
+    .type-btn .label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.2;
+    }
+    .type-btn .sublabel {
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.2;
+    }
+    .type-btn:active { transform: scale(0.97); }
+    .type-btn.selected.ruh      { border-color: #f59e0b; background: #fffbeb; }
+    .type-btn.selected.avvik    { border-color: #dc2626; background: #fef2f2; }
+    .type-btn.selected.nearuhell{ border-color: #7c3aed; background: #f5f3ff; }
+    .type-btn.selected.farlig   { border-color: #ea580c; background: #fff7ed; }
+
+    /* Severity */
+    .severity-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+    .sev-btn {
+      border: 2px solid var(--border);
+      background: white;
+      border-radius: 10px;
+      padding: 12px 6px;
+      cursor: pointer;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.15s;
+    }
+    .sev-btn:active { transform: scale(0.97); }
+    .sev-btn .dot {
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      margin: 0 auto 6px;
+    }
+    .sev-btn.selected.lav    { border-color: #16a34a; background: #f0fdf4; color: #16a34a; }
+    .sev-btn.selected.middels{ border-color: #d97706; background: #fffbeb; color: #d97706; }
+    .sev-btn.selected.hoy    { border-color: #dc2626; background: #fef2f2; color: #dc2626; }
+    .dot.lav { background: #16a34a; }
+    .dot.middels { background: #d97706; }
+    .dot.hoy { background: #dc2626; }
+
+    /* Inputs */
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .required-star { color: var(--danger); }
+    input[type=text], input[type=tel], textarea, select {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-size: 16px;
+      font-family: inherit;
+      color: var(--text);
+      background: white;
+      appearance: none;
+      transition: border-color 0.15s;
+      outline: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--primary-light);
+    }
+    input.error, textarea.error, select.error {
+      border-color: var(--danger);
+    }
+    textarea {
+      resize: none;
+      min-height: 100px;
+      line-height: 1.5;
+    }
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+
+    /* Image upload */
+    .img-upload {
+      border: 2px dashed var(--border);
+      border-radius: 10px;
+      padding: 24px 16px;
+      text-align: center;
+      cursor: pointer;
+      background: #fafafa;
+      transition: all 0.15s;
+      position: relative;
+    }
+    .img-upload:active { background: #f0f4f8; }
+    .img-upload input { display: none; }
+    .img-upload .upload-icon { font-size: 36px; margin-bottom: 8px; }
+    .img-upload .upload-text { font-size: 14px; font-weight: 600; color: var(--primary-light); }
+    .img-upload .upload-sub  { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .img-preview {
+      display: none;
+      margin-top: 12px;
+      position: relative;
+    }
+    .img-preview img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+    .img-remove {
+      position: absolute;
+      top: 8px; right: 8px;
+      background: rgba(0,0,0,0.6);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 28px; height: 28px;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Submit button */
+    .submit-btn {
+      width: 100%;
+      padding: 18px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 17px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      margin-top: 8px;
+      letter-spacing: 0.3px;
+    }
+    .submit-btn:active { transform: scale(0.98); background: #142d54; }
+    .submit-btn:disabled { background: #94a3b8; cursor: not-allowed; transform: none; }
+
+    /* Error message */
+    .error-msg {
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      color: var(--danger);
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      margin-bottom: 12px;
+      display: none;
+    }
+
+    /* Success screen */
+    #success-screen {
+      display: none;
+      min-height: 100vh;
+      background: var(--bg);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+    }
+    .success-icon {
+      width: 80px; height: 80px;
+      background: #dcfce7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    #success-screen h2 { font-size: 24px; color: var(--text); margin-bottom: 10px; }
+    #success-screen p  { color: var(--text-muted); font-size: 15px; line-height: 1.5; margin-bottom: 28px; }
+    .new-report-btn {
+      padding: 16px 32px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--radius);
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hint { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .divider { height: 1px; background: var(--border); margin: 4px 0 14px; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+  <div class="header-logo">
+    <div class="logo-icon">⚡</div>
+    <div>
+      <h1>Avviksregistrering</h1>
+      <p>Minel – RUH og HMS-avvik</p>
+    </div>
+  </div>
+</div>
+
+<!-- Success screen -->
+<div id="success-screen">
+  <div class="success-icon">✅</div>
+  <h2>Innmelding sendt!</h2>
+  <p>Avviket er registrert og vil bli fulgt opp av prosjektleder.</p>
+  <button class="new-report-btn" onclick="resetForm()">Registrer nytt avvik</button>
+</div>
+
+<!-- Form -->
+<div id="form-screen">
+  <div class="container">
+    <div id="error-msg" class="error-msg"></div>
+
+    <!-- Prosjekt -->
+    <p class="section-label">Prosjekt</p>
+    <div class="card">
+      <div class="field">
+        <label for="project">Velg prosjekt <span class="required-star">*</span></label>
+        <select id="project" required>
+          <option value="">– Velg prosjekt –</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Type -->
+    <p class="section-label">Type hendelse <span class="required-star">*</span></p>
+    <div class="card">
+      <div class="type-grid">
+        <button class="type-btn ruh" data-type="RUH" onclick="selectType(this)">
+          <span class="icon">⚠️</span>
+          <span class="label">RUH</span>
+          <span class="sublabel">Risiko for uønsket hendelse</span>
+        </button>
+        <button class="type-btn avvik" data-type="Avvik" onclick="selectType(this)">
+          <span class="icon">❌</span>
+          <span class="label">Avvik</span>
+          <span class="sublabel">Fra krav, tegning eller prosedyre</span>
+        </button>
+        <button class="type-btn nearuhell" data-type="Næruhell" onclick="selectType(this)">
+          <span class="icon">🚨</span>
+          <span class="label">Næruhell</span>
+          <span class="sublabel">Nesten-ulykke uten skade</span>
+        </button>
+        <button class="type-btn farlig" data-type="Farlig tilstand" onclick="selectType(this)">
+          <span class="icon">🔴</span>
+          <span class="label">Farlig tilstand</span>
+          <span class="sublabel">Farlig sted, utstyr e.l.</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Alvorlighetsgrad -->
+    <p class="section-label">Alvorlighetsgrad <span class="required-star">*</span></p>
+    <div class="card">
+      <div class="severity-row">
+        <button class="sev-btn lav" data-sev="Lav" onclick="selectSeverity(this)">
+          <div class="dot lav"></div>Lav
+        </button>
+        <button class="sev-btn middels" data-sev="Middels" onclick="selectSeverity(this)">
+          <div class="dot middels"></div>Middels
+        </button>
+        <button class="sev-btn hoy" data-sev="Høy" onclick="selectSeverity(this)">
+          <div class="dot hoy"></div>Høy
+        </button>
+      </div>
+    </div>
+
+    <!-- Beskrivelse -->
+    <p class="section-label">Beskrivelse</p>
+    <div class="card">
+      <div class="field">
+        <label for="description">Hva skjedde / hva ble observert? <span class="required-star">*</span></label>
+        <textarea id="description" placeholder="Beskriv hendelsen eller avviket så konkret som mulig…"></textarea>
+      </div>
+      <div class="divider"></div>
+      <div class="field">
+        <label for="immediate_action">Umiddelbare tiltak (valgfri)</label>
+        <textarea id="immediate_action" placeholder="Hva ble gjort med en gang?" style="min-height:70px;"></textarea>
+      </div>
+      <div class="field">
+        <label for="location">Sted / lokasjon (valgfri)</label>
+        <input type="text" id="location" placeholder="f.eks. 3. etasje, tavlerom, kurs 4">
+      </div>
+    </div>
+
+    <!-- Bilde -->
+    <p class="section-label">Bilde</p>
+    <div class="card">
+      <label class="img-upload" for="imageInput" id="uploadLabel">
+        <input type="file" id="imageInput" accept="image/*" capture="environment" onchange="previewImage(this)">
+        <div class="upload-icon">📷</div>
+        <div class="upload-text">Ta bilde eller velg fra galleri</div>
+        <div class="upload-sub">Valgfri – maks 15 MB</div>
+      </label>
+      <div class="img-preview" id="imgPreview">
+        <img id="previewImg" src="" alt="Forhåndsvisning">
+        <button class="img-remove" onclick="removeImage()">✕</button>
+      </div>
+    </div>
+
+    <!-- Person -->
+    <p class="section-label">Din informasjon</p>
+    <div class="card">
+      <div class="field">
+        <label for="reporter_name">Fullt navn <span class="required-star">*</span></label>
+        <input type="text" id="reporter_name" placeholder="Ola Nordmann" autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="reporter_company">Firma <span class="required-star">*</span></label>
+        <input type="text" id="reporter_company" placeholder="Minel / firma du jobber for" autocomplete="organization">
+        <p class="hint">Minel-ansatte skriver «Minel»</p>
+      </div>
+      <div class="field">
+        <label for="reporter_phone">Telefon (valgfri)</label>
+        <input type="tel" id="reporter_phone" placeholder="+47 xxx xx xxx" autocomplete="tel">
+      </div>
+    </div>
+
+    <button class="submit-btn" id="submitBtn" onclick="submitReport()">
+      Send inn avvik
+    </button>
+  </div>
+</div>
+
+<script>
+  let selectedType = '';
+  let selectedSeverity = '';
+
+  // Load projects
+  async function loadProjects() {
+    try {
+      const res = await fetch('/api/projects');
+      const projects = await res.json();
+      const sel = document.getElementById('project');
+      projects.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.dataset.name = p.name;
+        opt.textContent = p.number ? `${p.name} (${p.number})` : p.name;
+        sel.appendChild(opt);
+      });
+      // Pre-select if project_id in URL
+      const params = new URLSearchParams(location.search);
+      const pid = params.get('project');
+      if (pid) sel.value = pid;
+    } catch (e) { console.error(e); }
+  }
+
+  function selectType(btn) {
+    document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedType = btn.dataset.type;
+  }
+
+  function selectSeverity(btn) {
+    document.querySelectorAll('.sev-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedSeverity = btn.dataset.sev;
+  }
+
+  function previewImage(input) {
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        document.getElementById('previewImg').src = e.target.result;
+        document.getElementById('imgPreview').style.display = 'block';
+        document.getElementById('uploadLabel').style.display = 'none';
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function removeImage() {
+    document.getElementById('imageInput').value = '';
+    document.getElementById('imgPreview').style.display = 'none';
+    document.getElementById('uploadLabel').style.display = 'block';
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('error-msg');
+    el.textContent = msg;
+    el.style.display = 'block';
+    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function hideError() {
+    document.getElementById('error-msg').style.display = 'none';
+  }
+
+  async function submitReport() {
+    hideError();
+    const projectSel = document.getElementById('project');
+    const description = document.getElementById('description').value.trim();
+    const reporter_name = document.getElementById('reporter_name').value.trim();
+    const reporter_company = document.getElementById('reporter_company').value.trim();
+
+    if (!projectSel.value) return showError('Velg et prosjekt.');
+    if (!selectedType)     return showError('Velg type hendelse.');
+    if (!selectedSeverity) return showError('Velg alvorlighetsgrad.');
+    if (!description)      return showError('Beskrivelse er påkrevd.');
+    if (!reporter_name)    return showError('Navn er påkrevd.');
+    if (!reporter_company) return showError('Firma er påkrevd.');
+
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.textContent = 'Sender…';
+
+    const fd = new FormData();
+    fd.append('project_id', projectSel.value);
+    fd.append('project_name', projectSel.options[projectSel.selectedIndex].dataset.name || '');
+    fd.append('type', selectedType);
+    fd.append('severity', selectedSeverity);
+    fd.append('description', description);
+    fd.append('immediate_action', document.getElementById('immediate_action').value.trim());
+    fd.append('location', document.getElementById('location').value.trim());
+    fd.append('reporter_name', reporter_name);
+    fd.append('reporter_company', reporter_company);
+    fd.append('reporter_phone', document.getElementById('reporter_phone').value.trim());
+
+    const imgFile = document.getElementById('imageInput').files[0];
+    if (imgFile) fd.append('image', imgFile);
+
+    try {
+      const res = await fetch('/api/reports', { method: 'POST', body: fd });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Noe gikk galt');
+      document.getElementById('form-screen').style.display = 'none';
+      document.getElementById('success-screen').style.display = 'flex';
+      window.scrollTo(0, 0);
+    } catch (e) {
+      showError(e.message);
+      btn.disabled = false;
+      btn.textContent = 'Send inn avvik';
+    }
+  }
+
+  function resetForm() {
+    document.getElementById('form-screen').style.display = 'block';
+    document.getElementById('success-screen').style.display = 'none';
+    document.getElementById('description').value = '';
+    document.getElementById('immediate_action').value = '';
+    document.getElementById('location').value = '';
+    document.getElementById('reporter_name').value = '';
+    document.getElementById('reporter_company').value = '';
+    document.getElementById('reporter_phone').value = '';
+    removeImage();
+    selectedType = '';
+    selectedSeverity = '';
+    document.querySelectorAll('.type-btn, .sev-btn').forEach(b => b.classList.remove('selected'));
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('submitBtn').textContent = 'Send inn avvik';
+    window.scrollTo(0, 0);
+  }
+
+  loadProjects();
+</script>
+</body>
+</html>
