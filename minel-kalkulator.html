@@ -898,10 +898,10 @@ function logout() {
 
 // ── NAVIGATION ────────────────────────────────────────────────
 function goTo(page) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p => { p.classList.remove('active'); p.style.display = 'none'; });
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   const pg = document.getElementById('page-' + page);
-  if (pg) pg.classList.add('active');
+  if (pg) { pg.classList.add('active'); pg.style.display = 'block'; }
   const nv = document.getElementById('nav-' + page);
   if (nv) nv.classList.add('active');
   window.scrollTo(0,0);
@@ -1234,9 +1234,4 @@ if ('serviceWorker' in navigator) {
 }
 
 // ── INIT ──────────────────────────────────────────────────────
-window.addEventListener('DOMContentLoaded', () => {
-  initMSAL();
-});
-</script>
-</body>
-</html>
+window.addEventListener('DOMConte
