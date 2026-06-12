@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Minel">
+<meta name="theme-color" content="#002B5C">
+<meta name="description" content="Minel – Verktøy for elektrikere">
+
+<!-- PWA Manifest (inline) -->
+<script>
+const manifestData = {
+  name: "Minel Elektriker",
+  short_name: "Minel",
+  description: "Kalkulatorer, tabeller og avviksrapportering for Minel-elektrikere",
+  start_url: "./",
+  display: "standalone",
+  background_color: "#002B5C",
+  theme_color: "#002B5C",
+  orientation: "portrait",
+  icons: [
+    { src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='32' fill='%23002B5C'/><text x='96' y='130' font-size='110' text-anchor='middle' fill='%23F47920'>⚡</text></svg>", sizes: "192x192", type: "image/svg+xml" },
+    { src: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='80' fill='%23002B5C'/><text x='256' y='360' font-size='300' text-anchor='middle' fill='%23F47920'>⚡</text></svg>", sizes: "512x512", type: "image/svg+xml" }
+  ]
+};
+const blob = new Blob([JSON.stringify(manifestData)], {type:'application/json'});
+const manifestURL = URL.createObjectURL(blob);
+document.addEventListener('DOMContentLoaded', () => {
+  const link = document.createElement('link');
+  link.rel = 'manifest'; link.href = manifestURL;
+  document.head.appendChild(link);
+});
+</script>
+
+<!-- Microsoft MSAL.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-msal-browser/3.28.1/msal-browser.min.js"></script>
+
+<title>Minel</title>
+<style>
+:root {
+  --blue: #002B5C;
+  --blue-light: #003f85;
+  --blue-mid: #1a4a80;
+  --orange: #F47920;
+  --orange-light: #ff9a45;
+  --bg: #f0f4f8;
+  --card: #ffffff;
+  --text: #0f172a;
+  --text-muted: #64748b;
+  --border: #e2e8f0;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --nav-height: 68px;
+  --header-height: 60px;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{height:100%;overscroll-behavior:none}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding-bottom:var(--nav-height);overscroll-behavior:none}
+
+/* ── LOGIN SCREEN ───────────────────────────────────── */
+#login-screen{position:fixed;inset:0;background:var(--blue);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;padding:40px 24px;text-align:center}
+.login-logo{font-size:64px;margin-bottom:8px}
+.login-brand{font-size:42px;font-weight:900;color:white;letter-spacing:-1px}
+.login-brand span{color:var(--orange)}
+.login-tagline{color:rgba(255,255,255,0.6);font-size:15px;margin-top:4px;margin-bottom:48px}
+.login-btn{display:flex;align-items:center;gap:12px;background:white;color:var(--text);border:none;border-radius:12px;padding:16px 24px;font-size:16px;font-weight:700;cursor:pointer;width:100%;max-width:320px;justify-content:center;box-shadow:0 4px 20px rgba(0,0,0,0.2);transition:transform 0.15s}
+.login-btn:active{transform:scale(0.97)}
+.login-btn img{width:22px;height:22px}
+.login-note{color:rgba(255,255,255,0.4);font-size:12px;margin-top:20px}
+.login-divider{width:100%;max-width:320px;display:flex;align-items:center;gap:12px;margin:20px 0;color:rgba(255,255,255,0.3);font-size:12px}
+.login-divider::before,.login-divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,0.15)}
+.login-demo{background:rgba(255,255,255,0.1);color:rgba(255,255,255,0.7);border:1.5px solid rgba(255,255,255,0.2);border-radius:12px;padding:14px 24px;font-size:14px;font-weight:600;cursor:pointer;width:100%;max-width:320px}
+
+/* ── HEADER ─────────────────────────────────────────── */
+.header{background:var(--blue);color:white;padding:0 16px;height:var(--header-height);position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,0.25);display:flex;align-items:center;justify-content:space-between}
+.header-left{display:flex;align-items:center;gap:10px}
+.header-logo{font-size:24px;font-weight:900;letter-spacing:-0.5px}
+.header-logo span{color:var(--orange)}
+.user-pill{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,0.12);border-radius:20px;padding:5px 12px 5px 5px;cursor:pointer}
+.user-avatar{width:28px;height:28px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white}
+.user-name{font-size:12px;font-weight:600;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.offline-badge{background:var(--warning);color:#78350f;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px;display:none}
+.offline-badge.show{display:block}
+
+/* ── BOTTOM NAV ─────────────────────────────────────── */
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-height);background:var(--blue);display:flex;z-index:100;border-top:2px solid var(--orange);padding-bottom:env(safe-area-inset-bottom)}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;color:rgba(255,255,255,0.45);cursor:pointer;gap:3px;border:none;background:transparent;transition:color 0.15s;padding:8px 0;position:relative}
+.nav-item.active{color:var(--orange)}
+.nav-item svg{width:22px;height:22px}
+.nav-item span{font-size:10px;font-weight:600;letter-spacing:0.2px}
+.nav-badge{position:absolute;top:6px;right:calc(50% - 18px);background:var(--danger);color:white;font-size:9px;font-weight:800;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid var(--blue)}
+
+/* ── PAGES ──────────────────────────────────────────── */
+.page{display:none;padding:14px 14px;animation:fadeIn 0.2s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── CARDS ──────────────────────────────────────────── */
+.card{background:var(--card);border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 6px rgba(0,0,0,0.07);border:1px solid var(--border)}
+.card-title{font-size:14px;font-weight:800;color:var(--blue);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.card-icon{width:30px;height:30px;background:var(--blue);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+
+/* ── FORMS ──────────────────────────────────────────── */
+.form-group{margin-bottom:12px}
+label{font-size:11px;font-weight:700;color:var(--text-muted);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}
+input,select,textarea{width:100%;padding:11px 12px;border:1.5px solid var(--border);border-radius:9px;font-size:15px;color:var(--text);background:#fafbfc;appearance:none;-webkit-appearance:none;font-family:inherit;transition:border-color 0.15s,box-shadow 0.15s}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--orange);background:white;box-shadow:0 0 0 3px rgba(244,121,32,0.12)}
+textarea{resize:vertical;min-height:90px;line-height:1.5}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+
+/* ── BUTTONS ─────────────────────────────────────────── */
+.btn{width:100%;padding:14px;border-radius:11px;font-size:15px;font-weight:700;border:none;cursor:pointer;transition:all 0.15s;font-family:inherit}
+.btn-primary{background:var(--orange);color:white;box-shadow:0 2px 8px rgba(244,121,32,0.35)}
+.btn-primary:active{background:#d96a0f;transform:scale(0.98)}
+.btn-secondary{background:var(--blue);color:white;margin-top:8px}
+.btn-danger{background:var(--danger);color:white;margin-top:8px}
+.btn-sm{padding:9px 14px;font-size:13px;width:auto;border-radius:8px}
+
+/* ── CHIPS ──────────────────────────────────────────── */
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:5px}
+.chip{padding:7px 13px;border-radius:20px;font-size:13px;font-weight:600;border:1.5px solid var(--border);background:#fafbfc;cursor:pointer;transition:all 0.15s;color:var(--text-muted);user-select:none}
+.chip.selected{background:var(--blue);color:white;border-color:var(--blue)}
+
+/* ── RESULT BOX ─────────────────────────────────────── */
+.result-box{background:linear-gradient(135deg,var(--blue),var(--blue-light));border-radius:12px;padding:16px;color:white;margin-top:12px;display:none}
+.result-box.show{display:block}
+.result-box.ok{background:linear-gradient(135deg,#065f46,#059669)}
+.result-box.warn{background:linear-gradient(135deg,#78350f,#b45309)}
+.result-box.err{background:linear-gradient(135deg,#7f1d1d,#dc2626)}
+.result-label{font-size:10px;opacity:0.7;text-transform:uppercase;letter-spacing:0.6px;margin-bottom:2px}
+.result-value{font-size:30px;font-weight:900;line-height:1}
+.result-value small{font-size:14px;font-weight:400;opacity:0.8}
+.result-detail{font-size:12px;opacity:0.85;margin-top:10px;line-height:1.7;border-top:1px solid rgba(255,255,255,0.2);padding-top:10px}
+.result-row{display:flex;justify-content:space-between;align-items:baseline}
+
+/* ── TABS ────────────────────────────────────────────── */
+.tabs{display:flex;gap:6px;margin-bottom:12px;background:white;padding:4px;border-radius:12px;border:1px solid var(--border)}
+.tab{flex:1;padding:9px 4px;border-radius:9px;font-size:12px;font-weight:700;text-align:center;cursor:pointer;border:none;background:transparent;color:var(--text-muted);transition:all 0.15s;font-family:inherit}
+.tab.active{background:var(--blue);color:white;box-shadow:0 2px 6px rgba(0,43,92,0.3)}
+
+/* ── BADGES ─────────────────────────────────────────── */
+.badge{display:inline-block;padding:3px 8px;border-radius:99px;font-size:11px;font-weight:700}
+.badge-ok{background:#d1fae5;color:#065f46}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-err{background:#fee2e2;color:#991b1b}
+.badge-blue{background:#dbeafe;color:#1e40af}
+
+/* ── HOME ────────────────────────────────────────────── */
+.home-greeting{font-size:19px;font-weight:800;color:var(--blue)}
+.home-sub{font-size:13px;color:var(--text-muted);margin-top:2px;margin-bottom:14px}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.quick-card{background:var(--card);border-radius:14px;padding:16px 12px;text-align:center;border:1.5px solid var(--border);cursor:pointer;transition:all 0.15s;box-shadow:0 1px 4px rgba(0,0,0,0.06);position:relative;overflow:hidden}
+.quick-card:active{transform:scale(0.96);border-color:var(--orange)}
+.quick-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--orange);opacity:0;transition:opacity 0.15s}
+.quick-card:active::before{opacity:1}
+.qc-icon{font-size:30px;margin-bottom:6px}
+.qc-label{font-size:13px;font-weight:800;color:var(--blue)}
+.qc-sub{font-size:11px;color:var(--text-muted);margin-top:2px}
+
+/* ── LIST ITEMS ─────────────────────────────────────── */
+.list-item{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid var(--border)}
+.list-item:last-child{border-bottom:none;padding-bottom:0}
+.list-dot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.list-title{font-size:14px;font-weight:600}
+.list-meta{font-size:12px;color:var(--text-muted);margin-top:2px;line-height:1.4}
+.list-arrow{color:var(--text-muted);font-size:20px;margin-left:auto;align-self:center}
+.list-icon{width:38px;height:38px;border-radius:10px;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+
+/* ── TABLE ──────────────────────────────────────────── */
+.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border);margin-top:8px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:var(--blue);color:white;padding:9px 8px;text-align:center;font-size:11px;font-weight:700;white-space:nowrap}
+td{padding:8px;text-align:center;border-bottom:1px solid var(--border)}
+tr:last-child td{border-bottom:none}
+tr:nth-child(even) td{background:#f8fafc}
+.hl td{background:#fff3e0!important;font-weight:700;color:var(--orange)}
+
+/* ── INFO BOX ────────────────────────────────────────── */
+.info-box{border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.6}
+.info-box.yellow{background:#fffbeb;border:1px solid #fde68a;color:#78350f}
+.info-box.blue{background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af}
+.info-box.green{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d}
+
+/* ── AVVIK ──────────────────────────────────────────── */
+.avvik-card{background:var(--card);border-radius:12px;padding:14px;margin-bottom:8px;border:1.5px solid var(--border);cursor:pointer;transition:all 0.15s}
+.avvik-card:active{transform:scale(0.98)}
+.avvik-card.kritisk{border-left:4px solid var(--danger)}
+.avvik-card.middels{border-left:4px solid var(--warning)}
+.avvik-card.lav{border-left:4px solid var(--success)}
+.avvik-header{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.avvik-tittel{font-size:14px;font-weight:700;flex:1}
+.avvik-meta{font-size:11px;color:var(--text-muted);margin-top:4px}
+
+/* ── PHOTO UPLOAD ────────────────────────────────────── */
+.photo-area{border:2px dashed var(--border);border-radius:10px;padding:20px;text-align:center;cursor:pointer;transition:border-color 0.15s;position:relative;overflow:hidden}
+.photo-area:active{border-color:var(--orange)}
+.photo-area input{position:absolute;inset:0;opacity:0;cursor:pointer}
+.photo-preview{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.photo-thumb{width:72px;height:72px;border-radius:8px;object-fit:cover;border:2px solid var(--border)}
+
+/* ── STATUS INDICATOR ────────────────────────────────── */
+.status-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:9px;font-size:13px;font-weight:600}
+.status-bar.ok{background:#d1fae5;color:#065f46}
+.status-bar.offline{background:#fef3c7;color:#92400e}
+.dot{width:8px;height:8px;border-radius:50%;background:currentColor;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+/* ── SECTION TITLE ───────────────────────────────────── */
+.section-title{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin:14px 0 8px}
+
+/* ── SYNC INDICATOR ──────────────────────────────────── */
+.sync-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border)}
+.sync-row:last-child{border-bottom:none}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- LOGIN SCREEN                                        -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-logo">⚡</div>
+  <div class="login-brand">Mine<span>l</span></div>
+  <div class="login-tagline">Verktøy for elektrikere · minel.no</div>
+
+  <button class="login-btn" onclick="msalLogin()">
+    <svg width="22" height="22" viewBox="0 0 23 23"><path fill="#f3f3f3" d="M0 0h23v23H0z"/><path fill="#f35325" d="M1 1h10v10H1z"/><path fill="#81bc06" d="M12 1h10v10H12z"/><path fill="#05a6f0" d="M1 12h10v10H1z"/><path fill="#ffba08" d="M12 12h10v10H12z"/></svg>
+    Logg inn med Microsoft
+  </button>
+
+  <div class="login-divider">eller</div>
+
+  <button class="login-demo" onclick="demoLogin()">
+    🔧 Demo-modus (uten innlogging)
+  </button>
+
+  <div class="login-note">Krever @minel.no Microsoft-konto<br>Dataene lagres sikkert i Azure</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- HEADER                                              -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="header" id="app-header" style="display:none">
+  <div class="header-left">
+    <div class="header-logo">Mine<span>l</span></div>
+    <div class="offline-badge" id="offline-badge">OFFLINE</div>
+  </div>
+  <div class="user-pill" onclick="goTo('innstillinger')">
+    <div class="user-avatar" id="user-avatar">?</div>
+    <div class="user-name" id="user-name">Laster...</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE: HJEM                                          -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="page-home">
+  <div class="home-greeting" id="greeting">God dag! 👋</div>
+  <div class="home-sub">Hva trenger du hjelp med i dag?</div>
+
+  <div class="quick-grid">
+    <div class="quick-card" onclick="goTo('kalkulatorer')">
+      <div class="qc-icon">🔌</div>
+      <div class="qc-label">Kalkulatorer</div>
+      <div class="qc-sub">Kabel, vern, effekt</div>
+    </div>
+    <div class="quick-card" onclick="goTo('avvik')">
+      <div class="qc-icon">⚠️</div>
+      <div class="qc-label">Avvik</div>
+      <div class="qc-sub">Meld & følg opp</div>
+    </div>
+    <div class="quick-card" onclick="goTo('tabeller')">
+      <div class="qc-icon">📋</div>
+      <div class="qc-label">Tabeller</div>
+      <div class="qc-sub">NEK 400</div>
+    </div>
+    <div class="quick-card" onclick="goTo('ressurser')">
+      <div class="qc-icon">📁</div>
+      <div class="qc-label">Ressurser</div>
+      <div class="qc-sub">SharePoint & dok</div>
+    </div>
+  </div>
+
+  <div class="section-title">Siste avvik</div>
+  <div class="card" id="home-avvik-list">
+    <!-- Dynamisk fra avvik-state -->
+  </div>
+
+  <div class="section-title">Hurtigkalkulator</div>
+  <div class="card">
+    <div class="card-title"><div class="card-icon">⚡</div> Rask spenningsfall</div>
+    <div class="row3">
+      <div class="form-group">
+        <label>A</label>
+        <input type="number" id="quick-a" placeholder="16" inputmode="decimal" oninput="quickCalc()">
+      </div>
+      <div class="form-group">
+        <label>m</label>
+        <input type="number" id="quick-m" placeholder="25" inputmode="decimal" oninput="quickCalc()">
+      </div>
+      <div class="form-group">
+        <label>mm²</label>
+        <select id="quick-mm" onchange="quickCalc()">
+          <option value="1.5">1,5</option>
+          <option value="2.5" selected>2,5</option>
+          <option value="4">4</option>
+          <option value="6">6</option>
+          <option value="10">10</option>
+          <option value="16">16</option>
+        </select>
+      </div>
+    </div>
+    <div id="quick-result" style="font-size:13px;color:var(--text-muted);min-height:20px;margin-top:2px"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE: KALKULATORER                                  -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="page-kalkulatorer">
+  <div class="tabs">
+    <div class="tab active" id="k-tab-sf" onclick="setKTab('sf')">Spenningsfall</div>
+    <div class="tab" id="k-tab-vern" onclick="setKTab('vern')">Kabel/Vern</div>
+    <div class="tab" id="k-tab-ohm" onclick="setKTab('ohm')">Ohm/Effekt</div>
+  </div>
+
+  <!-- SPENNINGSFALL -->
+  <div id="k-sf">
+    <div class="card">
+      <div class="card-title"><div class="card-icon">⚡</div> Spenningsfallkalkulator</div>
+      <div class="form-group">
+        <label>System</label>
+        <div class="chips" id="c-system">
+          <div class="chip selected" onclick="chipSel('c-system',this)">1-fase 230V</div>
+          <div class="chip" onclick="chipSel('c-system',this)">3-fase 400V</div>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="form-group">
+          <label>Strøm (A)</label>
+          <input type="number" id="sf-i" placeholder="16" inputmode="decimal">
+        </div>
+        <div class="form-group">
+          <label>Kabellengde (m)</label>
+          <input type="number" id="sf-l" placeholder="25" inputmode="decimal">
+        </div>
+      </div>
+      <div class="row2">
+        <div class="form-group">
+          <label>Tverrsnitt (mm²)</label>
+          <select id="sf-a">
+            <option value="1.5">1,5</option><option value="2.5" selected>2,5</option>
+            <option value="4">4</option><option value="6">6</option>
+            <option value="10">10</option><option value="16">16</option>
+            <option value="25">25</option><option value="35">35</option><option value="50">50</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Materiale</label>
+          <select id="sf-mat">
+            <option value="0.0175">Kobber</option>
+            <option value="0.0287">Aluminium</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Effektfaktor cosφ</label>
+        <div class="chips" id="c-cos">
+          <div class="chip" onclick="chipSel('c-cos',this)">1,0</div>
+          <div class="chip selected" onclick="chipSel('c-cos',this)">0,9</div>
+          <div class="chip" onclick="chipSel('c-cos',this)">0,85</div>
+          <div class="chip" onclick="chipSel('c-cos',this)">0,8</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="calcSF()">Beregn spenningsfall</button>
+      <div class="result-box" id="sf-res"></div>
+    </div>
+    <div class="info-box yellow" style="margin-bottom:12px">
+      <strong>📋 NEK 400 § 525 – grenser:</strong><br>
+      Belysning &amp; stikkontakter: maks <strong>3%</strong><br>
+      Andre forbrukere: maks <strong>5%</strong><br>
+      Total fra trafo til apparat: maks <strong>8%</strong>
+    </div>
+  </div>
+
+  <!-- KABEL/VERN -->
+  <div id="k-vern" style="display:none">
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🛡</div> Kabel/Vern koordinering</div>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px">NEK 400 § 433.1: <strong>Ib ≤ In ≤ Iz</strong> og <strong>I₂ ≤ 1,45 × Iz</strong></p>
+
+      <div class="form-group">
+        <label>Last (W) → beregner Ib</label>
+        <input type="number" id="vern-w" placeholder="3000" inputmode="decimal" oninput="calcIb()">
+      </div>
+      <div class="form-group">
+        <label>Fase</label>
+        <div class="chips" id="c-fase">
+          <div class="chip selected" onclick="chipSel('c-fase',this);calcIb()">1-fase 230V</div>
+          <div class="chip" onclick="chipSel('c-fase',this);calcIb()">3-fase 400V</div>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="form-group">
+          <label>Belastningsstrøm Ib (A)</label>
+          <input type="number" id="vern-ib" placeholder="13,0" inputmode="decimal">
+        </div>
+        <div class="form-group">
+          <label>Vernstørrelse In (A)</label>
+          <select id="vern-in">
+            <option>6</option><option>10</option><option>13</option>
+            <option value="16" selected>16</option><option>20</option>
+            <option>25</option><option>32</option><option>40</option>
+            <option>50</option><option>63</option>
+          </select>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="form-group">
+          <label>Kabeltype</label>
+          <select id="vern-kabel">
+            <option value="1.5">1,5 mm² Cu</option><option value="2.5" selected>2,5 mm² Cu</option>
+            <option value="4">4 mm² Cu</option><option value="6">6 mm² Cu</option>
+            <option value="10">10 mm² Cu</option><option value="16">16 mm² Cu</option>
+            <option value="25">25 mm² Cu</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Inst.metode</label>
+          <select id="vern-metode">
+            <option value="0">A – Isolert vegg</option>
+            <option value="1" selected>B – Rør/kanal</option>
+            <option value="2">C – Åpent</option>
+            <option value="3">E/F – I luft</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Vernkarakteristikk</label>
+        <div class="chips" id="c-karak">
+          <div class="chip selected" onclick="chipSel('c-karak',this)">B (3–5×In)</div>
+          <div class="chip" onclick="chipSel('c-karak',this)">C (5–10×In)</div>
+          <div class="chip" onclick="chipSel('c-karak',this)">D (10–20×In)</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" onclick="calcVern()">Kontroller koordinering</button>
+      <div class="result-box" id="vern-res"></div>
+    </div>
+    <div class="info-box blue" style="margin-bottom:12px">
+      <strong>📘 Karakteristikker:</strong><br>
+      <strong>B:</strong> Bolig, belysning, stikkontakter<br>
+      <strong>C:</strong> Industri, motorer, data<br>
+      <strong>D:</strong> Transformatorer, høy startstrøm
+    </div>
+  </div>
+
+  <!-- OHM / EFFEKT -->
+  <div id="k-ohm" style="display:none">
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🔢</div> Ohms lov</div>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px">Fyll inn to verdier – beregner de resterende</p>
+      <div class="row2">
+        <div class="form-group"><label>Spenning U (V)</label><input type="number" id="o-u" placeholder="230" inputmode="decimal"></div>
+        <div class="form-group"><label>Strøm I (A)</label><input type="number" id="o-i" placeholder="" inputmode="decimal"></div>
+      </div>
+      <div class="row2">
+        <div class="form-group"><label>Motstand R (Ω)</label><input type="number" id="o-r" placeholder="" inputmode="decimal"></div>
+        <div class="form-group"><label>Effekt P (W)</label><input type="number" id="o-p" placeholder="" inputmode="decimal"></div>
+      </div>
+      <button class="btn btn-primary" onclick="calcOhm()">Beregn</button>
+      <div class="result-box" id="ohm-res"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="card-icon">3φ</div> 3-fase effekt</div>
+      <div class="row3">
+        <div class="form-group"><label>U (V)</label><input type="number" id="t3-u" placeholder="400" inputmode="decimal"></div>
+        <div class="form-group"><label>I (A)</label><input type="number" id="t3-i" placeholder="32" inputmode="decimal"></div>
+        <div class="form-group"><label>cosφ</label><input type="number" id="t3-cos" placeholder="0.9" inputmode="decimal"></div>
+      </div>
+      <button class="btn btn-secondary" onclick="calc3f()">Beregn 3-fase</button>
+      <div class="result-box" id="t3-res"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><div class="card-icon">🌡</div> Korreksjons­faktorer</div>
+      <div class="info-box blue" style="margin-bottom:0">
+        <strong>Temperatur (kt):</strong><br>
+        20°C → 1,12 · 25°C → 1,06 · 30°C → 1,00 · 35°C → 0,94 · 40°C → 0,87 · 45°C → 0,79<br><br>
+        <strong>Gruppeering (kg) – PVC:</strong><br>
+        1 kabel → 1,00 · 2 → 0,80 · 3 → 0,70 · 4–5 → 0,65 · 6–7 → 0,57 · 8–9 → 0,52
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE: TABELLER                                       -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="page-tabeller">
+  <div class="tabs">
+    <div class="tab active" id="t-tab-iz" onclick="setTTab('iz')">Strømtabell</div>
+    <div class="tab" id="t-tab-vern" onclick="setTTab('vern')">Sikringer</div>
+    <div class="tab" id="t-tab-form" onclick="setTTab('form')">Formler</div>
+  </div>
+
+  <div id="t-iz">
+    <div class="card">
+      <div class="card-title">Tabell 52B – NEK 400:2022</div>
+      <p style="font-size:12px;color:var(--text-muted);margin-bottom:8px">PVC-isolert kobber, 30°C – strøm i Ampere</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>mm²</th><th>A1/A2<br><small>Vegg</small></th><th>B1/B2<br><small>Rør</small></th><th>C<br><small>Åpent</small></th><th>E/F<br><small>Luft</small></th></tr></thead>
+          <tbody id="iz-tbody"></tbody>
+        </table>
+      </div>
+      <p style="font-size:11px;color:var(--text-muted);margin-top:8px">2-leder (1-fase). Kilde: NEK 400:2022 Tabell 52B. Verifiser mot gjeldende standard.</p>
+    </div>
+  </div>
+
+  <div id="t-vern" style="display:none">
+    <div class="card">
+      <div class="card-title">Automatsikringer – Karakteristikker</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>In (A)</th><th>B: 3–5×In</th><th>C: 5–10×In</th><th>D: 10–20×In</th></tr></thead>
+          <tbody>
+            <tr><td>6</td><td>18–30</td><td>30–60</td><td>60–120</td></tr>
+            <tr><td>10</td><td>30–50</td><td>50–100</td><td>100–200</td></tr>
+            <tr><td>16</td><td>48–80</td><td>80–160</td><td>160–320</td></tr>
+            <tr><td>20</td><td>60–100</td><td>100–200</td><td>200–400</td></tr>
+            <tr><td>25</td><td>75–125</td><td>125–250</td><td>250–500</td></tr>
+            <tr><td>32</td><td>96–160</td><td>160–320</td><td>320–640</td></tr>
+            <tr><td>40</td><td>120–200</td><td>200–400</td><td>400–800</td></tr>
+            <tr><td>63</td><td>189–315</td><td>315–630</td><td>630–1260</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="font-size:11px;color:var(--text-muted);margin-top:8px">Magnetisk utløserom (kortslutning, t &lt; 0,1 s). I₂ = 1,45 × In for termisk utløsning.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Minste kabelstørrelser – NEK 400</div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Bruk</th><th>Min. Cu</th><th>Min. Al</th></tr></thead>
+          <tbody>
+            <tr><td style="text-align:left">Faste installasjoner, belysning</td><td>1,5 mm²</td><td>—</td></tr>
+            <tr><td style="text-align:left">Faste installasjoner, stikk/forbruker</td><td>2,5 mm²</td><td>—</td></tr>
+            <tr><td style="text-align:left">Inntakskabel TN-S</td><td>10 mm²</td><td>16 mm²</td></tr>
+            <tr><td style="text-align:left">Jordleder, samme rør som fase</td><td>= Fase</td><td>= Fase</td></tr>
+            <tr><td style="text-align:left">Jordleder, separat</td><td>2,5 mm²</td><td>—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="t-form" style="display:none">
+    <div class="card">
+      <div class="card-title">Nøkkelformler</div>
+      <div class="info-box blue" style="margin-bottom:10px;font-family:monospace;font-size:13px">
+        <strong>Spenningsfall 1-fase:</strong><br>
+        ΔU = I × 2L × ρ × cosφ × 1,2 / A<br><br>
+        <strong>Spenningsfall 3-fase:</strong><br>
+        ΔU = I × √3 × L × ρ × cosφ × 1,2 / A<br><br>
+        <strong>ΔU% = (ΔU / Un) × 100</strong>
+      </div>
+      <div class="info-box blue" style="margin-bottom:10px;font-family:monospace;font-size:13px">
+        <strong>Ohms lov:</strong><br>
+        U = I × R &nbsp;·&nbsp; I = U/R &nbsp;·&nbsp; R = U/I<br><br>
+        <strong>1-fase effekt:</strong> P = U × I × cosφ<br>
+        <strong>3-fase effekt:</strong> P = √3 × U × I × cosφ<br>
+        <strong>Tilsynelatende:</strong> S = √3 × U × I (VA)
+      </div>
+      <div class="info-box blue" style="font-family:monospace;font-size:13px">
+        <strong>Kortslutning (Ik2min):</strong><br>
+        Ik2min = 0,95 × Un / (2 × 1,2 × (Zy + ρ×L/A))<br><br>
+        <strong>Vernkoord. (§ 433.1):</strong><br>
+        Krav 1: Ib ≤ In ≤ Iz<br>
+        Krav 2: I₂ ≤ 1,45 × Iz<br><br>
+        <strong>Materialresistivitet (ρ):</strong><br>
+        Kobber: 0,0175 Ω·mm²/m<br>
+        Aluminium: 0,0287 Ω·mm²/m<br>
+        (× 1,2 for 70°C ledertemp.)
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE: AVVIK                                         -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="page-avvik">
+  <div class="tabs">
+    <div class="tab active" id="a-tab-ny" onclick="setATab('ny')">Nytt avvik</div>
+    <div class="tab" id="a-tab-mine" onclick="setATab('mine')">Mine</div>
+    <div class="tab" id="a-tab-alle" onclick="setATab('alle')">Alle åpne</div>
+  </div>
+
+  <!-- NYTT AVVIK -->
+  <div id="a-ny">
+    <div class="card">
+      <div class="card-title"><div class="card-icon">⚠️</div> Meld nytt avvik</div>
+
+      <div class="form-group">
+        <label>Alvorlighetsgrad</label>
+        <div class="chips" id="c-alvor">
+          <div class="chip" style="border-color:#fca5a5;color:#991b1b" onclick="chipSel('c-alvor',this)">🔴 Kritisk</div>
+          <div class="chip selected" style="border-color:#fde68a;color:#92400e" onclick="chipSel('c-alvor',this)">🟡 Middels</div>
+          <div class="chip" style="border-color:#6ee7b7;color:#065f46" onclick="chipSel('c-alvor',this)">🟢 Lav</div>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="form-group">
+          <label>Kategori</label>
+          <select id="av-kat">
+            <option>HMS – Personlig</option>
+            <option>Teknisk – Installasjon</option>
+            <option>Teknisk – Dok.</option>
+            <option>Teknisk – Materiell</option>
+            <option>Kvalitet</option>
+            <option>Miljø</option>
+            <option>Annet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Prosjekt</label>
+          <select id="av-prosj">
+            <option>Sandvika B4</option>
+            <option>Lysaker K2</option>
+            <option>Fornebu P1</option>
+            <option>Oslo S Rehab</option>
+            <option>Annet</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Tittel / kort beskrivelse</label>
+        <input type="text" id="av-tittel" placeholder="F.eks. Manglende jordfeil på bad">
+      </div>
+
+      <div class="form-group">
+        <label>Detaljert beskrivelse</label>
+        <textarea id="av-besk" placeholder="Hva skjedde? Hvor? Tidspunkt og omstendigheter..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Tiltak gjort / planlagt</label>
+        <textarea id="av-tiltak" placeholder="Hva ble gjort umiddelbart? Hva må følges opp?" style="min-height:70px"></textarea>
+      </div>
+
+      <div class="form-group">
+        <label>Foto (valgfritt)</label>
+        <div class="photo-area" id="photo-area">
+          <input type="file" accept="image/*" capture="environment" multiple onchange="handlePhotos(this)">
+          <div>📷 Trykk for å ta bilde eller velg fra galleri</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px">Kamera åpnes direkte på mobil</div>
+        </div>
+        <div class="photo-preview" id="photo-preview"></div>
+      </div>
+
+      <button class="btn btn-primary" onclick="sendAvvik()">Send avvik</button>
+
+      <div id="av-sendt-ok" style="display:none;margin-top:10px">
+        <div class="status-bar ok">
+          <div class="dot"></div>
+          Avvik registrert! Ref: <strong id="av-ref" style="margin-left:4px"></strong>
+        </div>
+        <div id="av-sync-status" style="font-size:12px;color:var(--text-muted);margin-top:6px;text-align:center"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MINE AVVIK -->
+  <div id="a-mine" style="display:none">
+    <div class="card">
+      <div class="card-title">Mine registrerte avvik</div>
+      <div id="mine-avvik-list"></div>
+    </div>
+  </div>
+
+  <!-- ALLE ÅPNE -->
+  <div id="a-alle" style="display:none">
+    <div class="card">
+      <div class="card-title">Alle åpne avvik</div>
+      <div id="alle-avvik-list"></div>
+      <div style="margin-top:14px">
+        <div class="status-bar" id="sync-status-bar" style="background:#f0f9ff;color:var(--blue-mid)">
+          <div class="dot" style="animation:none;background:var(--blue-mid)"></div>
+          <span id="sync-status-text">Klar for synkronisering</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- PAGE: RESSURSER                                     -->
+<!-- ═══════════════════════════════════════════════════ -->
+<div class="page" id="page-ressurser">
+  <div class="card">
+    <div class="card-title">📁 SharePoint & Intranett</div>
+    <div class="list-item" onclick="openLink('https://minel.sharepoint.com')">
+      <div class="list-icon">🏠</div>
+      <div style="flex:1"><div class="list-title">Minel Intranett</div><div class="list-meta">Nyheter, prosedyrer, personalinfo</div></div>
+      <div class="list-arrow">›</div>
+    </div>
+    <div class="list-item" onclick="openLink('https://minel.sharepoint.com/sites/prosjekter')">
+      <div class="list-icon">📐</div>
+      <div style="flex:1"><div class="list-title">Prosjektdokumentasjon</div><div class="list-meta">Tegninger, kurslister, FDV</div></div>
+      <div class="list-arrow">›</div>
+    </div>
+    <div class="list-item" onclick="openLink('https://minel.sharepoint.com/sites/hms')">
+      <div class="list-icon">🦺</div>
+      <div style="flex:1"><div class="list-title">HMS-håndbok</div><div class="list-meta">Prosedyrer, sjekklister, RUH</div></div>
+      <div class="list-arrow">›</div>
+    </div>
+    <div class="list-item" onclick="openLink('#')">
+      <div class="list-icon">🕐</div>
+      <div style="flex:1"><div class="list-title">Timeregistrering</div><div class="list-meta">Visma / ERP-system</div></div>
+      <div class="list-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📚 Standarder & Regelverk</div>
+    <div class="list-item" onclick="openLink('https://www.nek.no/standarder/produkter/nek-400/')">
+      <div class="list-icon">⚡</div>
+      <div style="flex:1"><div class="list-title">NEK 400:2022</div><div class="list-meta">Lavspenningsinstallasjoner</div></div>
+      <div class="list-arrow">›</div>
+    </div>
+    <div class="list-item" onclick="openLink('https://lovdata.no/dokument/SF/forskrift/2006-04-06-402')">
+      <div class="list-icon">📜</div>
+      <div style="flex:1"><div class="list-title">FEL – Forskrift elektriske anlegg</div><div class="list-meta">DSB / Lovdata</div></div>
+      <div class="list-arrow">›</div>
+    </div>
+    <div class="list-item" onclick="openLink('https://montorkalk.no')">
+      <div class="list-icon">📗</div>
+      <div style="flex:1"><div class="list-title">Montørkalk</div><div class="list-meta">Referansetabeller for elektrikere</div></div>
+      <div class="list-arrow">›</div>
+    </div>
+    <div class="list-item" onclick="openLink('https://www.nexans.no/en/tools-resources/easycalc.html')">
+      <div class="list-icon">🔧</div>
+      <div style="flex:1"><div class="list-title">Nexans EasyCalc</div><div class="list-meta">Avansert kabelberegning</div></div>
+      <div class="list-arrow">›</div>
+    </div>
+  </div>
+
+  <div class="card" style="background:var(--blue);border:none;color:white">
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+      <div style="width:44px;height:44px;border-radius:50%;background:var(--orange);display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700" id="res-avatar">?</div>
+      <div>
+        <div style="font-size:16px;font-weight:700" id="res-name">Elektrikerbruker</div>
+        <div style="font-size:13px;opacity:0.7" id="res-email">navn@minel.no</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px">
+      <button class="btn btn-sm" style="background:rgba(255,255,255,0.15);color:white;flex:1" onclick="logout()">Logg ut</button>
+      <button class="btn btn-sm" style="background:var(--orange);color:white;flex:1" onclick="syncNow()">🔄 Synkroniser</button>
+    </div>
+    <div style="font-size:11px;opacity:0.4;margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.15)">
+      Minel-app v0.2 · Microsoft SSO · PWA-klar · Juni 2026
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ -->
+<!-- BOTTOM NAV                                          -->
+<!-- ═══════════════════════════════════════════════════ -->
+<nav class="bottom-nav" id="app-nav" style="display:none">
+  <button class="nav-item active" id="nav-home" onclick="goTo('home')">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg>
+    <span>Hjem</span>
+  </button>
+  <button class="nav-item" id="nav-kalkulatorer" onclick="goTo('kalkulatorer')">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+    <span>Kalkulator</span>
+  </button>
+  <button class="nav-item" id="nav-avvik" onclick="goTo('avvik')">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg>
+    <span>Avvik</span>
+    <div class="nav-badge" id="avvik-badge" style="display:none">0</div>
+  </button>
+  <button class="nav-item" id="nav-tabeller" onclick="goTo('tabeller')">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 3h18v2H3zm0 4h18v2H3zm0 4h18v2H3zm0 4h18v2H3zm0 4h18v2H3z"/></svg>
+    <span>Tabeller</span>
+  </button>
+  <button class="nav-item" id="nav-ressurser" onclick="goTo('ressurser')">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 6h-2.18c.07-.44.18-.88.18-1.36C18 2.53 15.48 1 13 1c-1.32 0-2.6.49-3.52 1.27L8 3.5 6.52 2.27A5.03 5.03 0 0 0 3 1C.52 1-2 2.53-2 4.64c0 .48.11.92.18 1.36H-4v14h28V6H20zM11.5 16h-3v-3h3v3zm0-5h-3V8h3v3zm4.5 5h-3v-3h3v3zm0-5h-3V8h3v3z"/></svg>
+    <span>Ressurser</span>
+  </button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!-- JAVASCRIPT                                                   -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<script>
+'use strict';
+
+// ── MSAL CONFIG ──────────────────────────────────────────────
+// TODO: Bytt ut med Minel sine Azure AD verdier
+const msalConfig = {
+  auth: {
+    clientId: 'DITT_CLIENT_ID',          // Azure App Registration
+    authority: 'https://login.microsoftonline.com/DITT_TENANT_ID',
+    redirectUri: window.location.href,
+  },
+  cache: { cacheLocation: 'sessionStorage', storeAuthStateInCookie: true }
+};
+
+const loginRequest = {
+  scopes: ['openid', 'profile', 'email', 'User.Read'],
+  loginHint: '' // Kan forhåndsutfylles med @minel.no
+};
+
+let msalInstance = null;
+let currentUser = null;
+
+// ── AUTH ─────────────────────────────────────────────────────
+async function initMSAL() {
+  try {
+    msalInstance = new msal.PublicClientApplication(msalConfig);
+    await msalInstance.initialize();
+    const resp = await msalInstance.handleRedirectPromise();
+    if (resp && resp.account) {
+      setUser(resp.account);
+      showApp();
+    } else {
+      const accounts = msalInstance.getAllAccounts();
+      if (accounts.length > 0) { setUser(accounts[0]); showApp(); }
+    }
+  } catch(e) {
+    console.warn('MSAL init feilet (forventet i prototype):', e.message);
+  }
+}
+
+async function msalLogin() {
+  if (!msalInstance) {
+    alert('⚠️ Microsoft-innlogging krever Azure-konfigurasjon.\n\nBruk Demo-modus for å teste appen, eller sett opp Azure AD (kontakt IT).');
+    return;
+  }
+  try {
+    await msalInstance.loginRedirect(loginRequest);
+  } catch(e) { console.error(e); }
+}
+
+function setUser(account) {
+  currentUser = {
+    name: account.name || account.username.split('@')[0],
+    email: account.username,
+    initials: (account.name || 'EL').split(' ').map(n=>n[0]).join('').toUpperCase().slice(0,2)
+  };
+  updateUserUI();
+}
+
+function demoLogin() {
+  currentUser = { name: 'Elektrikerbruker', email: 'demo@minel.no', initials: 'EL' };
+  updateUserUI();
+  showApp();
+}
+
+function updateUserUI() {
+  if (!currentUser) return;
+  document.getElementById('user-avatar').textContent = currentUser.initials;
+  document.getElementById('user-name').textContent = currentUser.name;
+  document.getElementById('res-avatar').textContent = currentUser.initials;
+  document.getElementById('res-name').textContent = currentUser.name;
+  document.getElementById('res-email').textContent = currentUser.email;
+  const h = new Date().getHours();
+  const gr = h < 10 ? 'God morgen' : h < 12 ? 'God formiddag' : h < 17 ? 'God ettermiddag' : 'God kveld';
+  document.getElementById('greeting').textContent = `${gr}, ${currentUser.name.split(' ')[0]}! 👋`;
+}
+
+function showApp() {
+  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('app-header').style.display = 'flex';
+  document.getElementById('app-nav').style.display = 'flex';
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+  goTo('home');
+  buildIzTable();
+  renderHomeAvvik();
+  updateAvvikBadge();
+}
+
+function logout() {
+  currentUser = null;
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('app-header').style.display = 'none';
+  document.getElementById('app-nav').style.display = 'none';
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+}
+
+// ── NAVIGATION ────────────────────────────────────────────────
+function goTo(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const pg = document.getElementById('page-' + page);
+  if (pg) pg.classList.add('active');
+  const nv = document.getElementById('nav-' + page);
+  if (nv) nv.classList.add('active');
+  window.scrollTo(0,0);
+  if (page === 'avvik') { renderMineAvvik(); renderAlleAvvik(); }
+}
+
+function setKTab(t) {
+  ['sf','vern','ohm'].forEach(x => {
+    document.getElementById('k-tab-' + x)?.classList.toggle('active', x===t);
+    const el = document.getElementById('k-' + x);
+    if (el) el.style.display = x === t ? 'block' : 'none';
+  });
+}
+
+function setTTab(t) {
+  ['iz','vern','form'].forEach(x => {
+    document.getElementById('t-tab-' + x)?.classList.toggle('active', x===t);
+    const el = document.getElementById('t-' + x);
+    if (el) el.style.display = x === t ? 'block' : 'none';
+  });
+}
+
+function setATab(t) {
+  ['ny','mine','alle'].forEach(x => {
+    document.getElementById('a-tab-' + x)?.classList.toggle('active', x===t);
+    const el = document.getElementById('a-' + x);
+    if (el) el.style.display = x === t ? 'block' : 'none';
+  });
+  if (t === 'mine') renderMineAvvik();
+  if (t === 'alle') renderAlleAvvik();
+}
+
+function chipSel(groupId, el) {
+  document.querySelectorAll('#' + groupId + ' .chip').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+// ── STRØMTABELL ───────────────────────────────────────────────
+const IZ = [
+  [1.5,  13,   15.5, 17.5, 22],
+  [2.5,  17.5, 21,   24,   30],
+  [4,    23,   28,   32,   40],
+  [6,    29,   36,   41,   51],
+  [10,   39,   50,   57,   70],
+  [16,   52,   68,   76,   94],
+  [25,   68,   89,   99,   119],
+  [35,   84,   110,  122,  148],
+  [50,   99,   134,  149,  182],
+];
+
+function buildIzTable() {
+  const tb = document.getElementById('iz-tbody');
+  if (!tb || tb.children.length) return;
+  IZ.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td><strong>${r[0]}</strong></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td>${r[4]}</td>`;
+    tb.appendChild(tr);
+  });
+}
+
+function getIz(tverrsnitt, metodeIdx) {
+  const row = IZ.find(r => r[0] == tverrsnitt);
+  return row ? row[metodeIdx + 1] : 0;
+}
+
+// ── SPENNINGSFALL ─────────────────────────────────────────────
+function calcSF() {
+  const i = parseFloat(document.getElementById('sf-i').value);
+  const l = parseFloat(document.getElementById('sf-l').value);
+  const a = parseFloat(document.getElementById('sf-a').value);
+  const rho = parseFloat(document.getElementById('sf-mat').value);
+  const cosEl = document.querySelector('#c-cos .chip.selected');
+  const cos = cosEl ? parseFloat(cosEl.textContent.replace(',','.')) : 0.9;
+  const trefase = document.querySelector('#c-system .chip.selected')?.textContent.includes('3');
+
+  if (isNaN(i)||isNaN(l)) { alert('Fyll inn strøm og lengde'); return; }
+
+  const un = trefase ? 400 : 230;
+  const fak = trefase ? Math.sqrt(3) : 2;
+  const dU = i * fak * rho * l * 1.2 * cos / a;
+  const pct = dU / un * 100;
+
+  const box = document.getElementById('sf-res');
+  box.classList.add('show');
+  box.className = 'result-box show ' + (pct<=3?'ok':pct<=5?'warn':'err');
+
+  const grense = pct<=3?'✅ Under 3% – OK for belysning/stikk':pct<=5?'⚠️ Under 5% – OK for andre forbrukere':'❌ Over 5% grense – må korrigeres!';
+  box.innerHTML = `
+    <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+      <div><div class="result-label">Spenningsfall</div><div class="result-value">${dU.toFixed(2)}<small> V</small></div></div>
+      <div style="text-align:right"><div class="result-label">Andel</div><div class="result-value">${pct.toFixed(2)}<small> %</small></div></div>
+    </div>
+    <div class="result-detail">
+      <div class="result-row"><span>Kabel</span><strong>${a} mm² × ${l} m</strong></div>
+      <div class="result-row"><span>System</span><strong>${un}V ${trefase?'3-fase':'1-fase'}</strong></div>
+      <div class="result-row"><span>cosφ</span><strong>${cos}</strong></div>
+      <div style="margin-top:8px;font-weight:700">${grense}</div>
+    </div>`;
+}
+
+// ── HURTIGKALKULATOR (hjemskjermen) ──────────────────────────
+function quickCalc() {
+  const i = parseFloat(document.getElementById('quick-a').value);
+  const l = parseFloat(document.getElementById('quick-m').value);
+  const a = parseFloat(document.getElementById('quick-mm').value);
+  const el = document.getElementById('quick-result');
+  if (isNaN(i)||isNaN(l)||isNaN(a)) { el.textContent=''; return; }
+  const dU = i * 2 * 0.0175 * l * 1.2 / a;
+  const pct = dU / 230 * 100;
+  const ok = pct <= 3;
+  el.innerHTML = `<span style="font-weight:700;color:${ok?'var(--success)':'var(--danger)'}">${ok?'✅':'❌'} ${dU.toFixed(2)} V = ${pct.toFixed(2)}% spenningsfall</span>`;
+}
+
+// ── VERN KOORDINERING ─────────────────────────────────────────
+function calcIb() {
+  const w = parseFloat(document.getElementById('vern-w').value);
+  if (isNaN(w)) return;
+  const trefase = document.querySelector('#c-fase .chip.selected')?.textContent.includes('3');
+  const u = trefase ? 400 : 230;
+  const ib = trefase ? w/(Math.sqrt(3)*u*0.9) : w/u;
+  document.getElementById('vern-ib').value = ib.toFixed(1);
+}
+
+function calcVern() {
+  const ib = parseFloat(document.getElementById('vern-ib').value);
+  const inVal = parseFloat(document.getElementById('vern-in').value);
+  const kabel = document.getElementById('vern-kabel').value;
+  const metode = parseInt(document.getElementById('vern-metode').value);
+  const iz = getIz(kabel, metode);
+  const i2 = 1.45 * iz;
+  const k1 = ib <= inVal && inVal <= iz;
+  const k2 = i2 >= inVal * 1.45;
+
+  const box = document.getElementById('vern-res');
+  box.classList.add('show');
+  box.className = 'result-box show ' + ((k1&&k2)?'ok':'err');
+  box.innerHTML = `
+    <div class="result-label">Koordineringsstatus</div>
+    <div class="result-value" style="font-size:18px;margin-bottom:10px">${k1&&k2?'✅ Koordinering OK':'❌ Koordinering godkjennes ikke'}</div>
+    <div class="result-detail">
+      <div class="result-row"><span>Iz (kabelkapasitet)</span><strong>${iz} A</strong></div>
+      <div class="result-row"><span>In (vern)</span><strong>${inVal} A</strong></div>
+      <div class="result-row"><span>Ib (belastning)</span><strong>${ib||'?'} A</strong></div>
+      <div class="result-row"><span>I₂ = 1,45 × Iz</span><strong>${i2.toFixed(1)} A</strong></div>
+      <div style="margin-top:8px">
+        Krav 1: Ib ≤ In ≤ Iz → ${k1?'✅':'❌'}<br>
+        Krav 2: I₂ ≤ 1,45×Iz → ${k2?'✅':'❌'}
+      </div>
+      ${!k1?`<div style="margin-top:8px;font-weight:700">→ Øk tverrsnitt til ${IZ.find(r=>r[parseInt(document.getElementById('vern-metode').value)+1]>=inVal)?.[0]||'?'} mm² eller reduser vern</div>`:''}
+    </div>`;
+}
+
+// ── OHMS LOV ──────────────────────────────────────────────────
+function calcOhm() {
+  const u=parseFloat(document.getElementById('o-u').value),
+        i=parseFloat(document.getElementById('o-i').value),
+        r=parseFloat(document.getElementById('o-r').value),
+        p=parseFloat(document.getElementById('o-p').value);
+  let res={};
+  if(!isNaN(u)&&!isNaN(i)){res.r=(u/i).toFixed(3);res.p=(u*i).toFixed(1)}
+  else if(!isNaN(u)&&!isNaN(r)){res.i=(u/r).toFixed(2);res.p=(u*u/r).toFixed(1)}
+  else if(!isNaN(u)&&!isNaN(p)){res.i=(p/u).toFixed(2);res.r=(u*u/p).toFixed(3)}
+  else if(!isNaN(i)&&!isNaN(r)){res.u=(i*r).toFixed(1);res.p=(i*i*r).toFixed(1)}
+  else if(!isNaN(i)&&!isNaN(p)){res.u=(p/i).toFixed(1);res.r=(p/(i*i)).toFixed(3)}
+  else if(!isNaN(r)&&!isNaN(p)){res.u=Math.sqrt(p*r).toFixed(1);res.i=Math.sqrt(p/r).toFixed(2)}
+  else{alert('Fyll inn minst to verdier');return}
+  const lbl={u:'Spenning U',i:'Strøm I',r:'Motstand R',p:'Effekt P'},un={u:'V',i:'A',r:'Ω',p:'W'};
+  const box=document.getElementById('ohm-res');
+  box.className='result-box show';
+  box.innerHTML='<div class="result-label" style="margin-bottom:8px">Beregnet</div>'+
+    Object.entries(res).map(([k,v])=>`<div class="result-row"><span>${lbl[k]}</span><strong>${v} ${un[k]}</strong></div>`).join('');
+}
+
+function calc3f() {
+  const u=parseFloat(document.getElementById('t3-u').value)||400;
+  const i=parseFloat(document.getElementById('t3-i').value);
+  const cos=parseFloat(document.getElementById('t3-cos').value)||0.9;
+  if(isNaN(i)){alert('Fyll inn strøm');return}
+  const s=Math.sqrt(3)*u*i, p=s*cos, q=s*Math.sqrt(1-cos*cos);
+  const box=document.getElementById('t3-res');
+  box.className='result-box show';
+  box.innerHTML=`
+    <div class="result-row"><span>Tilsynelatende S</span><strong>${(s/1000).toFixed(2)} kVA</strong></div>
+    <div class="result-row"><span>Aktiv P</span><strong>${(p/1000).toFixed(2)} kW</strong></div>
+    <div class="result-row"><span>Reaktiv Q</span><strong>${(q/1000).toFixed(2)} kVAr</strong></div>`;
+}
+
+// ── AVVIK STATE (localStorage-simulert) ──────────────────────
+let avvikListe = [
+  {id:'AV-1039',tittel:'Manglende jordfeil på bad',kat:'HMS – Personlig',prosj:'Sandvika B4',alvor:'🔴 Kritisk',dato:'2026-06-11',bruker:'Ola N.',status:'Åpen',besk:'Jordfeilbryter mangler i baderom, sikringsskap nr.2.',tiltak:'Midlertidig strøm frakoblet.'},
+  {id:'AV-1040',tittel:'Feil etikettering sikringsskap',kat:'Teknisk – Dok.',prosj:'Lysaker K2',alvor:'🟡 Middels',dato:'2026-06-10',bruker:'Kari M.',status:'Under behandling',besk:'Kursfortegnelse stemmer ikke med faktisk opplegg.',tiltak:'Ny kursfortegnelse bestilt.'},
+  {id:'AV-1041',tittel:'Spenningsfall over 4% kurs 12',kat:'Teknisk – Installasjon',prosj:'Fornebu P1',alvor:'🟡 Middels',dato:'2026-06-10',bruker:'Jeg (demo)',status:'Lukket',besk:'Spenningsfall målt til 4,3% på 2,5mm² kabel, 35m.',tiltak:'Byttet til 4mm² – ny måling OK.'},
+];
+let avvikCounter = 1041;
+
+function sendAvvik() {
+  const tittel = document.getElementById('av-tittel').value.trim();
+  const besk = document.getElementById('av-besk').value.trim();
+  if (!tittel || !besk) { alert('Fyll inn tittel og beskrivelse'); return; }
+  avvikCounter++;
+  const ref = 'AV-' + avvikCounter;
+  const nytt = {
+    id: ref,
+    tittel: tittel,
+    kat: document.getElementById('av-kat').value,
+    prosj: document.getElementById('av-prosj').value,
+    alvor: document.querySelector('#c-alvor .chip.selected')?.textContent || '🟡 Middels',
+    dato: new Date().toISOString().split('T')[0],
+    bruker: currentUser?.name || 'Ukjent',
+    status: 'Åpen',
+    besk: besk,
+    tiltak: document.getElementById('av-tiltak').value,
+    pending: true
+  };
+  avvikListe.unshift(nytt);
+  document.getElementById('av-ref').textContent = ref;
+  document.getElementById('av-sendt-ok').style.display = 'block';
+  document.getElementById('av-sync-status').textContent = '⏳ Venter på nettilkobling for å synkronisere...';
+  document.getElementById('av-tittel').value = '';
+  document.getElementById('av-besk').value = '';
+  document.getElementById('av-tiltak').value = '';
+  document.getElementById('photo-preview').innerHTML = '';
+  updateAvvikBadge();
+  // Simuler synk etter 2 sek
+  setTimeout(() => {
+    nytt.pending = false;
+    document.getElementById('av-sync-status').textContent = '✅ Synkronisert til server';
+    updateAvvikBadge();
+  }, 2000);
+}
+
+function renderHomeAvvik() {
+  const el = document.getElementById('home-avvik-list');
+  if (!el) return;
+  const toShow = avvikListe.filter(a=>a.status==='Åpen'||a.status==='Under behandling').slice(0,3);
+  el.innerHTML = toShow.map(a => `
+    <div class="list-item">
+      <div class="list-dot" style="background:${a.alvor.includes('🔴')?'var(--danger)':a.alvor.includes('🟡')?'var(--warning)':'var(--success)'}"></div>
+      <div style="flex:1">
+        <div class="list-title">${a.tittel}</div>
+        <div class="list-meta">${a.dato} · ${a.prosj} · <span class="badge ${a.status==='Åpen'?'badge-err':a.status==='Lukket'?'badge-ok':'badge-warn'}">${a.status}</span></div>
+      </div>
+    </div>`).join('');
+}
+
+function renderMineAvvik() {
+  const el = document.getElementById('mine-avvik-list');
+  if (!el) return;
+  const mine = avvikListe.filter(a=>a.bruker===currentUser?.name||a.bruker.includes('demo')||a.bruker.includes('Jeg'));
+  el.innerHTML = mine.length ? mine.map(a => avvikCard(a)).join('') :
+    '<div style="color:var(--text-muted);font-size:14px;padding:12px 0">Ingen avvik registrert ennå</div>';
+}
+
+function renderAlleAvvik() {
+  const el = document.getElementById('alle-avvik-list');
+  if (!el) return;
+  const aapne = avvikListe.filter(a=>a.status!=='Lukket');
+  el.innerHTML = aapne.map(a => avvikCard(a)).join('');
+  const pending = avvikListe.filter(a=>a.pending).length;
+  document.getElementById('sync-status-text').textContent =
+    pending > 0 ? `⏳ ${pending} avvik venter synkronisering` : '✅ Alt synkronisert';
+}
+
+function avvikCard(a) {
+  const cls = a.alvor.includes('🔴')?'kritisk':a.alvor.includes('🟡')?'middels':'lav';
+  const statusCls = a.status==='Åpen'?'badge-err':a.status==='Lukket'?'badge-ok':'badge-warn';
+  return `<div class="avvik-card ${cls}">
+    <div class="avvik-header">
+      <div class="avvik-tittel">${a.id} · ${a.tittel}</div>
+      <span class="badge ${statusCls}">${a.status}</span>
+    </div>
+    <div class="avvik-meta">${a.dato} · ${a.prosj} · ${a.kat} · ${a.bruker}${a.pending?' · ⏳ Synker...':''}</div>
+  </div>`;
+}
+
+function updateAvvikBadge() {
+  const aapne = avvikListe.filter(a=>a.status==='Åpen').length;
+  const badge = document.getElementById('avvik-badge');
+  if (aapne > 0) { badge.style.display='flex'; badge.textContent=aapne; }
+  else badge.style.display='none';
+}
+
+// ── FOTO ──────────────────────────────────────────────────────
+function handlePhotos(input) {
+  const preview = document.getElementById('photo-preview');
+  Array.from(input.files).forEach(file => {
+    const img = document.createElement('img');
+    img.className = 'photo-thumb';
+    img.src = URL.createObjectURL(file);
+    preview.appendChild(img);
+  });
+}
+
+// ── HJELPE-FUNKSJONER ─────────────────────────────────────────
+function openLink(url) {
+  if(url==='#'){alert('Kobles til SharePoint når Azure AD er konfigurert');return}
+  window.open(url,'_blank');
+}
+
+function syncNow() {
+  const btn = document.querySelector('[onclick="syncNow()"]');
+  btn.textContent = '🔄 Synkroniserer...';
+  setTimeout(() => {
+    avvikListe.forEach(a => a.pending = false);
+    btn.textContent = '✅ Synkronisert';
+    setTimeout(() => btn.textContent = '🔄 Synkroniser', 2000);
+  }, 1500);
+}
+
+// ── OFFLINE DETECTION ─────────────────────────────────────────
+window.addEventListener('online', () => document.getElementById('offline-badge').classList.remove('show'));
+window.addEventListener('offline', () => document.getElementById('offline-badge').classList.add('show'));
+if (!navigator.onLine) document.getElementById('offline-badge').classList.add('show');
+
+// ── SERVICE WORKER (PWA offline) ──────────────────────────────
+if ('serviceWorker' in navigator) {
+  const swCode = `
+    const CACHE = 'minel-v2';
+    self.addEventListener('install', e => {
+      e.waitUntil(caches.open(CACHE).then(c => c.addAll(['/'])));
+      self.skipWaiting();
+    });
+    self.addEventListener('fetch', e => {
+      e.respondWith(caches.match(e.request).then(r => r || fetch(e.request).catch(() => caches.match('/'))));
+    });
+  `;
+  const swBlob = new Blob([swCode], {type:'text/javascript'});
+  const swURL = URL.createObjectURL(swBlob);
+  navigator.serviceWorker.register(swURL).catch(e => console.log('SW:', e.message));
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  initMSAL();
+});
+</script>
+</body>
+</html>
