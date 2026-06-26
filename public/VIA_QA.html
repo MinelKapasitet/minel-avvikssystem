@@ -857,12 +857,85 @@ var EXCL_TYPES = new Set(['Intern','Internordre','Reklamasjon','Intern ordre']);
   dz.addEventListener('dragleave', function(){dz.classList.remove('over');});
   dz.addEventListener('drop', function(e){e.preventDefault();dz.classList.remove('over');goExcel(e.dataTransfer.files[0]);});
   document.getElementById('fi').addEventListener('change', function(e){goExcel(e.target.files[0]);});
+  loadSession();
 })();
 
 function ST(id){
   var ids=['dash','qa','risk','poc','status','hist'];
   document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',ids[i]===id);});
   document.querySelectorAll('.tab-panel').forEach(function(p,i){p.classList.toggle('active',ids[i]===id);});
+}
+function saveSession(){
+  try{
+    localStorage.setItem(SESSION_KEY,JSON.stringify({
+      active:ACTIVE,dgi:DGI,poc:POC,locked:LOCKED,
+      period:_currentPeriod,entity:_currentEntity,
+      groups:GROUPS,grpMode:GRP_MODE,
+      hideSettled:HIDE_SETTLED,hideSmall:HIDE_SMALL,hideSmallPoc:HIDE_SMALL_POC
+    }));
+  }catch(e){console.warn('saveSession feilet:',e);}
+}
+function resetApp(){
+  if(ACTIVE.length&&!confirm('Nullstill til ny periode? Ikke-lagrede endringer går tapt.'))return;
+  ACTIVE=[];DGI={};POC={};LOCKED=false;BENCH={};
+  _currentPeriod='';_currentEntity='';
+  _spIds={};_spEtags={};_spColsValidated=false;_spDebounce={};
+  GROUPS={};GRP_MODE={};HIDE_SETTLED=false;HIDE_SMALL=false;HIDE_SMALL_POC=false;
+  localStorage.removeItem(SESSION_KEY);
+  document.getElementById('app').style.display='none';
+  document.getElementById('startPanel').style.display='block';
+  var atitle=document.getElementById('atitle');if(atitle)atitle.textContent='';
+  var aperiod=document.getElementById('aperiod');if(aperiod)aperiod.textContent='';
+  var btnlock=document.getElementById('btnlock');if(btnlock){btnlock.textContent='🔒 Lås periode';btnlock.disabled=false;}
+  var d=new Date();d.setDate(0);
+  var pd=document.getElementById('period-date');if(pd)pd.value=d.toISOString().substring(0,10);
+  ST('dash');
+}
+function loadSession(){
+  // Check for saved session and show resume banner if found
+  try{
+    var s=localStorage.getItem(SESSION_KEY);
+    if(!s)return false;
+    var d=JSON.parse(s);
+    if(!d.active||!d.active.length)return false;
+    var banner=document.getElementById('resume-banner');
+    var info=document.getElementById('resume-info');
+    if(banner){banner.style.display='flex';}
+    if(info){info.textContent=(d.entity||'')+(d.period?' · '+d.period:'')+(d.active?' · '+d.active.length+' ordrer':'');}
+    return true;
+  }catch(e){console.warn('loadSession feilet:',e);return false;}
+}
+function resumeSession(){
+  try{
+    var s=localStorage.getItem(SESSION_KEY);
+    if(!s)return;
+    var d=JSON.parse(s);
+    if(!d.active||!d.active.length)return;
+    ACTIVE=d.active; DGI=d.dgi||{}; POC=d.poc||{}; LOCKED=!!d.locked;
+    _currentPeriod=d.period||''; _currentEntity=d.entity||'';
+    GROUPS=d.groups||{}; GRP_MODE=d.grpMode||{};
+    HIDE_SETTLED=!!d.hideSettled; HIDE_SMALL=!!d.hideSmall; HIDE_SMALL_POC=!!d.hideSmallPoc;
+    document.getElementById('resume-banner').style.display='none';
+    document.getElementById('startPanel').style.display='none';
+    document.getElementById('app').style.display='block';
+    var atitle=document.getElementById('atitle');if(atitle)atitle.textContent=_currentEntity;
+    var aperiod=document.getElementById('aperiod');if(aperiod)aperiod.textContent=_currentPeriod;
+    var lent=document.getElementById('lentity');if(lent)lent.value=_currentEntity;
+    var lprd=document.getElementById('lperiod');if(lprd)lprd.value=_currentPeriod;
+    if(LOCKED){var bl=document.getElementById('btnlock');if(bl){bl.textContent='✅ Låst: '+_currentPeriod;bl.disabled=true;}}
+    detectGroups();
+    rDash();rQA();rRisk();rPOC();rHist();rStatus();
+  }catch(e){console.warn('resumeSession feilet:',e);}
+}
+function clearSession(){
+  localStorage.removeItem(SESSION_KEY);
+  var banner=document.getElementById('resume-banner');
+  if(banner)banner.style.display='none';
+}
+function clearHist(){
+  if(!confirm('Slett all historikk? Dette kan ikke angres.'))return;
+  localStorage.removeItem(HIST_KEY);
+  rHist();
 }
 function toggleRiskInfo(){
   var p = document.getElementById('riskInfoPanel');
