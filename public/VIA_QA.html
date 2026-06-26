@@ -859,6 +859,11 @@ var EXCL_TYPES = new Set(['Intern','Internordre','Reklamasjon','Intern ordre']);
   document.getElementById('fi').addEventListener('change', function(e){goExcel(e.target.files[0]);});
 })();
 
+function ST(id){
+  var ids=['dash','qa','risk','poc','status','hist'];
+  document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',ids[i]===id);});
+  document.querySelectorAll('.tab-panel').forEach(function(p,i){p.classList.toggle('active',ids[i]===id);});
+}
 function toggleRiskInfo(){
   var p = document.getElementById('riskInfoPanel');
   p.style.display = p.style.display === 'none' ? 'block' : 'none';
