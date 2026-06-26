@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>VIA QA – Aktivitetslogg</title>
+<script src="https://alcdn.msauth.net/browser/2.38.2/js/msal-browser.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#f4f6f9;color:#1a1a2e;min-height:100vh;}
+.topbar{background:#1a1a2e;color:#fff;padding:14px 28px;display:flex;align-items:center;gap:16px;}
+.topbar .logo{font-size:1.3rem;font-weight:800;letter-spacing:-.5px;}
+.topbar .logo span{color:#e8b04b;}
+.topbar h1{font-size:1rem;font-weight:500;opacity:.8;}
+.topbar .ml{margin-left:auto;font-size:.85rem;opacity:.6;}
+.controls{background:#fff;border-bottom:1px solid #e5e7eb;padding:14px 28px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.controls label{font-size:.85rem;color:#6b7280;font-weight:500;}
+.controls select,.controls input{border:1px solid #d1d5db;border-radius:6px;padding:6px 10px;font-size:.9rem;background:#fff;}
+.btn{background:#1a1a2e;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-size:.85rem;cursor:pointer;font-weight:600;}
+.btn:hover{background:#2d2d4e;}
+.btn.sec{background:#fff;color:#1a1a2e;border:1px solid #d1d5db;}
+.btn.sec:hover{background:#f9fafb;}
+.main{padding:24px 28px;max-width:1400px;margin:0 auto;}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:24px;}
+.card{background:#fff;border-radius:10px;padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.08);}
+.card .num{font-size:2rem;font-weight:800;line-height:1;}
+.card .lbl{font-size:.78rem;color:#6b7280;margin-top:4px;font-weight:500;}
+.card.blue .num{color:#2563eb;}
+.card.green .num{color:#16a34a;}
+.card.red .num{color:#dc2626;}
+.card.orange .num{color:#d97706;}
+.table-wrap{background:#fff;border-radius:10px;box-shadow:0 1px 3px rgba(0,0,0,.08);overflow:hidden;}
+.table-wrap table{width:100%;border-collapse:collapse;font-size:.875rem;}
+.table-wrap th{background:#f8f9fb;padding:11px 14px;text-align:left;font-weight:600;font-size:.78rem;color:#6b7280;text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid #e5e7eb;}
+.table-wrap td{padding:10px 14px;border-bottom:1px solid #f3f4f6;vertical-align:top;}
+.table-wrap tr:last-child td{border-bottom:none;}
+.table-wrap tr:hover td{background:#fafafa;}
+.badge{display:inline-block;padding:2px 9px;border-radius:12px;font-size:.75rem;font-weight:600;}
+.badge.dl{background:#dbeafe;color:#1d4ed8;}
+.badge.pl{background:#d1fae5;color:#065f46;}
+.badge.feil{background:#fee2e2;color:#991b1b;}
+.badge.ok{background:#d1fae5;color:#065f46;}
+.badge.inn{background:#ede9fe;color:#6d28d9;}
+.badge.js{background:#fef3c7;color:#92400e;}
+.tid{color:#9ca3af;font-size:.8rem;white-space:nowrap;}
+.detaljer{font-size:.8rem;color:#6b7280;max-width:320px;word-break:break-word;}
+.empty{text-align:center;padding:60px;color:#9ca3af;}
+.login-wrap{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:60vh;gap:16px;}
+.login-wrap h2{font-size:1.2rem;color:#374151;}
+.spin{display:inline-block;width:18px;height:18px;border:2px solid #d1d5db;border-top-color:#1a1a2e;border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:8px;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.filter-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.search{border:1px solid #d1d5db;border-radius:6px;padding:6px 12px;font-size:.9rem;width:220px;}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo">Minel<span>.</span></div>
+  <h1>VIA QA – Aktivitetslogg</h1>
+  <div class="ml" id="user-info"></div>
+</div>
+
+<div id="login-section" class="login-wrap">
+  <h2>Logg inn for å se aktivitetsloggen</h2>
+  <button class="btn" onclick="doLogin()">🔑 Logg inn med Microsoft</button>
+  <div id="login-err" style="color:#dc2626;font-size:.9rem;display:none;"></div>
+</div>
+
+<div id="app-section" style="display:none;">
+  <div class="controls">
+    <div class="filter-row">
+      <label>Måned:</label>
+      <select id="month-sel" onchange="loadLog()"></select>
+      <button class="btn sec" onclick="loadLog()">🔄 Oppdater</button>
+      <input class="search" id="search" placeholder="Søk bruker, selskap, hendelse…" oninput="renderTable()">
+      <select id="hendelse-sel" onchange="renderTable()">
+        <option value="">Alle hendelser</option>
+        <option value="Innlogget">Innlogget</option>
+        <option value="DataLastet">DataLastet</option>
+        <option value="DataLastFeil">DataLastFeil</option>
+        <option value="JSFeil">JSFeil</option>
+        <option value="PromiseFeil">PromiseFeil</option>
+      </select>
+    </div>
+    <div style="margin-left:auto;font-size:.8rem;color:#9ca3af;" id="status-txt"></div>
+  </div>
+
+  <div class="main">
+    <div class="cards">
+      <div class="card blue"><div class="num" id="cnt-total">–</div><div class="lbl">Hendelser totalt</div></div>
+      <div class="card green"><div class="num" id="cnt-inn">–</div><div class="lbl">Innlogginger</div></div>
+      <div class="card blue"><div class="num" id="cnt-data">–</div><div class="lbl">Datalastinger</div></div>
+      <div class="card red"><div class="num" id="cnt-feil">–</div><div class="lbl">Feil</div></div>
+      <div class="card orange"><div class="num" id="cnt-brukere">–</div><div class="lbl">Unike brukere</div></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tidspunkt</th>
+            <th>Bruker</th>
+            <th>Rolle</th>
+            <th>Selskap</th>
+            <th>Hendelse</th>
+            <th>Detaljer</th>
+          </tr>
+        </thead>
+        <tbody id="log-body">
+          <tr><td colspan="6" class="empty"><span class="spin"></span> Laster…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<script>
+var SP_SITE='elkonorno.sharepoint.com,adc2e55d-4cd5-4c6e-91be-90878d7b643e,66290674-a36d-40a1-a3b5-d90acfb04142';
+var SP_SCOPES=['https://graph.microsoft.com/Sites.Selected'];
+var MSAL_CFG={auth:{clientId:'f5b4bfe7-8fec-496c-a1e1-8d519666ab45',authority:'https://login.microsoftonline.com/7ee2ac67-421e-4ac2-8998-f1f3e0c10fa7',redirectUri:location.href.split('?')[0]},cache:{cacheLocation:'localStorage'}};
+var _app=null,_tok=null,_allEntries=[];
+
+function spLogUrl(ym){
+  return 'https://graph.microsoft.com/v1.0/sites/'+SP_SITE+'/drive/root:/VIA_logg_'+ym+'.json:/content';
+}
+
+async function initMSAL(){
+  if(_app)return;
+  _app=new msal.PublicClientApplication(MSAL_CFG);
+  await _app.initialize();
+  try{await _app.handleRedirectPromise();}catch(e){}
+}
+
+async function getToken(){
+  await initMSAL();
+  var accounts=_app.getAllAccounts();
+  if(accounts.length>0){
+    try{var r=await _app.acquireTokenSilent({scopes:SP_SCOPES,account:accounts[0]});return r.accessToken;}catch(e){}
+  }
+  var pr=await _app.acquireTokenPopup({scopes:SP_SCOPES});
+  return pr.accessToken;
+}
+
+async function doLogin(){
+  var errEl=document.getElementById('login-err');
+  errEl.style.display='none';
+  try{
+    _tok=await getToken();
+    var accounts=_app.getAllAccounts();
+    var name=accounts[0]?accounts[0].name:'';
+    document.getElementById('user-info').textContent='Innlogget: '+name;
+    document.getElementById('login-section').style.display='none';
+    document.getElementById('app-section').style.display='block';
+    buildMonthSel();
+    loadLog();
+  }catch(e){
+    errEl.textContent='Innlogging feilet: '+e.message;
+    errEl.style.display='block';
+  }
+}
+
+function buildMonthSel(){
+  var sel=document.getElementById('month-sel');
+  sel.innerHTML='';
+  var now=new Date();
+  for(var i=0;i<6;i++){
+    var d=new Date(now.getFullYear(),now.getMonth()-i,1);
+    var ym=d.getFullYear()+'-'+(String(d.getMonth()+1).padStart(2,'0'));
+    var label=d.toLocaleDateString('no',{month:'long',year:'numeric'});
+    var opt=document.createElement('option');
+    opt.value=ym;opt.textContent=label;
+    sel.appendChild(opt);
+  }
+}
+
+async function loadLog(){
+  var ym=document.getElementById('month-sel').value;
+  document.getElementById('status-txt').textContent='Henter…';
+  document.getElementById('log-body').innerHTML='<tr><td colspan="6" class="empty"><span class="spin"></span> Henter logg…</td></tr>';
+  try{
+    _tok=await getToken();
+    var r=await fetch(spLogUrl(ym),{headers:{'Authorization':'Bearer '+_tok}});
+    if(r.status===404){
+      _allEntries=[];
+      document.getElementById('log-body').innerHTML='<tr><td colspan="6" class="empty">Ingen logg funnet for denne måneden.</td></tr>';
+      updateCards([]);
+      document.getElementById('status-txt').textContent='';
+      return;
+    }
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    _allEntries=await r.json();
+    // Nyeste først
+    _allEntries.sort(function(a,b){return new Date(b.tidspunkt)-new Date(a.tidspunkt);});
+    document.getElementById('status-txt').textContent='Oppdatert '+new Date().toLocaleTimeString('no')+' · '+_allEntries.length+' oppføringer';
+    renderTable();
+  }catch(e){
+    document.getElementById('log-body').innerHTML='<tr><td colspan="6" class="empty" style="color:#dc2626">Feil: '+e.message+'</td></tr>';
+    document.getElementById('status-txt').textContent='';
+  }
+}
+
+function renderTable(){
+  var q=(document.getElementById('search').value||'').toLowerCase();
+  var hf=document.getElementById('hendelse-sel').value;
+  var filtered=_allEntries.filter(function(e){
+    if(hf&&e.hendelse!==hf)return false;
+    if(q){
+      var hay=(e.bruker+' '+e.epost+' '+e.selskap+' '+e.hendelse+' '+JSON.stringify(e.detaljer||{})).toLowerCase();
+      if(!hay.includes(q))return false;
+    }
+    return true;
+  });
+  updateCards(filtered);
+  var html='';
+  if(!filtered.length){
+    html='<tr><td colspan="6" class="empty">Ingen treff.</td></tr>';
+  } else {
+    filtered.forEach(function(e){
+      var tid=new Date(e.tidspunkt).toLocaleString('no',{day:'2-digit',month:'2-digit',year:'2-digit',hour:'2-digit',minute:'2-digit'});
+      var hBadge=hendelseBadge(e.hendelse);
+      var det='';
+      if(e.detaljer){
+        var d=e.detaljer;
+        var parts=[];
+        if(d.selskap)parts.push(d.selskap);
+        if(d.periode)parts.push(d.periode);
+        if(d.antallOrdrer!=null)parts.push(d.antallOrdrer+' ordrer');
+        if(d.feil)parts.push('❌ '+d.feil.substring(0,120));
+        if(d.melding)parts.push('⚠️ '+d.melding.substring(0,120));
+        if(d.metode)parts.push('Metode: '+d.metode);
+        det=parts.join(' · ');
+      }
+      html+='<tr>'
+        +'<td><span class="tid">'+tid+'</span></td>'
+        +'<td><strong>'+esc(e.bruker||'')+'</strong><br><span style="font-size:.75rem;color:#9ca3af;">'+esc(e.epost||'')+'</span></td>'
+        +'<td>'+rolleBadge(e.rolle)+'</td>'
+        +'<td style="font-size:.82rem;">'+esc(e.selskap||'–')+'</td>'
+        +'<td>'+hBadge+'</td>'
+        +'<td><span class="detaljer">'+esc(det)+'</span></td>'
+        +'</tr>';
+    });
+  }
+  document.getElementById('log-body').innerHTML=html;
+}
+
+function updateCards(entries){
+  document.getElementById('cnt-total').textContent=entries.length;
+  document.getElementById('cnt-inn').textContent=entries.filter(function(e){return e.hendelse==='Innlogget';}).length;
+  document.getElementById('cnt-data').textContent=entries.filter(function(e){return e.hendelse==='DataLastet';}).length;
+  document.getElementById('cnt-feil').textContent=entries.filter(function(e){return e.hendelse==='DataLastFeil'||e.hendelse==='JSFeil'||e.hendelse==='PromiseFeil';}).length;
+  var uniq=new Set(entries.map(function(e){return e.epost;}).filter(Boolean));
+  document.getElementById('cnt-brukere').textContent=uniq.size;
+}
+
+function hendelseBadge(h){
+  var map={'Innlogget':'badge inn','DataLastet':'badge ok','DataLastFeil':'badge feil','JSFeil':'badge js','PromiseFeil':'badge js'};
+  return '<span class="badge '+(map[h]||'badge')+'">'+esc(h)+'</span>';
+}
+function rolleBadge(r){
+  if(r==='DL')return '<span class="badge dl">👑 DL</span>';
+  if(r==='PL')return '<span class="badge pl">👤 PL</span>';
+  return '<span class="badge">'+esc(r||'?')+'</span>';
+}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// Auto-login hvis allerede innlogget
+(async function(){
+  await initMSAL();
+  var accounts=_app.getAllAccounts();
+  if(accounts.length>0){
+    try{
+      var r=await _app.acquireTokenSilent({scopes:SP_SCOPES,account:accounts[0]});
+      _tok=r.accessToken;
+      document.getElementById('user-info').textContent='Innlogget: '+accounts[0].name;
+      document.getElementById('login-section').style.display='none';
+      document.getElementById('app-section').style.display='block';
+      buildMonthSel();
+      loadLog();
+    }catch(e){}
+  }
+})();
+</script>
+</body>
+</html>
