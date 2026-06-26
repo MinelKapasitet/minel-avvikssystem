@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.20</title>
+<title>VIA QA – Minel AS v9.21</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.20</span>
+  <span class="hd-badge">v9.21</span>
 </header>
 
 <!-- START PANEL -->
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.20 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.21 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -465,6 +465,38 @@ function spDriveUrl(company){
 function spHistUrl(company){
   var slug=(company||'default').toLowerCase().replace(/[^a-z0-9]/g,'_').replace(/_+/g,'_');
   return 'https://graph.microsoft.com/v1.0/sites/'+SP_SITE+'/drive/root:/VIA_historikk_'+slug+'.json:/content';
+}
+// ════ AKTIVITETSLOGG ════
+function spLogUrl(){
+  var now=new Date();
+  var ym=now.getFullYear()+'-'+(String(now.getMonth()+1).padStart(2,'0'));
+  return 'https://graph.microsoft.com/v1.0/sites/'+SP_SITE+'/drive/root:/VIA_logg_'+ym+'.json:/content';
+}
+var _loggedLogin=false;
+async function logEventRaw(tok,hendelse,detaljer){
+  // Bruker token direkte — kaller IKKE getSpToken() for å unngå rekursjon
+  try{
+    var url=spLogUrl();
+    var existing=[];
+    try{
+      var r=await fetch(url,{headers:{'Authorization':'Bearer '+tok}});
+      if(r&&r.ok){existing=await r.json();if(!Array.isArray(existing))existing=[];}
+    }catch(e){}
+    existing.push({
+      tidspunkt:new Date().toISOString(),
+      bruker:_currentUser?_currentUser.name:(_spUser||'Ukjent'),
+      epost:_currentUser?_currentUser.email:(_spUser||'ukjent'),
+      rolle:_currentUser?(_currentUser.isDL?'DL':'PL'):'?',
+      selskap:_currentEntity||(_currentUser&&_currentUser.company)||'',
+      hendelse:hendelse,
+      detaljer:detaljer||null
+    });
+    await fetch(url,{method:'PUT',headers:{'Authorization':'Bearer '+tok,'Content-Type':'application/json'},body:JSON.stringify(existing,null,2)});
+    console.log('[LOG]',hendelse,detaljer);
+  }catch(e){console.warn('[LOG] Logging feilet stille:',e);}
+}
+async function logEvent(hendelse,detaljer){
+  try{var tok=await getSpToken();if(!tok)return;await logEventRaw(tok,hendelse,detaljer);}catch(e){console.warn('[LOG] logEvent feilet:',e);}
 }
 async function spSaveHist(entity){
   try{
@@ -612,12 +644,15 @@ async function getSpToken(){
       try{
         var r=await _msalApp.acquireTokenSilent({scopes:SP_SCOPES,account:accounts[0]});
         detectUser(accounts[0]);
+        if(!_loggedLogin){_loggedLogin=true;logEventRaw(r.accessToken,'Innlogget',{metode:'silent'}).catch(function(){});}
         return r.accessToken;
       }catch(e){console.warn('[SP] Silent refresh feilet, prøver popup:',e);}
     }
     try{
       var pr=await _msalApp.acquireTokenPopup({scopes:SP_SCOPES});
-      detectUser(pr.account);return pr.accessToken;
+      detectUser(pr.account);
+      if(!_loggedLogin){_loggedLogin=true;logEventRaw(pr.accessToken,'Innlogget',{metode:'popup'}).catch(function(){});}
+      return pr.accessToken;
     }catch(pe){console.warn('[SP] Popup avvist:',pe);return null;}
   }catch(e){console.warn('[SP] MSAL feil:',e);return null;}
 }
@@ -859,6 +894,15 @@ var EXCL_TYPES = new Set(['Intern','Internordre','Reklamasjon','Intern ordre']);
   document.getElementById('fi').addEventListener('change', function(e){goExcel(e.target.files[0]);});
   loadSession();
 })();
+
+// ════ GLOBAL FEILHÅNDTERING ════
+window.onerror=function(msg,src,line,col,err){
+  logEvent('JSFeil',{melding:String(msg).substring(0,300),fil:(src||'').split('/').pop(),linje:line,stack:err&&err.stack?err.stack.substring(0,500):null}).catch(function(){});
+  return false;
+};
+window.addEventListener('unhandledrejection',function(e){
+  logEvent('PromiseFeil',{melding:String(e.reason).substring(0,300),stack:e.reason&&e.reason.stack?e.reason.stack.substring(0,500):null}).catch(function(){});
+});
 
 function ST(id){
   var ids=['dash','qa','risk','poc','status','hist'];
@@ -1316,6 +1360,7 @@ function startApiLoad(){
         var d2=new Date(dateStr), prd=d2.toLocaleDateString('no',{month:'long',year:'numeric'});
         document.getElementById('lentity').value = co.name;
         parseRows(rows, co.name+' – t.o.m. '+dateStr, prd);
+        logEvent('DataLastet',{selskap:co.name,periode:prd,antallOrdrer:rows.length}).catch(function(){});
         document.getElementById('progressWrap').style.display = 'none';
         document.getElementById('api-btn').disabled = false;
       },400);
@@ -1328,6 +1373,7 @@ function startApiLoad(){
     el.innerHTML = '<strong>❌ Feil:</strong> '+e.message;
     el.style.display = 'block';
     console.error(e);
+    logEvent('DataLastFeil',{feil:e.message,stack:e.stack?e.stack.substring(0,400):null}).catch(function(){});
   });
 }
 window.startApiLoad = startApiLoad; // F-2 fix: ensure global scope in all deploy environments
