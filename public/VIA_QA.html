@@ -1,0 +1,2028 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>VIA QA – Minel AS v9.19</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --red:#CC0000;--reddark:#A50000;--redlight:#FFEEEE;
+  --navy:#1A2744;--navydark:#111C33;
+  --dark:#1C1C1C;--mid:#444;--grey:#F4F4F4;--border:#E0E0E0;
+  --green:#1E7A34;--greenbg:#E8F5EC;
+  --amber:#B36800;--amberbg:#FFF8E1;
+  --blue:#1D4ED8;--bluebg:#EEF2FF;
+  --font:'Segoe UI',Arial,sans-serif;
+}
+body{font-family:var(--font);background:#F0F0F0;color:var(--dark);min-height:100vh;}
+header{background:var(--navy);display:flex;align-items:center;}
+.hd-red{background:var(--red);padding:14px 22px;display:flex;align-items:center;gap:10px;}
+.hd-red svg{width:32px;height:32px;fill:#fff;}
+.hd-red span{font-size:1.3rem;font-weight:800;color:#fff;letter-spacing:.5px;}
+.hd-main{padding:14px 22px;flex:1;}
+.hd-main h1{font-size:1rem;font-weight:700;color:#fff;}
+.hd-main p{font-size:.78rem;color:#8fa4cc;margin-top:2px;}
+.hd-badge{background:var(--red);color:#fff;border-radius:20px;padding:2px 12px;font-size:.73rem;font-weight:700;margin-left:auto;margin-right:18px;}
+/* Start panel */
+#startPanel{max-width:1400px;margin:48px auto;padding:0 24px;}
+#startPanel .sp-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+@media(max-width:700px){#startPanel .sp-grid{grid-template-columns:1fr;}}
+.api-card{background:#fff;border-radius:14px;box-shadow:0 4px 20px rgba(0,0,0,.1);overflow:hidden;margin-bottom:20px;}
+.api-card-header{background:var(--navy);color:#fff;padding:14px 24px;display:flex;align-items:center;gap:12px;font-weight:700;font-size:.95rem;}
+.api-card-body{padding:24px;}
+.api-row{display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-bottom:4px;}
+.api-field{display:flex;flex-direction:column;gap:5px;flex:1;}
+.api-field label{font-size:.76rem;font-weight:700;color:#666;text-transform:uppercase;letter-spacing:.5px;}
+.api-field select,.api-field input[type=date]{border:1.5px solid var(--border);border-radius:8px;padding:9px 12px;font-family:var(--font);font-size:.88rem;background:#fff;width:100%;}
+.api-field select:focus,.api-field input:focus{outline:none;border-color:var(--navy);}
+.err-box{background:var(--amberbg);border-left:4px solid var(--amber);border-radius:6px;padding:12px 16px;font-size:.82rem;color:var(--amber);line-height:1.7;display:none;margin-top:10px;}
+.divider{display:flex;align-items:center;gap:14px;margin:20px 0;}
+.divider div{flex:1;height:1px;background:var(--border);}
+.divider span{font-size:.78rem;color:#aaa;font-weight:600;text-transform:uppercase;letter-spacing:.5px;white-space:nowrap;}
+#dz{border:2.5px dashed var(--border);border-radius:14px;background:#fff;padding:48px 28px;cursor:pointer;transition:background .15s;}
+#dz:hover,#dz.over{background:var(--redlight);}
+#dz svg{width:48px;height:48px;stroke:var(--red);}
+#dz h2{font-size:1rem;font-weight:700;color:var(--dark);margin:12px 0 6px;}
+#dz p{color:#666;font-size:.86rem;}
+#fi{display:none;}
+/* Progress */
+#progressWrap{max-width:640px;margin:40px auto;background:#fff;border-radius:12px;padding:28px;box-shadow:0 2px 12px rgba(0,0,0,.08);display:none;}
+.prog-label{font-size:.88rem;color:var(--mid);margin-bottom:10px;font-weight:600;display:flex;justify-content:space-between;}
+.prog-bar{height:8px;background:#E0E0E0;border-radius:99px;overflow:hidden;}
+.prog-fill{height:100%;background:var(--red);border-radius:99px;transition:width .3s;width:0%;}
+.prog-sub{font-size:.78rem;color:#888;margin-top:6px;}
+/* App */
+#app{display:none;padding:18px 24px;}
+.appbar{display:flex;align-items:center;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
+.apptitle{font-size:1rem;font-weight:700;}
+.pill{background:var(--dark);color:#fff;border-radius:20px;padding:3px 14px;font-size:.8rem;font-weight:600;}
+.tabs{display:flex;gap:3px;border-bottom:3px solid var(--red);margin-bottom:18px;}
+.tab{padding:9px 17px;font-size:.88rem;cursor:pointer;border-radius:8px 8px 0 0;border:2px solid transparent;border-bottom:none;color:var(--mid);background:var(--grey);}
+.tab.active{background:#fff;border-color:var(--red);color:var(--red);font-weight:700;}
+.tab-panel{display:none;}.tab-panel.active{display:block;}
+/* KPIs */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(185px,1fr));gap:12px;margin-bottom:18px;}
+.kpi{background:#fff;border-radius:8px;padding:15px 16px;border-left:4px solid var(--red);box-shadow:0 1px 3px rgba(0,0,0,.07);}
+.kpi .lb{font-size:.73rem;color:#666;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;}
+.kpi .vl{font-size:1.35rem;font-weight:800;}
+.kpi.g{border-left-color:var(--green);}.kpi.g .vl{color:var(--green);}
+.kpi.r{border-left-color:var(--red);}.kpi.r .vl{color:var(--red);}
+.kpi.a{border-left-color:var(--amber);}.kpi.a .vl{color:var(--amber);}
+/* Risk cards */
+.riskcards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;}
+.rc{border-radius:8px;padding:16px;text-align:center;}
+.rc .n{font-size:2rem;font-weight:900;}.rc .l{font-size:.82rem;font-weight:700;margin-top:3px;}
+.rc.h{background:#FFE8E8;color:var(--red);}.rc.m{background:var(--amberbg);color:var(--amber);}.rc.lo{background:var(--greenbg);color:var(--green);}
+/* Tables */
+.secttitle{font-size:.92rem;font-weight:700;margin-bottom:9px;padding-bottom:5px;border-bottom:2px solid #F5CCCC;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px;}
+@media(max-width:860px){.two-col{grid-template-columns:1fr;}}
+.tw{border-radius:8px;box-shadow:0 1px 5px rgba(0,0,0,.08);background:#fff;overflow-y:auto;overflow-x:auto;max-height:700px;}
+table{width:100%;border-collapse:collapse;font-size:.8rem;min-width:max-content;}
+thead th{background:var(--navy);color:#fff;padding:9px 10px;text-align:left;white-space:nowrap;font-weight:700;position:sticky;top:0;z-index:10;cursor:pointer;user-select:none;}
+thead th:hover{background:var(--navydark);}
+thead th.sa::after{content:' ▲';font-size:.65rem;}
+thead th.sd::after{content:' ▼';font-size:.65rem;}
+td{padding:7px 10px;border-bottom:1px solid #F0F0F0;vertical-align:middle;}
+tr:nth-child(even) td{background:#FAFAFA;}tr:hover td{background:#FFF0F0!important;}
+td.r{text-align:right;font-variant-numeric:tabular-nums;}td.c{text-align:center;}
+/* Badges */
+.bh{background:#FFE8E8;color:var(--red);border-radius:5px;padding:2px 9px;font-weight:700;font-size:.74rem;}
+.bm{background:var(--amberbg);color:var(--amber);border-radius:5px;padding:2px 9px;font-weight:700;font-size:.74rem;}
+.bl{background:var(--greenbg);color:var(--green);border-radius:5px;padding:2px 9px;font-size:.74rem;}
+.flag{display:inline-block;background:#FFF3CC;color:#7A5500;border-radius:4px;padding:1px 6px;font-size:.73rem;margin:1px 2px;}
+.flag.ok{background:var(--greenbg);color:var(--green);}.flag.er{background:#FFE8E8;color:var(--red);}
+/* Filter bar */
+.fb{display:flex;gap:8px;margin-bottom:11px;flex-wrap:wrap;align-items:center;}
+.fb input,.fb select{border:1.5px solid var(--border);border-radius:6px;padding:6px 10px;font-family:var(--font);font-size:.84rem;background:#fff;}
+.fb input:focus,.fb select:focus{outline:none;border-color:var(--red);}
+.fb label{font-size:.82rem;color:#555;display:flex;align-items:center;gap:5px;}
+/* Section */
+.sec-hdr{background:var(--navy);color:#fff;padding:8px 14px;font-weight:700;font-size:.86rem;border-radius:8px 8px 0 0;margin-top:16px;}
+.sec-note{background:var(--amberbg);padding:8px 14px;font-size:.81rem;color:var(--amber);border-left:3px solid var(--amber);}
+/* Inputs */
+input.pi{width:100%;border:1.5px solid #C8D8F0;border-radius:5px;padding:4px 7px;font-size:.79rem;font-family:var(--font);text-align:right;background:#EEF4FF;color:#003090;}
+input.pi:focus{outline:none;border-color:var(--red);background:#fff;}
+input.pi:disabled{background:#f0f0f0;color:#888;}
+input.ci{width:100%;border:1.5px solid var(--border);border-radius:5px;padding:4px 7px;font-size:.78rem;font-family:var(--font);}
+input.ci.req{border-color:var(--amber);background:var(--amberbg);}
+input.ci:disabled{background:#f0f0f0;color:#666;}
+/* Calc cells */
+.calc{font-weight:700;}.vpos{color:var(--amber);font-weight:800;}.vneg{color:var(--mid);font-weight:700;}
+.rwarn td{background:#FFFAED!important;}
+.totbar{margin-top:10px;display:flex;gap:12px;flex-wrap:wrap;}
+.totbar span{background:#fff;border-radius:7px;padding:6px 14px;box-shadow:0 1px 3px rgba(0,0,0,.08);font-size:.85rem;font-weight:600;}
+/* History */
+.hist-empty{text-align:center;padding:52px;color:#888;font-size:.95rem;}
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;border:none;border-radius:8px;padding:9px 20px;font-size:.87rem;font-weight:600;cursor:pointer;font-family:var(--font);}
+.btn:hover{background:var(--reddark);}.btn:disabled{background:#bbb;cursor:not-allowed;}
+.btn-dark{background:var(--navy);}.btn-dark:hover{background:var(--navydark);}
+.btn-grn{background:var(--green);}.btn-grn:hover{background:#155a27;}
+.btn-o{background:transparent;color:var(--red);border:2px solid var(--red);}
+/* Benchmark chips */
+.bench{display:inline-block;border-radius:5px;padding:2px 7px;font-size:.72rem;font-weight:700;white-space:nowrap;}
+.bench-ok{background:var(--greenbg);color:var(--green);}
+.bench-warn{background:var(--amberbg);color:var(--amber);}
+.bench-bad{background:#FFE8E8;color:var(--red);}
+.bench-na{background:#F3F4F6;color:#9CA3AF;}
+/* Status badges */
+.status-done{background:#E8F5EC;color:#1E7A34;border-radius:6px;padding:3px 10px;font-weight:700;font-size:.82rem;display:inline-block;}
+.status-wait{background:#FFF8E1;color:#B36800;border-radius:6px;padding:3px 10px;font-weight:700;font-size:.82rem;display:inline-block;}
+/* Modal */
+.mbg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:200;align-items:center;justify-content:center;}
+.mbg.open{display:flex;}
+.modal{background:#fff;border-radius:12px;padding:28px;max-width:460px;width:90%;box-shadow:0 10px 40px rgba(0,0,0,.2);}
+.modal h2{font-size:1.05rem;font-weight:700;margin-bottom:6px;}
+.modal p{font-size:.84rem;color:#666;margin-bottom:18px;}
+.modal label{display:block;font-size:.84rem;color:#444;margin-bottom:3px;}
+.modal input{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:8px 11px;font-family:var(--font);font-size:.88rem;margin-bottom:12px;}
+.modal input:focus{outline:none;border-color:var(--red);}
+.mbtns{display:flex;gap:8px;justify-content:flex-end;margin-top:4px;}
+footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20px;}
+/* ── Print / PDF rapport ── */
+#report-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000;overflow-y:auto;padding:32px 20px;}
+#report-overlay.open{display:flex;flex-direction:column;align-items:center;}
+#report-wrap{background:#fff;border-radius:10px;width:100%;max-width:960px;box-shadow:0 8px 40px rgba(0,0,0,.3);overflow:hidden;}
+#report-toolbar{background:#1A2B4A;color:#fff;display:flex;align-items:center;gap:12px;padding:14px 20px;}
+#report-toolbar h2{font-size:1rem;font-weight:700;flex:1;margin:0;}
+#report-toolbar .btn-print{background:#C8102E;color:#fff;border:none;border-radius:6px;padding:7px 18px;font-size:.88rem;font-weight:700;cursor:pointer;}
+#report-toolbar .btn-close-rpt{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);border-radius:6px;padding:7px 14px;font-size:.88rem;cursor:pointer;}
+#print-report{padding:28px 32px;font-family:Arial,sans-serif;font-size:.84rem;color:#222;}
+#print-report h1{font-size:1.2rem;font-weight:700;margin:0 0 6px;}
+#print-report h2{font-size:.95rem;font-weight:700;margin:20px 0 6px;padding-bottom:4px;border-bottom:2px solid #1A2B4A;color:#1A2B4A;}
+#print-report .pr-meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;font-size:.82rem;color:#444;margin-bottom:16px;}
+#print-report .pr-kpi{display:flex;gap:0;margin-bottom:20px;border:1px solid #e5e5e5;border-radius:8px;overflow:hidden;}
+#print-report .pr-kpi div{flex:1;text-align:center;padding:14px 8px;border-right:1px solid #e5e5e5;}
+#print-report .pr-kpi div:last-child{border-right:none;}
+#print-report .k-val{font-size:1.3rem;font-weight:700;color:#1A2B4A;}
+#print-report .k-lbl{font-size:.72rem;color:#666;margin-top:2px;}
+#print-report table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:.8rem;}
+#print-report th{background:#1A2B4A;color:#fff;padding:6px 10px;text-align:left;font-size:.78rem;}
+#print-report td{padding:5px 10px;border-bottom:1px solid #e5e5e5;}
+#print-report tr:nth-child(even) td{background:#f8f8f8;}
+#print-report .r{text-align:right;}
+#print-report .c{text-align:center;}
+#print-report .neg{color:#c0392b;font-weight:600;}
+#print-report .pr-footer{margin-top:20px;font-size:.73rem;color:#999;text-align:center;padding-top:12px;border-top:1px solid #eee;}
+@media print{
+  #report-overlay,#report-wrap,#report-toolbar{display:block!important;position:static!important;box-shadow:none!important;background:transparent!important;padding:0!important;border-radius:0!important;}
+  #report-toolbar .btn-print,#report-toolbar .btn-close-rpt,#report-toolbar h2{display:none!important;}
+  body>*:not(#report-overlay){display:none!important;}
+  #print-report{padding:0;font-size:9pt;}
+  #print-report .pr-kpi div{border:1px solid #ccc;}
+  #print-report .k-val{font-size:14pt;}
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="hd-red">
+    <svg viewBox="0 0 40 40"><path d="M20 4 L36 12 L36 28 L20 36 L4 28 L4 12 Z" fill="none" stroke="#fff" stroke-width="2.5"/><path d="M20 12 L20 28 M14 20 L26 20" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>
+    <span>MINEL</span>
+  </div>
+  <div class="hd-main">
+    <h1>VIA / Fakturareserve – Kvalitetssikring</h1>
+    <p>Datobegrenset perioderegnskap direkte fra Ordrestyring</p>
+  </div>
+  <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
+  <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
+  <span class="hd-badge">v9.19</span>
+</header>
+
+<!-- START PANEL -->
+<div id="startPanel">
+  <div id="resume-banner" style="display:none;background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:10px;padding:14px 20px;margin-bottom:20px;align-items:center;gap:16px;flex-wrap:wrap;">
+    <div style="flex:1;min-width:200px;">
+      <strong style="color:#1D4ED8;">↩ Gjenoppta siste økt</strong><br>
+      <span id="resume-info" style="font-size:.83rem;color:#444;"></span>
+    </div>
+    <button onclick="resumeSession()" style="background:#1D4ED8;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:.88rem;">Gjenoppta</button>
+    <button onclick="clearSession()" style="background:transparent;color:#666;border:1px solid #ccc;border-radius:6px;padding:8px 14px;cursor:pointer;font-size:.85rem;">Forkast</button>
+  </div>
+  <div class="sp-grid">
+
+    <!-- PL CARD: Prosjektleder -->
+    <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:16px;padding:36px 32px;box-shadow:0 4px 24px rgba(0,0,0,.18);text-align:center;">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:2px;color:#8892b0;text-transform:uppercase;margin-bottom:10px;">Prosjektleder</div>
+      <div style="font-size:2.5rem;margin-bottom:12px;">👔</div>
+      <h2 style="color:#fff;margin:0 0 6px;font-size:1.2rem;">Logg inn med Microsoft</h2>
+      <p style="color:#8892b0;font-size:.84rem;margin:0 0 24px;">Hent datasettet delt av daglig leder</p>
+      <div id="pl-login-box">
+        <button id="pl-login-btn" class="btn btn-grn" style="font-size:1rem;padding:14px 32px;width:100%;" onclick="loginPL(this)">🔑 Logg inn med Microsoft</button>
+        <p id="pl-login-err" style="display:none;color:#ff6b6b;font-size:.78rem;margin:10px 0 0;"></p>
+      </div>
+      <div id="pl-co-picker" style="display:none;margin-top:20px;">
+        <p style="color:#aaa;font-size:.84rem;margin:0 0 10px;">Velg ditt selskap — huskes til neste gang:</p>
+        <select id="pl-co-sel" style="width:100%;padding:10px 12px;border-radius:8px;border:none;font-size:.95rem;margin-bottom:10px;color:#222;">
+          <option value="">— Velg selskap —</option><option value="Minel Elmontasje Elverum AS">Minel Elmontasje Elverum AS</option><option value="Minel Elmontasje AS">Minel Elmontasje AS</option><option value="Minel Gjøvik Installasjon AS">Minel Gjøvik Installasjon AS</option><option value="Minel Gudbrandsdal AS">Minel Gudbrandsdal AS</option><option value="Minel Kreativ Elektro Ski AS">Minel Kreativ Elektro Ski AS</option><option value="Minel Land Elektriske AS">Minel Land Elektriske AS</option><option value="Minel Skogvang Installasjon AS">Minel Skogvang Installasjon AS</option><option value="Minel Ainstall AS">Minel Ainstall AS</option><option value="Minel Drøbak Elektriske AS">Minel Drøbak Elektriske AS</option>
+        </select>
+        <button class="btn btn-grn" style="width:100%;padding:12px;" onclick="var v=document.getElementById('pl-co-sel').value;if(!v)return;plLoadDataset(v)">📂 Hent datasett</button>
+      </div>
+      <div id="pl-no-data" style="display:none;margin-top:16px;background:#fff3cd;color:#856404;border-radius:8px;padding:12px 16px;font-size:.85rem;text-align:left;"></div>
+      <p style="margin-top:16px;color:#8892b0;font-size:.74rem;">Første gang? Velg selskap etter innlogging.</p>
+    </div>
+
+    <!-- DL CARD: Daglig leder -->
+    <div style="background:#fff;border-radius:16px;padding:36px 32px;box-shadow:0 4px 24px rgba(0,0,0,.10);text-align:center;">
+      <div style="font-size:.72rem;font-weight:700;letter-spacing:2px;color:#999;text-transform:uppercase;margin-bottom:10px;">Daglig leder</div>
+      <div style="font-size:2.5rem;margin-bottom:12px;">📊</div>
+      <h2 style="color:#1a1a2e;margin:0 0 6px;font-size:1.2rem;">Hent perioderegnskap</h2>
+      <p style="color:#666;font-size:.84rem;margin:0 0 20px;">Direkte fra Ordrestyring via API</p>
+      <div id="dl-login-confirm" style="display:none;background:#d1fae5;color:#065f46;border-radius:8px;padding:10px 14px;font-size:.84rem;margin-bottom:16px;text-align:center;"></div>
+      <div id="dl-section" style="text-align:left;">
+        <div style="margin-bottom:12px;">
+          <label style="font-size:.78rem;font-weight:600;color:#555;display:block;margin-bottom:4px;">Selskap</label>
+          <select id="co-sel" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #ddd;font-size:.9rem;color:#222;">
+            <option value="">— Velg selskap —</option>
+            <option value="0">Minel Kreativ Elektro Ski AS</option>
+            <option value="1">Minel Skogvang Installasjon AS</option>
+            <option value="2">Minel Land Elektriske AS</option>
+            <option value="3">Minel Gjøvik AS</option>
+            <option value="4">Minel Elmontasje AS</option>
+            <option value="5">Minel Elmontasje Elverum AS</option>
+            <option value="6">Minel Ainstall AS</option>
+            <option value="7">Minel Drøbak Elektriske AS</option>
+            <option value="8">Minel Gudbrandsdal AS</option>
+          </select>
+        </div>
+        <div style="margin-bottom:16px;">
+          <label style="font-size:.78rem;font-weight:600;color:#555;display:block;margin-bottom:4px;">Periodeslutt</label>
+          <input type="date" id="period-date" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #ddd;font-size:.9rem;color:#222;box-sizing:border-box;">
+        </div>
+        <button class="btn" id="api-btn" onclick="startApiLoad()" style="width:100%;padding:13px;font-size:.95rem;">
+          <svg width="14" height="14" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+          Last data fra Ordrestyring
+        </button>
+        <div id="api-err" class="err-box" style="margin-top:10px;"></div>
+      </div>
+      <p style="margin-top:14px;color:#aaa;font-size:.74rem;">Data behandles lokalt — ingenting sendes til server.</p>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- PROGRESS -->
+<div id="progressWrap">
+  <div class="prog-label"><span id="prog-text">Henter…</span><span id="prog-pct">0%</span></div>
+  <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
+  <div class="prog-sub" id="prog-sub"></div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="appbar">
+    <span class="apptitle" id="atitle"></span>
+    <span class="pill" id="aperiod"></span>
+    <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;">
+      <button class="btn btn-grn" id="btnlock" onclick="openLock()">🔒 Lås periode</button>
+      <button class="btn btn-dark" id="share-btn" onclick="exportDataset()" title="Last opp datasett til SharePoint — PLer henter det automatisk">📤 Del datasett</button>
+      <button class="btn btn-dark" id="snap-btn" style="display:none;" onclick="doSnap()" title="Ta øyeblikksbilde av periodens data">📸 Snapshot</button>
+      <button class="btn btn-dark" onclick="expPOC()">📥 Eksporter Excel</button>
+      <button class="btn btn-dark" onclick="resetApp()">↩ Ny periode</button>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="ST('dash')">📊 Dashboard</div>
+    <div class="tab" onclick="ST('qa')">🔍 QA – Alle</div>
+    <div class="tab" onclick="ST('risk')">⚠️ Risikoregister</div>
+    <div class="tab" onclick="ST('poc')">📋 POC + DG</div>
+    <div class="tab" onclick="ST('status')">✅ Status</div>
+    <div class="tab" onclick="ST('hist')">📁 Historikk</div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="tab-panel active" id="tab-dash">
+    <div class="kpis" id="kpis"></div>
+    <div class="two-col">
+      <div>
+        <div class="secttitle">⚠️ Risikofordeling</div>
+        <div class="riskcards" id="rcards"></div>
+        <div class="secttitle" style="margin-top:16px;">⚠️ Viktigste funn</div>
+        <div id="findings" style="font-size:.85rem;line-height:2;"></div>
+      </div>
+      <div>
+        <div class="secttitle">👥 Per prosjektleder</div>
+        <div class="tw"><table id="pltbl"></table></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- QA ALLE -->
+  <div class="tab-panel" id="tab-qa">
+    <div class="fb">
+      <input type="text" id="qs" placeholder="🔍 Søk ordre, kunde, beskrivelse…" style="width:260px" oninput="rQA()">
+      <select id="qr" onchange="rQA()">
+        <option value="">Alle risikoklasser</option>
+        <option value="HØY">🔴 HØY</option>
+        <option value="MIDDELS">🟡 MIDDELS</option>
+        <option value="LAV">🟢 LAV</option>
+      </select>
+      <select id="qp" onchange="rQA()"><option value="">Alle prosjektledere</option></select>
+      <select id="qt" onchange="rQA()"><option value="">Alle typer</option></select>
+      <label><input type="checkbox" id="qnz" onchange="rQA()"> Kun VIA ≠ 0</label>
+    </div>
+    <div class="tw"><table id="qatbl"></table></div>
+    <div id="qacnt" style="font-size:.79rem;color:#888;margin-top:6px;"></div>
+  </div>
+
+  <!-- RISIKOREGISTER -->
+  <div class="tab-panel" id="tab-risk">
+    <div class="fb">
+      <select id="rsel" onchange="rRisk()">
+        <option value="HØY,MIDDELS">HØY + MIDDELS</option>
+        <option value="HØY">Kun HØY</option>
+        <option value="MIDDELS">Kun MIDDELS</option>
+      </select>
+    </div>
+    <div class="tw"><table id="risktbl"></table></div>
+  </div>
+
+  <!-- POC + DG -->
+  <div class="tab-panel" id="tab-poc">
+    <div style="background:var(--redlight);border-left:4px solid var(--red);padding:12px 16px;margin-bottom:14px;font-size:.84rem;line-height:1.8;">
+      <strong>1. Fastpriskontrakter (POC):</strong> Gjenstående timer og materialer beregner periodisert inntekt.&nbsp;|&nbsp;
+      <strong>2. Uten kontraktssum:</strong> Prosjektleder bekrefter DG% og begrunner estimatet.&nbsp;|&nbsp;
+      🔵 Blå felt = input&nbsp;|&nbsp; 🟡 Gul rad = kommentar påkrevet
+    </div>
+    <div class="fb">
+      <select id="pp" onchange="rPOC()"><option value="">Alle prosjektledere</option></select>
+      <label>Std. timekost: <input type="number" id="stk" value="650" min="100" step="50" style="width:72px;border:1.5px solid var(--border);border-radius:6px;padding:5px 8px;" onchange="rPOC()"> kr/t</label>
+      <button class="btn btn-grn" id="ready-btn" onclick="markReady()" style="margin-left:auto;" title="Trykk her når du er ferdig med alle dine vurderinger">✅ Ferdig med mine vurderinger</button>
+    </div>
+
+    <div class="sec-hdr">Seksjon 1 – Fastpriskontrakter (POC) <span id="poc-cnt" style="font-weight:400;font-size:.8rem;opacity:.8;"></span></div>
+    <div style="margin:6px 0 4px;"><label style="display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--mid);cursor:pointer;"><input type="checkbox" id="hideSmallPOCChk" onchange="HIDE_SMALL_POC=this.checked;rPOC()"> Skjul ordrer med kostnader under 1 000 kr</label></div>
+    <div class="tw" style="max-height:800px;border-radius:0 0 8px 8px;"><table id="poctbl"></table></div>
+    <div class="totbar" id="poctot"></div>
+
+    <div style="background:#fff;border-radius:8px;border:1.5px solid var(--border);padding:10px 16px;margin-top:20px;margin-bottom:0;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+      <span style="font-size:.84rem;font-weight:600;color:var(--navy);">Fyll alle med standard DG%:</span>
+      <div style="display:flex;align-items:center;gap:6px;">
+        <input type="number" id="global-dg" min="0" max="100" step="1" placeholder="f.eks. 35" style="width:80px;border:1.5px solid var(--border);border-radius:6px;padding:6px 10px;font-family:var(--font);font-size:.88rem;">
+        <span style="font-size:.84rem;color:#666;">%</span>
+        <button class="btn btn-dark" onclick="applyGlobalDG()" style="padding:6px 14px;font-size:.82rem;">Fyll alle</button>
+      </div>
+      <span style="font-size:.78rem;color:#aaa;">Enkeltordrer kan overstyres direkte i tabellen nedenfor.</span>
+    </div>
+
+    <div style="margin-top:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <div class="sec-hdr" style="margin-top:0;flex:1;">Seksjon 2 – Regningsordrer (DG%-bekreftelse) <span id="dg-cnt" style="font-weight:400;font-size:.8rem;opacity:.8;"></span></div>
+      <button class="btn btn-dark" style="padding:5px 12px;font-size:.8rem;" onclick="toggleRiskInfo()">ℹ️ Risikoforklaring</button>
+    </div>
+    <div id="riskInfoPanel" style="display:none;background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:14px 18px;margin-top:8px;font-size:.82rem;line-height:1.9;color:var(--dark);">
+      <strong>Risikokarakterer beregnes automatisk basert på PLs vurderinger:</strong><br>
+      🔴 <strong>HØY (score ≥ 4):</strong> Alvorlige avvik — følges opp av daglig leder<br>
+      🟡 <strong>MIDDELS (score ≥ 2):</strong> Bør kommenteres<br>
+      🟢 <strong>LAV (score &lt; 2):</strong> Akseptabel status<br><br>
+      <strong>Poeng gis for:</strong><br>
+      • DG% falt &gt;5 prosentpoeng vs forrige periode: +5 poeng 🔴<br>
+      • DG% falt 2–5 prosentpoeng vs forrige periode: +3 poeng<br>
+      • DG% falt litt (0,5–2pp) vs forrige periode: +1 poeng<br>
+      • Ikke vurdert (DG% = 0, manuelle ordrer): +3 poeng<br>
+      • Kritisk margin (&lt;5% med kostnader &gt;10 000 kr): +3 poeng<br>
+      • Lav margin (&lt;10% med kostnader &gt;50 000 kr): +2 poeng<br>
+      • Rund DG% på manuelle ordrer: +1 poeng<br>
+      • Mangler begrunnelse (manuell regningsordre): +1 poeng
+    </div>
+    <div class="sec-note" id="sec2note">Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet. <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span></div>
+    <div style="margin:8px 0 4px;display:flex;gap:16px;flex-wrap:wrap;">
+      <label style="display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--mid);cursor:pointer;">
+        <input type="checkbox" id="hideSettledChk" onchange="HIDE_SETTLED=this.checked;rPOC()"> Skjul ordrer med VIA &lt; ±5 000 kr (fullt fakturerte)
+      </label>
+      <label style="display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--mid);cursor:pointer;">
+        <input type="checkbox" id="hideSmallChk" onchange="HIDE_SMALL=this.checked;rPOC()"> Skjul ordrer med kostnader under 1 000 kr
+      </label>
+    </div>
+    <div class="tw" style="max-height:800px;border-radius:0 0 8px 8px;"><table id="dgtbl"></table></div>
+    <div class="totbar" id="dgtot"></div>
+  </div>
+
+  <!-- STATUS -->
+  <div class="tab-panel" id="tab-status">
+    <div style="background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 5px rgba(0,0,0,.08);">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+        <div>
+          <div style="font-size:1rem;font-weight:700;color:var(--navy);">📋 Vurderingsstatus per prosjektleder</div>
+          <div style="font-size:.82rem;color:#888;margin-top:4px;">Prosjektlederne markerer seg som ferdige fra POC+DG-fanen. Daglig leder ser status her.</div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button class="btn btn-dark" onclick="rStatus()">🔄 Oppdater</button>
+          <button class="btn" style="background:#888;" onclick="if(confirm('Nullstille all ferdigstatus?'))clearAllReady()">🗑 Nullstill status</button>
+        </div>
+      </div>
+    </div>
+    <div class="tw"><table id="statustbl"></table></div>
+    <div id="status-sum" style="margin-top:12px;font-size:.84rem;color:var(--mid);"></div>
+  </div>
+
+  <!-- HISTORIKK -->
+  <div class="tab-panel" id="tab-hist">
+    <div class="fb" style="margin-bottom:16px;">
+      <span style="font-size:.88rem;font-weight:600;">Historikk lagres automatisk ved låsing (lokalt + SharePoint).</span>
+      <button class="btn" style="background:#2563eb;margin-left:auto;" onclick="syncHistSP(this)" title="Hent historikk fra SharePoint og slå sammen med lokal">☁️ Synk fra SharePoint</button>
+      <button class="btn btn-dark" onclick="expHist()">📥 Eksporter historikk</button>
+      <button class="btn" style="background:#888;" onclick="clearHist()">🗑 Slett historikk</button>
+    </div>
+    <div id="histcontent"></div>
+  </div>
+</div>
+
+<!-- LOCK MODAL -->
+<div class="mbg" id="lmodal">
+  <div class="modal">
+    <h2>🔒 Lås periode og generer rapport</h2>
+    <p>Etter låsing kan ikke verdier endres. Perioden lagres i historikk.</p>
+    <label>Ditt navn</label>
+    <input type="text" id="lname" placeholder="F.eks. Øyvind Sæthersmoen">
+    <label>Selskapsenhet</label>
+    <input type="text" id="lentity">
+    <label>Periode</label>
+    <input type="text" id="lperiod">
+    <div class="mbtns">
+      <button class="btn btn-o" onclick="closeLock()">Avbryt</button>
+      <button class="btn btn-grn" onclick="doLock()">✅ Lås og generer rapport</button>
+    </div>
+  </div>
+</div>
+
+<footer>Minel AS · VIA QA v9.19 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+
+<script>
+// ════ SHAREPOINT INTEGRASJON ════
+var SP_SITE='elkonorno.sharepoint.com,adc2e55d-4cd5-4c6e-91be-90878d7b643e,66290674-a36d-40a1-a3b5-d90acfb04142';
+var SP_LIST='17a680a1-2dac-4cbb-ac95-69a707eb138c';
+var SP_GRAPH='https://graph.microsoft.com/v1.0/sites/'+SP_SITE+'/lists/'+SP_LIST;
+function spDriveUrl(company){
+  var slug=(company||'default').toLowerCase().replace(/[^a-z0-9]/g,'_').replace(/_+/g,'_');
+  return 'https://graph.microsoft.com/v1.0/sites/'+SP_SITE+'/drive/root:/VIA_datasett_'+slug+'.json:/content';
+}
+function spHistUrl(company){
+  var slug=(company||'default').toLowerCase().replace(/[^a-z0-9]/g,'_').replace(/_+/g,'_');
+  return 'https://graph.microsoft.com/v1.0/sites/'+SP_SITE+'/drive/root:/VIA_historikk_'+slug+'.json:/content';
+}
+async function spSaveHist(entity){
+  try{
+    var hist=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');
+    await spFetch(spHistUrl(entity),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(hist)});
+    console.log('[SP] Historikk lagret til SharePoint for',entity);
+  }catch(e){console.warn('[SP] Historikk-lagring feilet:',e);}
+}
+async function spLoadHist(entity){
+  try{
+    var r=await spFetch(spHistUrl(entity));
+    if(!r.ok)return false;
+    var spHist=await r.json();
+    if(!Array.isArray(spHist)||!spHist.length)return false;
+    // Merge SP history with local — keep both, deduplicate by period+entity
+    var local=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');
+    var merged={};
+    local.concat(spHist).forEach(function(h){merged[(h.period||'')+'__'+(h.entity||'')]=h;});
+    var combined=Object.values(merged).sort(function(a,b){return(a.id||0)-(b.id||0);});
+    localStorage.setItem(HIST_KEY,JSON.stringify(combined));
+    rHist();
+    return true;
+  }catch(e){console.warn('[SP] Historikk-henting feilet:',e);return false;}
+}
+var MSAL_CFG={auth:{clientId:'f5b4bfe7-8fec-496c-a1e1-8d519666ab45',authority:'https://login.microsoftonline.com/7ee2ac67-421e-4ac2-8998-f1f3e0c10fa7',redirectUri:'https://calm-plant-0bcddaa03.7.azurestaticapps.net/VIA_QA.html'},cache:{cacheLocation:'localStorage'}};
+var SP_SCOPES=['https://graph.microsoft.com/Sites.Selected'];
+var _msalApp=null,_spUser='Ukjent',_spIds={},_spEtags={},_spDebounce={};
+var _currentUser=null;
+var DL_LIST={
+  'oyvind.saethersmoen@minel.no':'__SUPER__',
+  'oyvind.saethersmoen@elkonor.no':'__SUPER__',
+  'anthoni.hulthin@minel.no':'Minel Elmontasje Elverum AS',
+  'bjornar.sleppen@minel.no':'Minel Elmontasje AS',
+  'geitatle.sangnaes@minel.no':'Minel Gjøvik Installasjon AS',
+  'susann.endrestad@minel.no':'Minel Gudbrandsdal AS',
+  'ola.sillerud@minel.no':'Minel Kreativ Elektro Ski AS',
+  'lars.aamodt@minel.no':'Minel Land Elektriske AS',
+  'jon.hulberg@minel.no':'Minel Skogvang Installasjon AS',
+  'jonas.prestkvern@minel.no':'Minel Ainstall AS',
+  'stian.ekhougen@minel.no':'Minel Drøbak Elektriske AS'
+};
+function detectUser(account){
+  if(!account)return;
+  var email=(account.username||'').toLowerCase();
+  var name=account.name||email.split('@')[0].split('.').map(function(p){return p.charAt(0).toUpperCase()+p.slice(1);}).join(' ');
+  var isDL=!!DL_LIST[email];
+  _currentUser={email:email,name:name,isDL:isDL,company:DL_LIST[email]||null,plName:name};
+  _spUser=email;
+  var badge=document.getElementById('user-badge');
+  if(badge) badge.innerHTML=(isDL?'👑 DL: ':'👤 PL: ')+'<strong>'+name+'</strong>';
+  if(!isDL){
+    var savedCo=localStorage.getItem('VIA_PL_COMPANY');
+    if(savedCo){
+      plLoadDataset(savedCo);
+    } else {
+      // Show company picker (already in startPanel)
+      var picker=document.getElementById('pl-co-picker');if(picker)picker.style.display='block';
+      var loginBox=document.getElementById('pl-login-box');if(loginBox)loginBox.style.display='none';
+    }
+  } else {
+    // (DL branch below)
+    // DL: hide PL card login button, show confirmation in DL card
+    var loginBox2=document.getElementById('pl-login-box');if(loginBox2)loginBox2.style.display='none';
+    var dlConf=document.getElementById('dl-login-confirm');
+    if(dlConf){
+      dlConf.style.display='block';
+      dlConf.innerHTML='✅ Innlogget som <strong>'+name+'</strong>';
+    }
+    var snapBtn=document.getElementById('snap-btn');if(snapBtn)snapBtn.style.display='';
+    rPOC();
+  }
+}
+function isEditable(r){
+  if(_currentUser&&_currentUser.company==='__SUPER__') return ''; // super-admin bypasses all locks
+  if(LOCKED) return 'disabled';
+  if(!_currentUser) return '';
+  if(_currentUser.isDL) return '';
+  if(r&&r.pl&&r.pl!==_currentUser.plName) return 'disabled';
+  var period=_currentPeriod||document.getElementById('aperiod').textContent;
+  var company=_currentEntity||document.getElementById('lentity').value||'';
+  var stObj=getStatus();
+  var k=period+'__'+company+'__'+(r?r.pl:_currentUser.plName);
+  if(stObj[k]&&stObj[k].done) return 'disabled';
+  return '';
+}
+function exportDataset(){spSaveDataset();}
+function loadDatasetJSON(file){
+  var reader=new FileReader();
+  reader.onload=function(e){
+    try{
+      var data=JSON.parse(e.target.result);
+      if(!data.rows||!data.period){alert('Ugyldig datasett-fil.');return;}
+      parseRows(data.rows,data.src||'Importert datasett',data.period);
+    }catch(err){alert('Kunne ikke lese filen: '+err.message);}
+  };
+  reader.readAsText(file);
+}
+async function unlockPL(pl){
+  if(!_currentUser||!_currentUser.isDL){alert('Kun DL kan åpne for redigering.');return;}
+  var stObj=getStatus();
+  var period=_currentPeriod||document.getElementById('aperiod').textContent;
+  var company=_currentEntity||document.getElementById('lentity').value||'';
+  var k=period+'__'+company+'__'+pl;
+  if(stObj[k]){delete stObj[k];localStorage.setItem(STATUS_KEY,JSON.stringify(stObj));}
+  // Slett SP STATUS-item permanent slik at reload ikke låser igjen
+  var existId=_spIds['_STATUS_'+pl];
+  if(existId){
+    try{
+      await spFetch(SP_GRAPH+'/items/'+existId,{method:'DELETE'});
+      delete _spIds['_STATUS_'+pl];
+      console.log('[SP] STATUS slettet for',pl);
+    }catch(e){console.warn('[SP] Kunne ikke slette STATUS:',e);}
+  }
+  rStatus();rPOC();
+}
+
+async function initMSAL(){
+  if(_msalApp)return;
+  if(typeof msal==='undefined'){console.warn('[SP] MSAL ikke lastet');return;}
+  _msalApp=new msal.PublicClientApplication(MSAL_CFG);
+  await _msalApp.initialize();
+  try{var resp=await _msalApp.handleRedirectPromise();if(resp){_spToken=resp.accessToken;_spUser=resp.account.username;}}catch(e){}
+}
+
+async function loginPL(btn){
+  var errEl=document.getElementById('pl-login-err');
+  if(btn){btn.disabled=true;btn.textContent='⏳ Logger inn...';}
+  if(errEl)errEl.style.display='none';
+  var tok=await getSpToken();
+  if(btn){btn.disabled=false;btn.innerHTML='🔑 Logg inn med Microsoft';}
+  if(!tok&&errEl){
+    errEl.style.display='block';
+    errEl.textContent='Innlogging feilet. Tillat popup-vinduer for denne siden i adressefeltet og prøv igjen.';
+  }
+}
+async function getSpToken(){
+  // Alltid kall acquireTokenSilent — MSAL håndterer cache og refresh internt.
+  // Ikke cache token-strengen selv; det forhindrer automatisk fornyelse etter ~1t.
+  try{
+    if(typeof msal==='undefined') return null;
+    await initMSAL();
+    if(!_msalApp) return null;
+    var accounts=_msalApp.getAllAccounts();
+    if(accounts.length>0){
+      try{
+        var r=await _msalApp.acquireTokenSilent({scopes:SP_SCOPES,account:accounts[0]});
+        detectUser(accounts[0]);
+        return r.accessToken;
+      }catch(e){console.warn('[SP] Silent refresh feilet, prøver popup:',e);}
+    }
+    try{
+      var pr=await _msalApp.acquireTokenPopup({scopes:SP_SCOPES});
+      detectUser(pr.account);return pr.accessToken;
+    }catch(pe){console.warn('[SP] Popup avvist:',pe);return null;}
+  }catch(e){console.warn('[SP] MSAL feil:',e);return null;}
+}
+
+// Fetch-wrapper med automatisk 401-retry (token utløpt midt i økt)
+async function spFetch(url,opts){
+  var tok=await getSpToken();
+  if(!tok)return null;
+  opts=opts||{};
+  opts.headers=Object.assign({'Authorization':'Bearer '+tok},opts.headers||{});
+  var res=await fetch(url,opts);
+  if(res.status===401){
+    console.warn('[SP] 401 — henter nytt token og prøver igjen');
+    tok=await getSpToken();
+    if(!tok)return res;
+    opts.headers['Authorization']='Bearer '+tok;
+    res=await fetch(url,opts);
+  }
+  return res;
+}
+
+var SP_REQUIRED_FIELDS=['Periode','Selskap','OrdreNr','DG','Begrunnelse','Kommentar','UpdatedBy','UpdatedAt'];
+var _spColsValidated=false;
+
+function spShowError(msg){
+  var el=document.getElementById('sp-error-banner');
+  if(!el){el=document.createElement('div');el.id='sp-error-banner';
+    el.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:#c0392b;color:#fff;padding:12px 20px;font-size:14px;font-weight:bold;text-align:center;';
+    document.body.appendChild(el);}
+  el.textContent=msg;el.style.display='block';
+}
+
+async function spLoadAssessments(period,company){
+  try{
+    var filter=encodeURIComponent("fields/Periode eq '"+period+"' and fields/Selskap eq '"+company+"'");
+    var allItems=[], url=SP_GRAPH+'/items?$expand=fields&$filter='+filter+'&$top=5000';
+    while(url){
+      var r=await spFetch(url);
+      if(!r){return false;}
+      if(!r.ok){console.warn('[SP] Load HTTP',r.status);return false;}
+      var j=await r.json();
+      (j.value||[]).forEach(function(i){allItems.push(i);});
+      url=j['@odata.nextLink']||null;
+    }
+    // Kolonnevalidering — kjøres én gang etter at vi har data
+    if(!_spColsValidated&&allItems.length>0){
+      var sampleFields=Object.keys(allItems[0].fields||{});
+      var missing=SP_REQUIRED_FIELDS.filter(function(f){return sampleFields.indexOf(f)<0;});
+      if(missing.length>0){
+        spShowError('⚠️ SharePoint-kolonner mangler: '+missing.join(', ')+' — kontakt administrator');
+        console.error('[SP] Manglende kolonner:',missing);
+      } else {
+        _spColsValidated=true;
+        console.log('[SP] Kolonnevalidering OK');
+      }
+    }
+    allItems.forEach(function(item){
+      var f=item.fields||{};
+      if(!f.OrdreNr)return;
+      // Lagre ETag for optimistisk concurrent-write beskyttelse
+      if(item['@odata.etag'])_spEtags[item.id]=item['@odata.etag'];
+      if(f.OrdreNr==='_STATUS_'){
+        var stKey=(f.Periode||'')+'__'+(f.Selskap||'')+'__'+(f.Begrunnelse||'');
+        var st=JSON.parse(localStorage.getItem(STATUS_KEY)||'{}');
+        st[stKey]={pl:f.Begrunnelse,period:f.Periode,entity:f.Selskap,ts:f.UpdatedAt,done:true};
+        localStorage.setItem(STATUS_KEY,JSON.stringify(st));
+        _spIds['_STATUS_'+(f.Begrunnelse||'')]=item.id;
+      } else {
+        _spIds[f.OrdreNr]=item.id;
+        if(f.DG!=null){var _dgVal=parseFloat(f.DG);if(isNaN(_dgVal))_dgVal=35;if(!DGI[f.OrdreNr])DGI[f.OrdreNr]={dg:_dgVal,k:f.Begrunnelse||''};else{DGI[f.OrdreNr].dg=_dgVal;if(f.Begrunnelse)DGI[f.OrdreNr].k=f.Begrunnelse;}}
+        var _hasPoc=f.Kommentar||f.Timer!=null||f.Timekost!=null||f.Material!=null;
+        if(_hasPoc){if(!POC[f.OrdreNr])POC[f.OrdreNr]={timer:0,tk:null,mat:0,k:''};if(f.Kommentar)POC[f.OrdreNr].k=f.Kommentar;if(f.Timer!=null)POC[f.OrdreNr].timer=parseFloat(f.Timer)||0;if(f.Timekost!=null)POC[f.OrdreNr].tk=parseFloat(f.Timekost)||null;if(f.Material!=null)POC[f.OrdreNr].mat=parseFloat(f.Material)||0;}
+      }
+    });
+    console.log('[SP] Lastet',allItems.length,'vurderinger for',period);
+    return true;
+  }catch(e){console.warn('[SP] Load feilet:',e);return false;}
+}
+
+var _saveBadgeTimer=null;
+function spShowSaveStatus(ok){
+  var el=document.getElementById('save-badge');
+  if(!el)return;
+  clearTimeout(_saveBadgeTimer);
+  if(ok){
+    el.textContent='✓ Lagret';
+    el.style.cssText='display:inline;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;background:#d1fae5;color:#065f46;';
+    _saveBadgeTimer=setTimeout(function(){el.style.display='none';},3000);
+  } else {
+    el.textContent='⚠️ Lagring feilet';
+    el.style.cssText='display:inline;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;background:#fee2e2;color:#991b1b;';
+    // Blir stående til neste vellykkede lagring
+  }
+}
+
+function spShowConflict(ordreNr){
+  var msg='⚠️ Lagringskonflikt på ordre '+ordreNr+': en annen bruker har lagret etter du lastet siden. Last inn siden på nytt for å se siste versjon.';
+  if(confirm(msg+'\n\nTrykk OK for å laste inn på nytt, eller Avbryt for å beholde dine endringer (de vil overskrive).')){
+    location.reload();
+  }
+}
+
+async function spSaveAssessment(period,company,ordreNr,dg,begrunnelse,kommentar,poc){
+  try{
+    var fields={Periode:period,Selskap:company,OrdreNr:ordreNr,DG:dg!=null?dg:null,Begrunnelse:begrunnelse||'',Kommentar:kommentar||'',UpdatedBy:_spUser,UpdatedAt:new Date().toISOString()};
+    if(poc){fields.Timer=poc.timer!=null?poc.timer:0;fields.Timekost=poc.tk!=null?poc.tk:650;fields.Material=poc.mat!=null?poc.mat:0;}
+    var existId=_spIds[ordreNr];
+    if(existId){
+      var patchHeaders={'Content-Type':'application/json'};
+      var etag=_spEtags[existId];
+      if(etag)patchHeaders['If-Match']=etag;
+      var r=await spFetch(SP_GRAPH+'/items/'+existId+'/fields',{method:'PATCH',headers:patchHeaders,body:JSON.stringify(fields)});
+      if(r&&r.status===412){
+        console.warn('[SP] Konflikt (412) på',ordreNr,'— ETag mismatch');
+        spShowConflict(ordreNr);
+        return;
+      }
+      if(r&&r.status===404){
+        // Item slettet i SP siden sist innlasting — nullstill og POST på nytt
+        console.warn('[SP] 404 på PATCH',ordreNr,'— faller tilbake til POST');
+        delete _spIds[ordreNr]; delete _spEtags[existId];
+        var r2=await spFetch(SP_GRAPH+'/items',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:fields})});
+        if(r2&&r2.ok){var j2=await r2.json();if(j2.id){_spIds[ordreNr]=j2.id;if(j2['@odata.etag'])_spEtags[j2.id]=j2['@odata.etag'];}}
+        spShowSaveStatus(r2&&r2.ok);
+        return;
+      }
+      // Oppdater ETag fra svar
+      if(r&&r.ok){var newEtag=r.headers.get('ETag');if(newEtag)_spEtags[existId]=newEtag;}
+      spShowSaveStatus(r&&r.ok);
+    } else {
+      var r=await spFetch(SP_GRAPH+'/items',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:fields})});
+      if(r&&r.ok){var j=await r.json();if(j.id){_spIds[ordreNr]=j.id;if(j['@odata.etag'])_spEtags[j.id]=j['@odata.etag'];}}
+      spShowSaveStatus(r&&r.ok);
+    }
+  }catch(e){console.warn('[SP] Save feilet:',e);}
+}
+
+function plLoadDataset(company){
+  localStorage.setItem('VIA_PL_COMPANY',company);
+  document.getElementById('startPanel').style.display='none';
+  setP(0,'Henter datasett for '+company+'…','');
+  document.getElementById('progressWrap').style.display='block';
+  spLoadDataset(company).then(function(res){
+    document.getElementById('progressWrap').style.display='none';
+    if(!res){
+      document.getElementById('startPanel').style.display='block';
+      var picker=document.getElementById('pl-co-picker');if(picker)picker.style.display='block';
+      var loginBox=document.getElementById('pl-login-box');if(loginBox)loginBox.style.display='none';
+      var nd=document.getElementById('pl-no-data');if(nd){nd.style.display='block';nd.textContent='⚠️ Ingen datasett er delt ennå for dette selskapet. Kontakt din daglig leder.';}
+      var picker=document.getElementById('pl-co-picker');if(picker)picker.style.display='none';
+      var nm=document.getElementById('pl-no-data');if(nm){nm.style.display='block';nm.innerHTML='⚠️ Ingen datasett for <strong>'+company+'</strong> ennå. Kontakt din daglig leder, eller <a href="#" onclick="localStorage.removeItem(\'VIA_PL_COMPANY\');location.reload()">velg annet selskap</a>.';}
+    }
+  });
+}
+async function spSaveDataset(){
+  if(!ACTIVE.length){alert('Ingen data lastet inn ennå.');return;}
+  var data={src:document.getElementById('lentity').value,period:document.getElementById('aperiod').textContent,exported:new Date().toISOString(),exportedBy:_currentUser?_currentUser.name:'',rows:ACTIVE};
+  try{
+    var r=await spFetch(spDriveUrl(data.src),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    if(r.ok){
+      var btn=document.getElementById('share-btn');
+      if(btn){btn.textContent='✅ Delt!';btn.style.background='var(--green)';setTimeout(function(){btn.textContent='📤 Del datasett';btn.style.background='';},3000);}
+    }else{var e=await r.json();alert('Feil: '+(e.error&&e.error.message||r.status));}
+  }catch(e){alert('Nettverksfeil: '+e.message);}
+}
+async function spLoadDataset(company){
+  try{
+    var r=await spFetch(spDriveUrl(company));
+    if(!r.ok)return false;
+    var data=await r.json();
+    if(!data.rows||!data.period)return false;
+    parseRows(data.rows,data.src||'SharePoint',data.period);
+    return {period:data.period,exported:data.exported,exportedBy:data.exportedBy||''};
+  }catch(e){console.warn('[SP] Dataset load:',e);return false;}
+}
+function spSaveDebounced(period,company,ordreNr,dg,k,kommentar,poc){
+  clearTimeout(_spDebounce[ordreNr]);
+  _spDebounce[ordreNr]=setTimeout(function(){spSaveAssessment(period,company,ordreNr,dg,k,kommentar,poc);},2000);
+}
+
+async function spMarkDone(period,company,pl){
+  try{
+    var fields={Periode:period,Selskap:company,OrdreNr:'_STATUS_',Begrunnelse:pl,UpdatedBy:_spUser,UpdatedAt:new Date().toISOString()};
+    var existId=_spIds['_STATUS_'+pl];
+    if(existId){
+      // PATCH eksisterende — unngår duplikate STATUS-rader
+      await spFetch(SP_GRAPH+'/items/'+existId+'/fields',{method:'PATCH',headers:{'Content-Type':'application/json'},body:JSON.stringify(fields)});
+    } else {
+      var r=await spFetch(SP_GRAPH+'/items',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fields:fields})});
+      if(r&&r.ok){var j=await r.json();if(j.id)_spIds['_STATUS_'+pl]=j.id;}
+    }
+  }catch(e){console.warn('[SP] MarkDone feilet:',e);}
+}
+// ════ END SHAREPOINT ════
+
+/* ============================================================
+   GLOBALS
+   ============================================================ */
+var ACTIVE = [], POC = {}, DGI = {}, LOCKED = false, BENCH = {};
+var _currentPeriod = '', _currentEntity = '';
+window.addEventListener('beforeunload', function(e){
+  if(ACTIVE.length){ e.preventDefault(); e.returnValue=''; }
+});
+var GROUPS = {};          // base ordreNr → [list of sub-ordreNr]
+var GRP_MODE = {};        // base ordreNr → 'samlet' | 'individuelt'
+var GRP_KEY = 'minel_via_grpmode_v1';
+var HIST_KEY = 'minel_via_history_v2';
+var STATUS_KEY = 'minel_via_status_v1';
+var SESSION_KEY = 'minel_via_session_v1';
+var HIDE_SETTLED = false, HIDE_SMALL = false, HIDE_SMALL_POC = false;
+var QS = {col:6,asc:false}, RS = {col:8,asc:false};
+var POCS = {col:4,asc:false}, DGS = {col:5,asc:false};
+var ROUND = new Set([0.10,0.15,0.17,0.20,0.25,0.28,0.30,0.35,0.40,0.45,0.50,0.55,0.60,0.65,0.70]);
+var VSTATUS = new Set(['I arbeid','Klar for fakturering','Venter på elektriker','Åpen','Delutført','Klar for akkordkjøring']);
+var OS_GQL = 'https://graphql.ordrestyring.dk/graphql';
+var OS_COMPANIES = [
+  {name:'Minel Kreativ Elektro Ski AS',       key:'qYtkWAowUUo2PbaE'},
+  {name:'Minel Skogvang Installasjon AS',      key:'TxE4TJAk6eeWUqQY'},
+  {name:'Minel Land Elektriske AS',            key:'yOVFmYixo35RnY6l'},
+  {name:'Minel Gjøvik AS',                     key:'edewj6APD4wb8uD5'},
+  {name:'Minel Elmontasje AS',                 key:'rPuAsfNqjpyoeBdV'},
+  {name:'Minel Elmontasje Elverum AS',         key:'CmJHRiMNdn68RWZM'},
+  {name:'Minel Ainstall AS',                   key:'OHcNVeTrqWU7dOK7'},
+  {name:'Minel Drøbak Elektriske AS',          key:'FzmySlRzW72gOBaB'},
+  {name:'Minel Gudbrandsdal AS',               key:'yEEdLNDUCssPuhOl'}
+];
+var EXCL_TYPES = new Set(['Intern','Internordre','Reklamasjon','Intern ordre']);
+
+/* ============================================================
+   INIT
+   ============================================================ */
+(function() {
+  var d = new Date(); d.setDate(0);
+  document.getElementById('period-date').value = d.toISOString().substring(0,10);
+  var dz = document.getElementById('dz');
+  dz.addEventListener('dragover', function(e){e.preventDefault();dz.classList.add('over');});
+  dz.addEventListener('dragleave', function(){dz.classList.remove('over');});
+  dz.addEventListener('drop', function(e){e.preventDefault();dz.classList.remove('over');goExcel(e.dataTransfer.files[0]);});
+  document.getElementById('fi').addEventListener('change', function(e){goExcel(e.target.files[0]);});
+})();
+
+function toggleRiskInfo(){
+  var p = document.getElementById('riskInfoPanel');
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+}
+
+/* ============================================================
+   UTILITY
+   ============================================================ */
+function NK(v){
+  if(v == null) return '–';
+  return new Intl.NumberFormat('no-NO',{maximumFractionDigits:0}).format(Math.round(v)) + ' kr';
+}
+function NR(v){
+  if(v == null) return '–';
+  return new Intl.NumberFormat('no-NO',{maximumFractionDigits:0}).format(Math.round(v));
+}
+function PC(v){
+  if(v == null) return '–';
+  return (v*100).toFixed(1) + ' %';
+}
+function fmtI(v){
+  var n = parseFloat(String(v).replace(/\s/g,'').replace(',','.'));
+  return isNaN(n) ? '0' : new Intl.NumberFormat('no-NO',{maximumFractionDigits:0}).format(Math.round(n));
+}
+function parseI(v){
+  var n = parseFloat(String(v).replace(/\s/g,'').replace(',','.'));
+  return isNaN(n) ? 0 : n;
+}
+function piFocus(el){ el.value = parseI(el.value); }
+function piBlur(el){ el.value = fmtI(el.value); }
+function piChange(id,f,el){
+  var v = parseI(el.value);
+  if(f === 'timer' || f === 'tk' || f === 'mat') sP(id,f,v);
+  else if(f === 'dg') sD(id,'dg',v);
+}
+function rb(r){
+  return r==='HØY'?'<span class="bh">HØY</span>':r==='MIDDELS'?'<span class="bm">MIDDELS</span>':'<span class="bl">LAV</span>';
+}
+function fh(fs){
+  return fs.map(function(f){return '<span class="flag '+f.c+'">'+f.t+'</span>';}).join('');
+}
+function toUnix(s){
+  var p = s.split('-');
+  return Math.floor(new Date(+p[0],+p[1]-1,+p[2],23,59,59).getTime()/1000);
+}
+function setP(pct,t,s){
+  document.getElementById('prog-fill').style.width = pct+'%';
+  document.getElementById('prog-pct').textContent = pct+'%';
+  document.getElementById('prog-text').textContent = t;
+  document.getElementById('prog-sub').textContent = s||'';
+}
+
+/* ============================================================
+   API HELPERS
+   ============================================================ */
+function gqlQ(key,q){
+  return fetch(OS_GQL,{
+    method:'POST',
+    headers:{'Authorization':'Bearer '+key,'Content-Type':'application/json'},
+    body:JSON.stringify({query:q})
+  }).then(function(r){return r.json();}).then(function(j){
+    if(j.errors && j.errors.length) throw new Error(j.errors[0].message);
+    return j.data;
+  });
+}
+function paginate(key,bq,fn){
+  var all=[], c=null;
+  function nx(){
+    return gqlQ(key,bq(c)).then(function(d){
+      var p = fn(d);
+      all = all.concat(p.items||[]);
+      if(p.nextCursor){ c=p.nextCursor; return nx(); }
+      return all;
+    });
+  }
+  return nx();
+}
+function fetchHours(key,id,f,t){
+  return paginate(key, function(c){
+    return '{hours(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},between:{field:startTime,from:'+f+',to:'+t+'},filters:{case:'+id+'}){items{costPrice}nextCursor}}';
+  }, function(d){return d.hours;});
+}
+function fetchMaterials(key,id){
+  return gqlQ(key,'{caseMaterialAggregate(caseId:'+id+',type:MATERIAL){totalCostPrice}}')
+    .then(function(d){return (d.caseMaterialAggregate && d.caseMaterialAggregate.totalCostPrice)||0;});
+}
+function fetchSalesInvoices(key,id,f,t){
+  return paginate(key, function(c){
+    return '{salesInvoices(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},between:{field:date,from:'+f+',to:'+t+'},filters:{caseIds:['+id+']}){items{id amount}nextCursor}}';
+  }, function(d){return d.salesInvoices;});
+}
+
+/* ============================================================
+   BENCHMARK
+   ============================================================ */
+function buildBenchmarkFromHistory(){
+  var hist = getHist();
+  if(!hist.length) return {};
+  var bt = {};
+  hist.forEach(function(period){
+    (period.projects||[]).forEach(function(p){
+      if(p.hasTilbud || !p.type || p.dg == null || p.dg <= 0) return;
+      if(!bt[p.type]) bt[p.type] = {s:0,n:0};
+      bt[p.type].s += p.dg; bt[p.type].n++;
+    });
+  });
+  var r = {};
+  Object.keys(bt).forEach(function(t){
+    if(bt[t].n >= 2) r[t] = bt[t].s / bt[t].n;
+  });
+  return r;
+}
+function fetchBenchmark(key){
+  var histBench = buildBenchmarkFromHistory();
+  if(Object.keys(histBench).length >= 2){
+    window._benchSource = 'historikk ('+getHist().length+' perioder)';
+    return Promise.resolve(histBench);
+  }
+  window._benchSource = 'Ordrestyring API (historikk bygges opp)';
+  var all=[], c=null, pages=0;
+  function nx(){
+    if(pages >= 10) return Promise.resolve(all);
+    return gqlQ(key,'{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC}){items{status{text}caseType{text}economy{expectedCoverageRatio revenue}}nextCursor}}')
+      .then(function(d){
+        all = all.concat(d.cases.items||[]);
+        c = d.cases.nextCursor; pages++;
+        if(c) return nx(); return all;
+      });
+  }
+  return nx().then(function(cases){
+    var bt = {};
+    cases.forEach(function(c){
+      if(VSTATUS.has((c.status&&c.status.text)||'')) return;
+      var t = (c.caseType&&c.caseType.text)||''; if(!t) return;
+      var raw = (c.economy&&c.economy.expectedCoverageRatio); if(raw==null) return;
+      var dg = raw>1 ? raw/100 : raw; if(dg<0||dg>1) return;
+      if(!bt[t]) bt[t]={s:0,n:0}; bt[t].s+=dg; bt[t].n++;
+    });
+    var r={};
+    Object.keys(bt).forEach(function(t){if(bt[t].n>=3) r[t]=bt[t].s/bt[t].n;});
+    return r;
+  }).catch(function(){return{};});
+}
+function benchChip(type,dg){
+  var b = BENCH[type];
+  if(b==null) return '<span class="bench bench-na">Ingen bench.</span>';
+  if(dg==null) return '<span class="bench bench-na">–</span>';
+  var diff = (dg-b)*100, sign = diff>=0?'+':'';
+  var cls = Math.abs(diff)<=5 ? 'bench-ok' : diff<-5 ? 'bench-bad' : 'bench-warn';
+  return '<span class="bench '+cls+'" title="Snitt DG% for avsluttede '+type+'-ordrer: '+(b*100).toFixed(1)+'%">'+sign+diff.toFixed(1)+'pp vs snitt</span>';
+}
+
+/* ============================================================
+   HISTORY HELPERS
+   ============================================================ */
+function getHist(){ return JSON.parse(localStorage.getItem(HIST_KEY)||'[]'); }
+async function syncHistSP(btn){
+  var entity=_currentEntity||document.getElementById('lentity').value||'';
+  if(!entity){alert('Last inn data for et selskap først, så vet vi hvilken historikk som skal hentes.');return;}
+  if(btn){btn.disabled=true;btn.textContent='⏳ Henter...';}
+  var ok=await spLoadHist(entity);
+  if(btn){btn.disabled=false;btn.innerHTML='☁️ Synk fra SharePoint';}
+  if(ok){alert('✅ Historikk hentet og slått sammen fra SharePoint.');}
+  else{alert('Ingen historikk funnet i SharePoint for '+entity+'. Logg inn med Microsoft-knappen på startsiden hvis du ikke er innlogget.');}
+}
+
+function getPrevPOCData(ordreNr){
+  var hist = getHist(); if(!hist.length) return null;
+  var curPrd = document.getElementById('aperiod').textContent;
+  var sorted = hist.slice().sort(function(a,b){return b.id-a.id;});
+  var prev = sorted.find(function(h){return h.period !== curPrd;});
+  if(!prev) return null;
+  var p = prev.projects.find(function(p){return p.ordreNr===ordreNr && p.hasTilbud;});
+  return p ? {dg:p.dg,fg:p.fg,period:prev.period} : null;
+}
+function getPrevDG(ordreNr){
+  var hist = getHist(); if(!hist.length) return null;
+  var curPrd = document.getElementById('aperiod').textContent;
+  var sorted = hist.slice().sort(function(a,b){return b.id-a.id;});
+  var prev = sorted.find(function(h){return h.period !== curPrd;});
+  if(!prev) return null;
+  var p = prev.projects.find(function(p){return p.ordreNr===ordreNr && !p.hasTilbud;});
+  return p && p.dg != null ? {dg:p.dg,period:prev.period} : null;
+}
+function isNewOrder(ordreNr){
+  var hist = getHist(); if(!hist.length) return false;
+  return !hist.some(function(h){return h.projects.some(function(p){return p.ordreNr===ordreNr;});});
+}
+function prevFG(n){
+  var p = getPrevPOCData(n);
+  if(!p||p.fg==null) return '–';
+  return '<span title="'+p.period+'">📊 '+(p.fg*100).toFixed(0)+'%</span>';
+}
+function prevDGp(n){
+  var p = getPrevPOCData(n);
+  if(!p||p.dg==null) return '–';
+  return '<span title="'+p.period+'">'+(p.dg*100).toFixed(1)+'%</span>';
+}
+function prevDGCell(ordreNr, curDG){
+  var prev = getPrevDG(ordreNr);
+  if(!prev) return '<span style="color:#ccc;font-size:.76rem;">–</span>';
+  var pp=(prev.dg*100).toFixed(1)+'%', cp=(curDG*100).toFixed(1)+'%', tip='Periode: '+prev.period;
+  if(Math.abs(prev.dg-curDG)<0.001) return '<span style="color:var(--mid);" title="'+tip+'">→ '+pp+'</span>';
+  if(curDG>prev.dg) return '<span style="color:var(--green);font-weight:700;" title="Økt fra '+pp+' til '+cp+' ('+tip+')">▲ '+pp+'</span>';
+  return '<span style="color:var(--red);font-weight:700;" title="Redusert fra '+pp+' til '+cp+' ('+tip+')">▼ '+pp+'</span>';
+}
+function newBadge(ordreNr){
+  return isNewOrder(ordreNr) ? '<span title="Ny ordre — ikke vært med i tidligere vurdering" style="background:#DBEAFE;color:#1D4ED8;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">NY</span>' : '';
+}
+
+/* ============================================================
+   STATUS
+   ============================================================ */
+function getStatus(){ return JSON.parse(localStorage.getItem(STATUS_KEY)||'{}'); }
+function saveStatus(pl,period,entity){
+  var st = getStatus();
+  var key = period+'__'+entity+'__'+pl;
+  st[key] = {pl:pl,period:period,entity:entity,ts:new Date().toISOString(),done:true};
+  localStorage.setItem(STATUS_KEY,JSON.stringify(st));
+}
+function clearAllReady(){ localStorage.removeItem(STATUS_KEY); rStatus(); alert('Status nullstilt.'); }
+async function markReady(){
+  var btn = document.getElementById('ready-btn');
+  if(btn && btn.disabled) return; // blokkér dobbel-submit
+  var pl = document.getElementById('pp').value||(_currentUser&&!_currentUser.isDL?_currentUser.plName:'');
+  if(!pl){ alert('Velg prosjektleder i filteret øverst, eller logg inn for automatisk gjenkjenning.'); return; }
+  var period = _currentPeriod || document.getElementById('aperiod').textContent;
+  var entity = _currentEntity || document.getElementById('lentity').value || document.getElementById('atitle').textContent;
+  var dgR = ACTIVE.filter(function(r){return !r.hasTilbud && r.pl===pl;});
+  var vurderte = dgR.filter(function(r){var inp=DGI[r.ordreNr]||{};return inp.k&&inp.k.trim().length>0;});
+  if(vurderte.length < dgR.length){
+    var igjen = dgR.length - vurderte.length;
+    if(!confirm('Det gjenstår '+igjen+' ordre uten begrunnelse. Vil du likevel markere som ferdig?')) return;
+  }
+  if(btn){ btn.disabled=true; btn.textContent='⏳ Lagrer…'; }
+  try{
+    saveStatus(pl,period,entity);
+    await spMarkDone(period,entity,pl);
+    if(btn){ btn.textContent='✅ Ferdig med mine vurderinger'; }
+    alert('✅ '+pl+' er markert som ferdig for '+period+'!\nDaglig leder kan se status i Status-fanen.');
+    rStatus(); ST('status');
+  }catch(e){
+    console.warn('[SP] markReady feilet:',e);
+    if(btn){ btn.disabled=false; btn.textContent='✅ Ferdig med mine vurderinger'; }
+    alert('⚠️ Feil ved lagring av status. Prøv igjen.');
+  }
+}
+function rStatus(){
+  var st = getStatus();
+  var period = _currentPeriod || document.getElementById('aperiod').textContent;
+  var entity = _currentEntity || document.getElementById('lentity').value || '';
+  var pls = [...new Set(ACTIVE.map(function(r){return r.pl;}))].filter(Boolean).sort();
+  if(!pls.length){
+    document.getElementById('statustbl').innerHTML='<tbody><tr><td colspan="6" style="padding:24px;text-align:center;color:#888;">Last inn data fra Ordrestyring for å se status.</td></tr></tbody>';
+    return;
+  }
+  var rows = pls.map(function(pl){
+    var key = period+'__'+entity+'__'+pl;
+    var done = st[key];
+    var plOrdrer = ACTIVE.filter(function(r){return r.pl===pl;});
+    var plDG = plOrdrer.filter(function(r){return !r.hasTilbud;});
+    var plPOC = plOrdrer.filter(function(r){return r.hasTilbud;});
+    var vurderte = plDG.filter(function(r){var inp=DGI[r.ordreNr]||{};return inp.k&&inp.k.trim().length>0;});
+    var pct = plDG.length>0 ? Math.round(vurderte.length/plDG.length*100) : 100;
+    return {pl:pl,total:plOrdrer.length,dgTotal:plDG.length,pocTotal:plPOC.length,vurderte:vurderte.length,pct:pct,done:done};
+  });
+  var ferdig = rows.filter(function(r){return r.done;}).length;
+  document.getElementById('statustbl').innerHTML =
+    '<thead><tr><th>Prosjektleder</th><th style="text-align:center">Ordrer</th><th style="text-align:center" title="Fastprisordrer">Fastpris</th><th style="text-align:center" title="Andel DG%-ordrer med begrunnelse">Fullført</th><th style="text-align:center">Status</th><th>Ferdig kl.</th></tr></thead>'+
+    '<tbody>'+rows.map(function(r){
+      var bar = '<div style="height:6px;background:#E0E0E0;border-radius:3px;overflow:hidden;width:80px;display:inline-block;vertical-align:middle;margin-right:6px;"><div style="height:100%;width:'+r.pct+'%;background:'+(r.done?'var(--green)':'var(--amber)')+'"></div></div>';
+      var _lts2=localStorage.getItem('VIA_LOAD_TS');
+      var _stale2=r.done&&_lts2&&r.done.ts&&new Date(_lts2)>new Date(r.done.ts);
+      var _stTag2=_stale2?'<span title="Data lastet inn etter ferdig-melding — bør bekrefte på nytt" style="font-size:.7rem;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:4px;padding:0 5px;margin-left:4px;cursor:help;">⚠️ ny data</span>':'';
+      var _unlockBtn=(_currentUser&&_currentUser.isDL&&r.done)?'<button onclick="unlockPL(\''+r.pl+'\')" style="font-size:.7rem;margin-left:6px;padding:1px 7px;background:#fff;border:1px solid var(--amber);color:var(--amber);border-radius:4px;cursor:pointer;">Åpne</button>':'';
+      var statusBadge = r.done ? '<span class="status-done">✅ Ferdig</span>'+_stTag2+_unlockBtn : '<span class="status-wait">⏳ Ikke meldt</span>';
+      var ts = r.done ? new Date(r.done.ts).toLocaleString('no-NO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '–';
+      return '<tr><td><strong>'+r.pl+'</strong></td><td class="c">'+r.total+'</td><td class="c">'+r.pocTotal+'</td><td class="c">'+bar+r.pct+'%</td><td class="c">'+statusBadge+'</td><td style="font-size:.8rem;color:#888;">'+ts+'</td></tr>';
+    }).join('')+'</tbody>';
+  document.getElementById('status-sum').innerHTML =
+    '<strong>'+ferdig+' av '+rows.length+'</strong> prosjektledere har meldt seg ferdige for <strong>'+period+'</strong>.'+
+    (ferdig===rows.length ? ' ✅ Alle er ferdige — daglig leder kan nå låse perioden!' : '');
+}
+
+/* ============================================================
+   API LOAD
+   ============================================================ */
+function startApiLoad(){
+  var idx = parseInt(document.getElementById('co-sel').value);
+  if(isNaN(idx)){ alert('Velg et selskap.'); return; }
+  var co = OS_COMPANIES[idx];
+  var dateStr = document.getElementById('period-date').value;
+  if(!dateStr){ alert('Velg periodeslutt-dato.'); return; }
+  document.getElementById('api-btn').disabled = true;
+  document.getElementById('api-err').style.display = 'none';
+  setP(0,'Henter ordreliste og benchmark…','');
+  document.getElementById('startPanel').style.display = 'none';
+  document.getElementById('progressWrap').style.display = 'block';
+  var uf = toUnix('2000-01-01'), ut = toUnix(dateStr);
+
+  Promise.all([
+    fetchBenchmark(co.key),
+    paginate(co.key, function(c){
+      return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC}){items{id caseNumber description status{text} caseType{text} customer{name} foreman{fullName} offerTotal parentCaseId subCases{id} economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice}}nextCursor}}';
+    }, function(d){return d.cases;})
+  ]).then(function(res){
+    BENCH = res[0];
+    var cases = res[1];
+    var bn = Object.keys(BENCH).length;
+    document.getElementById('sec2note').innerHTML = 'Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet.'+(bn>0?' <span style="background:var(--bluebg);color:var(--blue);border-radius:4px;padding:2px 8px;font-size:.78rem;font-weight:700;">📊 Benchmark: '+bn+' ordretyper</span>':'')+'  <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span>';
+
+    var active = cases.filter(function(c){
+      var isParent = c.subCases && c.subCases.length > 0 && !c.parentCaseId;
+      var typeText = (c.caseType&&c.caseType.text)||'';
+      return VSTATUS.has((c.status&&c.status.text)||'') && !isParent && !EXCL_TYPES.has(typeText);
+    });
+
+    setP(10,'Henter økonomidata for '+active.length+' ordrer…','5 parallelle forespørsler');
+    var done = 0;
+
+    function pool(tasks,max){
+      var i=0, out=new Array(tasks.length);
+      function w(){
+        if(i>=tasks.length) return Promise.resolve();
+        var j=i++;
+        return tasks[j]().then(function(r){out[j]=r; return w();});
+      }
+      return Promise.all(Array.from({length:Math.min(max,tasks.length)},w)).then(function(){return out;});
+    }
+
+    var tasks = active.map(function(c){
+      return function(){
+        var rawDG = (c.economy&&c.economy.expectedCoverageRatio)||0;
+        var dg = rawDG>1 ? rawDG/100 : rawDG;
+        var tilbud = c.offerTotal>0 ? c.offerTotal/100 : null;
+        return Promise.all([
+          fetchHours(co.key,c.id,uf,ut).catch(function(){return[];}),
+          fetchMaterials(co.key,c.id).catch(function(){return 0;}),
+          fetchSalesInvoices(co.key,c.id,uf,ut).catch(function(){return[];})
+        ]).then(function(r){
+          var tk = r[0].reduce(function(s,h){return s+(h.costPrice||0);},0)/100;
+          var mk = r[1]/100;
+          var fk = r[2].reduce(function(s,i){return s+(i.amount||0);},0)/100;
+          var tot = tk + mk;
+          var tmRev = (((c.economy&&c.economy.hoursSalesprice)||0)+((c.economy&&c.economy.materialsSalesprice)||0))/100;
+          var isTM = !tilbud&&((((c.economy&&c.economy.hoursSalesprice)||0)>((c.economy&&c.economy.hoursCostprice)||0)*1.05)||(((c.economy&&c.economy.materialsSalesprice)||0)>((c.economy&&c.economy.materialsCostprice)||0)*1.05));
+          var fsv = isTM ? tmRev : (dg>0&&dg<1) ? tot/(1-dg) : tot;
+          var via = fsv - fk;
+          done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrer…','');
+          return {
+            id:c.id,
+            ordreNr:String(c.caseNumber||'').trim(),
+            isTM:isTM||false,
+            status:(c.status&&c.status.text)||'',
+            type:(c.caseType&&c.caseType.text)||'',
+            beskr:String(c.description||'').replace(/[\n\r\xa0]+/g,' ').trim(),
+            kunde:(c.customer&&c.customer.name)||'',
+            pl:(c.foreman&&c.foreman.fullName)||'',
+            tilbud:tilbud,
+            hasTilbud:tilbud!=null&&tilbud>0,
+            totOmk:tot,
+            timerkost:tk,
+            materialkost:mk,
+            dg:dg,
+            fakt:fk,
+            fSalgsverdi:fsv,
+            via:via
+          };
+        });
+      };
+    });
+
+    return pool(tasks,5).then(function(res2){
+      var rows = res2.filter(function(r){return r&&r.ordreNr;});
+      setP(100,'Ferdig! '+rows.length+' ordrer lastet.','');
+      setTimeout(function(){
+        var d2=new Date(dateStr), prd=d2.toLocaleDateString('no',{month:'long',year:'numeric'});
+        document.getElementById('lentity').value = co.name;
+        parseRows(rows, co.name+' – t.o.m. '+dateStr, prd);
+        document.getElementById('progressWrap').style.display = 'none';
+        document.getElementById('api-btn').disabled = false;
+      },400);
+    });
+  }).catch(function(e){
+    document.getElementById('progressWrap').style.display = 'none';
+    document.getElementById('startPanel').style.display = 'block';
+    document.getElementById('api-btn').disabled = false;
+    var el = document.getElementById('api-err');
+    el.innerHTML = '<strong>❌ Feil:</strong> '+e.message;
+    el.style.display = 'block';
+    console.error(e);
+  });
+}
+window.startApiLoad = startApiLoad; // F-2 fix: ensure global scope in all deploy environments
+
+/* ============================================================
+   EXCEL IMPORT
+   ============================================================ */
+function goExcel(f){
+  if(!f) return;
+  var r = new FileReader();
+  r.onload = function(e){
+    var wb = XLSX.read(e.target.result,{type:'array',cellDates:true});
+    parseExcel(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{header:1,defval:null}),f.name);
+  };
+  r.readAsArrayBuffer(f);
+}
+function parseExcel(raw,fname){
+  var H={};
+  raw[0].forEach(function(h,i){if(h)H[h.toString().trim()]=i;});
+  var n=function(v){var x=parseFloat(v);return isNaN(x)?null:x;};
+  var rows = raw.slice(1)
+    .filter(function(r){return r[H['Ordre nr.']]!=null;})
+    .filter(function(r){return VSTATUS.has(String(r[H['Status']]||'').trim());})
+    .map(function(r){
+      var dg=n(r[H['Forv. dekningsgrad (%)']]),tilbud=n(r[H['Tilbudspris (NOK)']]);
+      if(tilbud&&tilbud<=0) tilbud=null;
+      var tot=n(r[H['Totale omk. (NOK)']]),fk=n(r[H['Fakturert (NOK)']]),via=n(r[H['Periodisert inntekt (NOK)']]);
+      return {
+        ordreNr:String(r[H['Ordre nr.']]||'').replace('▸','').trim(),
+        status:String(r[H['Status']]||'').trim(),
+        type:String(r[H['Type']]||'').trim(),
+        beskr:String(r[H['Beskrivelse']]||'').replace(/[\n\r\xa0]+/g,' ').trim(),
+        kunde:String(r[H['Kunde']]||'').trim(),
+        pl:String(r[H['Prosjektleder']]||'').trim(),
+        tilbud:tilbud,
+        hasTilbud:tilbud!=null&&tilbud>0,
+        totOmk:tot,
+        timerkost:null,
+        materialkost:null,
+        dg:dg,
+        fakt:fk,
+        fSalgsverdi:via!=null&&fk!=null?via+fk:tot,
+        via:via
+      };
+    }).filter(function(r){return r.ordreNr;});
+  parseRows(rows,fname,new Date().toLocaleDateString('no',{month:'long',year:'numeric'}));
+}
+
+/* ============================================================
+   PARSE ROWS (shared)
+   ============================================================ */
+function detectGroups(){
+  GROUPS = {};
+  ACTIVE.forEach(function(r){
+    var m=r.ordreNr.match(/^(.+?)-[^-]+$/);
+    if(!m) return;
+    var base=m[1];
+    if(!GROUPS[base]) GROUPS[base]=[];
+    if(GROUPS[base].indexOf(r.ordreNr)<0) GROUPS[base].push(r.ordreNr);
+  });
+  // Only keep real groups (2+ sub-orders)
+  Object.keys(GROUPS).forEach(function(b){ if(GROUPS[b].length<2) delete GROUPS[b]; });
+  // Load saved preferences
+  try{ var s=localStorage.getItem(GRP_KEY); if(s) GRP_MODE=JSON.parse(s); }catch(e){}
+}
+function saveGrpMode(){ try{ localStorage.setItem(GRP_KEY,JSON.stringify(GRP_MODE)); }catch(e){} }
+function toggleGrpMode(base){
+  GRP_MODE[base]=(GRP_MODE[base]==='samlet')?'individuelt':'samlet';
+  saveGrpMode(); rPOC();
+}
+
+function parseRows(rows,src,prd){
+  localStorage.setItem('VIA_LOAD_TS',new Date().toISOString());
+  // Nullstill all periode-spesifikk state for å unngå krysskontaminering mellom perioder
+  ACTIVE = rows;
+  DGI = {};
+  POC = {};
+  LOCKED = false;
+  _spIds = {};
+  _spEtags = {};
+  _spColsValidated = false;
+  // Tilbakestill UI-elementer som reflekterer låstatus
+  var btnlock = document.getElementById('btnlock');
+  if(btnlock){ btnlock.textContent='🔒 Lås periode'; btnlock.disabled=false; }
+  detectGroups();
+  // Build type averages
+  var ts={},tc={};
+  ACTIVE.forEach(function(r){if(r.dg!=null){ts[r.type]=(ts[r.type]||0)+r.dg;tc[r.type]=(tc[r.type]||0)+1;}});
+  var tn={};Object.keys(ts).forEach(function(t){tn[t]=ts[t]/tc[t];});
+
+  ACTIVE.forEach(function(r){
+    r.normDG = tn[r.type]!=null ? tn[r.type] : null;
+    r.dgAvvik = (r.dg!=null&&r.normDG!=null) ? r.dg-r.normDG : null;
+    // Init input state first (so risk scoring can use DGI)
+    if(r.hasTilbud){
+      if(!POC[r.ordreNr]){
+        var dg0=r.dg!=null?r.dg:0.35;
+        var gj=Math.max(0,(r.tilbud||0)*(1-dg0)-(r.totOmk||0));
+        POC[r.ordreNr]={timer:Math.round(gj/650),tk:null,mat:0,k:''};
+      }
+    } else {
+      if(!DGI[r.ordreNr]){
+        var _sysDG=r.dg!=null&&r.dg>0?Math.round(r.dg*100):35;
+        DGI[r.ordreNr]={dg:_sysDG,k:''};
+      }
+    }
+    // Use user-entered DG (DGI) for risk scoring, fall back to system DG
+    var effDG = (!r.hasTilbud&&DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0) ? DGI[r.ordreNr].dg/100 : r.dg;
+    // Risk scoring
+    var s=0;
+    if(effDG===0) s+=3;
+    else if(effDG!=null && effDG<0.05 && (r.totOmk||0)>10000) s+=3;
+    else if(effDG!=null && effDG<0.10 && (r.totOmk||0)>50000) s+=2;
+    if(!r.isTM && effDG!=null && effDG!==0 && ROUND.has(+effDG.toFixed(3))) s+=1;
+    if(!r.hasTilbud && !(DGI[r.ordreNr]&&DGI[r.ordreNr].k&&DGI[r.ordreNr].k.trim())) s+=1;
+    r.sc=s; r.risk=s>=4?'HØY':s>=2?'MIDDELS':'LAV';
+    // Flags
+    var f=[];
+    if(effDG===0) f.push({t:'DG% = 0',c:'er'});
+    if(!r.isTM&&effDG!=null&&effDG!==0&&ROUND.has(+effDG.toFixed(3))) f.push({t:'Rund DG%',c:''});
+    if(effDG!=null&&effDG!==0&&effDG<0.05&&(r.totOmk||0)>10000) f.push({t:'Kritisk lav margin (<5%)',c:'er'});
+    else if(effDG!=null&&effDG!==0&&effDG<0.10&&(r.totOmk||0)>50000) f.push({t:'Svak margin (<10%)',c:''});
+    r.flags = f.length ? f : [{t:'OK',c:'ok'}];
+  });
+
+  var pls=[...new Set(ACTIVE.map(function(r){return r.pl;}))].filter(Boolean).sort();
+  var types=[...new Set(ACTIVE.map(function(r){return r.type;}))].filter(Boolean).sort();
+  ['qp','pp'].forEach(function(id){
+    var s=document.getElementById(id);
+    while(s.options.length>1) s.remove(1);
+    pls.forEach(function(p){var o=document.createElement('option');o.value=p;o.textContent=p;s.appendChild(o);});
+  });
+
+  // Auto-sett PL-filter etter login
+  if(_currentUser&&!_currentUser.isDL){
+    var myName=_currentUser.plName||'';
+    // Prøv eksakt match, deretter case-insensitiv
+    var match=pls.find(function(p){return p===myName;}) ||
+               pls.find(function(p){return p.toLowerCase()===myName.toLowerCase();}) ||
+               pls.find(function(p){
+                 // Fuzzy: første+siste ord matcher (håndterer mellomnavn-forskjeller)
+                 var pa=p.toLowerCase().split(' ');var na=myName.toLowerCase().split(' ');
+                 return pa[0]===na[0]&&pa[pa.length-1]===na[na.length-1];
+               });
+    if(match){
+      var ppSel=document.getElementById('pp');if(ppSel)ppSel.value=match;
+      var qpSel=document.getElementById('qp');if(qpSel)qpSel.value=match;
+      if(match!==myName)_currentUser.plName=match; // juster til datasettnavnet
+    } else if(myName){
+      // Navn fra Azure AD finnes ikke i datasett — vis advarsel
+      setTimeout(function(){
+        spShowError('⚠️ Ditt navn ('+myName+') ble ikke funnet i datasettet. Kontakt daglig leder for å sjekke at prosjektledernavn stemmer overens med Ordrestyring.');
+      },500);
+    }
+  }
+  var qt=document.getElementById('qt');
+  while(qt.options.length>1) qt.remove(1);
+  types.forEach(function(t){var o=document.createElement('option');o.value=t;o.textContent=t;qt.appendChild(o);});
+
+  _currentEntity=src.replace(/\s*[–\-]\s*t\.o\.m\..*$/i,'').trim()||src.trim();
+  _currentPeriod=prd;
+  document.getElementById('atitle').textContent=src;
+  document.getElementById('aperiod').textContent=prd;
+  document.getElementById('lperiod').value=prd;
+  document.getElementById('lentity').value=_currentEntity; // sett alltid — kritisk for PL-flyt
+  document.getElementById('startPanel').style.display='none';
+  document.getElementById('app').style.display='block';
+  window.scrollTo(0,0);
+  rDash();rQA();rRisk();rPOC();rHist();rStatus();if(_currentPeriod)spLoadAssessments(_currentPeriod,_currentEntity).then(function(ok){if(ok){rPOC();rStatus();saveSession();}});else saveSession();
+}
+
+/* ============================================================
+   DASHBOARD
+   ============================================================ */
+function rDash(){
+  var a = ACTIVE;
+  var _pocOrdrer = a.filter(function(r){return r.hasTilbud;}).length;
+  var _dg2 = a.filter(function(r){return !r.hasTilbud;});
+  var _manglerBegr = _dg2.filter(function(r){return !r.isTM&&(r.risk==='MIDDELS'||r.risk==='HØY')&&!(DGI[r.ordreNr]&&DGI[r.ordreNr].k&&DGI[r.ordreNr].k.trim().length>0);}).length;
+  var _pls = [...new Set(ACTIVE.map(function(r){return r.pl;}))].filter(Boolean);
+  var _st = getStatus();
+  var _curPrd = _currentPeriod || document.getElementById('aperiod').textContent;
+  var _curEnt = _currentEntity || document.getElementById('lentity').value || '';
+  var _plFerdig = _pls.filter(function(pl){
+    var k = _curPrd+'__'+_curEnt+'__'+pl;
+    return _st[k]&&_st[k].done;
+  }).length;
+  var _negVIA = ACTIVE.filter(function(r){return (r.via||0)<-5000;});
+  var _negVIAkr = _negVIA.reduce(function(s,r){return s+Math.abs(r.via||0);},0);
+  var _posVIARisk = ACTIVE.filter(function(r){return (r.via||0)>50000;});
+  var _posVIAkr = _posVIARisk.reduce(function(s,r){return s+(r.via||0);},0);
+  // Weighted avg DG% across all T&M orders with costs > 0
+  var _dgVurd = _dg2.filter(function(r){var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return e!=null&&e>0&&(r.totOmk||0)>500;});
+  var _dgTotCost = _dgVurd.reduce(function(s,r){return s+(r.totOmk||0);},0);
+  var _wgtDG = _dgTotCost>0?_dgVurd.reduce(function(s,r){var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return s+(e||0)*(r.totOmk||0);},0)/_dgTotCost:null;
+
+  document.getElementById('kpis').innerHTML =
+    '<div class="kpi"><div class="lb">Aktive ordrer</div><div class="vl">'+a.length+'</div><div style="font-size:.74rem;color:#888;margin-top:3px;">'+_pocOrdrer+' fastpris · '+_dg2.length+' regningsordrer</div></div>'+
+    '<div class="kpi '+((_plFerdig===_pls.length&&_pls.length>0)?'g':'a')+'"><div class="lb">PLer ferdige</div><div class="vl">'+_plFerdig+'/'+_pls.length+'</div><div style="font-size:.74rem;color:#888;margin-top:3px;">Har meldt seg ferdig i Status-fanen</div></div>'+
+    '<div class="kpi '+(_wgtDG==null?'':_wgtDG>=0.30?'g':_wgtDG>=0.18?'a':'r')+'"><div class="lb">Snitt DG%</div><div class="vl">'+(_wgtDG!=null?Math.round(_wgtDG*100)+'%':'–')+'</div><div style="font-size:.74rem;color:#888;margin-top:3px;">Vektet snitt — regningsordrer</div></div>'+
+    '<div class="kpi '+(_posVIARisk.length>0?'a':'g')+'"><div class="lb">Underbilling</div><div class="vl">'+_posVIARisk.length+'</div><div style="font-size:.74rem;color:#888;margin-top:3px;">'+(_posVIARisk.length>0?'Ikke fakturert: '+NK(_posVIAkr):'Ingen underbilling &gt; 50k')+'</div></div>';
+
+  var h=a.filter(function(r){return r.risk==='HØY';}),
+      m=a.filter(function(r){return r.risk==='MIDDELS';}),
+      l=a.filter(function(r){return r.risk==='LAV';});
+  var hv=h.reduce(function(s,r){return s+(r.via||0);},0);
+  var mv=m.reduce(function(s,r){return s+(r.via||0);},0);
+  document.getElementById('rcards').innerHTML =
+    '<div class="rc h"><div class="n">'+h.length+'</div><div class="l">🔴 Høy risiko</div><div style="font-size:.8rem;margin-top:4px;">VIA: '+NK(hv)+'</div></div>'+
+    '<div class="rc m"><div class="n">'+m.length+'</div><div class="l">🟡 Middels risiko</div><div style="font-size:.8rem;margin-top:4px;">VIA: '+NK(mv)+'</div></div>'+
+    '<div class="rc lo"><div class="n">'+l.length+'</div><div class="l">🟢 Lav risiko</div></div>';
+
+  var rnd = a.filter(function(r){return !r.isTM&&r.dg!=null&&ROUND.has(+r.dg.toFixed(3));}).length;
+  var _lavMargin = a.filter(function(r){return r.dg!=null&&r.dg!==0&&r.dg<0.10&&(r.totOmk||0)>50000;});
+  var _plIkkeFerdig = _pls.length - _plFerdig;
+  var fs=[];
+  var _dgFall=_dg2.filter(function(r){var p=getPrevDG(r.ordreNr);var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return p&&e!=null&&(p.dg-e)>0.02;});
+  if(_dgFall.length>0) fs.push('🔴 '+_dgFall.length+' ordre(r) har lavere DG% enn forrige periode.');
+  if(_posVIARisk.length>0) fs.push('⚠️ '+_posVIARisk.length+' ordre(r) har positiv VIA over 50 000 kr (underbilling, samlet: '+NK(_posVIAkr)+') — vurder fakturering.');
+  if(_negVIA.length>0) fs.push('ℹ️ '+_negVIA.length+' ordre(r) med negativ VIA (akonto-overbilling: '+NK(_negVIAkr)+') — OK hvis aktive prosjekter.');
+  if(_manglerBegr>0) fs.push('⚠️ '+_manglerBegr+' MIDDELS/HØY-ordre mangler begrunnelse.');
+  if(_lavMargin.length) fs.push('🔴 '+_lavMargin.length+' ordre(r) med under 10% margin og kostnader over 50 000 kr.');
+  if(rnd>a.length*.3) fs.push('ℹ️ '+rnd+' ordrer har rund DG% — be PLene om presisering.');
+  if(_plIkkeFerdig>0) fs.push('⏳ '+_plIkkeFerdig+' prosjektleder(e) har ikke meldt seg ferdige ennå.');
+  if(!fs.length) fs.push('✅ Alle vurderinger ser OK ut. Klar for låsing.');
+  document.getElementById('findings').innerHTML = fs.map(function(f){return '<div style="margin-bottom:5px">'+f+'</div>';}).join('');
+
+  // Per PL table
+  var pm={};
+  a.forEach(function(r){
+    var p=r.pl||'(ukjent)';
+    if(!pm[p]) pm[p]={c:0,v:0};
+    pm[p].c++; pm[p].v+=(r.via||0);
+  });
+  var pr=Object.entries(pm).sort(function(a,b){return b[1].c-a[1].c;});
+  var stObj=getStatus();
+  document.getElementById('pltbl').innerHTML=
+    '<thead><tr><th>Prosjektleder</th><th title="Antall aktive ordrer">Ordrer</th><th title="Vektet snitt DG% på regningsordrer">Snitt DG%</th><th title="Ordrer uten begrunnelse">Ikke vurdert</th><th title="Ordrer med negativ VIA (akonto-overbilling) — ikke nødvendigvis negativt">Akonto/overbill.</th><th title="Sum akonto-overbilling">Overbill. beløp</th><th>Status</th></tr></thead>'+
+    '<tbody>'+pr.map(function(e){
+      var pl=e[0];
+      var ikkeVurdertPL=ACTIVE.filter(function(r){return r.pl===pl&&!r.hasTilbud&&!(DGI[r.ordreNr]&&DGI[r.ordreNr].k&&DGI[r.ordreNr].k.trim().length>0);}).length;
+      var negVIAPL=ACTIVE.filter(function(r){return r.pl===pl&&(r.via||0)<-5000;}).length;
+      var ekspPL=ACTIVE.filter(function(r){return r.pl===pl&&(r.via||0)<-5000;}).reduce(function(s,r){return s+Math.abs(r.via);},0);
+      var stKey=Object.keys(stObj).find(function(k){return k.indexOf('__'+pl)>0;});
+      var stDone=stKey&&stObj[stKey]&&stObj[stKey].done;
+      var _lts=localStorage.getItem('VIA_LOAD_TS');
+      var _stale=stDone&&_lts&&stObj[stKey]&&stObj[stKey].ts&&new Date(_lts)>new Date(stObj[stKey].ts);
+      var _stTag=_stale?'<span title="Data lastet inn etter ferdig-melding — bør bekrefte på nytt" style="font-size:.67rem;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:4px;padding:0 4px;margin-left:3px;cursor:help;">⚠️ ny data</span>':'';
+      // Weighted avg DG% for this PL's T&M orders
+      var _plDGRows=ACTIVE.filter(function(r){var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return r.pl===pl&&!r.hasTilbud&&e!=null&&e>0&&(r.totOmk||0)>500;});
+      var _plCost=_plDGRows.reduce(function(s,r){return s+(r.totOmk||0);},0);
+      var _plDG=_plCost>0?_plDGRows.reduce(function(s,r){var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return s+(e||0)*(r.totOmk||0);},0)/_plCost:null;
+      var _plDGcol=_plDG==null?'#aaa':_plDG>=0.30?'var(--green)':_plDG>=0.18?'var(--amber)':'var(--red)';
+      var _plDGstr=_plDG!=null?'<span style="color:'+_plDGcol+';font-weight:700">'+Math.round(_plDG*100)+'%</span>':'–';
+      return '<tr><td>'+pl+'</td><td class="c">'+e[1].c+'</td><td class="c">'+_plDGstr+'</td><td class="c">'+(ikkeVurdertPL>0?'<span style="color:var(--amber);font-weight:700">'+ikkeVurdertPL+'</span>':'<span style="color:var(--green)">0</span>')+'</td><td class="c">'+(negVIAPL>0?'<span style="color:var(--mid);font-weight:600">'+negVIAPL+'</span>':'–')+'</td><td class="r" style="font-weight:600;color:var(--mid);">'+NK(ekspPL)+'</td><td class="c">'+(stDone?'<span class="status-done">✅</span>'+_stTag:'<span class="status-wait">⏳</span>')+'</td></tr>';
+    }).join('')+'</tbody>';
+}
+
+/* ============================================================
+   QA TABLE
+   ============================================================ */
+function rQA(){
+  var s=document.getElementById('qs').value.toLowerCase();
+  var rf=document.getElementById('qr').value;
+  var pl=document.getElementById('qp').value;
+  var tp=document.getElementById('qt').value;
+  var nz=document.getElementById('qnz').checked;
+  var rows=ACTIVE.filter(function(r){
+    return (!s||[r.ordreNr,r.kunde,r.beskr,r.pl].some(function(x){return x.toLowerCase().includes(s);}))
+      &&(!rf||r.risk===rf)&&(!pl||r.pl===pl)&&(!tp||r.type===tp)
+      &&(!nz||(r.via!=null&&Math.abs(r.via)>10));
+  });
+  var cols=['ordreNr','status','type','pl','beskr','kunde','totOmk','dg','tilbud','fakt','via','risk'];
+  rows.sort(function(a,b){
+    var c=QS.col,va=a[cols[c]],vb=b[cols[c]];
+    if(va==null) va=QS.asc?Infinity:-Infinity;
+    if(vb==null) vb=QS.asc?Infinity:-Infinity;
+    if(typeof va==='string') return QS.asc?va.localeCompare(vb):vb.localeCompare(va);
+    return QS.asc?va-vb:vb-va;
+  });
+  document.getElementById('qacnt').textContent='Viser '+rows.length+' av '+ACTIVE.length+' ordrer';
+  var ns=['Ordre','Status','Type','Prosjektleder','Beskrivelse','Kunde','Totale omk.','DG%','Kontraktssum','Fakturert','VIA','Risiko'];
+  var hdr='<thead><tr>'+ns.map(function(n,i){
+    var cls=QS.col===i?(QS.asc?' class="sa"':' class="sd"'):'';
+    return '<th'+cls+' onclick="QS={col:'+i+',asc:'+(QS.col===i?!QS.asc:false)+'};rQA()">'+n+'</th>';
+  }).join('')+'<th>QA Flagg</th></tr></thead>';
+  document.getElementById('qatbl').innerHTML=hdr+'<tbody>'+rows.map(function(r){
+    var vc=(r.via||0)>50000?'color:var(--amber);font-weight:700':(r.via||0)<-5000?'color:var(--mid);font-weight:600':'';
+    var _qdg = r.hasTilbud ? r.dg : (DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0 ? DGI[r.ordreNr].dg/100 : r.dg);
+    return '<tr><td><strong>'+r.ordreNr+'</strong></td><td>'+r.status+'</td><td>'+r.type+'</td><td style="white-space:nowrap">'+r.pl+'</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+r.beskr.substring(0,48)+(r.beskr.length>48?'…':'')+'</td><td>'+r.kunde+'</td><td class="r">'+NK(r.totOmk)+'</td><td class="r">'+PC(_qdg)+'</td><td class="r">'+NK(r.tilbud)+'</td><td class="r">'+NK(r.fakt)+'</td><td class="r" style="'+vc+'">'+NK(r.via)+'</td><td class="c">'+rb(r.risk)+'</td><td>'+fh(r.flags)+'</td></tr>';
+  }).join('')+'</tbody>';
+}
+
+/* ============================================================
+   RISK REGISTER
+   ============================================================ */
+function rRisk(){
+  var f=document.getElementById('rsel').value.split(',');
+  var rows=ACTIVE.filter(function(r){return f.indexOf(r.risk)>=0&&(r.totOmk||0)>=500;});
+  var cols=['ordreNr','type','pl','kunde','totOmk','dg','tilbud','fakt','via','risk'];
+  rows.sort(function(a,b){
+    var c=RS.col,va=a[cols[c]],vb=b[cols[c]];
+    if(va==null) va=RS.asc?Infinity:-Infinity;
+    if(vb==null) vb=RS.asc?Infinity:-Infinity;
+    if(typeof va==='string') return RS.asc?va.localeCompare(vb):vb.localeCompare(va);
+    return RS.asc?va-vb:vb-va;
+  });
+  var ns=['Ordre','Type','Prosjektleder','Kunde','Totale omk.','DG%','Kontrakt','Fakturert','VIA','Risiko'];
+  var hdr='<thead><tr>'+ns.map(function(n,i){
+    var cls=RS.col===i?(RS.asc?' class="sa"':' class="sd"'):'';
+    return '<th'+cls+' onclick="RS={col:'+i+',asc:'+(RS.col===i?!RS.asc:false)+'};rRisk()">'+n+'</th>';
+  }).join('')+'<th>Risikoer</th></tr></thead>';
+  document.getElementById('risktbl').innerHTML=hdr+'<tbody>'+rows.map(function(r){
+    var _rvc=(r.via||0)>50000?'color:var(--amber);font-weight:700':(r.via||0)<-5000?'color:var(--mid)':'';
+    return '<tr><td><strong>'+r.ordreNr+'</strong></td><td>'+r.type+'</td><td>'+r.pl+'</td><td>'+r.kunde+'</td><td class="r">'+NK(r.totOmk)+'</td><td class="r">'+PC(r.dg)+'</td><td class="r">'+NK(r.tilbud)+'</td><td class="r">'+NK(r.fakt)+'</td><td class="r" style="'+_rvc+'">'+NK(r.via)+'</td><td class="c">'+rb(r.risk)+'</td><td>'+fh(r.flags)+'</td></tr>';
+  }).join('')+'</tbody>';
+}
+
+/* ============================================================
+   POC CALCULATIONS
+   ============================================================ */
+function calcPOC(r,stkDefault){
+  var inp=POC[r.ordreNr]||{timer:0,tk:null,mat:0,k:''};
+  var tk=inp.tk!=null?inp.tk:(stkDefault||650);
+  var gk=(inp.timer||0)*tk+(inp.mat||0);
+  var esk=(r.totOmk||0)+gk;
+  var fg=esk>0?Math.min((r.totOmk||0)/esk,1):null;
+  var innt=(fg!=null&&r.tilbud!=null)?r.tilbud*fg:null;
+  var estDG=(esk>0&&r.tilbud!=null)?(r.tilbud-esk)/r.tilbud:null;
+  var via=innt!=null&&r.fakt!=null?innt-r.fakt:null;
+  return {gk:gk,esk:esk,fg:fg,innt:innt,estDG:estDG,via:via};
+}
+function calcDG(r){
+  var inp=DGI[r.ordreNr]||{dg:35,k:''};
+  var dgVal=inp.dg!=null?inp.dg:35;
+  var dg=dgVal/100;
+  var useTM=r.isTM&&!inp.tmOverride;
+  var fs=useTM?(r.fSalgsverdi||r.totOmk):(r.totOmk!=null&&dg>0&&dg<1)?r.totOmk/(1-dg):r.totOmk;
+  var via=fs!=null&&r.fakt!=null?fs-r.fakt:null;
+  return {dg:dg,fs:fs,via:via,useTM:useTM};
+}
+function sP(id,f,v){ if(!POC[id])POC[id]={timer:0,tk:null,mat:0,k:''}; POC[id][f]=f==='k'?v:parseFloat(v)||0; rPOC(); var _p=_currentPeriod||document.getElementById('aperiod').textContent; var _c=_currentEntity||document.getElementById('lentity').value||''; if(_p&&_c)spSaveDebounced(_p,_c,id,DGI[id]?DGI[id].dg:null,DGI[id]?DGI[id].k||'':'','',POC[id]); }
+function sD(id,f,v){
+  if(!DGI[id])DGI[id]={dg:35,k:''};
+  DGI[id][f]=f==='k'?v:parseFloat(v)||0;
+  if(f==='dg'){var _r=ACTIVE.find(function(x){return x.ordreNr===id;});if(_r&&_r.isTM)DGI[id].tmOverride=true;}
+  rPOC();
+  var _p=_currentPeriod||document.getElementById('aperiod').textContent,_c=_currentEntity||document.getElementById('lentity').value||'';
+  spSaveDebounced(_p,_c,id,DGI[id].dg,DGI[id].k,'');
+}
+function resetTM(id){
+  if(DGI[id]){DGI[id].tmOverride=false;var _r=ACTIVE.find(function(x){return x.ordreNr===id;});if(_r){var pct=_r.fSalgsverdi&&_r.totOmk?Math.round((_r.fSalgsverdi-_r.totOmk)/_r.fSalgsverdi*100):35;DGI[id].dg=pct;}}
+  rPOC();
+}
+function applyGlobalDG(){
+  var val=parseFloat(document.getElementById('global-dg').value);
+  if(isNaN(val)||val<0||val>100){ alert('Skriv inn et gyldig tall mellom 0 og 100.'); return; }
+  var pl=document.getElementById('pp').value;
+  ACTIVE.filter(function(r){return !r.hasTilbud&&(!pl||r.pl===pl);}).forEach(function(r){
+    if(!DGI[r.ordreNr]) DGI[r.ordreNr]={dg:val,k:''};
+    else DGI[r.ordreNr].dg=val;
+  });
+  rPOC();
+}
+
+/* ============================================================
+   POC + DG RENDER
+   ============================================================ */
+function rPOC(){
+  var pl=document.getElementById('pp').value;
+  var stk=parseFloat(document.getElementById('stk').value)||650;
+  var dis=LOCKED?'disabled':'';
+
+  var pocR=ACTIVE.filter(function(r){
+    return r.hasTilbud&&(!pl||r.pl===pl)&&!(HIDE_SMALL_POC&&(r.totOmk||0)<1000);
+  });
+  // Sort POC section
+  (function(){
+    var c=POCS.col,asc=POCS.asc;
+    var keys=['ordreNr','pl','beskr','tilbud','totOmk',null,null,null,null,null,null,null,null,'fakt','via'];
+    var k=keys[c];
+    if(k) pocR.sort(function(a,b){var va=a[k],vb=b[k];if(va==null)va=asc?'zzz':-Infinity;if(vb==null)vb=asc?'zzz':-Infinity;if(typeof va==='string')return asc?va.localeCompare(vb):vb.localeCompare(va);return asc?va-vb:vb-va;});
+    else pocR.sort(function(a,b){return(b.tilbud||0)-(a.tilbud||0);});
+  })();
+
+  var dgR=ACTIVE.filter(function(r){
+    return !r.hasTilbud&&(!pl||r.pl===pl)&&!(HIDE_SMALL&&(r.totOmk||0)<1000);
+  });
+  // Sort DG section
+  (function(){
+    var c=DGS.col,asc=DGS.asc;
+    var keys=['ordreNr','pl','type','beskr','kunde','totOmk','fakt',null,null,'fSalgsverdi','via',null,'risk'];
+    var k=keys[c];
+    if(k) dgR.sort(function(a,b){var va,vb;if(k==='risk'){var rm={LAV:0,MIDDELS:1,'HØY':2};va=rm[a.risk]||0;vb=rm[b.risk]||0;}else{va=a[k];vb=b[k];}if(va==null)va=asc?'zzz':-Infinity;if(vb==null)vb=asc?'zzz':-Infinity;if(typeof va==='string')return asc?va.localeCompare(vb):vb.localeCompare(va);return asc?va-vb:vb-va;});
+    else dgR.sort(function(a,b){return(b.totOmk||0)-(a.totOmk||0);});
+  })();
+  if(HIDE_SETTLED){
+    dgR=dgR.filter(function(r){return !(r.fakt>0&&r.fSalgsverdi>0&&Math.abs(r.via)<5000);});
+  }
+
+  document.getElementById('poc-cnt').textContent='('+pocR.length+' prosjekter)';
+  document.getElementById('dg-cnt').textContent='('+dgR.length+' prosjekter)';
+
+  var pv=0;
+  document.getElementById('poctbl').innerHTML=
+    '<thead><tr>'+
+    ['Ordre','PL','Beskrivelse','Kontraktssum','Påløpte kostnader','Gjenst. timer','kr/t','Gjenst. mat.','Gjenst. kost','Est. sluttkost','Ferdiggrad','Periodisert','DG% ved ferdig','Fakturert','VIA','FG (forr.p.)','DG% (forr.p.)','Kommentar'].map(function(n,i){
+      var sortable=[0,1,2,3,4,13,14].indexOf(i)>=0;
+      var cls=POCS.col===i?(POCS.asc?' class="sa"':' class="sd"'):'';
+      var style=([3,4,8,9,10,11,12,13,14,15,16].indexOf(i)>=0)?'style="text-align:right"':'';
+      if([5,6,7,17].indexOf(i)>=0) style='style="color:#9EC8FF'+(i>=3?';text-align:right':'')+'\"';
+      if(sortable) return '<th'+cls+' '+style+' onclick="POCS={col:'+i+',asc:POCS.col==='+i+'?!POCS.asc:false};rPOC()">'+n+'</th>';
+      var prevTip=(i===15||i===16)?' title="Verdier fra forrige vurderingsperiode"':'';
+      return '<th '+style+prevTip+'>'+n+'</th>';
+    }).join('')+
+    '</tr></thead><tbody>'+
+    (function(){
+      var seenBases={};
+      var pocHtml='';
+      // Use data attributes to avoid quote-escaping issues
+      function piInp(oid,field,val,d,w){
+        return '<input class="pi" type="text" value="'+val+'" '+d+
+          ' data-o="'+oid+'" data-f="'+field+'"'+
+          ' onfocus="piFocus(this)" onblur="piBlur(this)"'+
+          ' onchange="piChange(this.dataset.o,this.dataset.f,this)"'+
+          (field==='timer'?' style="width:74px"':field==='tk'?' style="width:74px"':' style="width:96px"')+'>';
+      }
+      function cmtInp(oid,val,d,w){
+        return '<input class="ci'+(w?' req':'')+'" placeholder="'+(w?'⚠️ Påkrevet':'Kommentar…')+'"'+
+          ' value="'+(val||'')+'" '+d+
+          ' data-o="'+oid+'" onchange="sP(this.dataset.o,\'k\',this.value)">';
+      }
+      function pocRow(r,indent){
+        var d=isEditable(r);
+        var inp=POC[r.ordreNr]||{timer:0,tk:null,mat:0,k:''};
+        var tkVal=inp.tk!=null?inp.tk:stk;
+        var c=calcPOC(r,stk);
+        if(c.via!=null) pv+=c.via;
+        var warn=c.via!=null&&Math.abs(c.via)>50000&&!inp.k;
+        var bs=r.beskr?r.beskr.substring(0,40)+(r.beskr.length>40?'…':''):'–';
+        return '<tr class="'+(warn?'rwarn':'')+'"'+(indent?' style="border-left:3px solid #3b82f6;"':'')+'>'+
+          '<td style="'+(indent?'padding-left:22px;':'')+'">'+(indent?'↳ ':'')+
+            '<strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+'</td>'+
+          '<td style="white-space:nowrap">'+r.pl+'</td>'+
+          '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+bs+'</td>'+
+          '<td class="r">'+NK(r.tilbud)+'</td>'+
+          '<td class="r">'+NK(r.totOmk)+'</td>'+
+          '<td>'+piInp(r.ordreNr,'timer',fmtI(inp.timer||0),d,warn)+'</td>'+
+          '<td>'+piInp(r.ordreNr,'tk',fmtI(tkVal),d,warn)+'</td>'+
+          '<td>'+piInp(r.ordreNr,'mat',fmtI(inp.mat||0),d,warn)+'</td>'+
+          '<td class="r calc">'+NR(c.gk)+'</td>'+
+          '<td class="r calc">'+NR(c.esk)+'</td>'+
+          '<td class="r calc">'+(c.fg!=null?PC(c.fg):'–')+'</td>'+
+          '<td class="r calc">'+NK(c.innt)+'</td>'+
+          '<td class="r calc">'+(c.estDG!=null?PC(c.estDG):'–')+'</td>'+
+          '<td class="r">'+NK(r.fakt)+'</td>'+
+          '<td class="r '+(c.via==null?'':(c.via<0?'vneg':'vpos'))+'">'+NK(c.via)+'</td>'+
+          '<td class="c">'+prevFG(r.ordreNr)+'</td>'+
+          '<td class="c">'+prevDGp(r.ordreNr)+'</td>'+
+          '<td>'+cmtInp(r.ordreNr,inp.k,d,warn)+'</td>'+
+          '</tr>';
+      }
+      pocR.forEach(function(r){
+        var m=r.ordreNr.match(/^(.+?)-[^-]+$/);
+        var base=m?m[1]:null;
+        var inGrp=base&&GROUPS[base]&&GROUPS[base].length>=2;
+        if(inGrp&&seenBases[base]) return;
+        if(!inGrp){ pocHtml+=pocRow(r,false); return; }
+        seenBases[base]=true;
+        var gRows=pocR.filter(function(x){var bm=x.ordreNr.match(/^(.+?)-[^-]+$/);return bm&&bm[1]===base;});
+        var mode=GRP_MODE[base]||'individuelt';
+        var aggT=0,aggO=0,aggF=0;
+        gRows.forEach(function(x){aggT+=x.tilbud||0;aggO+=x.totOmk||0;aggF+=x.fakt||0;});
+        var btnBg=mode==='samlet'?'#1d8348':'#2563eb';
+        var btnLabel=mode==='samlet'?'📋 Individuelt':'🔗 Samlet';
+        var btn='<button data-base="'+base+'" onclick="toggleGrpMode(this.dataset.base)"'+
+          ' style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:'+btnBg+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+btnLabel+'</button>';
+        if(mode==='samlet'){
+          var rAgg={ordreNr:base,tilbud:aggT,totOmk:aggO,fakt:aggF,hasTilbud:true,beskr:gRows[0].beskr,pl:gRows[0].pl};
+          var inpA=POC[base]||{timer:0,tk:stk,mat:0,k:''};
+          inpA.tk=inpA.tk||stk;
+          var cA=calcPOC(rAgg);
+          if(cA.via!=null) pv+=cA.via;
+          var wA=cA.via!=null&&Math.abs(cA.via)>50000&&!inpA.k;
+          var bsA=gRows[0].beskr?gRows[0].beskr.substring(0,40)+(gRows[0].beskr.length>40?'…':''):'–';
+          var disA=LOCKED?'disabled':'';
+          pocHtml+='<tr class="'+(wA?'rwarn':'')+'" style="background:#eff6ff;">'+
+            '<td><strong>'+base+'</strong><span style="color:#555;font-size:.72rem;font-weight:400;"> ('+gRows.length+'×)</span>'+btn+'</td>'+
+            '<td style="white-space:nowrap">'+gRows[0].pl+'</td>'+
+            '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+gRows[0].beskr+'">'+bsA+'</td>'+
+            '<td class="r">'+NK(aggT)+'</td>'+
+            '<td class="r">'+NK(aggO)+'</td>'+
+            '<td>'+piInp(base,'timer',fmtI(inpA.timer||0),disA,wA)+'</td>'+
+            '<td>'+piInp(base,'tk',fmtI(inpA.tk),disA,wA)+'</td>'+
+            '<td>'+piInp(base,'mat',fmtI(inpA.mat||0),disA,wA)+'</td>'+
+            '<td class="r calc">'+NR(cA.gk)+'</td>'+
+            '<td class="r calc">'+NR(cA.esk)+'</td>'+
+            '<td class="r calc">'+(cA.fg!=null?PC(cA.fg):'–')+'</td>'+
+            '<td class="r calc">'+NK(cA.innt)+'</td>'+
+            '<td class="r calc">'+(cA.estDG!=null?PC(cA.estDG):'–')+'</td>'+
+            '<td class="r">'+NK(aggF)+'</td>'+
+            '<td class="r '+(cA.via==null?'':(cA.via<0?'vneg':'vpos'))+'">'+NK(cA.via)+'</td>'+
+            '<td class="c">–</td><td class="c">–</td>'+
+            '<td>'+cmtInp(base,inpA.k,disA,wA)+'</td>'+
+            '</tr>';
+        } else {
+          pocHtml+='<tr style="background:#dbeafe;"><td colspan="18" style="padding:5px 12px;font-size:.8rem;color:#1e3a8a;">'+
+            '📁 <strong>Ordre '+base+'</strong> — '+gRows.length+' underordre · Sum kontrakt: '+NK(aggT)+' · Sum kostnader: '+NK(aggO)+btn+'</td></tr>';
+          gRows.forEach(function(gr){ pocHtml+=pocRow(gr,true); });
+        }
+      });
+      return pocHtml;
+    })()+'</tbody>';
+
+  document.getElementById('poctot').innerHTML=
+    '<span>Prosjekter: <strong>'+pocR.length+'</strong></span>'+
+    '<span>Total VIA (POC): <strong style="color:'+(pv>50000?'var(--amber)':'var(--dark)')+'">'+NK(pv)+'</strong></span>';
+
+  var dv=0;
+  document.getElementById('dgtbl').innerHTML=
+    '<thead><tr>'+
+    ['Ordre','PL','Type','Beskrivelse','Kunde','Påløpte kostnader','Fakturert','DG%','DG% forrige periode','Forv. salgsverdi','VIA','Begrunnelse','Risiko'].map(function(n,i){
+      var sortable=[0,1,2,3,4,5,6,9,10,12].indexOf(i)>=0;
+      var style=([5,6,9,10].indexOf(i)>=0)?'style="text-align:right"':([7].indexOf(i)>=0)?'style="text-align:right;color:#9EC8FF"':([8].indexOf(i)>=0)?'style="text-align:center"':([12].indexOf(i)>=0)?'style="text-align:center"':'';
+      var cls=DGS.col===i?(DGS.asc?' class="sa"':' class="sd"'):'';
+      if(sortable) return '<th'+cls+' '+style+' onclick="DGS={col:'+i+',asc:DGS.col==='+i+'?!DGS.asc:false};rPOC()">'+n+'</th>';
+      var dg2tip=(i===8)?' title="DG% fra forrige vurderingsperiode"':'';
+      return '<th '+style+dg2tip+'>'+n+'</th>';
+    }).join('')+
+    '</tr></thead><tbody>'+
+    dgR.map(function(r){
+      var dis=isEditable(r);
+      var inp=DGI[r.ordreNr]||{dg:r.dg!=null?Math.round(r.dg*100):35,k:''};
+      var c=calcDG(r);
+      if(c.via!=null) dv+=c.via;
+      var warn=!inp.k&&(r.risk==='MIDDELS'||r.risk==='HØY');
+      var bs=r.beskr?r.beskr.substring(0,36)+(r.beskr.length>36?'…':''):'–';
+      var _tmPct=r.isTM&&r.fSalgsverdi&&r.fSalgsverdi>r.totOmk?Math.round((r.fSalgsverdi-r.totOmk)/r.fSalgsverdi*100):35;
+      var _tmOvr=inp.tmOverride;
+      var dgCell = r.isTM
+        ? '<div style="display:flex;align-items:center;gap:4px;">'
+          +(_tmOvr
+            ?'<input class="pi" type="text" inputmode="numeric" value="'+(inp.dg!=null?inp.dg:_tmPct)+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:52px"><span style="font-size:.8rem;color:#666">%</span>'
+              +'<button onclick="resetTM(\''+r.ordreNr+'\')" style="font-size:.7rem;padding:1px 6px;background:var(--greenbg);color:var(--green);border:1px solid var(--green);border-radius:4px;cursor:pointer;line-height:1.6" title="Tilbake til Auto T&M">⚡</button>'
+            :'<input class="pi" type="text" inputmode="numeric" value="'+_tmPct+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:52px;border-color:var(--green);color:var(--green);font-weight:600;" title="Auto T&M — rediger for å overstyre"><span style="font-size:.8rem;color:var(--green)">% <span title="Hentet automatisk fra Ordrestyring" style="font-size:.65rem;background:var(--green);color:#fff;border-radius:3px;padding:0 3px;margin-left:1px;font-weight:700;letter-spacing:.3px">OS</span></span>'
+            )
+          +'</div>'
+        : '<div style="display:flex;align-items:center;gap:4px;"><input class="pi" type="text" inputmode="numeric" value="'+(inp.dg!=null?inp.dg:35)+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:56px"><span style="font-size:.8rem;color:#666">%</span></div>';
+      return '<tr>'+
+        '<td><strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+'</td>'+
+        '<td style="white-space:nowrap">'+r.pl+'</td>'+
+        '<td>'+r.type+'</td>'+
+        '<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+bs+'</td>'+
+        '<td style="max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+r.kunde+'</td>'+
+        '<td class="r">'+NK(r.totOmk)+'</td>'+
+        '<td class="r">'+NK(r.fakt)+'</td>'+
+        '<td>'+dgCell+'</td>'+
+        '<td class="c">'+prevDGCell(r.ordreNr,c.dg)+'</td>'+
+        '<td class="r calc">'+NK(c.fs)+'</td>'+
+        '<td class="r '+(c.via==null?'':(c.via<0?'vneg':'vpos'))+'">'+NK(c.via)+'</td>'+
+        '<td><input class="ci'+(warn?' req':'')+'" placeholder="'+(warn?'⚠️ Begrunnelse påkrevet':'Begrunnelse for DG%-estimat…')+'" value="'+(inp.k||'')+'" '+dis+' onchange="sD(\''+r.ordreNr+'\',\'k\',this.value)"></td>'+
+        '<td class="c">'+rb(r.risk)+'</td>'+
+        '</tr>';
+    }).join('')+'</tbody>';
+
+  document.getElementById('dgtot').innerHTML=
+    '<span>Prosjekter: <strong>'+dgR.length+'</strong></span>'+
+    '<span>DG-VIA: <strong style="color:'+(dv>50000?'var(--amber)':'var(--dark)')+'">'+NK(dv)+'</strong></span>'+
+    '<span>Kombinert VIA: <strong style="color:'+((pv+dv)>100000?'var(--amber)':'var(--dark)')+'">'+NK(pv+dv)+'</strong></span>';
+}
+
+/* ============================================================
+   HISTORY
+   ============================================================ */
+function rHist(){
+  var hist=getHist();
+  var el=document.getElementById('histcontent');
+  if(!hist.length){
+    el.innerHTML='<div class="hist-empty">📁 Ingen historikk enda.<br>Lås en periode for å aktivere <strong>"DG% forrige periode"</strong>-kolonnen i seksjon 2.</div>';
+    return;
+  }
+  el.innerHTML='<div class="tw"><table><thead><tr><th>Periode</th><th>Selskap</th><th>Låst av</th><th>Dato</th><th style="text-align:right">Total VIA</th><th style="text-align:right">POC-VIA</th><th style="text-align:right">DG-VIA</th><th style="text-align:center">Ordrer</th><th style="text-align:center">Kritiske</th></tr></thead><tbody>'+
+    hist.slice().reverse().map(function(h){
+      return '<tr><td><strong>'+h.period+'</strong></td><td>'+h.entity+'</td><td>'+h.lockedBy+'</td><td>'+new Date(h.lockedAt).toLocaleDateString('no-NO')+'</td><td class="r" style="font-weight:700;color:'+(h.summary.totalVIA>100000?'var(--amber)':'var(--dark)')+'">'+NK(h.summary.totalVIA)+'</td><td class="r">'+NK(h.summary.pocVIA)+'</td><td class="r">'+NK(h.summary.dgVIA)+'</td><td class="c">'+h.summary.projectCount+'</td><td class="c">'+(h.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+h.summary.highRisk+'</span>':'0')+'</td></tr>';
+    }).join('')+'</tbody></table></div>';
+}
+
+/* ============================================================
+   LOCK & SAVE
+   ============================================================ */
+function openLock(){ document.getElementById('lmodal').classList.add('open'); }
+function closeLock(){ document.getElementById('lmodal').classList.remove('open'); }
+function doLock(){
+  var name=document.getElementById('lname').value.trim();
+  var entity=document.getElementById('lentity').value.trim();
+  var period=document.getElementById('lperiod').value.trim();
+  if(!name){ alert('Skriv inn ditt navn.'); return; }
+  saveSnap(name,entity,period);
+  LOCKED=true;
+  closeLock();
+  saveSession();
+  document.getElementById('btnlock').textContent='✅ Låst: '+period;
+  document.getElementById('btnlock').disabled=true;
+  rPOC(); rHist(); ST('hist');
+  printLockReport(name,entity,period);
+}
+function printLockReport(lockedBy,entity,period){
+  var pv=0,dv=0;
+  var pls={};
+  ACTIVE.forEach(function(r){
+    var via=null,dg=null;
+    if(r.hasTilbud){var c=calcPOC(r);via=c.via;dg=c.estDG;if(c.via!=null)pv+=c.via;}
+    else{var c=calcDG(r);via=c.via;dg=c.dg;if(c.via!=null)dv+=c.via;}
+    if(!pls[r.pl])pls[r.pl]={name:r.pl,ordrer:0,poc:0,dg:0,via:0};
+    pls[r.pl].ordrer++;
+    if(r.hasTilbud)pls[r.pl].poc++;else pls[r.pl].dg++;
+    if(via!=null)pls[r.pl].via+=via;
+  });
+  var totalVIA=Math.round(pv+dv);
+  var NK2=function(v){return v==null?'–':(v<0?'− ':'')+'kr '+Math.abs(Math.round(v)).toLocaleString('no-NO');};
+  var PC2=function(v){return v==null?'–':Math.round(v*1000)/10+'%';};
+  var plRows=Object.values(pls).sort(function(a,b){return b.via-a.via;}).map(function(p){
+    var st=getStatus();
+    var k=period+'__'+entity+'__'+p.name;
+    var ferdig=st[k]?'✓':'–';
+    return '<tr><td>'+p.name+'</td><td class="c">'+p.ordrer+'</td><td class="c">'+p.poc+'</td><td class="c">'+p.dg+'</td><td class="r"'+(p.via>50000?' style="color:var(--amber);font-weight:700"':'')+'>'+NK2(p.via)+'</td><td class="c">'+ferdig+'</td></tr>';
+  }).join('');
+  var pocRows=ACTIVE.filter(function(r){return r.hasTilbud;}).map(function(r){
+    var c=calcPOC(r),inp=POC[r.ordreNr]||{};
+    return '<tr><td>'+r.ordreNr+'</td><td>'+((r.beskr||'').substring(0,40))+'</td><td>'+r.pl+'</td><td class="r">'+NK2(r.tilbud)+'</td><td class="r">'+PC2(c.fg)+'</td><td class="r"'+(c.via!=null&&c.via>50000?' style="color:var(--amber);font-weight:700"':'')+'>'+NK2(c.via)+'</td></tr>';
+  }).join('');
+  var dgRows=ACTIVE.filter(function(r){return !r.hasTilbud;}).sort(function(a,b){return (a.via||0)-(b.via||0);}).map(function(r){
+    var c=calcDG(r),inp=DGI[r.ordreNr]||{};
+    return '<tr><td>'+r.ordreNr+'</td><td>'+((r.beskr||'').substring(0,40))+'</td><td>'+r.pl+'</td><td class="r">'+NK2(r.totOmk)+'</td><td class="r">'+PC2(c.dg)+'</td><td class="r"'+(c.via!=null&&c.via>50000?' style="color:var(--amber);font-weight:700"':'')+'>'+NK2(c.via)+'</td><td>'+((inp.k&&inp.k.substring(0,30))||'')+'</td></tr>';
+  }).join('');
+  var tsNow=new Date().toLocaleString('no-NO',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  document.getElementById('print-report').innerHTML=
+    '<h1>VIA/Fakturareserve — Perioderapport</h1>'+
+    '<div class="pr-meta">'+
+      '<div><strong>Selskap:</strong> '+entity+'</div>'+
+      '<div><strong>Periode:</strong> '+period+'</div>'+
+      '<div><strong>Låst av:</strong> '+lockedBy+'</div>'+
+      '<div><strong>Låst:</strong> '+tsNow+'</div>'+
+    '</div>'+
+    '<div class="pr-kpi">'+
+      '<div><div class="k-val">'+NK2(totalVIA)+'</div><div class="k-lbl">Total VIA</div></div>'+
+      '<div><div class="k-val">'+NK2(Math.round(pv))+'</div><div class="k-lbl">POC-VIA (fastpris)</div></div>'+
+      '<div><div class="k-val">'+NK2(Math.round(dv))+'</div><div class="k-lbl">DG-VIA (regning)</div></div>'+
+      '<div><div class="k-val">'+ACTIVE.length+'</div><div class="k-lbl">Ordrer totalt</div></div>'+
+    '</div>'+
+    '<h2>Prosjektledere</h2>'+
+    '<table><thead><tr><th>Prosjektleder</th><th class="c">Ordrer</th><th class="c">Fastpris</th><th class="c">Regning</th><th class="r">VIA</th><th class="c">Ferdig</th></tr></thead><tbody>'+plRows+'</tbody></table>'+
+    '<div class="pr-footer">Generert av VIA QA-verktøyet · '+tsNow+'</div>';
+  document.getElementById('report-overlay').classList.add('open');
+  window.scrollTo(0,0);
+}
+function saveSnap(name,entity,period){
+  var hist=getHist(), pv=0, dv=0;
+  var projects=ACTIVE.map(function(r){
+    var via=null, dg=null, _fg=null;
+    if(r.hasTilbud){
+      var c=calcPOC(r); via=c.via; dg=c.estDG; _fg=c.fg;
+      if(c.via!=null) pv+=c.via;
+    } else {
+      var c=calcDG(r); via=c.via; dg=c.dg;
+      if(c.via!=null) dv+=c.via;
+    }
+    return {
+      ordreNr:r.ordreNr,pl:r.pl,type:r.type,kunde:r.kunde,
+      beskr:(r.beskr||'').substring(0,60),tilbud:r.tilbud,totOmk:r.totOmk,fakt:r.fakt,
+      via:via!=null?Math.round(via):null,
+      dg:dg!=null?Math.round(dg*10000)/10000:null,
+      fg:r.hasTilbud&&_fg!=null?Math.round(_fg*1000)/1000:null,
+      hasTilbud:r.hasTilbud,risk:r.risk
+    };
+  });
+  var snap={
+    id:Date.now(),period:period,entity:entity,lockedBy:name,lockedAt:new Date().toISOString(),
+    summary:{totalVIA:Math.round(pv+dv),pocVIA:Math.round(pv),dgVIA:Math.round(dv),projectCount:ACTIVE.length,highRisk:ACTIVE.filter(function(r){return r.risk==='HØY';}).length},
+    projects:projects
+  };
+  var filtered=hist.filter(function(e){return e.period!==period;});
+  filtered.push(snap);
+  filtered.sort(function(a,b){return a.id-b.id;});
+  localStorage.setItem(HIST_KEY,JSON.stringify(filtered));
+  // Also backup to SharePoint silently (non-blocking)
+  spSaveHist(entity);
+}
+
+function doSnap(){
+  if(!ACTIVE||!ACTIVE.length){alert('Ingen data lastet inn ennå.');return;}
+  var name=_currentUser?_currentUser.name:'Ukjent';
+  var period=document.getElementById('aperiod').textContent||'?';
+  var entity=_currentEntity||document.getElementById('lentity').value||'?';
+  saveSnap(name,entity,period);
+  alert('📸 Snapshot lagret for '+period+' ('+entity+').');
+}
+
+/* ============================================================
+   EXPORT
+   ============================================================ */
+// Safe number: returns null for null/undefined/NaN/Infinity, else Math.round(v)
+function _n(v){return(v!=null&&typeof v==='number'&&isFinite(v))?Math.round(v):null;}
+// Safe percentage: multiplies 0-1 value by 100, one decimal, or null
+function _pct(v){return(v!=null&&typeof v==='number'&&isFinite(v))?Math.round(v*1000)/10:null;}
+// Safe passthrough: keeps finite numbers and strings, null for everything else
+function _s(v){
+  if(v==null)return null;
+  if(typeof v==='number')return isFinite(v)?v:null;
+  if(typeof v==='string')return v;
+  return null;
+}
+function _xlsxDownload(wb,filename){
+  try{
+    var buf=XLSX.write(wb,{bookType:'xlsx',type:'array'});
+    var blob=new Blob([buf],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    var url=URL.createObjectURL(blob);
+    var a=document.createElement('a');
+    a.href=url;a.download=filename;a.style.display='none';
+    document.body.appendChild(a);a.click();
+    setTimeout(function(){document.body.removeChild(a);URL.revokeObjectURL(url);},200);
+  }catch(e){alert('Nedlasting feilet: '+e.message);}
+}
+function expPOC(){
+  try{
+    if(typeof XLSX==='undefined'){alert('XLSX-biblioteket er ikke lastet.');return;}
+    if(!ACTIVE.length){alert('Ingen rader lastet – last inn data først.');return;}
+    var stk=parseFloat(document.getElementById('stk').value)||650;
+    // One sheet, all orders – AOA avoids SheetJS type-inference crash on heterogeneous rows
+    var H=['Ordre','Prosjektleder','Beskrivelse','Type','Kunde',
+           'Omsetning','Fakturert','Risiko',
+           // POC-only cols (index 8-15)
+           'Gjest.timer','Timekost','Gjest.mat','Gjest.kost','Est.sluttkost.',
+           'Ferdiggrad%','EstDG%','Per.inntekt',
+           // DG-only cols (index 16-19)
+           'DG%bekreftet','DG%forrige','Forrige periode','Forv.salgsverdi',
+           'VIA','Kommentar/Begrunnelse'];
+    var aoa=[H];
+    ACTIVE.forEach(function(r){
+      if(r.hasTilbud){
+        var c=calcPOC(r,stk),inp=POC[r.ordreNr]||{};
+        var tkVal=inp.tk!=null?inp.tk:stk;
+        aoa.push([
+          r.ordreNr,r.pl||'',r.beskr||'',r.type||'',r.kunde||'',
+          _s(r.tilbud),_s(r.fakt),r.risk||'',
+          inp.timer||0,tkVal,inp.mat||0,_n(c.gk),_n(c.esk),
+          _pct(c.fg),_pct(c.estDG),_n(c.innt),
+          null,null,null,null,
+          _n(c.via),inp.k||''
+        ]);
+      } else {
+        var c=calcDG(r),inp=DGI[r.ordreNr]||{},prev=getPrevDG(r.ordreNr);
+        aoa.push([
+          r.ordreNr,r.pl||'',r.beskr||'',r.type||'',r.kunde||'',
+          _s(r.totOmk),_s(r.fakt),r.risk||'',
+          null,null,null,null,null,null,null,null,
+          _pct(c.dg),prev&&prev.dg!=null?_pct(prev.dg):null,
+          prev?prev.period||'':null,_n(c.fs),
+          _n(c.via),inp.k||''
+        ]);
+      }
+    });
+    var ws=XLSX.utils.aoa_to_sheet(aoa),wb=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,'VIA_QA');
+    _xlsxDownload(wb,'VIA_Minel_'+new Date().toISOString().substring(0,10)+'.xlsx');
+  }catch(e){alert('Eksport feilet: '+e.message+'\n'+e.stack);}
+}
+function expHist(){
+  try{
+    if(typeof XLSX==='undefined'){alert('XLSX-biblioteket er ikke lastet.');return;}
+    var hist=getHist();
+    if(!hist.length){alert('Ingen historikk å eksportere.');return;}
+    // Sort periods chronologically by snapshot id
+    hist.sort(function(a,b){return(a.id||0)-(b.id||0);});
+    var periods=hist.map(function(h){return h.period;});
+    // Build project map: ordreNr → {pl, 
