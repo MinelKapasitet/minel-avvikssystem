@@ -2025,4 +2025,43 @@ function expHist(){
     // Sort periods chronologically by snapshot id
     hist.sort(function(a,b){return(a.id||0)-(b.id||0);});
     var periods=hist.map(function(h){return h.period;});
-    // Build project map: ordreNr → {pl, 
+    // Build project map: ordreNr → {pl, beskr, type, kunde, hasTilbud, byPeriod:{period→{via,dg,fg}}}
+    var pmap={};
+    hist.forEach(function(h){
+      h.projects.forEach(function(p){
+        if(!pmap[p.ordreNr]){
+          pmap[p.ordreNr]={pl:p.pl||'',beskr:p.beskr||'',type:p.type||'',kunde:p.kunde||'',hasTilbud:p.hasTilbud,byPeriod:{}};
+        }
+        pmap[p.ordreNr].byPeriod[h.period]={via:p.via,dg:p.dg,fg:p.fg};
+      });
+    });
+    // Build headers: fixed cols + one VIA+DG% pair per period
+    var H=['Ordre','Prosjektleder','Beskrivelse','Type','Kunde','Fastpris?'];
+    periods.forEach(function(p){H.push(p+' VIA');H.push(p+' DG%');});
+    var aoa=[H];
+    Object.keys(pmap).sort().forEach(function(nr){
+      var p=pmap[nr];
+      var row=[nr,p.pl,p.beskr,p.type,p.kunde,p.hasTilbud?'Ja':'Nei'];
+      periods.forEach(function(per){
+        var b=p.byPeriod[per];
+        row.push(b&&b.via!=null?b.via:null);
+        row.push(b&&b.dg!=null?_pct(b.dg):null);
+      });
+      aoa.push(row);
+    });
+    // Summary row: total VIA per period
+    var sumRow=['','','','','TOTAL',''];
+    periods.forEach(function(per){
+      var h=hist.find(function(x){return x.period===per;});
+      sumRow.push(h?h.summary.totalVIA:null);
+      sumRow.push(null);
+    });
+    aoa.push(sumRow);
+    var ws=XLSX.utils.aoa_to_sheet(aoa),wb=XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb,ws,'Historikk');
+    _xlsxDownload(wb,'VIA_Historikk_'+new Date().toISOString().substring(0,10)+'.xlsx');
+  }catch(e){alert('Eksport feilet: '+e.message+'\n'+e.stack);}
+}
+</script>
+</body>
+</html>
