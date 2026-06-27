@@ -870,8 +870,10 @@ var ROUND = new Set([0.10,0.15,0.17,0.20,0.25,0.28,0.30,0.35,0.40,0.45,0.50,0.55
 // Alt annet (inkl. ukjente aktive statuser) inkluderes automatisk for å sikre fullstendighet
 var EXCL_STATUS = new Set([
   'Avsluttet','Ferdig','Lukket','Kansellert','Annullert','Tapt',
-  'Fakturert','Avvist','Tilbud','Anbud','Slettet','Arkivert',
+  'Fakturert','Avvist','Slettet','Arkivert',
   'Avsluttet-fakturert','Avsluttet - fakturert'
+  // 'Tilbud','Anbud' — inkluderes: tilbud/anbud kan ha aktive kostnader som skal følges opp
+  // 'Bokført' — avklar om dette er avsluttede eller aktive ordrer i OS før ev. ekskludering
 ]);
 // Beholdes kun for referanse og Excel-bakoverkompatibilitet
 var VSTATUS = new Set(['I arbeid','Klar for fakturering','Venter på elektriker','Åpen','Delutført','Klar for akkordkjøring']);
