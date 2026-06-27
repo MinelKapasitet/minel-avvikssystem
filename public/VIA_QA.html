@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.21</title>
+<title>VIA QA – Minel AS v9.22</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.21</span>
+  <span class="hd-badge">v9.22</span>
 </header>
 
 <!-- START PANEL -->
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.21 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.22 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -866,6 +866,14 @@ var HIDE_SETTLED = false, HIDE_SMALL = false, HIDE_SMALL_POC = false;
 var QS = {col:6,asc:false}, RS = {col:8,asc:false};
 var POCS = {col:4,asc:false}, DGS = {col:5,asc:false};
 var ROUND = new Set([0.10,0.15,0.17,0.20,0.25,0.28,0.30,0.35,0.40,0.45,0.50,0.55,0.60,0.65,0.70]);
+// EKSKLUDERINGSLISTE — ordre med disse statusene er AVSLUTTET/KANSELLERT og skal ikke med
+// Alt annet (inkl. ukjente aktive statuser) inkluderes automatisk for å sikre fullstendighet
+var EXCL_STATUS = new Set([
+  'Avsluttet','Ferdig','Lukket','Kansellert','Annullert','Tapt',
+  'Fakturert','Avvist','Tilbud','Anbud','Slettet','Arkivert',
+  'Avsluttet-fakturert','Avsluttet - fakturert'
+]);
+// Beholdes kun for referanse og Excel-bakoverkompatibilitet
 var VSTATUS = new Set(['I arbeid','Klar for fakturering','Venter på elektriker','Åpen','Delutført','Klar for akkordkjøring']);
 var OS_GQL = 'https://graphql.ordrestyring.dk/graphql';
 var OS_COMPANIES = [
@@ -1113,7 +1121,8 @@ function fetchBenchmark(key){
   return nx().then(function(cases){
     var bt = {};
     cases.forEach(function(c){
-      if(VSTATUS.has((c.status&&c.status.text)||'')) return;
+      // Benchmark: kun avsluttede/terminale ordrer gir meningsfullt DG-snitt
+      if(!EXCL_STATUS.has((c.status&&c.status.text)||'')) return;
       var t = (c.caseType&&c.caseType.text)||''; if(!t) return;
       var raw = (c.economy&&c.economy.expectedCoverageRatio); if(raw==null) return;
       var dg = raw>1 ? raw/100 : raw; if(dg<0||dg>1) return;
@@ -1292,11 +1301,27 @@ function startApiLoad(){
     var bn = Object.keys(BENCH).length;
     document.getElementById('sec2note').innerHTML = 'Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet.'+(bn>0?' <span style="background:var(--bluebg);color:var(--blue);border-radius:4px;padding:2px 8px;font-size:.78rem;font-weight:700;">📊 Benchmark: '+bn+' ordretyper</span>':'')+'  <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span>';
 
+    // Telle alle statuser for diagnostikk
+    var _statusTeller = {};
+    cases.forEach(function(c){ var s=(c.status&&c.status.text)||'(tom)'; _statusTeller[s]=(_statusTeller[s]||0)+1; });
+    console.log('[FILTER] Alle statuser fra OS:', _statusTeller);
+
     var active = cases.filter(function(c){
       var isParent = c.subCases && c.subCases.length > 0 && !c.parentCaseId;
       var typeText = (c.caseType&&c.caseType.text)||'';
-      return VSTATUS.has((c.status&&c.status.text)||'') && !isParent && !EXCL_TYPES.has(typeText);
+      var statusText = (c.status&&c.status.text)||'';
+      // Inkluder ALT som ikke er en kjent terminal-status — fanger ukjente aktive statuser
+      return !EXCL_STATUS.has(statusText) && statusText !== '' && !isParent && !EXCL_TYPES.has(typeText);
     });
+
+    // Diagnostikk: vis nye statuser som ikke var i opprinnelig VSTATUS
+    var nyeStatuser = Object.keys(_statusTeller).filter(function(s){
+      return !EXCL_STATUS.has(s) && !VSTATUS.has(s) && s !== '(tom)' && _statusTeller[s] > 0;
+    });
+    if(nyeStatuser.length){
+      console.warn('[FILTER] ⚠️ Nye/ukjente aktive statuser inkludert i modellen:', nyeStatuser.map(function(s){return s+' ('+_statusTeller[s]+')';}));
+      logEvent('NyStatus',{statuser:nyeStatuser,selskap:co.name}).catch(function(){});
+    }
 
     setP(10,'Henter økonomidata for '+active.length+' ordrer…','5 parallelle forespørsler');
     var done = 0;
@@ -1396,7 +1421,7 @@ function parseExcel(raw,fname){
   var n=function(v){var x=parseFloat(v);return isNaN(x)?null:x;};
   var rows = raw.slice(1)
     .filter(function(r){return r[H['Ordre nr.']]!=null;})
-    .filter(function(r){return VSTATUS.has(String(r[H['Status']]||'').trim());})
+    .filter(function(r){var s=String(r[H['Status']]||'').trim();return s&&!EXCL_STATUS.has(s);})
     .map(function(r){
       var dg=n(r[H['Forv. dekningsgrad (%)']]),tilbud=n(r[H['Tilbudspris (NOK)']]);
       if(tilbud&&tilbud<=0) tilbud=null;
