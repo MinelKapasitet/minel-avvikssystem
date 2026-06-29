@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.27</title>
+<title>VIA QA – Minel AS v9.28</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.27</span>
+  <span class="hd-badge">v9.28</span>
 </header>
 
 <!-- START PANEL -->
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.27 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.28 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -522,7 +522,7 @@ async function spLoadHist(entity){
   }catch(e){console.warn('[SP] Historikk-henting feilet:',e);return false;}
 }
 var MSAL_CFG={auth:{clientId:'f5b4bfe7-8fec-496c-a1e1-8d519666ab45',authority:'https://login.microsoftonline.com/7ee2ac67-421e-4ac2-8998-f1f3e0c10fa7',redirectUri:'https://calm-plant-0bcddaa03.7.azurestaticapps.net/VIA_QA.html'},cache:{cacheLocation:'localStorage'}};
-var SP_SCOPES=['https://graph.microsoft.com/Sites.Selected'];
+var SP_SCOPES=['https://graph.microsoft.com/Sites.ReadWrite.All'];
 var _msalApp=null,_spUser='Ukjent',_spIds={},_spEtags={},_spDebounce={};
 var _currentUser=null;
 var DL_LIST={
@@ -1361,49 +1361,62 @@ function startApiLoad(){
         var rawDG = (c.economy&&c.economy.expectedCoverageRatio)||0;
         var dg = rawDG>1 ? rawDG/100 : rawDG;
         var tilbud = c.offerTotal>0 ? c.offerTotal/100 : null;
+        // Steg 1: hent økonomidata
         return Promise.all([
           fetchHours(co.key,c.id,uf,ut).catch(function(){return[];}),
           fetchMaterials(co.key,c.id).catch(function(){return 0;}),
-          fetchSalesInvoices(co.key,c.id,uf,ut).catch(function(){return[];}),
-          fetchLatestHourDate(co.key,c.id).catch(function(){return null;}),
-          fetchLatestInvoiceDate(co.key,c.id).catch(function(){return null;})
+          fetchSalesInvoices(co.key,c.id,uf,ut).catch(function(){return[];})
         ]).then(function(r){
           var tk = r[0].reduce(function(s,h){return s+(h.costPrice||0);},0)/100;
           var mk = r[1]/100;
           var fk = r[2].reduce(function(s,i){return s+(i.amount||0);},0)/100;
-          var lastHourDate = r[3];   // 'YYYY-MM-DD' eller null
-          var lastInvDate  = r[4];   // 'YYYY-MM-DD' eller null
           var tot = tk + mk;
-          // Ekskluder ordrer der alle kostnader er fakturert: siste faktura er lik eller nyere enn siste timer
-          // Unntatt: ordre uten faktura men med kostnader (= aktiv pågående) beholdes alltid
-          if(lastInvDate && (!lastHourDate || lastInvDate >= lastHourDate) && mk === 0){
-            done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrer…','');
-            return null; // sluttfakturert — utelates
+          // Steg 2: datokontroll kun for ordrer som KAN være sluttfakturert
+          // (ingen materialkostnader OG det er sendt faktura — sparer API-kall for alle andre)
+          if(mk === 0 && fk > 0){
+            return Promise.all([
+              fetchLatestHourDate(co.key,c.id).catch(function(){return null;}),
+              fetchLatestInvoiceDate(co.key,c.id).catch(function(){return null;})
+            ]).then(function(dates){
+              var lastHourDate = dates[0];
+              var lastInvDate  = dates[1];
+              // Siste faktura er nyere enn eller lik siste timekostnad — sluttfakturert
+              if(lastInvDate && (!lastHourDate || lastInvDate >= lastHourDate)){
+                done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrer…','');
+                return null;
+              }
+              return buildRow(c,tk,mk,fk,tot,dg,tilbud,done,active,setP);
+            });
           }
-          var tmRev = (((c.economy&&c.economy.hoursSalesprice)||0)+((c.economy&&c.economy.materialsSalesprice)||0))/100;
-          var isTM = !tilbud&&((((c.economy&&c.economy.hoursSalesprice)||0)>((c.economy&&c.economy.hoursCostprice)||0)*1.05)||(((c.economy&&c.economy.materialsSalesprice)||0)>((c.economy&&c.economy.materialsCostprice)||0)*1.05));
-          var fsv = isTM ? tmRev : (dg>0&&dg<1) ? tot/(1-dg) : tot;
-          var via = fsv - fk;
-          done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrer…','');
-          return {
-            id:c.id,
-            ordreNr:String(c.caseNumber||'').trim(),
-            isTM:isTM||false,
-            status:(c.status&&c.status.text)||'',
-            type:(c.caseType&&c.caseType.text)||'',
-            beskr:String(c.description||'').replace(/[\n\r\xa0]+/g,' ').trim(),
-            kunde:(c.customer&&c.customer.name)||'',
-            pl:(c.foreman&&c.foreman.fullName)||'',
-            tilbud:tilbud,
-            hasTilbud:tilbud!=null&&tilbud>0,
-            totOmk:tot,
-            timerkost:tk,
-            materialkost:mk,
-            dg:dg,
-            fakt:fk,
-            fSalgsverdi:fsv,
-            via:via
-          };
+          // Ingen faktura eller har materialkostnader — beholdes direkte
+          return buildRow(c,tk,mk,fk,tot,dg,tilbud,done,active,setP);
+
+          function buildRow(c,tk,mk,fk,tot,dg,tilbud){
+            var tmRev = (((c.economy&&c.economy.hoursSalesprice)||0)+((c.economy&&c.economy.materialsSalesprice)||0))/100;
+            var isTM = !tilbud&&((((c.economy&&c.economy.hoursSalesprice)||0)>((c.economy&&c.economy.hoursCostprice)||0)*1.05)||(((c.economy&&c.economy.materialsSalesprice)||0)>((c.economy&&c.economy.materialsCostprice)||0)*1.05));
+            var fsv = isTM ? tmRev : (dg>0&&dg<1) ? tot/(1-dg) : tot;
+            var via = fsv - fk;
+            done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrer…','');
+            return {
+              id:c.id,
+              ordreNr:String(c.caseNumber||'').trim(),
+              isTM:isTM||false,
+              status:(c.status&&c.status.text)||'',
+              type:(c.caseType&&c.caseType.text)||'',
+              beskr:String(c.description||'').replace(/[\n\r\xa0]+/g,' ').trim(),
+              kunde:(c.customer&&c.customer.name)||'',
+              pl:(c.foreman&&c.foreman.fullName)||'',
+              tilbud:tilbud,
+              hasTilbud:tilbud!=null&&tilbud>0,
+              totOmk:tot,
+              timerkost:tk,
+              materialkost:mk,
+              dg:dg,
+              fakt:fk,
+              fSalgsverdi:fsv,
+              via:via
+            };
+          }
         });
       };
     });
@@ -2192,56 +2205,4 @@ function expPOC(){
         ]);
       }
     });
-    var ws=XLSX.utils.aoa_to_sheet(aoa),wb=XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb,ws,'VIA_QA');
-    _xlsxDownload(wb,'VIA_Minel_'+new Date().toISOString().substring(0,10)+'.xlsx');
-  }catch(e){alert('Eksport feilet: '+e.message+'\n'+e.stack);}
-}
-function expHist(){
-  try{
-    if(typeof XLSX==='undefined'){alert('XLSX-biblioteket er ikke lastet.');return;}
-    var hist=getHist();
-    if(!hist.length){alert('Ingen historikk å eksportere.');return;}
-    // Sort periods chronologically by snapshot id
-    hist.sort(function(a,b){return(a.id||0)-(b.id||0);});
-    var periods=hist.map(function(h){return h.period;});
-    // Build project map: ordreNr → {pl, beskr, type, kunde, hasTilbud, byPeriod:{period→{via,dg,fg}}}
-    var pmap={};
-    hist.forEach(function(h){
-      h.projects.forEach(function(p){
-        if(!pmap[p.ordreNr]){
-          pmap[p.ordreNr]={pl:p.pl||'',beskr:p.beskr||'',type:p.type||'',kunde:p.kunde||'',hasTilbud:p.hasTilbud,byPeriod:{}};
-        }
-        pmap[p.ordreNr].byPeriod[h.period]={via:p.via,dg:p.dg,fg:p.fg};
-      });
-    });
-    // Build headers: fixed cols + one VIA+DG% pair per period
-    var H=['Ordre','Prosjektleder','Beskrivelse','Type','Kunde','Fastpris?'];
-    periods.forEach(function(p){H.push(p+' VIA');H.push(p+' DG%');});
-    var aoa=[H];
-    Object.keys(pmap).sort().forEach(function(nr){
-      var p=pmap[nr];
-      var row=[nr,p.pl,p.beskr,p.type,p.kunde,p.hasTilbud?'Ja':'Nei'];
-      periods.forEach(function(per){
-        var b=p.byPeriod[per];
-        row.push(b&&b.via!=null?b.via:null);
-        row.push(b&&b.dg!=null?_pct(b.dg):null);
-      });
-      aoa.push(row);
-    });
-    // Summary row: total VIA per period
-    var sumRow=['','','','','TOTAL',''];
-    periods.forEach(function(per){
-      var h=hist.find(function(x){return x.period===per;});
-      sumRow.push(h?h.summary.totalVIA:null);
-      sumRow.push(null);
-    });
-    aoa.push(sumRow);
-    var ws=XLSX.utils.aoa_to_sheet(aoa),wb=XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb,ws,'Historikk');
-    _xlsxDownload(wb,'VIA_Historikk_'+new Date().toISOString().substring(0,10)+'.xlsx');
-  }catch(e){alert('Eksport feilet: '+e.message+'\n'+e.stack);}
-}
-</script>
-</body>
-</html>
+    var ws=XLSX.utils.aoa_to_sheet(aoa),wb=XLSX.ut
