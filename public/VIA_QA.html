@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.28</title>
+<title>VIA QA – Minel AS v9.29</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.28</span>
+  <span class="hd-badge">v9.29</span>
 </header>
 
 <!-- START PANEL -->
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.28 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.29 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -1096,6 +1096,13 @@ function fetchLatestInvoiceDate(key,id){
   return gqlQ(key,'{salesInvoices(pagination:{cursor:null,limit:1},orderBy:{field:"date",direction:DESC},filters:{caseIds:['+id+']}){items{date}}}')
     .then(function(d){return (d.salesInvoices&&d.salesInvoices.items&&d.salesInvoices.items[0]&&d.salesInvoices.items[0].date)||null;});
 }
+// Hent dato på seneste materialtransaksjon (all-time, ikke periodefiltrert)
+// Returnerer null ved API-feil → konservativt: orden beholdes
+function fetchLatestMaterialDate(key,id){
+  return gqlQ(key,'{caseMaterials(pagination:{cursor:null,limit:1},orderBy:{field:"date",direction:DESC},caseId:'+id+'){items{date}}}')
+    .then(function(d){return (d.caseMaterials&&d.caseMaterials.items&&d.caseMaterials.items[0]&&d.caseMaterials.items[0].date)||null;})
+    .catch(function(){return null;});
+}
 
 /* ============================================================
    BENCHMARK
@@ -1371,25 +1378,33 @@ function startApiLoad(){
           var mk = r[1]/100;
           var fk = r[2].reduce(function(s,i){return s+(i.amount||0);},0)/100;
           var tot = tk + mk;
-          // Steg 2: datokontroll kun for ordrer som KAN være sluttfakturert
-          // (ingen materialkostnader OG det er sendt faktura — sparer API-kall for alle andre)
-          if(mk === 0 && fk > 0){
+          // Steg 2: datokontroll — utelat sluttfakturerte ordrer (ingen kostnader tilført etter siste faktura)
+          // Sjekker ALLE fakturerte ordrer uavhengig av om de har materialer eller ikke
+          if(fk > 0){
             return Promise.all([
-              fetchLatestHourDate(co.key,c.id).catch(function(){return null;}),
-              fetchLatestInvoiceDate(co.key,c.id).catch(function(){return null;})
+              tk > 0 ? fetchLatestHourDate(co.key,c.id).catch(function(){return null;}) : Promise.resolve(null),
+              fetchLatestInvoiceDate(co.key,c.id).catch(function(){return null;}),
+              mk > 0 ? fetchLatestMaterialDate(co.key,c.id) : Promise.resolve(null)
             ]).then(function(dates){
               var lastHourDate = dates[0];
               var lastInvDate  = dates[1];
-              // Siste faktura er nyere enn eller lik siste timekostnad — sluttfakturert
-              if(lastInvDate && (!lastHourDate || lastInvDate >= lastHourDate)){
+              var lastMatDate  = dates[2];
+              if(!lastInvDate) return buildRow(c,tk,mk,fk,tot,dg,tilbud);
+              // Timer tilført etter siste faktura?
+              var hoursAfterInv = tk > 0 && lastHourDate && lastHourDate > lastInvDate;
+              // Materialer tilført etter siste faktura?
+              // null lastMatDate = API-feil → konservativt: anta materialer er nyere (behold ordre)
+              var matsAfterInv = mk > 0 && (lastMatDate === null || lastMatDate > lastInvDate);
+              // Ingen kostnader etter siste faktura → sluttfakturert, utelat
+              if(!hoursAfterInv && !matsAfterInv){
                 done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrer…','');
                 return null;
               }
-              return buildRow(c,tk,mk,fk,tot,dg,tilbud,done,active,setP);
+              return buildRow(c,tk,mk,fk,tot,dg,tilbud);
             });
           }
-          // Ingen faktura eller har materialkostnader — beholdes direkte
-          return buildRow(c,tk,mk,fk,tot,dg,tilbud,done,active,setP);
+          // Ingen faktura → behold
+          return buildRow(c,tk,mk,fk,tot,dg,tilbud);
 
           function buildRow(c,tk,mk,fk,tot,dg,tilbud){
             var tmRev = (((c.economy&&c.economy.hoursSalesprice)||0)+((c.economy&&c.economy.materialsSalesprice)||0))/100;
