@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.29</title>
+<title>VIA QA – Minel AS v9.30</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.29</span>
+  <span class="hd-badge">v9.30</span>
 </header>
 
 <!-- START PANEL -->
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.29 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.30 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -875,9 +875,10 @@ var EXCL_STATUS = new Set([
   // Intern-status (Skogvang: 10, Gjøvik: 78) — interne ordrer uten fakturareserve:
   'Intern',
   // Elmontasje interne/lager-statuser uten fakturareserve:
-  'INTERN Verktøy/Arb.tøy','VARELAGER','Varetelling biler 2025','Regnskap'
+  'INTERN Verktøy/Arb.tøy','VARELAGER','Varetelling biler 2025','Regnskap',
+  // Regnskapsmessig terminal-status — bokført = ferdig, ingen åpen fakturareserve:
+  'Bokført'
   // 'Tilbud','Anbud' — inkluderes: kan ha aktive kostnader
-  // 'Bokført' — bekreftet aktive ordrer med uFakturerte beløp, inkluderes
 ]);
 // Beholdes kun for referanse og Excel-bakoverkompatibilitet
 var VSTATUS = new Set(['I arbeid','Klar for fakturering','Venter på elektriker','Åpen','Delutført','Klar for akkordkjøring']);
@@ -1097,10 +1098,11 @@ function fetchLatestInvoiceDate(key,id){
     .then(function(d){return (d.salesInvoices&&d.salesInvoices.items&&d.salesInvoices.items[0]&&d.salesInvoices.items[0].date)||null;});
 }
 // Hent dato på seneste materialtransaksjon (all-time, ikke periodefiltrert)
-// Returnerer null ved API-feil → konservativt: orden beholdes
+// Bruker materialDate-feltet og type:MATERIAL (påkrevd av OS GraphQL-skjema)
+// null = ingen dato satt (historiske/importerte poster) → behandles som "eldre enn faktura"
 function fetchLatestMaterialDate(key,id){
-  return gqlQ(key,'{caseMaterials(pagination:{cursor:null,limit:1},orderBy:{field:"date",direction:DESC},caseId:'+id+'){items{date}}}')
-    .then(function(d){return (d.caseMaterials&&d.caseMaterials.items&&d.caseMaterials.items[0]&&d.caseMaterials.items[0].date)||null;})
+  return gqlQ(key,'{caseMaterials(pagination:{cursor:null,limit:1},orderBy:{field:"materialDate",direction:DESC},caseId:'+id+',type:MATERIAL){items{materialDate}}}')
+    .then(function(d){return (d.caseMaterials&&d.caseMaterials.items&&d.caseMaterials.items[0]&&d.caseMaterials.items[0].materialDate)||null;})
     .catch(function(){return null;});
 }
 
@@ -1393,8 +1395,9 @@ function startApiLoad(){
               // Timer tilført etter siste faktura?
               var hoursAfterInv = tk > 0 && lastHourDate && lastHourDate > lastInvDate;
               // Materialer tilført etter siste faktura?
-              // null lastMatDate = API-feil → konservativt: anta materialer er nyere (behold ordre)
-              var matsAfterInv = mk > 0 && (lastMatDate === null || lastMatDate > lastInvDate);
+              // null lastMatDate = ingen dato satt (historisk/importert) → behandles som "gammel" (ikke etter faktura)
+              // Aktive ordrer med nye materialer har typisk også nye timer → hoursAfterInv fanger disse
+              var matsAfterInv = mk > 0 && lastMatDate !== null && lastMatDate > lastInvDate;
               // Ingen kostnader etter siste faktura → sluttfakturert, utelat
               if(!hoursAfterInv && !matsAfterInv){
                 done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrer…','');
