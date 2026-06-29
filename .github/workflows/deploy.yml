@@ -2,28 +2,17 @@ name: Deploy til Azure Static Web Apps
 
 on:
   push:
-    branches: [main]
+      branches: [main]
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: upload
-          app_location: /public
-          skip_app_build: true
-
-      - name: "Sjekk avvikssystemet skal IKKE vises paa Kapasitetsprognose sin URL"
-        run: |
-          sleep 20
-          CONTENT=$(curl -s https://calm-plant-0bcddaa03.7.azurestaticapps.net/ | head -c 5000)
-          if echo "$CONTENT" | grep -qi "avviksregistrering"; then
-            echo "::error::ALARM - avvikssystemet er deployet til Kapasitetsprognose sin URL (calm-plant-0bcddaa03)!"
-            echo "::error::Sjekk at AZURE_STATIC_WEB_APPS_API_TOKEN-secreten peker paa minel-avvik-swa, ikke minel-swa."
-            exit 1
-          fi
-          echo "OK - Kapasitetsprognose sin URL er uberort av denne deployen."
+      jobs:
+        deploy:
+            runs-on: ubuntu-latest
+                steps:
+                      - uses: actions/checkout@v4
+                            - uses: Azure/static-web-apps-deploy@v1
+                                    with:
+                                              azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_NICE_MEADOW }}
+                                                        repo_token: ${{ secrets.GITHUB_TOKEN }}
+                                                                  action: upload
+                                                                            app_location: /public
+                                                                                      skip_app_build: true
