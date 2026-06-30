@@ -1393,12 +1393,14 @@ function startApiLoad(){
               var lastInvDate  = dates[1];
               var lastMatDate  = dates[2];
               if(!lastInvDate) return buildRow(c,tk,mk,fk,tot,dg,tilbud);
-              // Timer tilført etter siste faktura?
-              var hoursAfterInv = tk > 0 && lastHourDate && lastHourDate > lastInvDate;
+              // Timer tilført etter siste faktura? Sammenlign per dag (ikke sekund) for å
+              // unngå falske positiver der timer og faktura er registrert samme dag.
+              var SEC_PER_DAY = 86400;
+              var hoursAfterInv = tk > 0 && lastHourDate && Math.floor(lastHourDate/SEC_PER_DAY) > Math.floor(lastInvDate/SEC_PER_DAY);
               // Materialer tilført etter siste faktura?
               // null lastMatDate = ingen dato satt (historisk/importert) → behandles som "gammel" (ikke etter faktura)
               // Aktive ordrer med nye materialer har typisk også nye timer → hoursAfterInv fanger disse
-              var matsAfterInv = mk > 0 && lastMatDate !== null && lastMatDate > lastInvDate;
+              var matsAfterInv = mk > 0 && lastMatDate !== null && Math.floor(lastMatDate/SEC_PER_DAY) > Math.floor(lastInvDate/SEC_PER_DAY);
               // Ingen kostnader etter siste faktura → sluttfakturert, utelat
               if(!hoursAfterInv && !matsAfterInv){
                 done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrer…','');
@@ -1407,7 +1409,9 @@ function startApiLoad(){
               return buildRow(c,tk,mk,fk,tot,dg,tilbud);
             });
           }
-          // Ingen faktura → behold
+          // fk=0: ingen faktura i perioden (faktura er etter periodelutt, eller aldri fakturert).
+          // Disse ordrene er aktive i perioden — inkluder alltid.
+          // (Sluttfakturert-sjekken håndteres kun for fk>0, der fakturaen er i perioden.)
           return buildRow(c,tk,mk,fk,tot,dg,tilbud);
 
           function buildRow(c,tk,mk,fk,tot,dg,tilbud){
