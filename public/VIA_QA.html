@@ -521,7 +521,7 @@ async function spLoadHist(entity){
     return true;
   }catch(e){console.warn('[SP] Historikk-henting feilet:',e);return false;}
 }
-var MSAL_CFG={auth:{clientId:'f5b4bfe7-8fec-496c-a1e1-8d519666ab45',authority:'https://login.microsoftonline.com/7ee2ac67-421e-4ac2-8998-f1f3e0c10fa7',redirectUri:'https://calm-plant-0bcddaa03.7.azurestaticapps.net/VIA_QA.html'},cache:{cacheLocation:'localStorage'}};
+var MSAL_CFG={auth:{clientId:'f5b4bfe7-8fec-496c-a1e1-8d519666ab45',authority:'https://login.microsoftonline.com/7ee2ac67-421e-4ac2-8998-f1f3e0c10fa7',redirectUri:'https://minelkapasitet.github.io/minel-avvikssystem/public/VIA_QA.html'},cache:{cacheLocation:'localStorage'}};
 var SP_SCOPES=['https://graph.microsoft.com/Sites.ReadWrite.All'];
 var _msalApp=null,_spUser='Ukjent',_spIds={},_spEtags={},_spDebounce={};
 var _currentUser=null;
