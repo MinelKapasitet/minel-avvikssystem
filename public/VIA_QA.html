@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.33</title>
+<title>VIA QA – Minel AS v9.34</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.33</span>
+  <span class="hd-badge">v9.34</span>
 </header>
 
 <!-- START PANEL -->
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.33 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.34 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -884,15 +884,15 @@ var EXCL_STATUS = new Set([
 var VSTATUS = new Set(['I arbeid','Klar for fakturering','Venter på elektriker','Åpen','Delutført','Klar for akkordkjøring']);
 var OS_GQL = 'https://graphql.ordrestyring.dk/graphql';
 var OS_COMPANIES = [
-  {name:'Minel Kreativ Elektro Ski AS',       key:'qYtkWAowUUo2PbaE'},
-  {name:'Minel Skogvang Installasjon AS',      key:'TxE4TJAk6eeWUqQY'},
-  {name:'Minel Land Elektriske AS',            key:'yOVFmYixo35RnY6l'},
-  {name:'Minel Gjøvik AS',                     key:'edewj6APD4wb8uD5'},
-  {name:'Minel Elmontasje AS',                 key:'rPuAsfNqjpyoeBdV'},
-  {name:'Minel Elmontasje Elverum AS',         key:'CmJHRiMNdn68RWZM'},
-  {name:'Minel Ainstall AS',                   key:'OHcNVeTrqWU7dOK7'},
-  {name:'Minel Drøbak Elektriske AS',          key:'FzmySlRzW72gOBaB'},
-  {name:'Minel Gudbrandsdal AS',               key:'yEEdLNDUCssPuhOl'}
+  {name:'Minel Kreativ Elektro Ski AS',       key:'qYtkWAowUUo2PbaE', paStartDato:'2025-01-01'},
+  {name:'Minel Skogvang Installasjon AS',      key:'TxE4TJAk6eeWUqQY', paStartDato:'2025-01-01'},
+  {name:'Minel Land Elektriske AS',            key:'yOVFmYixo35RnY6l', paStartDato:'2025-01-01'},
+  {name:'Minel Gjøvik AS',                     key:'edewj6APD4wb8uD5', paStartDato:'2025-01-01'},
+  {name:'Minel Elmontasje AS',                 key:'rPuAsfNqjpyoeBdV', paStartDato:'2025-01-01'},
+  {name:'Minel Elmontasje Elverum AS',         key:'CmJHRiMNdn68RWZM', paStartDato:'2025-01-01'},
+  {name:'Minel Ainstall AS',                   key:'OHcNVeTrqWU7dOK7', paStartDato:'2025-01-01'},
+  {name:'Minel Drøbak Elektriske AS',          key:'FzmySlRzW72gOBaB', paStartDato:'2025-01-01'},
+  {name:'Minel Gudbrandsdal AS',               key:'yEEdLNDUCssPuhOl', paStartDato:'2025-01-01'}
 ];
 var EXCL_TYPES = new Set(['Intern','Internordre','Reklamasjon','Intern ordre']);
 
@@ -1313,12 +1313,12 @@ function startApiLoad(){
   setP(0,'Henter ordreliste og benchmark…','');
   document.getElementById('startPanel').style.display = 'none';
   document.getElementById('progressWrap').style.display = 'block';
-  var uf = toUnix('2000-01-01'), ut = toUnix(dateStr);
+  var uf = toUnix(co.paStartDato || '2025-01-01'), ut = toUnix(dateStr);
 
   Promise.all([
     fetchBenchmark(co.key),
     paginate(co.key, function(c){
-      return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC}){items{id caseNumber description status{text} caseType{text} customer{name} foreman{fullName} offerTotal parentCaseId subCases{id} economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice}}nextCursor}}';
+      return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC},between:{field:createdAt,from:'+uf+',to:'+ut+'}){items{id caseNumber description status{text} caseType{text} customer{name} foreman{fullName} offerTotal parentCaseId economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice}}nextCursor}}';
     }, function(d){return d.cases;})
   ]).then(function(res){
     BENCH = res[0];
@@ -1332,15 +1332,16 @@ function startApiLoad(){
     console.log('[FILTER] Alle statuser fra OS:', _statusTeller);
 
     var active = cases.filter(function(c){
-      var isParent = c.subCases && c.subCases.length > 0 && !c.parentCaseId;
+      if(c.parentCaseId) return false;
       var typeText = (c.caseType&&c.caseType.text)||'';
       var statusText = (c.status&&c.status.text)||'';
-      // Ekskluder ordrer uten påløpte kostnader — disse forurenser listen uten verdi
+      // Ekskluder ordrer uten påløpte kostnader OG uten forventet DG — uten aktivitet er disse uaktuelle
       var hkp = (c.economy&&c.economy.hoursCostprice)||0;
       var mkp = (c.economy&&c.economy.materialsCostprice)||0;
-      if(hkp === 0 && mkp === 0) return false;
+      var expDG = (c.economy&&c.economy.expectedCoverageRatio)||0;
+      if(hkp === 0 && mkp === 0 && expDG <= 0) return false;
       // Inkluder ALT som ikke er en kjent terminal-status — fanger ukjente aktive statuser
-      return !EXCL_STATUS.has(statusText) && statusText !== '' && !isParent && !EXCL_TYPES.has(typeText);
+      return !EXCL_STATUS.has(statusText) && statusText !== '' && !EXCL_TYPES.has(typeText);
     });
 
     // Diagnostikk: vis nye statuser som ikke var i opprinnelig VSTATUS
