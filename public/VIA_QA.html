@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.35</title>
+<title>VIA QA – Minel AS v9.36</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.35</span>
+  <span class="hd-badge">v9.36</span>
 </header>
 
 <!-- START PANEL -->
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.35 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.36 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -867,22 +867,26 @@ var QS = {col:6,asc:false}, RS = {col:8,asc:false};
 var POCS = {col:4,asc:false}, DGS = {col:5,asc:false};
 var ROUND = new Set([0.10,0.15,0.17,0.20,0.25,0.28,0.30,0.35,0.40,0.45,0.50,0.55,0.60,0.65,0.70]);
 // EKSKLUDERINGSLISTE — ordre med disse statusene er AVSLUTTET/KANSELLERT og skal ikke med
+// Matcher Intuitu PA-modulens "Avsluttede ordrer"-konfigurasjon: Avlyst, Avsluttet, Bokført, Lukket
 // Alt annet (inkl. ukjente aktive statuser) inkluderes automatisk for å sikre fullstendighet
 var EXCL_STATUS = new Set([
   'Avsluttet','Avsluttet.','Ferdig','Lukket','Kansellert','Annullert','Tapt',
   'Fakturert','Avvist','Slettet','Arkivert','Avlyst',
   'Avsluttet-fakturert','Avsluttet - fakturert',
+  // Bokført = terminal regnskapsstatus (bekreftet fra Intuitu PA-modul innstillinger)
+  // Tilsvarer "sluttfakturert og avsluttet i regnskapet" — skal ikke med i WIP
+  'Bokført',
   // Intern-status (Skogvang: 10, Gjøvik: 78) — interne ordrer uten fakturareserve:
   'Intern',
   // Elmontasje interne/lager-statuser uten fakturareserve:
   'INTERN Verktøy/Arb.tøy','VARELAGER','Varetelling biler 2025','Regnskap'
-  // NB: 'Bokført' er IKKE i denne listen — bokførte ordrer kan ha ny aktivitet etter siste faktura
-  // og skal da inkluderes. Sluttfakturert-filteret (dato-sjekk) håndterer disse korrekt.
   // 'Tilbud','Anbud' — inkluderes: kan ha aktive kostnader
 ]);
 // Beholdes kun for referanse og Excel-bakoverkompatibilitet
 var VSTATUS = new Set(['I arbeid','Klar for fakturering','Venter på elektriker','Åpen','Delutført','Klar for akkordkjøring']);
 var OS_GQL = 'https://graphql.ordrestyring.dk/graphql';
+// paStartDato satt til 2024-01-01 for å fange opp Jublo-migrasjonsordrer fra 2024
+// (Drøbak har 9 saker opprettet i 2024 som fortsatt er aktive og med i PA-modulen)
 var OS_COMPANIES = [
   {name:'Minel Kreativ Elektro Ski AS',       key:'qYtkWAowUUo2PbaE', paStartDato:'2024-01-01'},
   {name:'Minel Skogvang Installasjon AS',      key:'TxE4TJAk6eeWUqQY', paStartDato:'2024-01-01'},
@@ -894,6 +898,7 @@ var OS_COMPANIES = [
   {name:'Minel Drøbak Elektriske AS',          key:'FzmySlRzW72gOBaB', paStartDato:'2024-01-01'},
   {name:'Minel Gudbrandsdal AS',               key:'yEEdLNDUCssPuhOl', paStartDato:'2024-01-01'}
 ];
+// Reklamasjon er FJERNET herfra — PA-modulen inkluderer Reklamasjon-saker (bekreftet Drøbak mai 2026)
 var EXCL_TYPES = new Set(['Intern','Internordre','Intern ordre']);
 
 /* ============================================================
@@ -1105,6 +1110,27 @@ function fetchLatestMaterialDate(key,id){
     .then(function(d){return (d.caseMaterials&&d.caseMaterials.items&&d.caseMaterials.items[0]&&d.caseMaterials.items[0].materialDate)||null;})
     .catch(function(){return null;});
 }
+// ─── HISTORISK MODUS ────────────────────────────────────────────────────────
+// Hent alle saks-IDer som har fått faktura ETTER periodeslutt.
+// Disse sakene var IKKE Bokfurt på periodeslutt-datoen, men er det i dag.
+// Metode: company-wide salesInvoices (uten caseIds-filter) gir case{id} per faktura.
+// Returnerer Set<caseId> — tomme Set for inneværende periode (ingen fremtidige fakturaer).
+function fetchPostPeriodInvoicedCases(key, periodEndUnix){
+  var todayUnix = Math.floor(Date.now()/1000);
+  // Legg til 1 dag margin for å unngå fakturaer eksakt på periodeslutt
+  var fromUnix = periodEndUnix + 86400;
+  if(fromUnix >= todayUnix) return Promise.resolve(new Set());
+  var caseIds = new Set();
+  return paginate(key, function(c){
+    return '{salesInvoices(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},between:{field:date,from:'+fromUnix+',to:'+todayUnix+'}){items{case{id}}nextCursor}}';
+  }, function(d){ return d.salesInvoices; })
+  .then(function(items){
+    items.forEach(function(inv){ if(inv.case&&inv.case.id) caseIds.add(inv.case.id); });
+    console.log('[HIST] Saker med faktura etter periodeslutt:', caseIds.size);
+    return caseIds;
+  })
+  .catch(function(e){ console.warn('[HIST] fetchPostPeriodInvoicedCases feilet:', e.message); return new Set(); });
+}
 
 /* ============================================================
    BENCHMARK
@@ -1224,6 +1250,9 @@ function prevDGCell(ordreNr, curDG){
 function newBadge(ordreNr){
   return isNewOrder(ordreNr) ? '<span title="Ny ordre — ikke vært med i tidligere vurdering" style="background:#DBEAFE;color:#1D4ED8;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">NY</span>' : '';
 }
+function histBadge(r){
+  return r.historicalReopen ? '<span title="Saken er Bokfurt i dag, men var aktiv og åpen per periodeslutt-dato. Inkludert via historisk fakturadato-analyse." style="background:#FEF3C7;color:#92400E;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">📅 HIST</span>' : '';
+}
 
 /* ============================================================
    STATUS
@@ -1310,7 +1339,9 @@ function startApiLoad(){
   if(!dateStr){ alert('Velg periodeslutt-dato.'); return; }
   document.getElementById('api-btn').disabled = true;
   document.getElementById('api-err').style.display = 'none';
-  setP(0,'Henter ordreliste og benchmark…','');
+  var todayStr = new Date().toISOString().slice(0,10);
+  var isHistorical = dateStr < todayStr;
+  setP(0,'Henter ordreliste og benchmark'+(isHistorical?' (historisk: '+dateStr+')'  :'')+'…','');
   document.getElementById('startPanel').style.display = 'none';
   document.getElementById('progressWrap').style.display = 'block';
   var uf = toUnix(co.paStartDato || '2025-01-01'), ut = toUnix(dateStr);
@@ -1319,10 +1350,14 @@ function startApiLoad(){
     fetchBenchmark(co.key),
     paginate(co.key, function(c){
       return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC},between:{field:createdAt,from:'+uf+',to:'+ut+'}){items{id caseNumber description status{text} caseType{text} customer{name} foreman{fullName} offerTotal parentCaseId economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice}}nextCursor}}';
-    }, function(d){return d.cases;})
+    }, function(d){return d.cases;}),
+    // Historisk modus: hent saks-IDer som fikk faktura ETTER periodeslutt
+    // (disse var aktive/åpne på periodeslutt men er Bokfurt i dag)
+    fetchPostPeriodInvoicedCases(co.key, ut)
   ]).then(function(res){
     BENCH = res[0];
     var cases = res[1];
+    var reopenCaseIds = res[2]; // Set<caseId> med post-periode fakturaer
     var bn = Object.keys(BENCH).length;
     document.getElementById('sec2note').innerHTML = 'Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet.'+(bn>0?' <span style="background:var(--bluebg);color:var(--blue);border-radius:4px;padding:2px 8px;font-size:.78rem;font-weight:700;">📊 Benchmark: '+bn+' ordretyper</span>':'')+'  <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span>';
 
@@ -1331,7 +1366,9 @@ function startApiLoad(){
     cases.forEach(function(c){ var s=(c.status&&c.status.text)||'(tom)'; _statusTeller[s]=(_statusTeller[s]||0)+1; });
     console.log('[FILTER] Alle statuser fra OS:', _statusTeller);
 
+    var histReopenCount = 0;
     var active = cases.filter(function(c){
+      // Ekskluder delordrer (parentCaseId != null) — PA-modulen viser kun toppnivå-ordrer
       if(c.parentCaseId) return false;
       var typeText = (c.caseType&&c.caseType.text)||'';
       var statusText = (c.status&&c.status.text)||'';
@@ -1340,9 +1377,25 @@ function startApiLoad(){
       var mkp = (c.economy&&c.economy.materialsCostprice)||0;
       var expDG = (c.economy&&c.economy.expectedCoverageRatio)||0;
       if(hkp === 0 && mkp === 0 && expDG <= 0) return false;
+      if(EXCL_TYPES.has(typeText)) return false;
+      // ── Historisk re-inkludering ─────────────────────────────────────────
+      // En sak kan i dag være Bokfurt/terminal, men var aktiv på periodeslutt-dato.
+      // Signal: saken fikk sin (slutt)faktura ETTER periodeslutt → den var ikke Bokfurt da.
+      // Vi markerer disse med _historicalReopen = true og hopper over datokontroll.
+      if(EXCL_STATUS.has(statusText)){
+        if(reopenCaseIds.has(c.id)){
+          c._historicalReopen = true;
+          histReopenCount++;
+          return true;
+        }
+        return false;
+      }
       // Inkluder ALT som ikke er en kjent terminal-status — fanger ukjente aktive statuser
-      return !EXCL_STATUS.has(statusText) && statusText !== '' && !EXCL_TYPES.has(typeText);
+      return statusText !== '';
     });
+    if(histReopenCount > 0){
+      console.log('[HIST] '+histReopenCount+' saker gjeninkludert (var aktive ved '+dateStr+', er nå Bokfurt)');
+    }
 
     // Diagnostikk: vis nye statuser som ikke var i opprinnelig VSTATUS
     var nyeStatuser = Object.keys(_statusTeller).filter(function(s){
@@ -1384,7 +1437,9 @@ function startApiLoad(){
           var tot = tk + mk;
           // Steg 2: datokontroll — utelat sluttfakturerte ordrer (ingen kostnader tilført etter siste faktura)
           // Sjekker ALLE fakturerte ordrer uavhengig av om de har materialer eller ikke
-          if(fk > 0){
+          // Historisk re-inkluderte saker: vi vet de var aktive ved periodeslutt
+          // (sluttfakturaen kom etter periodeslutt) → ingen datokontroll nødvendig
+          if(fk > 0 && !c._historicalReopen){
             return Promise.all([
               tk > 0 ? fetchLatestHourDate(co.key,c.id).catch(function(){return null;}) : Promise.resolve(null),
               fetchLatestInvoiceDate(co.key,c.id).catch(function(){return null;}),
@@ -1438,7 +1493,8 @@ function startApiLoad(){
               dg:dg,
               fakt:fk,
               fSalgsverdi:fsv,
-              via:via
+              via:via,
+              historicalReopen:!!c._historicalReopen
             };
           }
         });
@@ -1756,7 +1812,7 @@ function rQA(){
   document.getElementById('qatbl').innerHTML=hdr+'<tbody>'+rows.map(function(r){
     var vc=(r.via||0)>50000?'color:var(--amber);font-weight:700':(r.via||0)<-5000?'color:var(--mid);font-weight:600':'';
     var _qdg = r.hasTilbud ? r.dg : (DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0 ? DGI[r.ordreNr].dg/100 : r.dg);
-    return '<tr><td><strong>'+r.ordreNr+'</strong></td><td>'+r.status+'</td><td>'+r.type+'</td><td style="white-space:nowrap">'+r.pl+'</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+r.beskr.substring(0,48)+(r.beskr.length>48?'…':'')+'</td><td>'+r.kunde+'</td><td class="r">'+NK(r.totOmk)+'</td><td class="r">'+PC(_qdg)+'</td><td class="r">'+NK(r.tilbud)+'</td><td class="r">'+NK(r.fakt)+'</td><td class="r" style="'+vc+'">'+NK(r.via)+'</td><td class="c">'+rb(r.risk)+'</td><td>'+fh(r.flags)+'</td></tr>';
+    return '<tr><td><strong>'+r.ordreNr+'</strong>'+histBadge(r)+'</td><td>'+r.status+'</td><td>'+r.type+'</td><td style="white-space:nowrap">'+r.pl+'</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+r.beskr.substring(0,48)+(r.beskr.length>48?'…':'')+'</td><td>'+r.kunde+'</td><td class="r">'+NK(r.totOmk)+'</td><td class="r">'+PC(_qdg)+'</td><td class="r">'+NK(r.tilbud)+'</td><td class="r">'+NK(r.fakt)+'</td><td class="r" style="'+vc+'">'+NK(r.via)+'</td><td class="c">'+rb(r.risk)+'</td><td>'+fh(r.flags)+'</td></tr>';
   }).join('')+'</tbody>';
 }
 
@@ -1781,7 +1837,7 @@ function rRisk(){
   }).join('')+'<th>Risikoer</th></tr></thead>';
   document.getElementById('risktbl').innerHTML=hdr+'<tbody>'+rows.map(function(r){
     var _rvc=(r.via||0)>50000?'color:var(--amber);font-weight:700':(r.via||0)<-5000?'color:var(--mid)':'';
-    return '<tr><td><strong>'+r.ordreNr+'</strong></td><td>'+r.type+'</td><td>'+r.pl+'</td><td>'+r.kunde+'</td><td class="r">'+NK(r.totOmk)+'</td><td class="r">'+PC(r.dg)+'</td><td class="r">'+NK(r.tilbud)+'</td><td class="r">'+NK(r.fakt)+'</td><td class="r" style="'+_rvc+'">'+NK(r.via)+'</td><td class="c">'+rb(r.risk)+'</td><td>'+fh(r.flags)+'</td></tr>';
+    return '<tr><td><strong>'+r.ordreNr+'</strong>'+histBadge(r)+'</td><td>'+r.type+'</td><td>'+r.pl+'</td><td>'+r.kunde+'</td><td class="r">'+NK(r.totOmk)+'</td><td class="r">'+PC(r.dg)+'</td><td class="r">'+NK(r.tilbud)+'</td><td class="r">'+NK(r.fakt)+'</td><td class="r" style="'+_rvc+'">'+NK(r.via)+'</td><td class="c">'+rb(r.risk)+'</td><td>'+fh(r.flags)+'</td></tr>';
   }).join('')+'</tbody>';
 }
 
@@ -1909,7 +1965,7 @@ function rPOC(){
         var bs=r.beskr?r.beskr.substring(0,40)+(r.beskr.length>40?'…':''):'–';
         return '<tr class="'+(warn?'rwarn':'')+'"'+(indent?' style="border-left:3px solid #3b82f6;"':'')+'>'+
           '<td style="'+(indent?'padding-left:22px;':'')+'">'+(indent?'↳ ':'')+
-            '<strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+'</td>'+
+            '<strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+histBadge(r)+'</td>'+
           '<td style="white-space:nowrap">'+r.pl+'</td>'+
           '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+bs+'</td>'+
           '<td class="r">'+NK(r.tilbud)+'</td>'+
