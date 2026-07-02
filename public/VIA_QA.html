@@ -1092,15 +1092,19 @@ function fetchMaterials(key,id){
 // 2) Trekk fra materialer med materialDate ETTER periodeslutt
 // Dette gir korrekte kostnader per periodeslutt uten å miste NULL-daterte poster.
 // Returnerer antall ØRE som skal trekkes fra all-time-total.
+// MERK: OS API ignorerer between:{field:materialDate,...} filteret på caseMaterials —
+// det returnerer alle materialer uavhengig av dato. Vi filtrerer derfor på klientsiden.
 function fetchMaterialsAfterPeriod(key, id, periodEndUnix){
   var todayUnix = Math.floor(Date.now()/1000);
   var fromUnix = periodEndUnix + 86400; // Dagen etter periodeslutt
   if(fromUnix >= todayUnix) return Promise.resolve(0); // Pågående periode — ingen post-periode materialer
   function fetchType(type){
+    // Hent ALLE materialer for ordren (OS API ignorerer between-filteret på caseMaterials)
     return paginate(key, function(c){
       return '{caseMaterials(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},caseId:'+id+',type:'+type+'){items{materialDate costPrice}nextCursor}}';
     }, function(d){ return d.caseMaterials; })
     .then(function(items){
+      // Filtrer klientsiden: kun materialer med dato ETTER periodeslutt og INNEN i dag
       return items
         .filter(function(m){ return m.materialDate && m.materialDate >= fromUnix && m.materialDate <= todayUnix; })
         .reduce(function(s,m){return s+(m.costPrice||0);},0);
