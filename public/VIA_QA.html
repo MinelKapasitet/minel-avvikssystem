@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.36</title>
+<title>VIA QA – Minel AS v9.37</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.36</span>
+  <span class="hd-badge">v9.37</span>
 </header>
 
 <!-- START PANEL -->
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.36 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.37 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -1087,6 +1087,31 @@ function fetchMaterials(key,id){
   return gqlQ(key,'{caseMaterialAggregate(caseId:'+id+',type:MATERIAL){totalCostPrice}}')
     .then(function(d){return (d.caseMaterialAggregate && d.caseMaterialAggregate.totalCostPrice)||0;});
 }
+// Datofiltrert materialkostnad — samme mønster som fetchHours (between:{field:materialDate})
+// Henter MATERIAL + PRODUCT separat og summerer costPrice per post.
+// fallbackOre = economy.materialsCostprice (øre) — brukes hvis API ikke støtter datofilter.
+function fetchMaterialsCostByDate(key, id, f, t, fallbackOre){
+  function fetchType(type){
+    return paginate(key, function(c){
+      return '{caseMaterials(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},between:{field:materialDate,from:'+f+',to:'+t+'},caseId:'+id+',type:'+type+'){items{costPrice}nextCursor}}';
+    }, function(d){ return d.caseMaterials; })
+    .then(function(items){
+      return items.reduce(function(s,m){return s+(m.costPrice||0);},0);
+    });
+  }
+  return Promise.all([
+    fetchType('MATERIAL').catch(function(){return null;}),
+    fetchType('PRODUCT').catch(function(){return null;})
+  ]).then(function(r){
+    if(r[0]===null && r[1]===null){
+      console.warn('[HIST] caseMaterials between-filter ikke støttet — bruker all-time fallback');
+      return fallbackOre;
+    }
+    var total = (r[0]||0)+(r[1]||0);
+    console.log('[HIST] Materialkost datofiltrert (øre): MATERIAL='+(r[0]||0)+' PRODUCT='+(r[1]||0)+' total='+total);
+    return total;
+  });
+}
 function fetchSalesInvoices(key,id,f,t){
   return paginate(key, function(c){
     return '{salesInvoices(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},between:{field:date,from:'+f+',to:'+t+'},filters:{caseIds:['+id+']}){items{id amount}nextCursor}}';
@@ -1425,15 +1450,17 @@ function startApiLoad(){
         var dg = rawDG>1 ? rawDG/100 : rawDG;
         var tilbud = c.offerTotal>0 ? c.offerTotal/100 : null;
         // Steg 1: hent økonomidata
-        // mk hentes fra economy.materialsCostprice (allerede lastet) — inkluderer ALLE materialtyper
-        // (MATERIAL + PRODUCT). caseMaterialAggregate(type:MATERIAL) traff ikke PRODUCT-poster.
-        var mk = ((c.economy&&c.economy.materialsCostprice)||0)/100;
+        // mk: datofiltrert via caseMaterials(MATERIAL+PRODUCT) med between:{field:materialDate}
+        // Fallback til economy.materialsCostprice (all-time øre) hvis API ikke støtter datofilter.
+        var allTimeMkOre = (c.economy&&c.economy.materialsCostprice)||0;
         return Promise.all([
           fetchHours(co.key,c.id,uf,ut).catch(function(){return[];}),
-          fetchSalesInvoices(co.key,c.id,uf,ut).catch(function(){return[];})
+          fetchSalesInvoices(co.key,c.id,uf,ut).catch(function(){return[];}),
+          fetchMaterialsCostByDate(co.key,c.id,uf,ut,allTimeMkOre).catch(function(){return allTimeMkOre;})
         ]).then(function(r){
           var tk = r[0].reduce(function(s,h){return s+(h.costPrice||0);},0)/100;
           var fk = r[1].reduce(function(s,i){return s+(i.amount||0);},0)/100;
+          var mk = r[2]/100;
           var tot = tk + mk;
           // Steg 2: datokontroll — utelat sluttfakturerte ordrer (ingen kostnader tilført etter siste faktura)
           // Sjekker ALLE fakturerte ordrer uavhengig av om de har materialer eller ikke
