@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.39</title>
+<title>VIA QA – Minel AS v9.40</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -1474,7 +1474,8 @@ function startApiLoad(){
           // Sjekker ALLE fakturerte ordrer uavhengig av om de har materialer eller ikke
           // Historisk re-inkluderte saker: vi vet de var aktive ved periodeslutt
           // (sluttfakturaen kom etter periodeslutt) → ingen datokontroll nødvendig
-          if(fk > 0 && !c._historicalReopen){
+          var isHistoricalReport = ut < Math.floor(Date.now()/1000);
+		  if(fk > 0 && !c._historicalReopen && !isHistoricalReport){
             return Promise.all([
               tk > 0 ? fetchLatestHourDate(co.key,c.id).catch(function(){return null;}) : Promise.resolve(null),
               fetchLatestInvoiceDate(co.key,c.id).catch(function(){return null;}),
