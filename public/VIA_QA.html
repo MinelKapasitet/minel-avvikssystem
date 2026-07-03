@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.42</title>
+<title>VIA QA – Minel AS v9.43</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.42 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.43 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -1441,6 +1441,10 @@ function startApiLoad(){
       // Inkluder ordrer med signert tilbud selv uten registrerte kostnader (matcher PA-modulen)
       if(hkp === 0 && mkp === 0 && expDG <= 0 && !harTilbud) return false;
       if(EXCL_TYPES.has(typeText)) return false;
+      // Ekskluder interne klær og verktøy-ordre (per-ansatt kostnadsordre, ikke fakturerbart)
+      // Matcher: "Klær og verktøy 2025 - Navn", "Verktøy og klær Navn", osv.
+      var descLower = (c.description||'').toLowerCase();
+      if(/klær.*verktøy|verktøy.*klær/.test(descLower)) return false;
       // ── Historisk re-inkludering ─────────────────────────────────────────
       // En sak kan i dag være Bokfurt/terminal, men var aktiv på periodeslutt-dato.
       // Signal: saken fikk sin (slutt)faktura ETTER periodeslutt → den var ikke Bokfurt da.
