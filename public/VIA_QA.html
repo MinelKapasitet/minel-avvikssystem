@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.41</title>
+<title>VIA QA – Minel AS v9.42</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.41 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.42 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -899,7 +899,9 @@ var OS_COMPANIES = [
   {name:'Minel Gudbrandsdal AS',               key:'yEEdLNDUCssPuhOl', paStartDato:'2024-01-01'}
 ];
 // Reklamasjon er FJERNET herfra — PA-modulen inkluderer Reklamasjon-saker (bekreftet Drøbak mai 2026)
-var EXCL_TYPES = new Set(['Intern','Internordre','Intern ordre']);
+var EXCL_TYPES = new Set(['Intern','Internordre','Intern ordre',
+  // Reklamasjon: PA-modulen ekskluderer reklamasjonsordrer fra VIA-analyse
+  'Reklamasjon']);
 
 /* ============================================================
    INIT
@@ -1431,11 +1433,13 @@ function startApiLoad(){
       if(c.parentCaseId) return false;
       var typeText = (c.caseType&&c.caseType.text)||'';
       var statusText = (c.status&&c.status.text)||'';
-      // Ekskluder ordrer uten påløpte kostnader OG uten forventet DG — uten aktivitet er disse uaktuelle
+      // Ekskluder ordrer uten påløpte kostnader OG uten forventet DG OG uten tilbud — uten aktivitet er disse uaktuelle
       var hkp = (c.economy&&c.economy.hoursCostprice)||0;
       var mkp = (c.economy&&c.economy.materialsCostprice)||0;
       var expDG = (c.economy&&c.economy.expectedCoverageRatio)||0;
-      if(hkp === 0 && mkp === 0 && expDG <= 0) return false;
+      var harTilbud = (c.offerTotal||0) > 0;
+      // Inkluder ordrer med signert tilbud selv uten registrerte kostnader (matcher PA-modulen)
+      if(hkp === 0 && mkp === 0 && expDG <= 0 && !harTilbud) return false;
       if(EXCL_TYPES.has(typeText)) return false;
       // ── Historisk re-inkludering ─────────────────────────────────────────
       // En sak kan i dag være Bokfurt/terminal, men var aktiv på periodeslutt-dato.
@@ -1659,8 +1663,9 @@ function toggleGrpMode(base){
 function parseRows(rows,src,prd){
   localStorage.setItem('VIA_LOAD_TS',new Date().toISOString());
   // Nullstill all periode-spesifikk state for å unngå krysskontaminering mellom perioder
-  // Ekskluder ordrer med 0 i faktiske påløpte kostnader (totOmk = timer + materialer fra API)
-  ACTIVE = rows.filter(function(r){ return (r.totOmk||0) > 0; });
+  // Ekskluder ordrer med 0 i faktiske påløpte kostnader — UNNTAK: ordrer med signert tilbud (POC)
+  // inkluderes selv uten kostnader ennå, da de representerer fremtidig fakturareserve (matcher PA)
+  ACTIVE = rows.filter(function(r){ return (r.totOmk||0) > 0 || r.hasTilbud; });
   DGI = {};
   POC = {};
   LOCKED = false;
