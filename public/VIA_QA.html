@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.40</title>
+<title>VIA QA – Minel AS v9.41</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.39 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.41 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -1164,6 +1164,29 @@ function fetchPostPeriodInvoicedCases(key, periodEndUnix){
   .catch(function(e){ console.warn('[HIST] fetchPostPeriodInvoicedCases feilet:', e.message); return new Set(); });
 }
 
+// Signal 2: sak fikk terminal-status ETTER periodeslutt (uten ny faktura).
+// Eksempel: sak var "Klar for fakturering" på 30.06, bokføres 01.07 uten ny faktura.
+// OS API ignorerer between-filter på changedAt — filtrerer klientsiden.
+// Henter kun første side (200 poster DESC) — post-periode endringer er alltid øverst.
+function fetchPostPeriodStatusChangedCases(key, periodEndUnix){
+  var todayUnix = Math.floor(Date.now()/1000);
+  if(periodEndUnix + 86400 >= todayUnix) return Promise.resolve(new Set());
+  var caseIds = new Set();
+  return gqlQ(key, '{caseStatusHistory(pagination:{cursor:null,limit:200},orderBy:{field:\"changedAt\",direction:DESC}){items{case{id} changedTo{text} changedAt}}}')
+  .then(function(d){
+    var items = (d.caseStatusHistory && d.caseStatusHistory.items) || [];
+    items.forEach(function(i){
+      if(i.changedAt > periodEndUnix && EXCL_STATUS.has((i.changedTo&&i.changedTo.text)||'')){
+        if(i.case && i.case.id) caseIds.add(i.case.id);
+      }
+    });
+    console.log('[HIST] Saker med terminal statusendring etter periodeslutt:', caseIds.size);
+    return caseIds;
+  })
+  .catch(function(e){ console.warn('[HIST] fetchPostPeriodStatusChangedCases feilet:', e.message); return new Set(); });
+}
+
+
 /* ============================================================
    BENCHMARK
    ============================================================ */
@@ -1385,11 +1408,15 @@ function startApiLoad(){
     }, function(d){return d.cases;}),
     // Historisk modus: hent saks-IDer som fikk faktura ETTER periodeslutt
     // (disse var aktive/åpne på periodeslutt men er Bokfurt i dag)
-    fetchPostPeriodInvoicedCases(co.key, ut)
+    fetchPostPeriodInvoicedCases(co.key, ut),
+    fetchPostPeriodStatusChangedCases(co.key, ut)
   ]).then(function(res){
     BENCH = res[0];
     var cases = res[1];
-    var reopenCaseIds = res[2]; // Set<caseId> med post-periode fakturaer
+    // Slå sammen begge re-åpningssignaler til ett Set
+    var reopenCaseIds = res[2];
+    res[3].forEach(function(id){ reopenCaseIds.add(id); });
+    console.log('[HIST] Totalt re-åpningssett (faktura+statusendring):', reopenCaseIds.size);
     var bn = Object.keys(BENCH).length;
     document.getElementById('sec2note').innerHTML = 'Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet.'+(bn>0?' <span style="background:var(--bluebg);color:var(--blue);border-radius:4px;padding:2px 8px;font-size:.78rem;font-weight:700;">📊 Benchmark: '+bn+' ordretyper</span>':'')+'  <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span>';
 
