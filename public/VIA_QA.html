@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.43</title>
+<title>VIA QA – Minel AS v9.44</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.39</span>
+  <span class="hd-badge">v9.44</span>
 </header>
 
 <!-- START PANEL -->
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.43 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.44 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -901,7 +901,9 @@ var OS_COMPANIES = [
 // Reklamasjon er FJERNET herfra — PA-modulen inkluderer Reklamasjon-saker (bekreftet Drøbak mai 2026)
 var EXCL_TYPES = new Set(['Intern','Internordre','Intern ordre',
   // Reklamasjon: PA-modulen ekskluderer reklamasjonsordrer fra VIA-analyse
-  'Reklamasjon']);
+  'Reklamasjon',
+  // Direkte salg: rene materiellemner/varekjøp uten prosjekt — ikke i PA-modulen
+  'Direkte salg']);
 
 /* ============================================================
    INIT
@@ -1094,6 +1096,7 @@ function fetchMaterials(key,id){
 // 2) Trekk fra materialer med materialDate ETTER periodeslutt
 // Dette gir korrekte kostnader per periodeslutt uten å miste NULL-daterte poster.
 // Returnerer antall ØRE som skal trekkes fra all-time-total.
+//
 // MERK: OS API ignorerer between:{field:materialDate,...} filteret på caseMaterials —
 // det returnerer alle materialer uavhengig av dato. Vi filtrerer derfor på klientsiden.
 function fetchMaterialsAfterPeriod(key, id, periodEndUnix){
@@ -1174,7 +1177,7 @@ function fetchPostPeriodStatusChangedCases(key, periodEndUnix){
   var todayUnix = Math.floor(Date.now()/1000);
   if(periodEndUnix + 86400 >= todayUnix) return Promise.resolve(new Set());
   var caseIds = new Set();
-  return gqlQ(key, '{caseStatusHistory(pagination:{cursor:null,limit:200},orderBy:{field:\"changedAt\",direction:DESC}){items{case{id} changedTo{text} changedAt}}}')
+  return gqlQ(key, '{caseStatusHistory(pagination:{cursor:null,limit:200},orderBy:{field:"changedAt",direction:DESC}){items{case{id} changedTo{text} changedAt}}}')
   .then(function(d){
     var items = (d.caseStatusHistory && d.caseStatusHistory.items) || [];
     items.forEach(function(i){
@@ -1187,7 +1190,6 @@ function fetchPostPeriodStatusChangedCases(key, periodEndUnix){
   })
   .catch(function(e){ console.warn('[HIST] fetchPostPeriodStatusChangedCases feilet:', e.message); return new Set(); });
 }
-
 
 /* ============================================================
    BENCHMARK
@@ -1408,8 +1410,9 @@ function startApiLoad(){
     paginate(co.key, function(c){
       return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC},between:{field:createdAt,from:'+uf+',to:'+ut+'}){items{id caseNumber description status{text} caseType{text} customer{name} foreman{fullName} offerTotal parentCaseId economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice}}nextCursor}}';
     }, function(d){return d.cases;}),
-    // Historisk modus: hent saks-IDer som fikk faktura ETTER periodeslutt
-    // (disse var aktive/åpne på periodeslutt men er Bokfurt i dag)
+    // Historisk modus: hent saks-IDer som var aktive på periodeslutt men er terminal i dag.
+    // Signal 1: fikk faktura etter periodeslutt (Bokfurt i etterkant)
+    // Signal 2: statusendring til terminal etter periodeslutt (uten ny faktura, f.eks. direktebokføring)
     fetchPostPeriodInvoicedCases(co.key, ut),
     fetchPostPeriodStatusChangedCases(co.key, ut)
   ]).then(function(res){
@@ -1442,7 +1445,7 @@ function startApiLoad(){
       if(hkp === 0 && mkp === 0 && expDG <= 0 && !harTilbud) return false;
       if(EXCL_TYPES.has(typeText)) return false;
       // Ekskluder interne klær og verktøy-ordre (per-ansatt kostnadsordre, ikke fakturerbart)
-      // Matcher: "Klær og verktøy 2025 - Navn", "Verktøy og klær Navn", osv.
+      // Matcher: "Klær og verktøy 2025 - Navn", "Verktøy og klær Navn", "Verktøy og klær + Timebank" etc.
       var descLower = (c.description||'').toLowerCase();
       if(/klær.*verktøy|verktøy.*klær/.test(descLower)) return false;
       // ── Historisk re-inkludering ─────────────────────────────────────────
@@ -1509,8 +1512,10 @@ function startApiLoad(){
           // Sjekker ALLE fakturerte ordrer uavhengig av om de har materialer eller ikke
           // Historisk re-inkluderte saker: vi vet de var aktive ved periodeslutt
           // (sluttfakturaen kom etter periodeslutt) → ingen datokontroll nødvendig
+          // I historisk modus (periodeslutt < i dag) kjøres IKKE sluttfakturert-sjekken:
+          // periodeavslutning skal inkludere alle ordrer med kostnader i perioden.
           var isHistoricalReport = ut < Math.floor(Date.now()/1000);
-		  if(fk > 0 && !c._historicalReopen && !isHistoricalReport){
+          if(fk > 0 && !c._historicalReopen && !isHistoricalReport){
             return Promise.all([
               tk > 0 ? fetchLatestHourDate(co.key,c.id).catch(function(){return null;}) : Promise.resolve(null),
               fetchLatestInvoiceDate(co.key,c.id).catch(function(){return null;}),
