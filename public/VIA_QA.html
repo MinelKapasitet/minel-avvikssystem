@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.45</title>
+<title>VIA QA – Minel AS v9.5</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.45</span>
+  <span class="hd-badge">v9.5</span>
 </header>
 
 <!-- START PANEL -->
@@ -451,7 +451,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.45 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.5 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -676,6 +676,7 @@ async function spFetch(url,opts){
 
 var SP_REQUIRED_FIELDS=['Periode','Selskap','OrdreNr','DG','Begrunnelse','Kommentar','UpdatedBy','UpdatedAt'];
 var _spColsValidated=false;
+var _spFGColsOk=false; // settes til true når SP-listen har Ferdighetskortgrad og KontraktsVerdi-kolonner
 
 function spShowError(msg){
   var el=document.getElementById('sp-error-banner');
@@ -708,6 +709,16 @@ async function spLoadAssessments(period,company){
         _spColsValidated=true;
         console.log('[SP] Kolonnevalidering OK');
       }
+      // Sjekk om FG/KV-kolonner finnes (v9.5) — via SP-skjema for å unngå avhengighet av verdier i items
+      if(!_spFGColsOk){
+        spFetch(SP_GRAPH+'/fields?$select=Name&$top=200').then(function(fr){
+          if(fr&&fr.ok)fr.json().then(function(fj){
+            var names=(fj.value||[]).map(function(fc){return fc.Name;});
+            _spFGColsOk=names.indexOf('Ferdighetskortgrad')>=0&&names.indexOf('KontraktsVerdi')>=0;
+            console.log('[SP] FG/KV kolonner tilgjengelig:',_spFGColsOk);
+          });
+        }).catch(function(){});
+      }
     }
     allItems.forEach(function(item){
       var f=item.fields||{};
@@ -723,6 +734,9 @@ async function spLoadAssessments(period,company){
       } else {
         _spIds[f.OrdreNr]=item.id;
         if(f.DG!=null){var _dgVal=parseFloat(f.DG);if(isNaN(_dgVal))_dgVal=35;if(!DGI[f.OrdreNr])DGI[f.OrdreNr]={dg:_dgVal,k:f.Begrunnelse||''};else{DGI[f.OrdreNr].dg=_dgVal;if(f.Begrunnelse)DGI[f.OrdreNr].k=f.Begrunnelse;}}
+        // v9.5: gjenopprett FG/KV fra SP hvis tilgjengelig
+        if(f.Ferdighetskortgrad!=null){if(!DGI[f.OrdreNr])DGI[f.OrdreNr]={dg:35,k:''};DGI[f.OrdreNr].fg=parseFloat(f.Ferdighetskortgrad)||100;}
+        if(f.KontraktsVerdi!=null&&parseFloat(f.KontraktsVerdi)>0){if(!DGI[f.OrdreNr])DGI[f.OrdreNr]={dg:35,k:''};DGI[f.OrdreNr].kv=parseFloat(f.KontraktsVerdi);}
         var _hasPoc=f.Kommentar||f.Timer!=null||f.Timekost!=null||f.Material!=null;
         if(_hasPoc){if(!POC[f.OrdreNr])POC[f.OrdreNr]={timer:0,tk:null,mat:0,k:''};if(f.Kommentar)POC[f.OrdreNr].k=f.Kommentar;if(f.Timer!=null)POC[f.OrdreNr].timer=parseFloat(f.Timer)||0;if(f.Timekost!=null)POC[f.OrdreNr].tk=parseFloat(f.Timekost)||null;if(f.Material!=null)POC[f.OrdreNr].mat=parseFloat(f.Material)||0;}
       }
@@ -755,10 +769,12 @@ function spShowConflict(ordreNr){
   }
 }
 
-async function spSaveAssessment(period,company,ordreNr,dg,begrunnelse,kommentar,poc){
+async function spSaveAssessment(period,company,ordreNr,dg,begrunnelse,kommentar,poc,fg,kv){
   try{
     var fields={Periode:period,Selskap:company,OrdreNr:ordreNr,DG:dg!=null?dg:null,Begrunnelse:begrunnelse||'',Kommentar:kommentar||'',UpdatedBy:_spUser,UpdatedAt:new Date().toISOString()};
     if(poc){fields.Timer=poc.timer!=null?poc.timer:0;fields.Timekost=poc.tk!=null?poc.tk:650;fields.Material=poc.mat!=null?poc.mat:0;}
+    // v9.5: FG/KV lagres bare hvis SP-listen har disse kolonnene
+    if(_spFGColsOk){if(fg!=null)fields.Ferdighetskortgrad=fg;if(kv!=null&&kv>0)fields.KontraktsVerdi=kv;}
     var existId=_spIds[ordreNr];
     if(existId){
       var patchHeaders={'Content-Type':'application/json'};
@@ -828,9 +844,9 @@ async function spLoadDataset(company){
     return {period:data.period,exported:data.exported,exportedBy:data.exportedBy||''};
   }catch(e){console.warn('[SP] Dataset load:',e);return false;}
 }
-function spSaveDebounced(period,company,ordreNr,dg,k,kommentar,poc){
+function spSaveDebounced(period,company,ordreNr,dg,k,kommentar,poc,fg,kv){
   clearTimeout(_spDebounce[ordreNr]);
-  _spDebounce[ordreNr]=setTimeout(function(){spSaveAssessment(period,company,ordreNr,dg,k,kommentar,poc);},2000);
+  _spDebounce[ordreNr]=setTimeout(function(){spSaveAssessment(period,company,ordreNr,dg,k,kommentar,poc,fg,kv);},2000);
 }
 
 async function spMarkDone(period,company,pl){
@@ -947,7 +963,7 @@ function resetApp(){
   if(ACTIVE.length&&!confirm('Nullstill til ny periode? Ikke-lagrede endringer går tapt.'))return;
   ACTIVE=[];DGI={};POC={};LOCKED=false;BENCH={};
   _currentPeriod='';_currentEntity='';
-  _spIds={};_spEtags={};_spColsValidated=false;_spDebounce={};
+  _spIds={};_spEtags={};_spColsValidated=false;_spFGColsOk=false;_spDebounce={};
   GROUPS={};GRP_MODE={};HIDE_SETTLED=false;HIDE_SMALL=false;HIDE_SMALL_POC=false;
   localStorage.removeItem(SESSION_KEY);
   document.getElementById('app').style.display='none';
@@ -1039,6 +1055,8 @@ function piChange(id,f,el){
   var v = parseI(el.value);
   if(f === 'timer' || f === 'tk' || f === 'mat') sP(id,f,v);
   else if(f === 'dg') sD(id,'dg',v);
+  else if(f === 'fg') sD(id,'fg',v);
+  else if(f === 'kv') sD(id,'kv',v);
 }
 function rb(r){
   return r==='HØY'?'<span class="bh">HØY</span>':r==='MIDDELS'?'<span class="bm">MIDDELS</span>':'<span class="bl">LAV</span>';
@@ -1684,6 +1702,7 @@ function parseRows(rows,src,prd){
   _spIds = {};
   _spEtags = {};
   _spColsValidated = false;
+  _spFGColsOk = false;
   // Tilbakestill UI-elementer som reflekterer låstatus
   var btnlock = document.getElementById('btnlock');
   if(btnlock){ btnlock.textContent='🔒 Lås periode'; btnlock.disabled=false; }
@@ -1940,9 +1959,15 @@ function calcDG(r){
   var dgVal=inp.dg!=null?inp.dg:35;
   var dg=dgVal/100;
   var useTM=r.isTM&&!inp.tmOverride;
-  var fs=useTM?(r.fSalgsverdi||r.totOmk):(r.totOmk!=null&&dg>0&&dg<1)?r.totOmk/(1-dg):r.totOmk;
-  var via=fs!=null&&r.fakt!=null?fs-r.fakt:null;
-  return {dg:dg,fs:fs,via:via,useTM:useTM};
+  // Fix 3: DL-justerbar kontraktsverdi — overstyrer fs-beregning
+  var kv=(inp.kv!=null&&inp.kv>0)?inp.kv:null;
+  var fs=kv!=null?kv:useTM?(r.fSalgsverdi||r.totOmk):(r.totOmk!=null&&dg>0&&dg<1)?r.totOmk/(1-dg):r.totOmk;
+  // Fix 1+2: ferdighetskortgrad (default 100 = ingen endring i eksisterende beregning)
+  var fgPct=(inp.fg!=null&&inp.fg>=0&&inp.fg<=100)?inp.fg:100;
+  var fg=fgPct/100;
+  var opptjentFs=fs!=null?fs*fg:fs;
+  var via=opptjentFs!=null&&r.fakt!=null?opptjentFs-r.fakt:null;
+  return {dg:dg,fs:fs,fg:fg,opptjentFs:opptjentFs,via:via,useTM:useTM};
 }
 function sP(id,f,v){ if(!POC[id])POC[id]={timer:0,tk:null,mat:0,k:''}; POC[id][f]=f==='k'?v:parseFloat(v)||0; rPOC(); var _p=_currentPeriod||document.getElementById('aperiod').textContent; var _c=_currentEntity||document.getElementById('lentity').value||''; if(_p&&_c)spSaveDebounced(_p,_c,id,DGI[id]?DGI[id].dg:null,DGI[id]?DGI[id].k||'':'','',POC[id]); }
 function sD(id,f,v){
@@ -1951,7 +1976,7 @@ function sD(id,f,v){
   if(f==='dg'){var _r=ACTIVE.find(function(x){return x.ordreNr===id;});if(_r&&_r.isTM)DGI[id].tmOverride=true;}
   rPOC();
   var _p=_currentPeriod||document.getElementById('aperiod').textContent,_c=_currentEntity||document.getElementById('lentity').value||'';
-  spSaveDebounced(_p,_c,id,DGI[id].dg,DGI[id].k,'');
+  spSaveDebounced(_p,_c,id,DGI[id].dg,DGI[id].k,'',null,DGI[id].fg,DGI[id].kv);
 }
 function resetTM(id){
   if(DGI[id]){DGI[id].tmOverride=false;var _r=ACTIVE.find(function(x){return x.ordreNr===id;});if(_r){var pct=_r.fSalgsverdi&&_r.totOmk?Math.round((_r.fSalgsverdi-_r.totOmk)/_r.fSalgsverdi*100):35;DGI[id].dg=pct;}}
@@ -1994,7 +2019,7 @@ function rPOC(){
   // Sort DG section
   (function(){
     var c=DGS.col,asc=DGS.asc;
-    var keys=['ordreNr','pl','type','beskr','kunde','totOmk','fakt',null,null,'fSalgsverdi','via',null,'risk'];
+    var keys=['ordreNr','pl','type','beskr','kunde','totOmk','fakt',null,null,null,null,'fSalgsverdi','via',null,'risk'];
     var k=keys[c];
     if(k) dgR.sort(function(a,b){var va,vb;if(k==='risk'){var rm={LAV:0,MIDDELS:1,'HØY':2};va=rm[a.risk]||0;vb=rm[b.risk]||0;}else{va=a[k];vb=b[k];}if(va==null)va=asc?'zzz':-Infinity;if(vb==null)vb=asc?'zzz':-Infinity;if(typeof va==='string')return asc?va.localeCompare(vb):vb.localeCompare(va);return asc?va-vb:vb-va;});
     else dgR.sort(function(a,b){return(b.totOmk||0)-(a.totOmk||0);});
@@ -2124,13 +2149,15 @@ function rPOC(){
   var dv=0;
   document.getElementById('dgtbl').innerHTML=
     '<thead><tr>'+
-    ['Ordre','PL','Type','Beskrivelse','Kunde','Påløpte kostnader','Fakturert','DG%','DG% forrige periode','Forv. salgsverdi','VIA','Begrunnelse','Risiko'].map(function(n,i){
-      var sortable=[0,1,2,3,4,5,6,9,10,12].indexOf(i)>=0;
-      var style=([5,6,9,10].indexOf(i)>=0)?'style="text-align:right"':([7].indexOf(i)>=0)?'style="text-align:right;color:#9EC8FF"':([8].indexOf(i)>=0)?'style="text-align:center"':([12].indexOf(i)>=0)?'style="text-align:center"':'';
+    ['Ordre','PL','Type','Beskrivelse','Kunde','Påløpte kostnader','Fakturert','FG%','Justert kontrakt','DG%','DG% forrige periode','Forv. salgsverdi','VIA','Begrunnelse','Risiko'].map(function(n,i){
+      var sortable=[0,1,2,3,4,5,6,11,12,14].indexOf(i)>=0;
+      var style=([5,6,11,12].indexOf(i)>=0)?'style="text-align:right"':([7,9].indexOf(i)>=0)?'style="text-align:right;color:#9EC8FF"':([8].indexOf(i)>=0)?'style="text-align:right;color:#aaa"':([10,14].indexOf(i)>=0)?'style="text-align:center"':'';
       var cls=DGS.col===i?(DGS.asc?' class="sa"':' class="sd"'):'';
       if(sortable) return '<th'+cls+' '+style+' onclick="DGS={col:'+i+',asc:DGS.col==='+i+'?!DGS.asc:false};rPOC()">'+n+'</th>';
-      var dg2tip=(i===8)?' title="DG% fra forrige vurderingsperiode"':'';
-      return '<th '+style+dg2tip+'>'+n+'</th>';
+      var dg2tip=(i===10)?' title="DG% fra forrige vurderingsperiode"':'';
+      var fgTip=(i===7)?' title="Ferdighetskortgrad — andel av prosjektet fullført. Påvirker opptjent VIA."':'';
+      var kvTip=(i===8)?' title="Justert kontraktsverdi (DL-input) — overstyrer beregnet salgsverdi"':'';
+      return '<th '+style+dg2tip+fgTip+kvTip+'>'+n+'</th>';
     }).join('')+
     '</tr></thead><tbody>'+
     dgR.map(function(r){
@@ -2151,6 +2178,22 @@ function rPOC(){
             )
           +'</div>'
         : '<div style="display:flex;align-items:center;gap:4px;"><input class="pi" type="text" inputmode="numeric" value="'+(inp.dg!=null?inp.dg:35)+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:56px"><span style="font-size:.8rem;color:#666">%</span></div>';
+      var fgVal=inp.fg!=null?inp.fg:100;
+      var kvVal=inp.kv!=null&&inp.kv>0?inp.kv:null;
+      var isDL=_currentUser&&_currentUser.isDL;
+      var fgCell='<div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">'+
+        '<input class="pi" type="text" inputmode="numeric" value="'+fgVal+'" '+dis+
+        ' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'fg\',this)"'+
+        ' style="width:48px;border-color:#9EC8FF;color:#9EC8FF;text-align:right;"'+
+        ' title="Ferdighetskortgrad — andel av prosjektet fullført">'+
+        '<span style="font-size:.8rem;color:#9EC8FF">%</span></div>';
+      var kvCell=isDL
+        ?'<div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">'+
+          '<input class="pi" type="text" inputmode="numeric" value="'+(kvVal!=null?fmtI(kvVal):'')+'" '+
+          ' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'kv\',this)"'+
+          ' style="width:88px;border-color:#ccc;color:#aaa;text-align:right;" placeholder="–"'+
+          ' title="Justert kontraktsverdi (DL-input)"></div>'
+        :'<span style="color:#aaa;font-size:.85rem;">'+(kvVal!=null?NK(kvVal):'–')+'</span>';
       return '<tr>'+
         '<td><strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+'</td>'+
         '<td style="white-space:nowrap">'+r.pl+'</td>'+
@@ -2159,6 +2202,8 @@ function rPOC(){
         '<td style="max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+r.kunde+'</td>'+
         '<td class="r">'+NK(r.totOmk)+'</td>'+
         '<td class="r">'+NK(r.fakt)+'</td>'+
+        '<td style="text-align:right;">'+fgCell+'</td>'+
+        '<td style="text-align:right;">'+kvCell+'</td>'+
         '<td>'+dgCell+'</td>'+
         '<td class="c">'+prevDGCell(r.ordreNr,c.dg)+'</td>'+
         '<td class="r calc">'+NK(c.fs)+'</td>'+
@@ -2168,9 +2213,10 @@ function rPOC(){
         '</tr>';
     }).join('')+'</tbody>';
 
+  var dvHasFG=dgR.some(function(r){var inp=DGI[r.ordreNr];return inp&&inp.fg!=null&&inp.fg!==100;});
   document.getElementById('dgtot').innerHTML=
     '<span>Prosjekter: <strong>'+dgR.length+'</strong></span>'+
-    '<span>DG-VIA: <strong style="color:'+(dv>50000?'var(--amber)':'var(--dark)')+'">'+NK(dv)+'</strong></span>'+
+    '<span>DG-VIA'+(dvHasFG?' <span title="FG-justert" style="font-size:.7rem;background:#9EC8FF;color:#000;border-radius:3px;padding:0 4px;font-weight:700;">FG</span>':'')+':<strong style="color:'+(dv>50000?'var(--amber)':'var(--dark)')+'">'+NK(dv)+'</strong></span>'+
     '<span>Kombinert VIA: <strong style="color:'+((pv+dv)>100000?'var(--amber)':'var(--dark)')+'">'+NK(pv+dv)+'</strong></span>';
 }
 
