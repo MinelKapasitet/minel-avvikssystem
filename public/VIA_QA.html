@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.5</title>
+<title>VIA QA – Minel AS v9.51</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.5</span>
+  <span class="hd-badge">v9.51</span>
 </header>
 
 <!-- START PANEL -->
@@ -282,6 +282,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
       <button class="btn btn-grn" id="btnlock" onclick="openLock()">🔒 Lås periode</button>
       <button class="btn btn-dark" id="share-btn" onclick="exportDataset()" title="Last opp datasett til SharePoint — PLer henter det automatisk">📤 Del datasett</button>
       <button class="btn btn-dark" id="snap-btn" style="display:none;" onclick="doSnap()" title="Ta øyeblikksbilde av periodens data">📸 Snapshot</button>
+      <button class="btn btn-dark" id="setup-cols-btn" style="display:none;background:#7c3aed;" onclick="spCreateFGKVColumns()" title="Opprett Ferdighetskortgrad og KontraktsVerdi i SharePoint (kjøres én gang av admin)">⚙️ Opprett SP-kolonner</button>
       <button class="btn btn-dark" onclick="expPOC()">📥 Eksporter Excel</button>
       <button class="btn btn-dark" onclick="resetApp()">↩ Ny periode</button>
     </div>
@@ -451,7 +452,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.5 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.51 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -566,6 +567,7 @@ function detectUser(account){
       dlConf.innerHTML='✅ Innlogget som <strong>'+name+'</strong>';
     }
     var snapBtn=document.getElementById('snap-btn');if(snapBtn)snapBtn.style.display='';
+    var setupColsBtn=document.getElementById('setup-cols-btn');if(setupColsBtn&&_currentUser&&_currentUser.company==='__SUPER__')setupColsBtn.style.display='';
     rPOC();
   }
 }
@@ -684,6 +686,26 @@ function spShowError(msg){
     el.style.cssText='position:fixed;top:0;left:0;right:0;z-index:9999;background:#c0392b;color:#fff;padding:12px 20px;font-size:14px;font-weight:bold;text-align:center;';
     document.body.appendChild(el);}
   el.textContent=msg;el.style.display='block';
+}
+
+async function spCreateFGKVColumns(){
+  var btn=document.getElementById('setup-cols-btn');
+  if(btn){btn.disabled=true;btn.textContent='⏳ Oppretter...';}
+  var cols=[
+    {name:'Ferdighetskortgrad',displayName:'Ferdighetskortgrad',number:{decimalPlaces:'one',displayAs:'number',minimum:0,maximum:100}},
+    {name:'KontraktsVerdi',displayName:'KontraktsVerdi',number:{decimalPlaces:'two',displayAs:'number'}}
+  ];
+  var results=[];
+  for(var i=0;i<cols.length;i++){
+    var c=cols[i];
+    try{
+      var r=await spFetch(SP_GRAPH+'/columns',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(c)});
+      if(r&&r.ok){results.push('✅ '+c.name+' opprettet OK');}
+      else{var j=await r.json();results.push('❌ '+c.name+': '+(j.error&&j.error.message||r.status));}
+    }catch(e){results.push('❌ '+c.name+': '+e.message);}
+  }
+  alert('SP-kolonner:\n'+results.join('\n'));
+  if(btn){btn.disabled=false;btn.textContent='⚙️ Opprett SP-kolonner';}
 }
 
 async function spLoadAssessments(period,company){
