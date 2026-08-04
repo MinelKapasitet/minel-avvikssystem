@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.52</title>
+<title>VIA QA – Minel AS v9.53</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.52</span>
+  <span class="hd-badge">v9.53</span>
 </header>
 
 <!-- START PANEL -->
@@ -358,7 +358,10 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
     </div>
 
     <div class="sec-hdr">Seksjon 1 – Fastpriskontrakter (POC) <span id="poc-cnt" style="font-weight:400;font-size:.8rem;opacity:.8;"></span></div>
-    <div style="margin:6px 0 4px;"><label style="display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--mid);cursor:pointer;"><input type="checkbox" id="hideSmallPOCChk" onchange="HIDE_SMALL_POC=this.checked;rPOC()"> Skjul ordrer med kostnader under 1 000 kr</label></div>
+    <div style="margin:6px 0 4px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+      <label style="display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--mid);cursor:pointer;"><input type="checkbox" id="hideSmallPOCChk" onchange="HIDE_SMALL_POC=this.checked;rPOC()"> Skjul ordrer med kostnader under 1 000 kr</label>
+      <button id="togglePrevColsBtn" onclick="_showPrevCols=!_showPrevCols;document.getElementById('togglePrevColsBtn').textContent=_showPrevCols?'🕙 Skjul historikk':'🕙 Vis historikk';rPOC()" style="font-size:.78rem;padding:3px 10px;background:transparent;border:1px solid var(--border);border-radius:5px;cursor:pointer;color:var(--mid);">🕙 Vis historikk</button>
+    </div>
     <div class="tw" style="max-height:800px;border-radius:0 0 8px 8px;"><table id="poctbl"></table></div>
     <div class="totbar" id="poctot"></div>
 
@@ -452,7 +455,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.52 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.53 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -913,6 +916,7 @@ var SESSION_KEY = 'minel_via_session_v1';
 var HIDE_SETTLED = false, HIDE_SMALL = false, HIDE_SMALL_POC = false;
 var QS = {col:6,asc:false}, RS = {col:8,asc:false};
 var POCS = {col:4,asc:false}, DGS = {col:5,asc:false};
+var _showPrevCols = false;
 var ROUND = new Set([0.10,0.15,0.17,0.20,0.25,0.28,0.30,0.35,0.40,0.45,0.50,0.55,0.60,0.65,0.70]);
 // EKSKLUDERINGSLISTE — ordre med disse statusene er AVSLUTTET/KANSELLERT og skal ikke med
 // Matcher Intuitu PA-modulens "Avsluttede ordrer"-konfigurasjon: Avlyst, Avsluttet, Bokført, Lukket
@@ -1871,6 +1875,8 @@ function rDash(){
   var _plIkkeFerdig = _pls.length - _plFerdig;
   var fs=[];
   var _dgFall=_dg2.filter(function(r){var p=getPrevDG(r.ordreNr);var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return p&&e!=null&&(p.dg-e)>0.02;});
+  var _overbill=ACTIVE.filter(function(r){return r.hasTilbud&&r.tilbud!=null&&r.fakt!=null&&r.fakt>r.tilbud;});
+  if(_overbill.length>0) fs.push('🚨 '+_overbill.length+' ordre(r) har fakturert mer enn kontraktssum ('+_overbill.map(function(r){return r.ordreNr;}).join(', ')+') — avklar med PL.');
   if(_dgFall.length>0) fs.push('🔴 '+_dgFall.length+' ordre(r) har lavere DG% enn forrige periode.');
   if(_posVIARisk.length>0) fs.push('⚠️ '+_posVIARisk.length+' ordre(r) har positiv VIA over 50 000 kr (underbilling, samlet: '+NK(_posVIAkr)+') — vurder fakturering.');
   if(_negVIA.length>0) fs.push('ℹ️ '+_negVIA.length+' ordre(r) med negativ VIA (akonto-overbilling: '+NK(_negVIAkr)+') — OK hvis aktive prosjekter.');
@@ -1994,8 +2000,8 @@ function calcDG(r){
   // Fix 3: DL-justerbar kontraktsverdi — overstyrer fs-beregning
   var kv=(inp.kv!=null&&inp.kv>0)?inp.kv:null;
   var fs=kv!=null?kv:useTM?(r.fSalgsverdi||r.totOmk):(r.totOmk!=null&&dg>0&&dg<1)?r.totOmk/(1-dg):r.totOmk;
-  // Fix 1+2: ferdighetskortgrad (default 100 = ingen endring i eksisterende beregning)
-  var fgPct=(inp.fg!=null&&inp.fg>=0&&inp.fg<=100)?inp.fg:100;
+  // Fix 1+2: ferdighetskortgrad (default 100 = ingen endring i eksisterende beregning). T&M bruker alltid FG=100.
+  var fgPct=(!useTM&&inp.fg!=null&&inp.fg>=0&&inp.fg<=100)?inp.fg:100;
   var fg=fgPct/100;
   var opptjentFs=fs!=null?fs*fg:fs;
   var via=opptjentFs!=null&&r.fakt!=null?opptjentFs-r.fakt:null;
@@ -2066,15 +2072,20 @@ function rPOC(){
   var pv=0;
   document.getElementById('poctbl').innerHTML=
     '<thead><tr>'+
-    ['Ordre','PL','Beskrivelse','Kontraktssum','Påløpte kostnader','Gjenst. timer','kr/t','Gjenst. mat.','Gjenst. kost','Est. sluttkost','Ferdiggrad','Periodisert','DG% ved ferdig','Fakturert','VIA','FG (forr.p.)','DG% (forr.p.)','Kommentar'].map(function(n,i){
-      var sortable=[0,1,2,3,4,13,14].indexOf(i)>=0;
-      var cls=POCS.col===i?(POCS.asc?' class="sa"':' class="sd"'):'';
-      var style=([3,4,8,9,10,11,12,13,14,15,16].indexOf(i)>=0)?'style="text-align:right"':'';
-      if([5,6,7,17].indexOf(i)>=0) style='style="color:#9EC8FF'+(i>=3?';text-align:right':'')+'\"';
-      if(sortable) return '<th'+cls+' '+style+' onclick="POCS={col:'+i+',asc:POCS.col==='+i+'?!POCS.asc:false};rPOC()">'+n+'</th>';
-      var prevTip=(i===15||i===16)?' title="Verdier fra forrige vurderingsperiode"':'';
-      return '<th '+style+prevTip+'>'+n+'</th>';
-    }).join('')+
+    (function(){
+      var allCols=['Ordre','PL','Beskrivelse','Kontraktssum','Påløpte kostnader','Gjenst. timer','kr/t','Gjenst. mat.','Gjenst. kost','Est. sluttkost','Ferdiggrad','Periodisert','DG% ved ferdig','Fakturert','VIA','FG (forr.p.)','DG% (forr.p.)','Kommentar'];
+      var visIdx=_showPrevCols?allCols.map(function(_,i){return i;}):[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,17];
+      return visIdx.map(function(i){
+        var n=allCols[i];
+        var sortable=[0,1,2,3,4,13,14].indexOf(i)>=0;
+        var cls=POCS.col===i?(POCS.asc?' class="sa"':' class="sd"'):'';
+        var style=([3,4,8,9,10,11,12,13,14,15,16].indexOf(i)>=0)?'style="text-align:right"':'';
+        if([5,6,7,17].indexOf(i)>=0) style='style="color:#9EC8FF'+(i>=3?';text-align:right':'')+'\"';
+        if(sortable) return '<th'+cls+' '+style+' onclick="POCS={col:'+i+',asc:POCS.col==='+i+'?!POCS.asc:false};rPOC()">'+n+'</th>';
+        var prevTip=(i===15||i===16)?' title="Verdier fra forrige vurderingsperiode"':'';
+        return '<th '+style+prevTip+'>'+n+'</th>';
+      }).join('');
+    })()+
     '</tr></thead><tbody>'+
     (function(){
       var seenBases={};
@@ -2098,7 +2109,8 @@ function rPOC(){
         var tkVal=inp.tk!=null?inp.tk:stk;
         var c=calcPOC(r,stk);
         if(c.via!=null) pv+=c.via;
-        var warn=c.via!=null&&Math.abs(c.via)>50000&&!inp.k;
+        var overbill=r.tilbud!=null&&r.fakt!=null&&r.fakt>r.tilbud;
+        var warn=(c.via!=null&&Math.abs(c.via)>50000&&!inp.k)||overbill;
         var bs=r.beskr?r.beskr.substring(0,40)+(r.beskr.length>40?'…':''):'–';
         return '<tr class="'+(warn?'rwarn':'')+'"'+(indent?' style="border-left:3px solid #3b82f6;"':'')+'>'+
           '<td style="'+(indent?'padding-left:22px;':'')+'">'+(indent?'↳ ':'')+
@@ -2115,10 +2127,9 @@ function rPOC(){
           '<td class="r calc">'+(c.fg!=null?PC(c.fg):'–')+'</td>'+
           '<td class="r calc">'+NK(c.innt)+'</td>'+
           '<td class="r calc">'+(c.estDG!=null?PC(c.estDG):'–')+'</td>'+
-          '<td class="r">'+NK(r.fakt)+'</td>'+
+          '<td class="r'+(overbill?' vneg':'')+'" title="'+(overbill?'⚠️ Fakturert overgår kontraktssum!':'')+'">'+(overbill?'⚠️ ':'')+NK(r.fakt)+'</td>'+
           '<td class="r '+(c.via==null?'':(c.via<0?'vneg':'vpos'))+'">'+NK(c.via)+'</td>'+
-          '<td class="c">'+prevFG(r.ordreNr)+'</td>'+
-          '<td class="c">'+prevDGp(r.ordreNr)+'</td>'+
+          (_showPrevCols?'<td class="c">'+prevFG(r.ordreNr)+'</td>'+'<td class="c">'+prevDGp(r.ordreNr)+'</td>':'')+
           '<td>'+cmtInp(r.ordreNr,inp.k,d,warn)+'</td>'+
           '</tr>';
       }
@@ -2143,7 +2154,8 @@ function rPOC(){
           inpA.tk=inpA.tk||stk;
           var cA=calcPOC(rAgg);
           if(cA.via!=null) pv+=cA.via;
-          var wA=cA.via!=null&&Math.abs(cA.via)>50000&&!inpA.k;
+          var overbillA=aggT>0&&aggF>aggT;
+          var wA=(cA.via!=null&&Math.abs(cA.via)>50000&&!inpA.k)||overbillA;
           var bsA=gRows[0].beskr?gRows[0].beskr.substring(0,40)+(gRows[0].beskr.length>40?'…':''):'–';
           var disA=LOCKED?'disabled':'';
           pocHtml+='<tr class="'+(wA?'rwarn':'')+'" style="background:#eff6ff;">'+
@@ -2160,13 +2172,13 @@ function rPOC(){
             '<td class="r calc">'+(cA.fg!=null?PC(cA.fg):'–')+'</td>'+
             '<td class="r calc">'+NK(cA.innt)+'</td>'+
             '<td class="r calc">'+(cA.estDG!=null?PC(cA.estDG):'–')+'</td>'+
-            '<td class="r">'+NK(aggF)+'</td>'+
+            '<td class="r'+(overbillA?' vneg':'')+'" title="'+(overbillA?'⚠️ Fakturert overgår kontraktssum!':'')+'">'+(overbillA?'⚠️ ':'')+NK(aggF)+'</td>'+
             '<td class="r '+(cA.via==null?'':(cA.via<0?'vneg':'vpos'))+'">'+NK(cA.via)+'</td>'+
-            '<td class="c">–</td><td class="c">–</td>'+
+            (_showPrevCols?'<td class="c">–</td><td class="c">–</td>':'')+
             '<td>'+cmtInp(base,inpA.k,disA,wA)+'</td>'+
             '</tr>';
         } else {
-          pocHtml+='<tr style="background:#dbeafe;"><td colspan="18" style="padding:5px 12px;font-size:.8rem;color:#1e3a8a;">'+
+          pocHtml+='<tr style="background:#dbeafe;"><td colspan="'+(16+(_showPrevCols?2:0))+'" style="padding:5px 12px;font-size:.8rem;color:#1e3a8a;">'+
             '📁 <strong>Ordre '+base+'</strong> — '+gRows.length+' underordre · Sum kontrakt: '+NK(aggT)+' · Sum kostnader: '+NK(aggO)+btn+'</td></tr>';
           gRows.forEach(function(gr){ pocHtml+=pocRow(gr,true); });
         }
@@ -2213,12 +2225,14 @@ function rPOC(){
       var fgVal=inp.fg!=null?inp.fg:100;
       var kvVal=inp.kv!=null&&inp.kv>0?inp.kv:null;
       var isDL=_currentUser&&_currentUser.isDL;
-      var fgCell='<div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">'+
-        '<input class="pi" type="text" inputmode="numeric" value="'+fgVal+'" '+dis+
-        ' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'fg\',this)"'+
-        ' style="width:48px;border-color:#9EC8FF;color:#9EC8FF;text-align:right;"'+
-        ' title="Ferdighetskortgrad — andel av prosjektet fullført">'+
-        '<span style="font-size:.8rem;color:#9EC8FF">%</span></div>';
+      var fgCell=r.isTM
+        ?'<span style="color:#aaa;font-size:.85rem;display:block;text-align:right;" title="T&M: inntekt = kostnader, FG alltid 100%">–</span>'
+        :'<div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">'+
+          '<input class="pi" type="text" inputmode="numeric" value="'+fgVal+'" '+dis+
+          ' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'fg\',this)"'+
+          ' style="width:48px;border-color:#9EC8FF;color:#9EC8FF;text-align:right;"'+
+          ' title="Ferdighetskortgrad — andel av prosjektet fullført">'+
+          '<span style="font-size:.8rem;color:#9EC8FF">%</span></div>';
       var kvCell=isDL
         ?'<div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">'+
           '<input class="pi" type="text" inputmode="numeric" value="'+(kvVal!=null?fmtI(kvVal):'')+'" '+
