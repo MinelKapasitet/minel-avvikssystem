@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.53</title>
+<title>VIA QA – Minel AS v9.54</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.53</span>
+  <span class="hd-badge">v9.54</span>
 </header>
 
 <!-- START PANEL -->
@@ -455,7 +455,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.53 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.54 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -1484,10 +1484,16 @@ function startApiLoad(){
     cases.forEach(function(c){ var s=(c.status&&c.status.text)||'(tom)'; _statusTeller[s]=(_statusTeller[s]||0)+1; });
     console.log('[FILTER] Alle statuser fra OS:', _statusTeller);
 
+    // Bygg sett av foreldre-IDer — ordrer som har minst én underordre i datasettet.
+    // Disse ekskluderes selv (barna vises istedet og grupperes via detectGroups).
+    var _parentIds = new Set();
+    cases.forEach(function(c){ if(c.parentCaseId) _parentIds.add(String(c.parentCaseId)); });
+
     var histReopenCount = 0;
     var active = cases.filter(function(c){
-      // Ekskluder delordrer (parentCaseId != null) — PA-modulen viser kun toppnivå-ordrer
-      if(c.parentCaseId) return false;
+      // Ekskluder toppordrer som har underordrer — barna vises gruppert istedet
+      if(_parentIds.has(String(c.id))) return false;
+      // Underordrer (parentCaseId != null) inkluderes og vises gruppert via detectGroups()
       var typeText = (c.caseType&&c.caseType.text)||'';
       var statusText = (c.status&&c.status.text)||'';
       // Ekskluder ordrer uten påløpte kostnader OG uten forventet DG OG uten tilbud — uten aktivitet er disse uaktuelle
