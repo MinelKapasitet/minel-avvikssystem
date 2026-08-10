@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.54</title>
+<title>VIA QA – Minel AS v9.57</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -525,10 +525,34 @@ async function spLoadHist(entity){
     return true;
   }catch(e){console.warn('[SP] Historikk-henting feilet:',e);return false;}
 }
-var MSAL_CFG={auth:{clientId:'f5b4bfe7-8fec-496c-a1e1-8d519666ab45',authority:'https://login.microsoftonline.com/7ee2ac67-421e-4ac2-8998-f1f3e0c10fa7',redirectUri:'https://calm-plant-0bcddaa03.7.azurestaticapps.net/VIA_QA.html'},cache:{cacheLocation:'localStorage'}};
+var _redirectUri=window.location.origin+window.location.pathname;
+var MSAL_CFG={auth:{clientId:'f5b4bfe7-8fec-496c-a1e1-8d519666ab45',authority:'https://login.microsoftonline.com/7ee2ac67-421e-4ac2-8998-f1f3e0c10fa7',redirectUri:_redirectUri},cache:{cacheLocation:'localStorage'}};
 var SP_SCOPES=['https://graph.microsoft.com/Sites.Selected'];
 var _msalApp=null,_spUser='Ukjent',_spIds={},_spEtags={},_spDebounce={};
 var _currentUser=null;
+// Auto-init MSAL ved sideinnlasting: behandler redirect-svar når siden lastes som redirectUri
+// (f.eks. etter loginRedirect fra samme side, eller som popup-relay)
+document.addEventListener('DOMContentLoaded',async function(){
+  if(typeof msal==='undefined')return;
+  try{
+    var autoApp=new msal.PublicClientApplication(MSAL_CFG);
+    await autoApp.initialize();
+    var resp=await autoApp.handleRedirectPromise();
+    if(resp&&resp.accessToken){
+      _msalApp=autoApp;
+      _spUser=resp.account?resp.account.username:'Ukjent';
+      if(typeof detectUser==='function')detectUser(resp.account);
+      if(!_loggedLogin){
+        _loggedLogin=true;
+        if(typeof logEventRaw==='function')logEventRaw(resp.accessToken,'Innlogget',{metode:'redirect'}).catch(function(){});
+      }
+      // Hvis vi er i et popup-vindu (window.name satt av MSAL), prøv å lukke
+      if(window.name&&window.name.indexOf('msal')===0){
+        setTimeout(function(){try{window.close();}catch(e){}},300);
+      }
+    }
+  }catch(e){console.warn('[SP] auto-redirect-init:',e);}
+});
 var DL_LIST={
   'oyvind.saethersmoen@minel.no':'__SUPER__',
   'oyvind.saethersmoen@elkonor.no':'__SUPER__',
@@ -623,27 +647,36 @@ async function initMSAL(){
   if(typeof msal==='undefined'){console.warn('[SP] MSAL ikke lastet');return;}
   _msalApp=new msal.PublicClientApplication(MSAL_CFG);
   await _msalApp.initialize();
-  try{var resp=await _msalApp.handleRedirectPromise();if(resp){_spToken=resp.accessToken;_spUser=resp.account.username;}}catch(e){}
 }
 
 async function loginPL(btn){
   var errEl=document.getElementById('pl-login-err');
-  if(btn){btn.disabled=true;btn.textContent='⏳ Logger inn...';}
   if(errEl)errEl.style.display='none';
-  var tok=await getSpToken();
-  if(btn){btn.disabled=false;btn.innerHTML='🔑 Logg inn med Microsoft';}
-  if(!tok&&errEl){
-    errEl.style.display='block';
-    errEl.textContent='Innlogging feilet. Tillat popup-vinduer for denne siden i adressefeltet og prøv igjen.';
+  await initMSAL();
+  if(!_msalApp){if(btn){btn.disabled=false;btn.innerHTML='🔑 Logg inn med Microsoft';}return;}
+  var accounts=_msalApp.getAllAccounts();
+  if(accounts.length>0){
+    try{
+      var r=await _msalApp.acquireTokenSilent({scopes:SP_SCOPES,account:accounts[0]});
+      detectUser(accounts[0]);
+      if(!_loggedLogin){_loggedLogin=true;logEventRaw(r.accessToken,'Innlogget',{metode:'silent'}).catch(function(){});}
+      return;
+    }catch(e){console.warn('[SP] Silent feilet, omdirigerer:',e);}
+  }
+  if(btn)btn.textContent='⏳ Omdirigerer til Microsoft...';
+  try{
+    await _msalApp.loginRedirect({scopes:SP_SCOPES});
+  }catch(re){
+    console.warn('[SP] loginRedirect feilet:',re);
+    if(btn){btn.disabled=false;btn.innerHTML='🔑 Logg inn med Microsoft';}
+    if(errEl){errEl.style.display='block';errEl.textContent='Innlogging feilet: '+re.message;}
   }
 }
 async function getSpToken(){
-  // Alltid kall acquireTokenSilent — MSAL håndterer cache og refresh internt.
-  // Ikke cache token-strengen selv; det forhindrer automatisk fornyelse etter ~1t.
   try{
-    if(typeof msal==='undefined') return null;
+    if(typeof msal==='undefined')return null;
     await initMSAL();
-    if(!_msalApp) return null;
+    if(!_msalApp)return null;
     var accounts=_msalApp.getAllAccounts();
     if(accounts.length>0){
       try{
@@ -651,14 +684,9 @@ async function getSpToken(){
         detectUser(accounts[0]);
         if(!_loggedLogin){_loggedLogin=true;logEventRaw(r.accessToken,'Innlogget',{metode:'silent'}).catch(function(){});}
         return r.accessToken;
-      }catch(e){console.warn('[SP] Silent refresh feilet, prøver popup:',e);}
+      }catch(e){console.warn('[SP] Token-henting feilet:',e);}
     }
-    try{
-      var pr=await _msalApp.acquireTokenPopup({scopes:SP_SCOPES});
-      detectUser(pr.account);
-      if(!_loggedLogin){_loggedLogin=true;logEventRaw(pr.accessToken,'Innlogget',{metode:'popup'}).catch(function(){});}
-      return pr.accessToken;
-    }catch(pe){console.warn('[SP] Popup avvist:',pe);return null;}
+    return null;
   }catch(e){console.warn('[SP] MSAL feil:',e);return null;}
 }
 
