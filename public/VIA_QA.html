@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.57</title>
+<title>VIA QA – Minel AS v9.58</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.57</span>
+  <span class="hd-badge">v9.58</span>
 </header>
 
 <!-- START PANEL -->
@@ -455,7 +455,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.57 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.58 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -891,6 +891,7 @@ async function spSaveDataset(){
   var data={src:document.getElementById('lentity').value,period:document.getElementById('aperiod').textContent,exported:new Date().toISOString(),exportedBy:_currentUser?_currentUser.name:'',rows:ACTIVE};
   try{
     var r=await spFetch(spDriveUrl(data.src),{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+    if(!r){alert('Ikke innlogget i SharePoint. Trykk på «🔑 Logg inn med Microsoft»-knappen og prøv igjen.');return;}
     if(r.ok){
       var btn=document.getElementById('share-btn');
       if(btn){btn.textContent='✅ Delt!';btn.style.background='var(--green)';setTimeout(function(){btn.textContent='📤 Del datasett';btn.style.background='';},3000);}
@@ -900,7 +901,7 @@ async function spSaveDataset(){
 async function spLoadDataset(company){
   try{
     var r=await spFetch(spDriveUrl(company));
-    if(!r.ok)return false;
+    if(!r||!r.ok)return false;
     var data=await r.json();
     if(!data.rows||!data.period)return false;
     parseRows(data.rows,data.src||'SharePoint',data.period);
