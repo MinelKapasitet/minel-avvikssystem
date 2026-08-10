@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.58</title>
+<title>VIA QA – Minel AS v9.59</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.58</span>
+  <span class="hd-badge">v9.59</span>
 </header>
 
 <!-- START PANEL -->
@@ -233,7 +233,11 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
       <h2 style="color:#1a1a2e;margin:0 0 6px;font-size:1.2rem;">Hent perioderegnskap</h2>
       <p style="color:#666;font-size:.84rem;margin:0 0 20px;">Direkte fra Ordrestyring via API</p>
       <div id="dl-login-confirm" style="display:none;background:#d1fae5;color:#065f46;border-radius:8px;padding:10px 14px;font-size:.84rem;margin-bottom:16px;text-align:center;"></div>
-      <div id="dl-section" style="text-align:left;">
+      <div id="dl-login-box" style="margin-bottom:16px;">
+        <button class="btn" id="dl-login-btn" onclick="loginPL(this)" style="width:100%;padding:12px;font-size:.95rem;">🔑 Logg inn med Microsoft</button>
+        <p style="margin-top:8px;color:#8892b0;font-size:.74rem;">Påkrevd for å laste og dele data</p>
+      </div>
+      <div id="dl-section" style="display:none;text-align:left;">
         <div style="margin-bottom:12px;">
           <label style="font-size:.78rem;font-weight:600;color:#555;display:block;margin-bottom:4px;">Selskap</label>
           <select id="co-sel" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #ddd;font-size:.9rem;color:#222;">
@@ -455,7 +459,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.58 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.59 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ SHAREPOINT INTEGRASJON ════
@@ -588,6 +592,8 @@ function detectUser(account){
     // (DL branch below)
     // DL: hide PL card login button, show confirmation in DL card
     var loginBox2=document.getElementById('pl-login-box');if(loginBox2)loginBox2.style.display='none';
+    var dlLoginBox=document.getElementById('dl-login-box');if(dlLoginBox)dlLoginBox.style.display='none';
+    var dlSec=document.getElementById('dl-section');if(dlSec)dlSec.style.display='';
     var dlConf=document.getElementById('dl-login-confirm');
     if(dlConf){
       dlConf.style.display='block';
