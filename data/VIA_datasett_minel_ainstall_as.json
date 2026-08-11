@@ -1,0 +1,1868 @@
+{
+  "src": "Minel Ainstall AS",
+  "period": "juli 2026",
+  "exported": "2026-08-11T11:06:32.717Z",
+  "exportedBy": "Øyvind Sæthersmoen",
+  "rows": [
+    {
+      "id": 3125,
+      "ordreNr": "2896",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Installasjon av varmepumpe med kurs Skifte av lamper i garasje Skifte av lampe på vaskerom Installasjon av utestikk på veranda Installasjon av 6-veis stikk på kontor Opplegg av div stikkontakter på div rom",
+      "kunde": "Geir Arne Fremstad",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 3976.47,
+      "timerkost": 0,
+      "materialkost": 3976.47,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 48595.785,
+      "via": 48595.785,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3124,
+      "ordreNr": "2895",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Materiell",
+      "kunde": "Anne Ohren Hvaleby",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 1144.445,
+      "timerkost": 0,
+      "materialkost": 1144.445,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 1455.7,
+      "via": 1455.7,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3123,
+      "ordreNr": "2894",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Markise styring",
+      "kunde": "Lars Dæhlen",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 1001.04,
+      "timerkost": 485.18,
+      "materialkost": 515.86,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 2604.98,
+      "via": 2604.98,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3122,
+      "ordreNr": "2893",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Skifte av smeltet 3-fase kontakt",
+      "kunde": "Anne Siri Eriksen",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 539.27,
+      "timerkost": 443.48,
+      "materialkost": 95.79,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 1639.05,
+      "via": 1639.05,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3121,
+      "ordreNr": "2892-2",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "1479416 Kristian Helland Installasjon av elbillader. 230V IT Overspenningsvern - OK. Ta med AP9 for strømkontroller",
+      "kunde": "Inselo Installasjon",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 895.62,
+      "timerkost": 0,
+      "materialkost": 895.62,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 5931.05,
+      "via": 5931.05,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3118,
+      "ordreNr": "2891",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Varmepumpe",
+      "beskr": "Service på Panasonic varmepumpe",
+      "kunde": "Helge Halvorsen",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 828.825,
+      "timerkost": 828.825,
+      "materialkost": 0,
+      "dg": 0.15,
+      "fakt": 0,
+      "fSalgsverdi": 2535,
+      "via": 2535,
+      "historicalReopen": true,
+      "normDG": 0.15,
+      "dgAvvik": 0,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3116,
+      "ordreNr": "2889",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Ny kurs til komfyr.",
+      "kunde": "Daniel Crichton",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 1792.665,
+      "timerkost": 1105.1,
+      "materialkost": 687.565,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 4782.96,
+      "via": 4782.96,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3115,
+      "ordreNr": "2888",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Installasjon av elbillader på Lygna. Zaptec Go.",
+      "kunde": "Solveig Brænd",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 2029.1465000000003,
+      "timerkost": 0,
+      "materialkost": 2029.1465000000003,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 14942.886499999999,
+      "via": 14942.886499999999,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3114,
+      "ordreNr": "2887",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Henge opp to taklamper. Demontere en taklampe",
+      "kunde": "Karin Olaug Toresen",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 769.26,
+      "timerkost": 665.22,
+      "materialkost": 104.04,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 1967.07,
+      "via": 1967.07,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3112,
+      "ordreNr": "2885",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Utkobling av strøm",
+      "kunde": "Asle Raade",
+      "pl": "Andreas  Svevnerud",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 415.5,
+      "timerkost": 415.5,
+      "materialkost": 0,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 1390,
+      "via": 1390,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3111,
+      "ordreNr": "2884",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Feilsøk jordfeil kjeller",
+      "kunde": "Kjersti Høibø Tysland",
+      "pl": "Andreas  Svevnerud",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 207.75,
+      "timerkost": 207.75,
+      "materialkost": 0,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 995,
+      "via": 995,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3110,
+      "ordreNr": "2883",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Utbedring av tilsynsrapport",
+      "kunde": "Tove Mette Stensvold",
+      "pl": "Andreas  Svevnerud",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 2831.6099999999997,
+      "timerkost": 1662,
+      "materialkost": 1169.61,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 5303,
+      "via": 5303,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3109,
+      "ordreNr": "2882",
+      "isTM": true,
+      "status": "I arbeid",
+      "type": "Service",
+      "beskr": "Utbedring av tilsynsrapport",
+      "kunde": "Rut Beate Lehre Høgsaas",
+      "pl": "Andreas  Svevnerud",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 2457.48,
+      "timerkost": 1662,
+      "materialkost": 795.48,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 6407.6,
+      "via": 6407.6,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3108,
+      "ordreNr": "2881",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Utbedring av tilsynsrapport",
+      "kunde": "Thomas Morstad",
+      "pl": "Andreas  Svevnerud",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 3464.9,
+      "timerkost": 415.5,
+      "materialkost": 3049.4,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 4979.26,
+      "via": 4979.26,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3107,
+      "ordreNr": "2880",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Installasjon av elbillader  Zaptec Go  15-20 meter  230v it - overspenningsvern ok  Husk,  50 dv  Halvrør yttervegg",
+      "kunde": "Anna Eidsand Gårder",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 9343.2,
+      "timerkost": 2077.5,
+      "materialkost": 7265.7,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 21126,
+      "via": 21126,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3106,
+      "ordreNr": "2879",
+      "isTM": true,
+      "status": "Klar for fakturering",
+      "type": "Service",
+      "beskr": "Ledstripe i skilt jølstad",
+      "kunde": "BRØDRENE EKEBERG AS",
+      "pl": "Andreas  Svevnerud",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 831,
+      "timerkost": 831,
+      "materialkost": 0,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 2180,
+      "via": 2180,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3105,
+      "ordreNr": "2878",
+      "isTM": true,
+      "status": "Klar for fakturering",
+      "type": "Service",
+      "beskr": "Etablering av ny 4'veis stikkontakt på vaskerom. Trekkes ny kurs fra sikringsskap, forutsettes at det er plass til ny jordfeilautomat i skapet. Det installeres en 15A JFA. Forutsetninger for tilbudet, - Inntil 2 timer arbeid. - Inntil 15 meter med PN 3g2,5. - 1 stk. 15A JFA. - 1 stk. 4veis stikkontakt påvegg. - Eksisterende kabler i rør kan trekkes ut.",
+      "kunde": "Cornelius Elvestuen ",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 1445.85,
+      "timerkost": 831,
+      "materialkost": 614.85,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 3255.99,
+      "via": 3255.99,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3104,
+      "ordreNr": "2877",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Rehabilitering av sikringsskap.",
+      "kunde": "Joakim Johnsrud ",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 3951.86,
+      "timerkost": 831,
+      "materialkost": 3120.86,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 9013.76,
+      "via": 9013.76,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3103,
+      "ordreNr": "2876",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Rapport",
+      "kunde": "Bjørn Svevnerud",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 574.8,
+      "timerkost": 415.5,
+      "materialkost": 159.3,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 1771.6,
+      "via": 1771.6,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3099,
+      "ordreNr": "2872",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Nybygg",
+      "beskr": "LY 733 107-228 Sprangåsstubben 26 Installasjon i ny hytte.",
+      "kunde": "GREEN HUS OG HYTTER AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 36521.21,
+      "timerkost": 3061.42,
+      "materialkost": 33459.79,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 161648.57,
+      "via": 161648.57,
+      "historicalReopen": false,
+      "normDG": 0.13333333333333333,
+      "dgAvvik": 0.16666666666666666,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3098,
+      "ordreNr": "2871",
+      "isTM": false,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Installasjon av Zaptec Go elbil lader, 17m kabel Installasjon av varmepumpe, varmepumpe leveres av kunde. Panasonic HZ25 Tilkobling av motstrømsbasseng, graving av rør er ikke medberegnet i prisen.",
+      "kunde": "Tone Schou Nilsen ",
+      "pl": "Jonas Prestkvern",
+      "tilbud": 36759.3,
+      "hasTilbud": true,
+      "totOmk": 20701.92,
+      "timerkost": 6652.2,
+      "materialkost": 14049.72,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 29574.17142857143,
+      "via": 29574.17142857143,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "Rund DG%",
+          "c": ""
+        }
+      ]
+    },
+    {
+      "id": 3094,
+      "ordreNr": "2867",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Utskiftning av 5.stk 2-pol aktuatorer Se på skeiv belasting av faser i anlegget, hør med kunde hva han mener om dette.",
+      "kunde": "Arne Damvin",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 3963.575,
+      "timerkost": 1397.675,
+      "materialkost": 2565.9,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 8767.2,
+      "via": 8767.2,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3091,
+      "ordreNr": "2865",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Batterifeil på ledelys i spinningrom i treningssenter Sted i bygningen: Treningssenter Beskrivelse avvik: Ledelys i spinningrom indikerer trolig batterifeil. Alvorlighetsgrad: Middels",
+      "kunde": "Gran Handelspark AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 3298.88,
+      "timerkost": 443.48,
+      "materialkost": 2855.4,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 12649,
+      "via": 12649,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3090,
+      "ordreNr": "2864",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Batterifeil på markeringslys ved dør ved heis i treningssenter Sted i bygningen: Dør ved heis treningssenter Beskrivelse avvik: Markeringslys over dør ved heis indikerer trolig batterifeil. Alvorlighetsgrad: Høy",
+      "kunde": "Gran Handelspark AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 1522.745,
+      "timerkost": 498.015,
+      "materialkost": 1024.73,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 4496.33,
+      "via": 4496.33,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3088,
+      "ordreNr": "2862",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Bytte 2 stk defekt nødlys 1 nødlys i tak ved brannsentral hovedinngang og 1 nødlys i tak ved inngang Jysk. Jysk har lift som kan benyttes Byttes til nye LED Faktura sendes Gran Handelspark AS Oslo gate 15 0192 Oslo",
+      "kunde": "Gran Handelspark AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 3317.88,
+      "timerkost": 1108.7,
+      "materialkost": 2209.18,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 10026.46,
+      "via": 10026.46,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3086,
+      "ordreNr": "2860",
+      "isTM": true,
+      "status": "I arbeid",
+      "type": "Service",
+      "beskr": "Montering av servicebrytere på tak, for vifter. Tette - bruk skrunippel og tettemasse Ring Sten Ikke ferdig!! Ønsker 3 stk servicebrytere til",
+      "kunde": "Gran Terrasse Borettslag",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 6714.18,
+      "timerkost": 2077.5,
+      "materialkost": 4636.68,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 23177.33,
+      "via": 23177.33,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3077,
+      "ordreNr": "2851",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Tilkobling av ringeklokke. Montering av trafo i sikringsskap, 8-24V Kabel legges frem til ringeklokken. Montering av kamera på garasje, kobles i stikkontakt gjennom lufteventil.",
+      "kunde": "Karl Andre Nordli",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 2424.995,
+      "timerkost": 838.605,
+      "materialkost": 1586.39,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 8048.39,
+      "via": 8048.39,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3075,
+      "ordreNr": "2849",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Tilkobling av frekvensomformer. Elbil lader. Montering av nye sikringsskap i låve og garasje.",
+      "kunde": "Peder Haug",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 81687.25,
+      "timerkost": 27570.22,
+      "materialkost": 54117.03,
+      "dg": 0,
+      "fakt": 141284.68,
+      "fSalgsverdi": 133412.8,
+      "via": -7871.880000000005,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3070,
+      "ordreNr": "2845",
+      "isTM": true,
+      "status": "Klar for fakturering",
+      "type": "Service",
+      "beskr": "Utbedring av tilsynsrapport, ID: 58849 Pin: 7550 Utbedring av Elkontroll Termografi Utbedring av IK Branninspeksjon Demontering og remontering av taklamper ved potetgull hyller. Juster lamper til 4000K. Også eksisterende armaturer i tak som er av tilsvarende type. 9-10 stk.",
+      "kunde": "Jaren Center AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 13768.619999999999,
+      "timerkost": 7530,
+      "materialkost": 6238.62,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 24512.59,
+      "via": 24512.59,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3068,
+      "ordreNr": "2843",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "50 meter pr",
+      "kunde": "Ole Petter Hvamstad",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 1167.5,
+      "timerkost": 0,
+      "materialkost": 1167.5,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 2043,
+      "via": 2043,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3059,
+      "ordreNr": "2834",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Rehabilitering av kjøkken og stue, utføres etter medgått. Kjøkken, Ny kurs til platetopp Ny kurs til komfyr/micro Benkbelysning m. Dimmer Takpunkt m. Dimmer 4 stk doble stikk over kjøkkenbenk Stue, Demontere og remontering varmepumpe Frakobling av tilførsel slik at kunde kan rive selv Etablering av skjult anlegg Utendørs, Utvendig stikkontakt på terrassen Snekker kommer mandag 15.06.",
+      "kunde": "Elisabeth Nilsen",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 28930.825,
+      "timerkost": 11265.415,
+      "materialkost": 17665.41,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 72297.52,
+      "via": 72297.52,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3056,
+      "ordreNr": "2831",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Arbeid knyttet til skianlegg i Narvik",
+      "kunde": "Minel Land Elektriske AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 94275.125,
+      "timerkost": 94275.125,
+      "materialkost": 0,
+      "dg": 0.3,
+      "fakt": 96007.5,
+      "fSalgsverdi": 241717.5,
+      "via": 145710,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3050,
+      "ordreNr": "2826",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Oppenvegen - Kalkulasjon",
+      "kunde": "Minel Ainstall AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 9350,
+      "timerkost": 0,
+      "materialkost": 9350,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 16962.5,
+      "via": 16962.5,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3034,
+      "ordreNr": "2812",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Bytte av innmat i sikringsskap. Økning av OV.",
+      "kunde": "Lars Martin Pettersen ",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 9317.24,
+      "timerkost": 3913.49,
+      "materialkost": 5403.75,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 23353.63,
+      "via": 23353.63,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3025,
+      "ordreNr": "2804-4",
+      "isTM": false,
+      "status": "I arbeid",
+      "type": "Nybygg",
+      "beskr": "Nyinstallasjon av leiligheter Lillo på Harestua. Utføres iht tilbudsbrev 20260508-1. Installasjon av varmepumpe, Panasonic Varmepumpe CZ25ZKE K.",
+      "kunde": "NORDBOHUS ROMERIKE PROSJEKT AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": 113333.04,
+      "hasTilbud": true,
+      "totOmk": 12498.825,
+      "timerkost": 6583.205,
+      "materialkost": 5915.62,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 12498.825,
+      "via": 12498.825,
+      "historicalReopen": false,
+      "normDG": 0.13333333333333333,
+      "dgAvvik": -0.13333333333333333,
+      "sc": 3,
+      "risk": "MIDDELS",
+      "flags": [
+        {
+          "t": "DG% = 0",
+          "c": "er"
+        }
+      ]
+    },
+    {
+      "id": 3024,
+      "ordreNr": "2804-3",
+      "isTM": false,
+      "status": "I arbeid",
+      "type": "Nybygg",
+      "beskr": "Nyinstallasjon av leiligheter Lillo på Harestua. Utføres iht tilbudsbrev 20260508-1. Installasjon av varmepumpe, Panasonic Varmepumpe CZ25ZKE K.",
+      "kunde": "NORDBOHUS ROMERIKE PROSJEKT AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": 113333.04,
+      "hasTilbud": true,
+      "totOmk": 6590.455,
+      "timerkost": 3552.665,
+      "materialkost": 3037.79,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 6590.455,
+      "via": 6590.455,
+      "historicalReopen": false,
+      "normDG": 0.13333333333333333,
+      "dgAvvik": -0.13333333333333333,
+      "sc": 3,
+      "risk": "MIDDELS",
+      "flags": [
+        {
+          "t": "DG% = 0",
+          "c": "er"
+        }
+      ]
+    },
+    {
+      "id": 3023,
+      "ordreNr": "2804-2",
+      "isTM": false,
+      "status": "I arbeid",
+      "type": "Nybygg",
+      "beskr": "Nyinstallasjon av leiligheter Lillo på Harestua. Utføres iht tilbudsbrev 20260508-1. Installasjon av varmepumpe, Panasonic Varmepumpe CZ25ZKE K.",
+      "kunde": "NORDBOHUS ROMERIKE PROSJEKT AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": 113333.04,
+      "hasTilbud": true,
+      "totOmk": 6590.455,
+      "timerkost": 3552.665,
+      "materialkost": 3037.79,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 6590.455,
+      "via": 6590.455,
+      "historicalReopen": false,
+      "normDG": 0.13333333333333333,
+      "dgAvvik": -0.13333333333333333,
+      "sc": 3,
+      "risk": "MIDDELS",
+      "flags": [
+        {
+          "t": "DG% = 0",
+          "c": "er"
+        }
+      ]
+    },
+    {
+      "id": 3022,
+      "ordreNr": "2804-1",
+      "isTM": false,
+      "status": "I arbeid",
+      "type": "Nybygg",
+      "beskr": "Nyinstallasjon av leiligheter Lillo på Harestua. Utføres iht tilbudsbrev 20260508-1. Installasjon av varmepumpe, Panasonic Varmepumpe CZ25ZKE K.",
+      "kunde": "NORDBOHUS ROMERIKE PROSJEKT AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": 113333.04,
+      "hasTilbud": true,
+      "totOmk": 6821.075000000001,
+      "timerkost": 2392.485,
+      "materialkost": 4428.59,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 6821.075000000001,
+      "via": 6821.075000000001,
+      "historicalReopen": false,
+      "normDG": 0.13333333333333333,
+      "dgAvvik": -0.13333333333333333,
+      "sc": 3,
+      "risk": "MIDDELS",
+      "flags": [
+        {
+          "t": "DG% = 0",
+          "c": "er"
+        }
+      ]
+    },
+    {
+      "id": 3009,
+      "ordreNr": "2792",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Salg av varer",
+      "kunde": "Åsmund Prestkvern",
+      "pl": "Marius Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 14763.87,
+      "timerkost": 0,
+      "materialkost": 14763.87,
+      "dg": 0,
+      "fakt": 16299.02,
+      "fSalgsverdi": 16299.02,
+      "via": 0,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 3008,
+      "ordreNr": "2791",
+      "isTM": true,
+      "status": "Bokført",
+      "type": "Service",
+      "beskr": "Utbedring av rapport",
+      "kunde": "Rolf Karlsen",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 4967.16,
+      "timerkost": 3324,
+      "materialkost": 1643.16,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 11100.77,
+      "via": 11100.77,
+      "historicalReopen": true,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2995,
+      "ordreNr": "2778",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Skjult anlegg i kjøkken, diverse stikk/brytere/takpunkt. Kode: 1905#",
+      "kunde": "Jan Emil Haga",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 9393.9,
+      "timerkost": 6093.75,
+      "materialkost": 3300.15,
+      "dg": 0.3,
+      "fakt": 21882.1,
+      "fSalgsverdi": 15122.86,
+      "via": -6759.239999999998,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2992,
+      "ordreNr": "2775",
+      "isTM": true,
+      "status": "Delutført",
+      "type": "Service",
+      "beskr": "Rehabilitering av kjøkken og sikringsskap",
+      "kunde": "Bjørn Eidsand",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 55344.619999999995,
+      "timerkost": 18148.74,
+      "materialkost": 37195.88,
+      "dg": 0,
+      "fakt": 95000.08,
+      "fSalgsverdi": 93220.29,
+      "via": -1779.7900000000081,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2991,
+      "ordreNr": "2774",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Rehabilitering av bad 7,5 kvm. El-installasjonen består av følgende punkter, - Varmekabel inkl. termostat. - Baderomsvifte, fuktstyrt med mulighet for overstyring via bryter. - Punkt for speillys med bryter - 4 stk. LED downlights i tak med dimmer. - 1 stk. stikkontakt ved vask. - Overspenningsvern i sikringsskapet.",
+      "kunde": "Byggservice Innlandet AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 11772.23,
+      "timerkost": 6163.49,
+      "materialkost": 5608.74,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 26095.89,
+      "via": 26095.89,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2986,
+      "ordreNr": "2602-1",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Tilvalg, Orhagavegen",
+      "kunde": "ØMF ASKER RINGERIKE AS",
+      "pl": "Håkon  Løvlien",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 25036,
+      "timerkost": 0,
+      "materialkost": 25036,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 40505.8,
+      "via": 40505.8,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2965,
+      "ordreNr": "2749",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Salg av varer",
+      "kunde": "Aud Vesteng Rognstad",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 632,
+      "timerkost": 0,
+      "materialkost": 632,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 695.23,
+      "via": 695.23,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2958,
+      "ordreNr": "2743-1",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Tilvalg installasjon i hytte, Spranglis 51, LY676 Nystølen 4 M/Hems",
+      "kunde": "NÆRT AS",
+      "pl": "Marius Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 5192.98,
+      "timerkost": 2425.9,
+      "materialkost": 2767.08,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 9846.23,
+      "via": 9846.23,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2803,
+      "ordreNr": "2603",
+      "isTM": false,
+      "status": "Avlyst",
+      "type": "Nybygg",
+      "beskr": "Installasjon i to hytter etter plantegninger \"Foreløpig tegning 04.11.2025\". Det er tatt utgangspunkt i leveranse etter skissering. Produkter er av typen elko, med sort utførelse. Lamper er levert fra IFØ der det er spesifisert, med brytere. Varmekabler på arealer hvor dette er beskrevet. Panelovner på soverom. Det leveres ett tilknytningsskap, hvor begge hytter forsynes fra. Hver hytte får hver sin fordelingstavle. Installasjon i en bod, samlet for begge hytter. Brannalarm anlegg leveres fra Elotec Ajax EN54. I fellesareal monteres det varsler med optisk og akustisk signal. En manuell melder monteres ved dør. Hytte 1 får installert FIRE HUB for overvåkning av begge hytter. Totalt installeres det 10 Optiske varslere med sirene.",
+      "kunde": "Åsmund Pettersen & Sønn AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": 402135.1,
+      "hasTilbud": true,
+      "totOmk": 0,
+      "timerkost": 0,
+      "materialkost": 0,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 0,
+      "via": 0,
+      "historicalReopen": true,
+      "normDG": 0.13333333333333333,
+      "dgAvvik": 0.16666666666666666,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "Rund DG%",
+          "c": ""
+        }
+      ]
+    },
+    {
+      "id": 2729,
+      "ordreNr": "2534",
+      "isTM": false,
+      "status": "Åpen",
+      "type": "Nybygg",
+      "beskr": "Installasjon i hytte på Linstadutsikten. Hytten levers med, - Sort materiell - Varmekabler på bad, gang & WC - Downlights på bad, gang & WC. - 3 stk. utelamper SG Artes - Øvrige rom levers uten taklamper. - 2 x 85cm benkbelysning. - Panelovner på soverom og bod. - Bod leveres klargjort for tilkobling av VVB, og installert takarmatur. varmekabler i stue og kjøkken, - Varmekabler i betong 29500.- eks. mva. inkluderer termostater, kursopplegg for varme",
+      "kunde": "Åsmund Pettersen & Sønn AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": 152671.43,
+      "hasTilbud": true,
+      "totOmk": 64090.880000000005,
+      "timerkost": 26033.97,
+      "materialkost": 38056.91,
+      "dg": 0.3,
+      "fakt": 90000,
+      "fSalgsverdi": 91558.40000000001,
+      "via": 1558.4000000000087,
+      "historicalReopen": false,
+      "normDG": 0.13333333333333333,
+      "dgAvvik": 0.16666666666666666,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "Rund DG%",
+          "c": ""
+        }
+      ]
+    },
+    {
+      "id": 2456,
+      "ordreNr": "2313",
+      "isTM": true,
+      "status": "I arbeid",
+      "type": "Nybygg",
+      "beskr": "Installasjon av i hytte Rondane 100 SP. v Per Magne Olsen - Sluttkunde.",
+      "kunde": "Tinde Hytter AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 38410.68,
+      "timerkost": 22484.895,
+      "materialkost": 15925.785,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 92724.53,
+      "via": 92724.53,
+      "historicalReopen": false,
+      "normDG": 0.13333333333333333,
+      "dgAvvik": 0.16666666666666666,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2444,
+      "ordreNr": "2301",
+      "isTM": true,
+      "status": "I arbeid",
+      "type": "Service",
+      "beskr": "Demontering av generelt åpent anlegg ift. riving. Legge opp til en provstikk for byggeperioden - 16A. 29.10.25 Befaring kjøkken/sikringsskap",
+      "kunde": "Lena Eidsand Johansen ",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 31841.32,
+      "timerkost": 13179.37,
+      "materialkost": 18661.95,
+      "dg": 0.3,
+      "fakt": 79573,
+      "fSalgsverdi": 91281.31,
+      "via": 11708.309999999998,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2371,
+      "ordreNr": "2237",
+      "isTM": false,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Rehabilitering av sikringsskap og montere el-bil lader på egen-/ny 32A sikringskurs (inntil 7,4KW). OV-/Hovedsikring er i dag på 40A og el-bil laderen trenger 32A, så denne anbefales økt til 56-63A. 1 Stk. ny OV-/Hovedsikring (56-63A), 12 stk. kombi-/jordfeilautomater, ringetrafo, bryter for varmekabel og nytt 3 polet overspenningsvern (krav ved el-bil lading). Levering og montering av Zaptec el-bil lader og medtatt inntil 10 meter kabling.",
+      "kunde": "Emilie Gun Lundberg",
+      "pl": "Jonas Prestkvern",
+      "tilbud": 29910.74,
+      "hasTilbud": true,
+      "totOmk": 0,
+      "timerkost": 0,
+      "materialkost": 0,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 0,
+      "via": 0,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "Rund DG%",
+          "c": ""
+        }
+      ]
+    },
+    {
+      "id": 2370,
+      "ordreNr": "2236",
+      "isTM": false,
+      "status": "Åpen",
+      "type": "Nybygg",
+      "beskr": "Installasjon i hytte, Spranglia 63, LY682 Hytte type Øynaden U/hems",
+      "kunde": "GREEN HUS OG HYTTER AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": 116000,
+      "hasTilbud": true,
+      "totOmk": 22831.134,
+      "timerkost": 5822.16,
+      "materialkost": 17008.974,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 22831.134,
+      "via": 22831.134,
+      "historicalReopen": false,
+      "normDG": 0.13333333333333333,
+      "dgAvvik": -0.13333333333333333,
+      "sc": 3,
+      "risk": "MIDDELS",
+      "flags": [
+        {
+          "t": "DG% = 0",
+          "c": "er"
+        }
+      ]
+    },
+    {
+      "id": 2362,
+      "ordreNr": "1563-12",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Ansatte Joris Gaurylius",
+      "kunde": "Minel Ainstall AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 7206.24,
+      "timerkost": 0,
+      "materialkost": 7206.24,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 12989.1,
+      "via": 12989.1,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2215,
+      "ordreNr": "2122",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Hub 2 Plus 6-12V MotionCam PhOD KeyPad Jeweller DoorProtect Plus FireProtect 2, StreetSiren Jeweller Simkort, Konkret solcelleanlegg ved Bergermarka, Solcelleanlegg på 12 volt. 100 Ah litium batteri.",
+      "kunde": "Åsmund Pettersen & Sønn AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 20445.99,
+      "timerkost": 0,
+      "materialkost": 20445.99,
+      "dg": 0.3,
+      "fakt": 0,
+      "fSalgsverdi": 42111.26,
+      "via": 42111.26,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 2124,
+      "ordreNr": "2051",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Salg av materiell",
+      "kunde": "Fredrich Højfeldt",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 10410.265,
+      "timerkost": 1397.675,
+      "materialkost": 9012.59,
+      "dg": 0.3,
+      "fakt": 11719.71,
+      "fSalgsverdi": 19611.35,
+      "via": 7891.639999999999,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": 0.16730769230769235,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 1529,
+      "ordreNr": "1563-11",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Ansatte",
+      "kunde": "Minel Ainstall AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 609,
+      "timerkost": 0,
+      "materialkost": 609,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 1209,
+      "via": 1209,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 1528,
+      "ordreNr": "1563-10",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Ansatte",
+      "kunde": "Minel Ainstall AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 32747.71,
+      "timerkost": 23647.52,
+      "materialkost": 9100.19,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 56042.66,
+      "via": 56042.66,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 1525,
+      "ordreNr": "1563-7",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Ansatte",
+      "kunde": "Minel Ainstall AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 8326.85,
+      "timerkost": 233.9,
+      "materialkost": 8092.95,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 8592.95,
+      "via": 8592.95,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 1524,
+      "ordreNr": "1563-6",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Ansatte",
+      "kunde": "Minel Ainstall AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 9652.73,
+      "timerkost": 0,
+      "materialkost": 9652.73,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 12603.49,
+      "via": 12603.49,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 1523,
+      "ordreNr": "1563-5",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Ansatte",
+      "kunde": "Minel Ainstall AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 17601.602,
+      "timerkost": 0,
+      "materialkost": 17601.602,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 19185.714,
+      "via": 19185.714,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 1522,
+      "ordreNr": "1563-4",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Ansatte",
+      "kunde": "Minel Ainstall AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 38566.25,
+      "timerkost": 0,
+      "materialkost": 38566.25,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 58369.24,
+      "via": 58369.24,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    },
+    {
+      "id": 1519,
+      "ordreNr": "1563-1",
+      "isTM": true,
+      "status": "Åpen",
+      "type": "Service",
+      "beskr": "Ansatte",
+      "kunde": "Minel Ainstall AS",
+      "pl": "Jonas Prestkvern",
+      "tilbud": null,
+      "hasTilbud": false,
+      "totOmk": 18553.048,
+      "timerkost": 4366.62,
+      "materialkost": 14186.428,
+      "dg": 0,
+      "fakt": 0,
+      "fSalgsverdi": 28368.486,
+      "via": 28368.486,
+      "historicalReopen": false,
+      "normDG": 0.13269230769230764,
+      "dgAvvik": -0.13269230769230764,
+      "sc": 1,
+      "risk": "LAV",
+      "flags": [
+        {
+          "t": "OK",
+          "c": "ok"
+        }
+      ]
+    }
+  ]
+}
