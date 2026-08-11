@@ -1,4 +1,4 @@
-name: Deploy Avviksregistrering til Azure Static Web Apps (nice-meadow)
+﻿name: Deploy Avviksregistrering til Azure Static Web Apps (nice-meadow)
 
 on:
   push:
@@ -9,6 +9,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Inject GH_DATA_TOKEN
+        env:
+          GH_DATA_TOKEN: ${{ secrets.GH_DATA_TOKEN }}
+        run: |
+          sed -i "s|__GH_DATA_TOKEN__|${GH_DATA_TOKEN}|g" public/VIA_QA.html
 
       - uses: Azure/static-web-apps-deploy@v1
         with:
