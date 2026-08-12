@@ -76,7 +76,7 @@
     },
     "84558-2": {
       "dg": 32,
-      "begrunnelse": "",
+      "begrunnelse": "Noe er fastpriser, noe er påløpt",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -84,7 +84,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-12T06:38:43.883Z"
+      "updatedAt": "2026-08-12T06:39:00.415Z"
     }
   },
   "status": {}
