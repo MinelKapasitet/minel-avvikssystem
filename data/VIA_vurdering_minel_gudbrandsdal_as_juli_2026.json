@@ -64,7 +64,7 @@
     },
     "84016-4": {
       "dg": 92,
-      "begrunnelse": "",
+      "begrunnelse": "Reel salgsverdi",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -72,7 +72,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-12T06:36:00.467Z"
+      "updatedAt": "2026-08-12T06:37:08.160Z"
     }
   },
   "status": {}
