@@ -76,7 +76,7 @@
     },
     "86417": {
       "dg": 38,
-      "begrunnelse": "",
+      "begrunnelse": "Antatt DG på fastpris",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -84,7 +84,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-12T07:50:46.749Z"
+      "updatedAt": "2026-08-12T07:56:37.420Z"
     },
     "86563": {
       "dg": 42,
