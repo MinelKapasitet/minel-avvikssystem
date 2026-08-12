@@ -16,7 +16,7 @@
     },
     "81463": {
       "dg": 20.95,
-      "begrunnelse": "",
+      "begrunnelse": "Jobb er ferdig, reelt tall før kontroll av materiell",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -24,7 +24,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-12T05:59:40.099Z"
+      "updatedAt": "2026-08-12T05:59:58.079Z"
     }
   },
   "status": {}
