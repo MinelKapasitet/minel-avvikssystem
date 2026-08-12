@@ -28,7 +28,7 @@
     },
     "84869": {
       "dg": 40,
-      "begrunnelse": "",
+      "begrunnelse": "Lavere timepris enn service",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -36,7 +36,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-12T06:39:04.750Z"
+      "updatedAt": "2026-08-12T06:45:56.579Z"
     },
     "84972": {
       "dg": 41,
