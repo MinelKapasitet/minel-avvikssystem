@@ -64,7 +64,7 @@
     },
     "84016-4": {
       "dg": 56,
-      "begrunnelse": "Reel DG - men salgsverdi havner på 8000kr totalt med høyere kost",
+      "begrunnelse": "Reel DG - men salgsverdi havner på 8000kr totalt. DG er ved fullført jobb",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -72,7 +72,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-12T06:37:58.209Z"
+      "updatedAt": "2026-08-12T06:38:19.070Z"
     }
   },
   "status": {}
