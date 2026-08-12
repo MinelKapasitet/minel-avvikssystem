@@ -112,7 +112,7 @@
     },
     "86900": {
       "dg": 42,
-      "begrunnelse": "",
+      "begrunnelse": "Antatt DG",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -120,7 +120,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-12T07:50:58.195Z"
+      "updatedAt": "2026-08-12T07:56:57.519Z"
     },
     "86985": {
       "dg": 30,
