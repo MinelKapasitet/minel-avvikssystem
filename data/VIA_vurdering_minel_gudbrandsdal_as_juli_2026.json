@@ -124,7 +124,7 @@
     },
     "85768-1": {
       "dg": 100,
-      "begrunnelse": "",
+      "begrunnelse": "Kun fakturering av sluttkunde",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -132,7 +132,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-12T06:50:21.236Z"
+      "updatedAt": "2026-08-12T06:50:33.850Z"
     }
   },
   "status": {}
