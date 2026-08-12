@@ -86,6 +86,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-08-12T07:50:22.683Z"
     },
+    "86228": {
+      "dg": 35,
+      "begrunnelse": "Antatt DG",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "martin.odlolien@minel.no",
+      "updatedAt": "2026-08-12T07:57:01.136Z"
+    },
     "86417": {
       "dg": 38,
       "begrunnelse": "Antatt DG på fastpris",
