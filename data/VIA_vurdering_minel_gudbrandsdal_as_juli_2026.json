@@ -52,7 +52,7 @@
     },
     "85269": {
       "dg": 38,
-      "begrunnelse": "",
+      "begrunnelse": "Reelt DG tall",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -60,7 +60,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-12T06:49:16.893Z"
+      "updatedAt": "2026-08-12T07:56:15.597Z"
     },
     "86155": {
       "dg": 30,
