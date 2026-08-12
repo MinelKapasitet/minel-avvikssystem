@@ -63,7 +63,7 @@
       "updatedAt": "2026-08-12T06:33:19.236Z"
     },
     "84016-4": {
-      "dg": 70,
+      "dg": 90,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -72,7 +72,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-12T06:35:23.286Z"
+      "updatedAt": "2026-08-12T06:35:27.174Z"
     }
   },
   "status": {}
