@@ -25,6 +25,18 @@
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-08-12T05:59:58.079Z"
+    },
+    "82336-3": {
+      "dg": 32,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "martin.odlolien@minel.no",
+      "updatedAt": "2026-08-12T06:30:47.248Z"
     }
   },
   "status": {}
