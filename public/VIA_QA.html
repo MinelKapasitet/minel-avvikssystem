@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.61</title>
+<title>VIA QA â Minel AS v9.63</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -84,8 +84,8 @@ header{background:var(--navy);display:flex;align-items:center;}
 table{width:100%;border-collapse:collapse;font-size:.8rem;min-width:max-content;}
 thead th{background:var(--navy);color:#fff;padding:9px 10px;text-align:left;white-space:nowrap;font-weight:700;position:sticky;top:0;z-index:10;cursor:pointer;user-select:none;}
 thead th:hover{background:var(--navydark);}
-thead th.sa::after{content:' ▲';font-size:.65rem;}
-thead th.sd::after{content:' ▼';font-size:.65rem;}
+thead th.sa::after{content:' â²';font-size:.65rem;}
+thead th.sd::after{content:' â¼';font-size:.65rem;}
 td{padding:7px 10px;border-bottom:1px solid #F0F0F0;vertical-align:middle;}
 tr:nth-child(even) td{background:#FAFAFA;}tr:hover td{background:#FFF0F0!important;}
 td.r{text-align:right;font-variant-numeric:tabular-nums;}td.c{text-align:center;}
@@ -143,7 +143,7 @@ input.ci:disabled{background:#f0f0f0;color:#666;}
 .modal input:focus{outline:none;border-color:var(--red);}
 .mbtns{display:flex;gap:8px;justify-content:flex-end;margin-top:4px;}
 footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20px;}
-/* ── Print / PDF rapport ── */
+/* ââ Print / PDF rapport ââ */
 #report-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000;overflow-y:auto;padding:32px 20px;}
 #report-overlay.open{display:flex;flex-direction:column;align-items:center;}
 #report-wrap{background:#fff;border-radius:10px;width:100%;max-width:960px;box-shadow:0 8px 40px rgba(0,0,0,.3);overflow:hidden;}
@@ -185,19 +185,19 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
     <span>MINEL</span>
   </div>
   <div class="hd-main">
-    <h1>VIA / Fakturareserve – Kvalitetssikring</h1>
+    <h1>VIA / Fakturareserve â Kvalitetssikring</h1>
     <p>Datobegrenset perioderegnskap direkte fra Ordrestyring</p>
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.61</span>
+  <span class="hd-badge">v9.63</span>
 </header>
 
 <!-- START PANEL -->
 <div id="startPanel">
   <div id="resume-banner" style="display:none;background:#EFF6FF;border:1.5px solid #93C5FD;border-radius:10px;padding:14px 20px;margin-bottom:20px;align-items:center;gap:16px;flex-wrap:wrap;">
     <div style="flex:1;min-width:200px;">
-      <strong style="color:#1D4ED8;">↩ Gjenoppta siste økt</strong><br>
+      <strong style="color:#1D4ED8;">â© Gjenoppta siste Ã¸kt</strong><br>
       <span id="resume-info" style="font-size:.83rem;color:#444;"></span>
     </div>
     <button onclick="resumeSession()" style="background:#1D4ED8;color:#fff;border:none;border-radius:6px;padding:8px 18px;font-weight:700;cursor:pointer;font-size:.88rem;">Gjenoppta</button>
@@ -208,48 +208,48 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
     <!-- PL CARD: Prosjektleder -->
     <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:16px;padding:36px 32px;box-shadow:0 4px 24px rgba(0,0,0,.18);text-align:center;">
       <div style="font-size:.72rem;font-weight:700;letter-spacing:2px;color:#8892b0;text-transform:uppercase;margin-bottom:10px;">Prosjektleder</div>
-      <div style="font-size:2.5rem;margin-bottom:12px;">👔</div>
+      <div style="font-size:2.5rem;margin-bottom:12px;">ð</div>
       <h2 style="color:#fff;margin:0 0 6px;font-size:1.2rem;">Logg inn med Microsoft</h2>
       <p style="color:#8892b0;font-size:.84rem;margin:0 0 24px;">Hent datasettet delt av daglig leder</p>
       <div id="pl-login-box">
-        <button id="pl-login-btn" class="btn btn-grn" style="font-size:1rem;padding:14px 32px;width:100%;" onclick="loginPL(this)">🔑 Logg inn med Microsoft</button>
+        <button id="pl-login-btn" class="btn btn-grn" style="font-size:1rem;padding:14px 32px;width:100%;" onclick="loginPL(this)">ð Logg inn med Microsoft</button>
         <p id="pl-login-err" style="display:none;color:#ff6b6b;font-size:.78rem;margin:10px 0 0;"></p>
       </div>
       <div id="pl-co-picker" style="display:none;margin-top:20px;">
-        <p style="color:#aaa;font-size:.84rem;margin:0 0 10px;">Velg ditt selskap — huskes til neste gang:</p>
+        <p style="color:#aaa;font-size:.84rem;margin:0 0 10px;">Velg ditt selskap â huskes til neste gang:</p>
         <select id="pl-co-sel" style="width:100%;padding:10px 12px;border-radius:8px;border:none;font-size:.95rem;margin-bottom:10px;color:#222;">
-          <option value="">— Velg selskap —</option><option value="Minel Elmontasje Elverum AS">Minel Elmontasje Elverum AS</option><option value="Minel Elmontasje AS">Minel Elmontasje AS</option><option value="Minel Gjøvik Installasjon AS">Minel Gjøvik Installasjon AS</option><option value="Minel Gudbrandsdal AS">Minel Gudbrandsdal AS</option><option value="Minel Kreativ Elektro Ski AS">Minel Kreativ Elektro Ski AS</option><option value="Minel Land Elektriske AS">Minel Land Elektriske AS</option><option value="Minel Skogvang Installasjon AS">Minel Skogvang Installasjon AS</option><option value="Minel Ainstall AS">Minel Ainstall AS</option><option value="Minel Drøbak Elektriske AS">Minel Drøbak Elektriske AS</option>
+          <option value="">â Velg selskap â</option><option value="Minel Elmontasje Elverum AS">Minel Elmontasje Elverum AS</option><option value="Minel Elmontasje AS">Minel Elmontasje AS</option><option value="Minel GjÃ¸vik Installasjon AS">Minel GjÃ¸vik Installasjon AS</option><option value="Minel Gudbrandsdal AS">Minel Gudbrandsdal AS</option><option value="Minel Kreativ Elektro Ski AS">Minel Kreativ Elektro Ski AS</option><option value="Minel Land Elektriske AS">Minel Land Elektriske AS</option><option value="Minel Skogvang Installasjon AS">Minel Skogvang Installasjon AS</option><option value="Minel Ainstall AS">Minel Ainstall AS</option><option value="Minel DrÃ¸bak Elektriske AS">Minel DrÃ¸bak Elektriske AS</option>
         </select>
-        <button class="btn btn-grn" style="width:100%;padding:12px;" onclick="var v=document.getElementById('pl-co-sel').value;if(!v)return;plLoadDataset(v)">📂 Hent datasett</button>
+        <button class="btn btn-grn" style="width:100%;padding:12px;" onclick="var v=document.getElementById('pl-co-sel').value;if(!v)return;plLoadDataset(v)">ð Hent datasett</button>
       </div>
       <div id="pl-no-data" style="display:none;margin-top:16px;background:#fff3cd;color:#856404;border-radius:8px;padding:12px 16px;font-size:.85rem;text-align:left;"></div>
-      <p style="margin-top:16px;color:#8892b0;font-size:.74rem;">Første gang? Velg selskap etter innlogging.</p>
+      <p style="margin-top:16px;color:#8892b0;font-size:.74rem;">FÃ¸rste gang? Velg selskap etter innlogging.</p>
     </div>
 
     <!-- DL CARD: Daglig leder -->
     <div style="background:#fff;border-radius:16px;padding:36px 32px;box-shadow:0 4px 24px rgba(0,0,0,.10);text-align:center;">
       <div style="font-size:.72rem;font-weight:700;letter-spacing:2px;color:#999;text-transform:uppercase;margin-bottom:10px;">Daglig leder</div>
-      <div style="font-size:2.5rem;margin-bottom:12px;">📊</div>
+      <div style="font-size:2.5rem;margin-bottom:12px;">ð</div>
       <h2 style="color:#1a1a2e;margin:0 0 6px;font-size:1.2rem;">Hent perioderegnskap</h2>
       <p style="color:#666;font-size:.84rem;margin:0 0 20px;">Direkte fra Ordrestyring via API</p>
       <div id="dl-login-confirm" style="display:none;background:#d1fae5;color:#065f46;border-radius:8px;padding:10px 14px;font-size:.84rem;margin-bottom:16px;text-align:center;"></div>
       <div id="dl-login-box" style="margin-bottom:16px;">
-        <button class="btn" id="dl-login-btn" onclick="loginPL(this)" style="width:100%;padding:12px;font-size:.95rem;">🔑 Logg inn med Microsoft</button>
-        <p style="margin-top:8px;color:#8892b0;font-size:.74rem;">Påkrevd for å laste og dele data</p>
+        <button class="btn" id="dl-login-btn" onclick="loginPL(this)" style="width:100%;padding:12px;font-size:.95rem;">ð Logg inn med Microsoft</button>
+        <p style="margin-top:8px;color:#8892b0;font-size:.74rem;">PÃ¥krevd for Ã¥ laste og dele data</p>
       </div>
       <div id="dl-section" style="display:none;text-align:left;">
         <div style="margin-bottom:12px;">
           <label style="font-size:.78rem;font-weight:600;color:#555;display:block;margin-bottom:4px;">Selskap</label>
           <select id="co-sel" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #ddd;font-size:.9rem;color:#222;">
-            <option value="">— Velg selskap —</option>
+            <option value="">â Velg selskap â</option>
             <option value="0">Minel Kreativ Elektro Ski AS</option>
             <option value="1">Minel Skogvang Installasjon AS</option>
             <option value="2">Minel Land Elektriske AS</option>
-            <option value="3">Minel Gjøvik AS</option>
+            <option value="3">Minel GjÃ¸vik AS</option>
             <option value="4">Minel Elmontasje AS</option>
             <option value="5">Minel Elmontasje Elverum AS</option>
             <option value="6">Minel Ainstall AS</option>
-            <option value="7">Minel Drøbak Elektriske AS</option>
+            <option value="7">Minel DrÃ¸bak Elektriske AS</option>
             <option value="8">Minel Gudbrandsdal AS</option>
           </select>
         </div>
@@ -263,7 +263,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
         </button>
         <div id="api-err" class="err-box" style="margin-top:10px;"></div>
       </div>
-      <p style="margin-top:14px;color:#aaa;font-size:.74rem;">Data behandles lokalt — ingenting sendes til server.</p>
+      <p style="margin-top:14px;color:#aaa;font-size:.74rem;">Data behandles lokalt â ingenting sendes til server.</p>
     </div>
 
   </div>
@@ -272,7 +272,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
 
 <!-- PROGRESS -->
 <div id="progressWrap">
-  <div class="prog-label"><span id="prog-text">Henter…</span><span id="prog-pct">0%</span></div>
+  <div class="prog-label"><span id="prog-text">Henterâ¦</span><span id="prog-pct">0%</span></div>
   <div class="prog-bar"><div class="prog-fill" id="prog-fill"></div></div>
   <div class="prog-sub" id="prog-sub"></div>
 </div>
@@ -283,22 +283,22 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
     <span class="apptitle" id="atitle"></span>
     <span class="pill" id="aperiod"></span>
     <div style="margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;">
-      <button class="btn btn-grn" id="btnlock" onclick="openLock()">🔒 Lås periode</button>
-      <button class="btn btn-dark" id="share-btn" onclick="exportDataset()" title="Last opp datasett til SharePoint — PLer henter det automatisk">📤 Del datasett</button>
-      <button class="btn btn-dark" id="snap-btn" style="display:none;" onclick="doSnap()" title="Ta øyeblikksbilde av periodens data">📸 Snapshot</button>
-      <!-- setup-cols-btn fjernet (GitHub lagring, ingen SP-kolonner nødvendig) -->
-      <button class="btn btn-dark" onclick="expPOC()">📥 Eksporter Excel</button>
-      <button class="btn btn-dark" onclick="resetApp()">↩ Ny periode</button>
+      <button class="btn btn-grn" id="btnlock" onclick="openLock()">ð LÃ¥s periode</button>
+      <button class="btn btn-dark" id="share-btn" onclick="exportDataset()" title="Last opp datasett til SharePoint â PLer henter det automatisk">ð¤ Del datasett</button>
+      <button class="btn btn-dark" id="snap-btn" style="display:none;" onclick="doSnap()" title="Ta Ã¸yeblikksbilde av periodens data">ð¸ Snapshot</button>
+      <!-- setup-cols-btn fjernet (GitHub lagring, ingen SP-kolonner nÃ¸dvendig) -->
+      <button class="btn btn-dark" onclick="expPOC()">ð¥ Eksporter Excel</button>
+      <button class="btn btn-dark" onclick="resetApp()">â© Ny periode</button>
     </div>
   </div>
 
   <div class="tabs">
-    <div class="tab active" onclick="ST('dash')">📊 Dashboard</div>
-    <div class="tab" onclick="ST('qa')">🔍 QA – Alle</div>
-    <div class="tab" onclick="ST('risk')">⚠️ Risikoregister</div>
-    <div class="tab" onclick="ST('poc')">📋 POC + DG</div>
-    <div class="tab" onclick="ST('status')">✅ Status</div>
-    <div class="tab" onclick="ST('hist')">📁 Historikk</div>
+    <div class="tab active" onclick="ST('dash')">ð Dashboard</div>
+    <div class="tab" onclick="ST('qa')">ð QA â Alle</div>
+    <div class="tab" onclick="ST('risk')">â ï¸ Risikoregister</div>
+    <div class="tab" onclick="ST('poc')">ð POC + DG</div>
+    <div class="tab" onclick="ST('status')">â Status</div>
+    <div class="tab" onclick="ST('hist')">ð Historikk</div>
   </div>
 
   <!-- DASHBOARD -->
@@ -306,13 +306,13 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
     <div class="kpis" id="kpis"></div>
     <div class="two-col">
       <div>
-        <div class="secttitle">⚠️ Risikofordeling</div>
+        <div class="secttitle">â ï¸ Risikofordeling</div>
         <div class="riskcards" id="rcards"></div>
-        <div class="secttitle" style="margin-top:16px;">⚠️ Viktigste funn</div>
+        <div class="secttitle" style="margin-top:16px;">â ï¸ Viktigste funn</div>
         <div id="findings" style="font-size:.85rem;line-height:2;"></div>
       </div>
       <div>
-        <div class="secttitle">👥 Per prosjektleder</div>
+        <div class="secttitle">ð¥ Per prosjektleder</div>
         <div class="tw"><table id="pltbl"></table></div>
       </div>
     </div>
@@ -321,16 +321,16 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   <!-- QA ALLE -->
   <div class="tab-panel" id="tab-qa">
     <div class="fb">
-      <input type="text" id="qs" placeholder="🔍 Søk ordre, kunde, beskrivelse…" style="width:260px" oninput="rQA()">
+      <input type="text" id="qs" placeholder="ð SÃ¸k ordre, kunde, beskrivelseâ¦" style="width:260px" oninput="rQA()">
       <select id="qr" onchange="rQA()">
         <option value="">Alle risikoklasser</option>
-        <option value="HØY">🔴 HØY</option>
-        <option value="MIDDELS">🟡 MIDDELS</option>
-        <option value="LAV">🟢 LAV</option>
+        <option value="HÃY">ð´ HÃY</option>
+        <option value="MIDDELS">ð¡ MIDDELS</option>
+        <option value="LAV">ð¢ LAV</option>
       </select>
       <select id="qp" onchange="rQA()"><option value="">Alle prosjektledere</option></select>
       <select id="qt" onchange="rQA()"><option value="">Alle typer</option></select>
-      <label><input type="checkbox" id="qnz" onchange="rQA()"> Kun VIA ≠ 0</label>
+      <label><input type="checkbox" id="qnz" onchange="rQA()"> Kun VIA â  0</label>
     </div>
     <div class="tw"><table id="qatbl"></table></div>
     <div id="qacnt" style="font-size:.79rem;color:#888;margin-top:6px;"></div>
@@ -340,8 +340,8 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   <div class="tab-panel" id="tab-risk">
     <div class="fb">
       <select id="rsel" onchange="rRisk()">
-        <option value="HØY,MIDDELS">HØY + MIDDELS</option>
-        <option value="HØY">Kun HØY</option>
+        <option value="HÃY,MIDDELS">HÃY + MIDDELS</option>
+        <option value="HÃY">Kun HÃY</option>
         <option value="MIDDELS">Kun MIDDELS</option>
       </select>
     </div>
@@ -351,20 +351,20 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   <!-- POC + DG -->
   <div class="tab-panel" id="tab-poc">
     <div style="background:var(--redlight);border-left:4px solid var(--red);padding:12px 16px;margin-bottom:14px;font-size:.84rem;line-height:1.8;">
-      <strong>1. Fastpriskontrakter (POC):</strong> Gjenstående timer og materialer beregner periodisert inntekt.&nbsp;|&nbsp;
+      <strong>1. Fastpriskontrakter (POC):</strong> GjenstÃ¥ende timer og materialer beregner periodisert inntekt.&nbsp;|&nbsp;
       <strong>2. Uten kontraktssum:</strong> Prosjektleder bekrefter DG% og begrunner estimatet.&nbsp;|&nbsp;
-      🔵 Blå felt = input&nbsp;|&nbsp; 🟡 Gul rad = kommentar påkrevet
+      ðµ BlÃ¥ felt = input&nbsp;|&nbsp; ð¡ Gul rad = kommentar pÃ¥krevet
     </div>
     <div class="fb">
       <select id="pp" onchange="rPOC()"><option value="">Alle prosjektledere</option></select>
       <label>Std. timekost: <input type="number" id="stk" value="650" min="100" step="50" style="width:72px;border:1.5px solid var(--border);border-radius:6px;padding:5px 8px;" onchange="rPOC()"> kr/t</label>
-      <button class="btn btn-grn" id="ready-btn" onclick="markReady()" style="margin-left:auto;" title="Trykk her når du er ferdig med alle dine vurderinger">✅ Ferdig med mine vurderinger</button>
+      <button class="btn btn-grn" id="ready-btn" onclick="markReady()" style="margin-left:auto;" title="Trykk her nÃ¥r du er ferdig med alle dine vurderinger">â Ferdig med mine vurderinger</button>
     </div>
 
-    <div class="sec-hdr">Seksjon 1 – Fastpriskontrakter (POC) <span id="poc-cnt" style="font-weight:400;font-size:.8rem;opacity:.8;"></span></div>
+    <div class="sec-hdr">Seksjon 1 â Fastpriskontrakter (POC) <span id="poc-cnt" style="font-weight:400;font-size:.8rem;opacity:.8;"></span></div>
     <div style="margin:6px 0 4px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
       <label style="display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--mid);cursor:pointer;"><input type="checkbox" id="hideSmallPOCChk" onchange="HIDE_SMALL_POC=this.checked;rPOC()"> Skjul ordrer med kostnader under 1 000 kr</label>
-      <button id="togglePrevColsBtn" onclick="_showPrevCols=!_showPrevCols;document.getElementById('togglePrevColsBtn').textContent=_showPrevCols?'🕙 Skjul historikk':'🕙 Vis historikk';rPOC()" style="font-size:.78rem;padding:3px 10px;background:transparent;border:1px solid var(--border);border-radius:5px;cursor:pointer;color:var(--mid);">🕙 Vis historikk</button>
+      <button id="togglePrevColsBtn" onclick="_showPrevCols=!_showPrevCols;document.getElementById('togglePrevColsBtn').textContent=_showPrevCols?'ð Skjul historikk':'ð Vis historikk';rPOC()" style="font-size:.78rem;padding:3px 10px;background:transparent;border:1px solid var(--border);border-radius:5px;cursor:pointer;color:var(--mid);">ð Vis historikk</button>
     </div>
     <div class="tw" style="max-height:800px;border-radius:0 0 8px 8px;"><table id="poctbl"></table></div>
     <div class="totbar" id="poctot"></div>
@@ -380,28 +380,28 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
     </div>
 
     <div style="margin-top:8px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-      <div class="sec-hdr" style="margin-top:0;flex:1;">Seksjon 2 – Regningsordrer (DG%-bekreftelse) <span id="dg-cnt" style="font-weight:400;font-size:.8rem;opacity:.8;"></span></div>
-      <button class="btn btn-dark" style="padding:5px 12px;font-size:.8rem;" onclick="toggleRiskInfo()">ℹ️ Risikoforklaring</button>
+      <div class="sec-hdr" style="margin-top:0;flex:1;">Seksjon 2 â Regningsordrer (DG%-bekreftelse) <span id="dg-cnt" style="font-weight:400;font-size:.8rem;opacity:.8;"></span></div>
+      <button class="btn btn-dark" style="padding:5px 12px;font-size:.8rem;" onclick="toggleRiskInfo()">â¹ï¸ Risikoforklaring</button>
     </div>
     <div id="riskInfoPanel" style="display:none;background:#fff;border:1.5px solid var(--border);border-radius:8px;padding:14px 18px;margin-top:8px;font-size:.82rem;line-height:1.9;color:var(--dark);">
-      <strong>Risikokarakterer beregnes automatisk basert på PLs vurderinger:</strong><br>
-      🔴 <strong>HØY (score ≥ 4):</strong> Alvorlige avvik — følges opp av daglig leder<br>
-      🟡 <strong>MIDDELS (score ≥ 2):</strong> Bør kommenteres<br>
-      🟢 <strong>LAV (score &lt; 2):</strong> Akseptabel status<br><br>
+      <strong>Risikokarakterer beregnes automatisk basert pÃ¥ PLs vurderinger:</strong><br>
+      ð´ <strong>HÃY (score â¥ 4):</strong> Alvorlige avvik â fÃ¸lges opp av daglig leder<br>
+      ð¡ <strong>MIDDELS (score â¥ 2):</strong> BÃ¸r kommenteres<br>
+      ð¢ <strong>LAV (score &lt; 2):</strong> Akseptabel status<br><br>
       <strong>Poeng gis for:</strong><br>
-      • DG% falt &gt;5 prosentpoeng vs forrige periode: +5 poeng 🔴<br>
-      • DG% falt 2–5 prosentpoeng vs forrige periode: +3 poeng<br>
-      • DG% falt litt (0,5–2pp) vs forrige periode: +1 poeng<br>
-      • Ikke vurdert (DG% = 0, manuelle ordrer): +3 poeng<br>
-      • Kritisk margin (&lt;5% med kostnader &gt;10 000 kr): +3 poeng<br>
-      • Lav margin (&lt;10% med kostnader &gt;50 000 kr): +2 poeng<br>
-      • Rund DG% på manuelle ordrer: +1 poeng<br>
-      • Mangler begrunnelse (manuell regningsordre): +1 poeng
+      â¢ DG% falt &gt;5 prosentpoeng vs forrige periode: +5 poeng ð´<br>
+      â¢ DG% falt 2â5 prosentpoeng vs forrige periode: +3 poeng<br>
+      â¢ DG% falt litt (0,5â2pp) vs forrige periode: +1 poeng<br>
+      â¢ Ikke vurdert (DG% = 0, manuelle ordrer): +3 poeng<br>
+      â¢ Kritisk margin (&lt;5% med kostnader &gt;10 000 kr): +3 poeng<br>
+      â¢ Lav margin (&lt;10% med kostnader &gt;50 000 kr): +2 poeng<br>
+      â¢ Rund DG% pÃ¥ manuelle ordrer: +1 poeng<br>
+      â¢ Mangler begrunnelse (manuell regningsordre): +1 poeng
     </div>
-    <div class="sec-note" id="sec2note">Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet. <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span></div>
+    <div class="sec-note" id="sec2note">Ingen fastpris â prosjektleder skriver inn forventet DG% og begrunner estimatet. <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">â¹ï¸ OS-merke</span></div>
     <div style="margin:8px 0 4px;display:flex;gap:16px;flex-wrap:wrap;">
       <label style="display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--mid);cursor:pointer;">
-        <input type="checkbox" id="hideSettledChk" onchange="HIDE_SETTLED=this.checked;rPOC()"> Skjul ordrer med VIA &lt; ±5 000 kr (fullt fakturerte)
+        <input type="checkbox" id="hideSettledChk" onchange="HIDE_SETTLED=this.checked;rPOC()"> Skjul ordrer med VIA &lt; Â±5 000 kr (fullt fakturerte)
       </label>
       <label style="display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--mid);cursor:pointer;">
         <input type="checkbox" id="hideSmallChk" onchange="HIDE_SMALL=this.checked;rPOC()"> Skjul ordrer med kostnader under 1 000 kr
@@ -416,12 +416,12 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
     <div style="background:#fff;border-radius:12px;padding:20px;margin-bottom:16px;box-shadow:0 1px 5px rgba(0,0,0,.08);">
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
         <div>
-          <div style="font-size:1rem;font-weight:700;color:var(--navy);">📋 Vurderingsstatus per prosjektleder</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--navy);">ð Vurderingsstatus per prosjektleder</div>
           <div style="font-size:.82rem;color:#888;margin-top:4px;">Prosjektlederne markerer seg som ferdige fra POC+DG-fanen. Daglig leder ser status her.</div>
         </div>
         <div style="display:flex;gap:10px;">
-          <button class="btn btn-dark" onclick="rStatus()">🔄 Oppdater</button>
-          <button class="btn" style="background:#888;" onclick="if(confirm('Nullstille all ferdigstatus?'))clearAllReady()">🗑 Nullstill status</button>
+          <button class="btn btn-dark" onclick="rStatus()">ð Oppdater</button>
+          <button class="btn" style="background:#888;" onclick="if(confirm('Nullstille all ferdigstatus?'))clearAllReady()">ð Nullstill status</button>
         </div>
       </div>
     </div>
@@ -432,10 +432,10 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   <!-- HISTORIKK -->
   <div class="tab-panel" id="tab-hist">
     <div class="fb" style="margin-bottom:16px;">
-      <span style="font-size:.88rem;font-weight:600;">Historikk lagres automatisk ved låsing (lokalt + SharePoint).</span>
-      <button class="btn" style="background:#2563eb;margin-left:auto;" onclick="syncHistSP(this)" title="Hent historikk fra SharePoint og slå sammen med lokal">☁️ Synk fra SharePoint</button>
-      <button class="btn btn-dark" onclick="expHist()">📥 Eksporter historikk</button>
-      <button class="btn" style="background:#888;" onclick="clearHist()">🗑 Slett historikk</button>
+      <span style="font-size:.88rem;font-weight:600;">Historikk lagres automatisk ved lÃ¥sing (lokalt + SharePoint).</span>
+      <button class="btn" style="background:#2563eb;margin-left:auto;" onclick="syncHistSP(this)" title="Hent historikk fra SharePoint og slÃ¥ sammen med lokal">âï¸ Synk fra SharePoint</button>
+      <button class="btn btn-dark" onclick="expHist()">ð¥ Eksporter historikk</button>
+      <button class="btn" style="background:#888;" onclick="clearHist()">ð Slett historikk</button>
     </div>
     <div id="histcontent"></div>
   </div>
@@ -444,25 +444,25 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
 <!-- LOCK MODAL -->
 <div class="mbg" id="lmodal">
   <div class="modal">
-    <h2>🔒 Lås periode og generer rapport</h2>
-    <p>Etter låsing kan ikke verdier endres. Perioden lagres i historikk.</p>
+    <h2>ð LÃ¥s periode og generer rapport</h2>
+    <p>Etter lÃ¥sing kan ikke verdier endres. Perioden lagres i historikk.</p>
     <label>Ditt navn</label>
-    <input type="text" id="lname" placeholder="F.eks. Øyvind Sæthersmoen">
+    <input type="text" id="lname" placeholder="F.eks. Ãyvind SÃ¦thersmoen">
     <label>Selskapsenhet</label>
     <input type="text" id="lentity">
     <label>Periode</label>
     <input type="text" id="lperiod">
     <div class="mbtns">
       <button class="btn btn-o" onclick="closeLock()">Avbryt</button>
-      <button class="btn btn-grn" onclick="doLock()">✅ Lås og generer rapport</button>
+      <button class="btn btn-grn" onclick="doLock()">â LÃ¥s og generer rapport</button>
     </div>
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.61 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS Â· VIA QA v9.63 Â· Datobegrenset perioderegnskap Â· Data behandles lokalt</footer>
 
 <script>
-// ════ GITHUB DATALAGRING (erstatter SharePoint) ════
+// ââââ GITHUB DATALAGRING (erstatter SharePoint) ââââ
 var GH_TOKEN='__GH_DATA_TOKEN__';
 var GH_REPO='MinelKapasitet/minel-avvikssystem';
 var GH_BASE='https://api.github.com/repos/'+GH_REPO+'/contents/data/';
@@ -523,7 +523,7 @@ async function ghSaveVurdering(company,period,retries){
     }else{console.warn('[GH] Vurdering-lagring feilet:',e);spShowSaveStatus(false);}
   }
 }
-// ════ AKTIVITETSLOGG (GitHub) ════
+// ââââ AKTIVITETSLOGG (GitHub) ââââ
 var _loggedLogin=false;
 async function logEventRaw(tok,hendelse,detaljer){
   try{
@@ -592,13 +592,13 @@ var DL_LIST={
   'oyvind.saethersmoen@elkonor.no':'__SUPER__',
   'anthoni.hulthin@minel.no':'Minel Elmontasje Elverum AS',
   'bjornar.sleppen@minel.no':'Minel Elmontasje AS',
-  'geitatle.sangnaes@minel.no':'Minel Gjøvik Installasjon AS',
+  'geitatle.sangnaes@minel.no':'Minel GjÃ¸vik Installasjon AS',
   'susann.endrestad@minel.no':'Minel Gudbrandsdal AS',
   'ola.sillerud@minel.no':'Minel Kreativ Elektro Ski AS',
   'lars.aamodt@minel.no':'Minel Land Elektriske AS',
   'jon.hulberg@minel.no':'Minel Skogvang Installasjon AS',
   'jonas.prestkvern@minel.no':'Minel Ainstall AS',
-  'stian.ekhougen@minel.no':'Minel Drøbak Elektriske AS'
+  'stian.ekhougen@minel.no':'Minel DrÃ¸bak Elektriske AS'
 };
 function detectUser(account){
   if(!account)return;
@@ -608,7 +608,7 @@ function detectUser(account){
   _currentUser={email:email,name:name,isDL:isDL,company:DL_LIST[email]||null,plName:name};
   _spUser=email;
   var badge=document.getElementById('user-badge');
-  if(badge) badge.innerHTML=(isDL?'👑 DL: ':'👤 PL: ')+'<strong>'+name+'</strong>';
+  if(badge) badge.innerHTML=(isDL?'ð DL: ':'ð¤ PL: ')+'<strong>'+name+'</strong>';
   if(!isDL){
     var savedCo=localStorage.getItem('VIA_PL_COMPANY');
     if(savedCo){
@@ -627,7 +627,7 @@ function detectUser(account){
     var dlConf=document.getElementById('dl-login-confirm');
     if(dlConf){
       dlConf.style.display='block';
-      dlConf.innerHTML='✅ Innlogget som <strong>'+name+'</strong>';
+      dlConf.innerHTML='â Innlogget som <strong>'+name+'</strong>';
     }
     var snapBtn=document.getElementById('snap-btn');if(snapBtn)snapBtn.style.display='';
     rPOC();
@@ -659,7 +659,7 @@ function loadDatasetJSON(file){
   reader.readAsText(file);
 }
 async function unlockPL(pl){
-  if(!_currentUser||!_currentUser.isDL){alert('Kun DL kan åpne for redigering.');return;}
+  if(!_currentUser||!_currentUser.isDL){alert('Kun DL kan Ã¥pne for redigering.');return;}
   var stObj=getStatus();
   var period=_currentPeriod||document.getElementById('aperiod').textContent;
   var company=_currentEntity||document.getElementById('lentity').value||'';
@@ -688,24 +688,24 @@ async function loginPL(btn){
   var errEl=document.getElementById('pl-login-err');
   if(errEl)errEl.style.display='none';
   await initMSAL();
-  if(!_msalApp){if(btn){btn.disabled=false;btn.innerHTML='🔑 Logg inn med Microsoft';}return;}
+  if(!_msalApp){if(btn){btn.disabled=false;btn.innerHTML='ð Logg inn med Microsoft';}return;}
   var accounts=_msalApp.getAllAccounts();
   if(accounts.length>0){
     detectUser(accounts[0]);
     if(!_loggedLogin){_loggedLogin=true;logEvent('Innlogget',{metode:'silent'}).catch(function(){});}
     return;
   }
-  if(btn)btn.textContent='⏳ Omdirigerer til Microsoft...';
+  if(btn)btn.textContent='â³ Omdirigerer til Microsoft...';
   try{
     await _msalApp.loginRedirect({scopes:SP_SCOPES});
   }catch(re){
     console.warn('[MSAL] loginRedirect feilet:',re);
-    if(btn){btn.disabled=false;btn.innerHTML='🔑 Logg inn med Microsoft';}
+    if(btn){btn.disabled=false;btn.innerHTML='ð Logg inn med Microsoft';}
     if(errEl){errEl.style.display='block';errEl.textContent='Innlogging feilet: '+re.message;}
   }
 }
 
-var _spColsValidated=true;  // GitHub JSON lagrer alltid FG/KV — ingen SP-kolonner å validere
+var _spColsValidated=true;  // GitHub JSON lagrer alltid FG/KV â ingen SP-kolonner Ã¥ validere
 var _spFGColsOk=true;       // FG/KV alltid tilgjengelig via GitHub JSON
 
 function spShowError(msg){
@@ -752,19 +752,19 @@ function spShowSaveStatus(ok){
   if(!el)return;
   clearTimeout(_saveBadgeTimer);
   if(ok){
-    el.textContent='✓ Lagret';
+    el.textContent='â Lagret';
     el.style.cssText='display:inline;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;background:#d1fae5;color:#065f46;';
     _saveBadgeTimer=setTimeout(function(){el.style.display='none';},3000);
   } else {
-    el.textContent='⚠️ Lagring feilet';
+    el.textContent='â ï¸ Lagring feilet';
     el.style.cssText='display:inline;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;background:#fee2e2;color:#991b1b;';
-    // Blir stående til neste vellykkede lagring
+    // Blir stÃ¥ende til neste vellykkede lagring
   }
 }
 
 function spShowConflict(ordreNr){
-  var msg='⚠️ Lagringskonflikt på ordre '+ordreNr+': en annen bruker har lagret etter du lastet siden. Last inn siden på nytt for å se siste versjon.';
-  if(confirm(msg+'\n\nTrykk OK for å laste inn på nytt, eller Avbryt for å beholde dine endringer (de vil overskrive).')){
+  var msg='â ï¸ Lagringskonflikt pÃ¥ ordre '+ordreNr+': en annen bruker har lagret etter du lastet siden. Last inn siden pÃ¥ nytt for Ã¥ se siste versjon.';
+  if(confirm(msg+'\n\nTrykk OK for Ã¥ laste inn pÃ¥ nytt, eller Avbryt for Ã¥ beholde dine endringer (de vil overskrive).')){
     location.reload();
   }
 }
@@ -792,7 +792,7 @@ async function spSaveAssessment(period,company,ordreNr,dg,begrunnelse,kommentar,
 function plLoadDataset(company){
   localStorage.setItem('VIA_PL_COMPANY',company);
   document.getElementById('startPanel').style.display='none';
-  setP(0,'Henter datasett for '+company+'…','');
+  setP(0,'Henter datasett for '+company+'â¦','');
   document.getElementById('progressWrap').style.display='block';
   spLoadDataset(company).then(function(res){
     document.getElementById('progressWrap').style.display='none';
@@ -800,21 +800,21 @@ function plLoadDataset(company){
       document.getElementById('startPanel').style.display='block';
       var picker=document.getElementById('pl-co-picker');if(picker)picker.style.display='block';
       var loginBox=document.getElementById('pl-login-box');if(loginBox)loginBox.style.display='none';
-      var nd=document.getElementById('pl-no-data');if(nd){nd.style.display='block';nd.textContent='⚠️ Ingen datasett er delt ennå for dette selskapet. Kontakt din daglig leder.';}
+      var nd=document.getElementById('pl-no-data');if(nd){nd.style.display='block';nd.textContent='â ï¸ Ingen datasett er delt ennÃ¥ for dette selskapet. Kontakt din daglig leder.';}
       var picker=document.getElementById('pl-co-picker');if(picker)picker.style.display='none';
-      var nm=document.getElementById('pl-no-data');if(nm){nm.style.display='block';nm.innerHTML='⚠️ Ingen datasett for <strong>'+company+'</strong> ennå. Kontakt din daglig leder, eller <a href="#" onclick="localStorage.removeItem(\'VIA_PL_COMPANY\');location.reload()">velg annet selskap</a>.';}
+      var nm=document.getElementById('pl-no-data');if(nm){nm.style.display='block';nm.innerHTML='â ï¸ Ingen datasett for <strong>'+company+'</strong> ennÃ¥. Kontakt din daglig leder, eller <a href="#" onclick="localStorage.removeItem(\'VIA_PL_COMPANY\');location.reload()">velg annet selskap</a>.';}
     }
   });
 }
 async function spSaveDataset(){
-  if(!ACTIVE.length){alert('Ingen data lastet inn ennå.');return;}
+  if(!ACTIVE.length){alert('Ingen data lastet inn ennÃ¥.');return;}
   var company=document.getElementById('lentity').value;
   var data={src:company,period:document.getElementById('aperiod').textContent,exported:new Date().toISOString(),exportedBy:_currentUser?_currentUser.name:'',rows:ACTIVE};
   try{
     var current=await ghRead(ghDatasetFile(company));
     await ghWrite(ghDatasetFile(company),data,current?current.sha:undefined);
     var btn=document.getElementById('share-btn');
-    if(btn){btn.textContent='✅ Delt!';btn.style.background='var(--green)';setTimeout(function(){btn.textContent='📤 Del datasett';btn.style.background='';},3000);}
+    if(btn){btn.textContent='â Delt!';btn.style.background='var(--green)';setTimeout(function(){btn.textContent='ð¤ Del datasett';btn.style.background='';},3000);}
     logEvent('Delt datasett',{selskap:company,period:data.period}).catch(function(){});
   }catch(e){alert('Feil ved deling: '+e.message);}
 }
@@ -849,8 +849,8 @@ var _currentPeriod = '', _currentEntity = '';
 window.addEventListener('beforeunload', function(e){
   if(ACTIVE.length){ e.preventDefault(); e.returnValue=''; }
 });
-var GROUPS = {};          // base ordreNr → [list of sub-ordreNr]
-var GRP_MODE = {};        // base ordreNr → 'samlet' | 'individuelt'
+var GROUPS = {};          // base ordreNr â [list of sub-ordreNr]
+var GRP_MODE = {};        // base ordreNr â 'samlet' | 'individuelt'
 var GRP_KEY = 'minel_via_grpmode_v1';
 var HIST_KEY = 'minel_via_history_v2';
 var STATUS_KEY = 'minel_via_status_v1';
@@ -860,43 +860,43 @@ var QS = {col:6,asc:false}, RS = {col:8,asc:false};
 var POCS = {col:4,asc:false}, DGS = {col:5,asc:false};
 var _showPrevCols = false;
 var ROUND = new Set([0.10,0.15,0.17,0.20,0.25,0.28,0.30,0.35,0.40,0.45,0.50,0.55,0.60,0.65,0.70]);
-// EKSKLUDERINGSLISTE — ordre med disse statusene er AVSLUTTET/KANSELLERT og skal ikke med
-// Matcher Intuitu PA-modulens "Avsluttede ordrer"-konfigurasjon: Avlyst, Avsluttet, Bokført, Lukket
-// Alt annet (inkl. ukjente aktive statuser) inkluderes automatisk for å sikre fullstendighet
+// EKSKLUDERINGSLISTE â ordre med disse statusene er AVSLUTTET/KANSELLERT og skal ikke med
+// Matcher Intuitu PA-modulens "Avsluttede ordrer"-konfigurasjon: Avlyst, Avsluttet, BokfÃ¸rt, Lukket
+// Alt annet (inkl. ukjente aktive statuser) inkluderes automatisk for Ã¥ sikre fullstendighet
 var EXCL_STATUS = new Set([
   'Avsluttet','Avsluttet.','Ferdig','Lukket','Kansellert','Annullert','Tapt',
   'Fakturert','Avvist','Slettet','Arkivert','Avlyst',
   'Avsluttet-fakturert','Avsluttet - fakturert',
-  // Bokført = terminal regnskapsstatus (bekreftet fra Intuitu PA-modul innstillinger)
-  // Tilsvarer "sluttfakturert og avsluttet i regnskapet" — skal ikke med i WIP
-  'Bokført',
-  // Intern-status (Skogvang: 10, Gjøvik: 78) — interne ordrer uten fakturareserve:
+  // BokfÃ¸rt = terminal regnskapsstatus (bekreftet fra Intuitu PA-modul innstillinger)
+  // Tilsvarer "sluttfakturert og avsluttet i regnskapet" â skal ikke med i WIP
+  'BokfÃ¸rt',
+  // Intern-status (Skogvang: 10, GjÃ¸vik: 78) â interne ordrer uten fakturareserve:
   'Intern',
   // Elmontasje interne/lager-statuser uten fakturareserve:
-  'INTERN Verktøy/Arb.tøy','VARELAGER','Varetelling biler 2025','Regnskap'
-  // 'Tilbud','Anbud' — inkluderes: kan ha aktive kostnader
+  'INTERN VerktÃ¸y/Arb.tÃ¸y','VARELAGER','Varetelling biler 2025','Regnskap'
+  // 'Tilbud','Anbud' â inkluderes: kan ha aktive kostnader
 ]);
 // Beholdes kun for referanse og Excel-bakoverkompatibilitet
-var VSTATUS = new Set(['I arbeid','Klar for fakturering','Venter på elektriker','Åpen','Delutført','Klar for akkordkjøring']);
+var VSTATUS = new Set(['I arbeid','Klar for fakturering','Venter pÃ¥ elektriker','Ãpen','DelutfÃ¸rt','Klar for akkordkjÃ¸ring']);
 var OS_GQL = 'https://graphql.ordrestyring.dk/graphql';
-// paStartDato satt til 2024-01-01 for å fange opp Jublo-migrasjonsordrer fra 2024
-// (Drøbak har 9 saker opprettet i 2024 som fortsatt er aktive og med i PA-modulen)
+// paStartDato satt til 2024-01-01 for Ã¥ fange opp Jublo-migrasjonsordrer fra 2024
+// (DrÃ¸bak har 9 saker opprettet i 2024 som fortsatt er aktive og med i PA-modulen)
 var OS_COMPANIES = [
   {name:'Minel Kreativ Elektro Ski AS',       key:'qYtkWAowUUo2PbaE', paStartDato:'2024-01-01'},
   {name:'Minel Skogvang Installasjon AS',      key:'TxE4TJAk6eeWUqQY', paStartDato:'2024-01-01'},
   {name:'Minel Land Elektriske AS',            key:'yOVFmYixo35RnY6l', paStartDato:'2024-01-01'},
-  {name:'Minel Gjøvik AS',                     key:'edewj6APD4wb8uD5', paStartDato:'2024-01-01'},
+  {name:'Minel GjÃ¸vik AS',                     key:'edewj6APD4wb8uD5', paStartDato:'2024-01-01'},
   {name:'Minel Elmontasje AS',                 key:'rPuAsfNqjpyoeBdV', paStartDato:'2024-01-01'},
   {name:'Minel Elmontasje Elverum AS',         key:'CmJHRiMNdn68RWZM', paStartDato:'2024-01-01'},
   {name:'Minel Ainstall AS',                   key:'OHcNVeTrqWU7dOK7', paStartDato:'2021-01-01'},
-  {name:'Minel Drøbak Elektriske AS',          key:'FzmySlRzW72gOBaB', paStartDato:'2024-01-01'},
+  {name:'Minel DrÃ¸bak Elektriske AS',          key:'FzmySlRzW72gOBaB', paStartDato:'2024-01-01'},
   {name:'Minel Gudbrandsdal AS',               key:'yEEdLNDUCssPuhOl', paStartDato:'2024-01-01'}
 ];
-// Reklamasjon er FJERNET herfra — PA-modulen inkluderer Reklamasjon-saker (bekreftet Drøbak mai 2026)
+// Reklamasjon er FJERNET herfra â PA-modulen inkluderer Reklamasjon-saker (bekreftet DrÃ¸bak mai 2026)
 var EXCL_TYPES = new Set(['Intern','Internordre','Intern ordre',
   // Reklamasjon: PA-modulen ekskluderer reklamasjonsordrer fra VIA-analyse
   'Reklamasjon',
-  // Direkte salg: rene materiellemner/varekjøp uten prosjekt — ikke i PA-modulen
+  // Direkte salg: rene materiellemner/varekjÃ¸p uten prosjekt â ikke i PA-modulen
   'Direkte salg']);
 
 /* ============================================================
@@ -913,7 +913,7 @@ var EXCL_TYPES = new Set(['Intern','Internordre','Intern ordre',
   loadSession();
 })();
 
-// ════ GLOBAL FEILHÅNDTERING ════
+// ââââ GLOBAL FEILHÃNDTERING ââââ
 window.onerror=function(msg,src,line,col,err){
   logEvent('JSFeil',{melding:String(msg).substring(0,300),fil:(src||'').split('/').pop(),linje:line,stack:err&&err.stack?err.stack.substring(0,500):null}).catch(function(){});
   return false;
@@ -938,7 +938,7 @@ function saveSession(){
   }catch(e){console.warn('saveSession feilet:',e);}
 }
 function resetApp(){
-  if(ACTIVE.length&&!confirm('Nullstill til ny periode? Ikke-lagrede endringer går tapt.'))return;
+  if(ACTIVE.length&&!confirm('Nullstill til ny periode? Ikke-lagrede endringer gÃ¥r tapt.'))return;
   ACTIVE=[];DGI={};POC={};LOCKED=false;BENCH={};
   _currentPeriod='';_currentEntity='';
   _ghVurCache={};_spDebounce={};
@@ -948,7 +948,7 @@ function resetApp(){
   document.getElementById('startPanel').style.display='block';
   var atitle=document.getElementById('atitle');if(atitle)atitle.textContent='';
   var aperiod=document.getElementById('aperiod');if(aperiod)aperiod.textContent='';
-  var btnlock=document.getElementById('btnlock');if(btnlock){btnlock.textContent='🔒 Lås periode';btnlock.disabled=false;}
+  var btnlock=document.getElementById('btnlock');if(btnlock){btnlock.textContent='ð LÃ¥s periode';btnlock.disabled=false;}
   var d=new Date();d.setDate(0);
   var pd=document.getElementById('period-date');if(pd)pd.value=d.toISOString().substring(0,10);
   ST('dash');
@@ -963,7 +963,7 @@ function loadSession(){
     var banner=document.getElementById('resume-banner');
     var info=document.getElementById('resume-info');
     if(banner){banner.style.display='flex';}
-    if(info){info.textContent=(d.entity||'')+(d.period?' · '+d.period:'')+(d.active?' · '+d.active.length+' ordrer':'');}
+    if(info){info.textContent=(d.entity||'')+(d.period?' Â· '+d.period:'')+(d.active?' Â· '+d.active.length+' ordrer':'');}
     return true;
   }catch(e){console.warn('loadSession feilet:',e);return false;}
 }
@@ -984,7 +984,7 @@ function resumeSession(){
     var aperiod=document.getElementById('aperiod');if(aperiod)aperiod.textContent=_currentPeriod;
     var lent=document.getElementById('lentity');if(lent)lent.value=_currentEntity;
     var lprd=document.getElementById('lperiod');if(lprd)lprd.value=_currentPeriod;
-    if(LOCKED){var bl=document.getElementById('btnlock');if(bl){bl.textContent='✅ Låst: '+_currentPeriod;bl.disabled=true;}}
+    if(LOCKED){var bl=document.getElementById('btnlock');if(bl){bl.textContent='â LÃ¥st: '+_currentPeriod;bl.disabled=true;}}
     detectGroups();
     rDash();rQA();rRisk();rPOC();rHist();rStatus();
   }catch(e){console.warn('resumeSession feilet:',e);}
@@ -1008,15 +1008,15 @@ function toggleRiskInfo(){
    UTILITY
    ============================================================ */
 function NK(v){
-  if(v == null) return '–';
+  if(v == null) return 'â';
   return new Intl.NumberFormat('no-NO',{maximumFractionDigits:0}).format(Math.round(v)) + ' kr';
 }
 function NR(v){
-  if(v == null) return '–';
+  if(v == null) return 'â';
   return new Intl.NumberFormat('no-NO',{maximumFractionDigits:0}).format(Math.round(v));
 }
 function PC(v){
-  if(v == null) return '–';
+  if(v == null) return 'â';
   return (v*100).toFixed(1) + ' %';
 }
 function fmtI(v){
@@ -1037,7 +1037,7 @@ function piChange(id,f,el){
   else if(f === 'kv') sD(id,'kv',v);
 }
 function rb(r){
-  return r==='HØY'?'<span class="bh">HØY</span>':r==='MIDDELS'?'<span class="bm">MIDDELS</span>':'<span class="bl">LAV</span>';
+  return r==='HÃY'?'<span class="bh">HÃY</span>':r==='MIDDELS'?'<span class="bm">MIDDELS</span>':'<span class="bl">LAV</span>';
 }
 function fh(fs){
   return fs.map(function(f){return '<span class="flag '+f.c+'">'+f.t+'</span>';}).join('');
@@ -1087,20 +1087,20 @@ function fetchMaterials(key,id){
   return gqlQ(key,'{caseMaterialAggregate(caseId:'+id+',type:MATERIAL){totalCostPrice}}')
     .then(function(d){return (d.caseMaterialAggregate && d.caseMaterialAggregate.totalCostPrice)||0;});
 }
-// Omvendt datofiltrering for materialkostnad — punkt-i-tid korrekt metode:
+// Omvendt datofiltrering for materialkostnad â punkt-i-tid korrekt metode:
 // 1) Bruk economy.materialsCostprice (all-time, inkl. NULL-daterte poster) som base
 // 2) Trekk fra materialer med materialDate ETTER periodeslutt
-// Dette gir korrekte kostnader per periodeslutt uten å miste NULL-daterte poster.
-// Returnerer antall ØRE som skal trekkes fra all-time-total.
+// Dette gir korrekte kostnader per periodeslutt uten Ã¥ miste NULL-daterte poster.
+// Returnerer antall ÃRE som skal trekkes fra all-time-total.
 //
-// MERK: OS API ignorerer between:{field:materialDate,...} filteret på caseMaterials —
-// det returnerer alle materialer uavhengig av dato. Vi filtrerer derfor på klientsiden.
+// MERK: OS API ignorerer between:{field:materialDate,...} filteret pÃ¥ caseMaterials â
+// det returnerer alle materialer uavhengig av dato. Vi filtrerer derfor pÃ¥ klientsiden.
 function fetchMaterialsAfterPeriod(key, id, periodEndUnix){
   var todayUnix = Math.floor(Date.now()/1000);
   var fromUnix = periodEndUnix + 86400; // Dagen etter periodeslutt
-  if(fromUnix >= todayUnix) return Promise.resolve(0); // Pågående periode — ingen post-periode materialer
+  if(fromUnix >= todayUnix) return Promise.resolve(0); // PÃ¥gÃ¥ende periode â ingen post-periode materialer
   function fetchType(type){
-    // Hent ALLE materialer for ordren (OS API ignorerer between-filteret på caseMaterials)
+    // Hent ALLE materialer for ordren (OS API ignorerer between-filteret pÃ¥ caseMaterials)
     return paginate(key, function(c){
       return '{caseMaterials(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},caseId:'+id+',type:'+type+'){items{materialDate costPrice}nextCursor}}';
     }, function(d){ return d.caseMaterials; })
@@ -1116,7 +1116,7 @@ function fetchMaterialsAfterPeriod(key, id, periodEndUnix){
     fetchType('PRODUCT').catch(function(){return 0;})
   ]).then(function(r){
     var afterOre = (r[0]||0)+(r[1]||0);
-    if(afterOre > 0) console.log('[HIST] Materialer etter periodeslutt (øre): MATERIAL='+(r[0]||0)+' PRODUCT='+(r[1]||0)+' sum='+afterOre);
+    if(afterOre > 0) console.log('[HIST] Materialer etter periodeslutt (Ã¸re): MATERIAL='+(r[0]||0)+' PRODUCT='+(r[1]||0)+' sum='+afterOre);
     return afterOre;
   }).catch(function(){ return 0; });
 }
@@ -1125,32 +1125,32 @@ function fetchSalesInvoices(key,id,f,t){
     return '{salesInvoices(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},between:{field:date,from:'+f+',to:'+t+'},filters:{caseIds:['+id+']}){items{id amount}nextCursor}}';
   }, function(d){return d.salesInvoices;});
 }
-// Hent dato på seneste time-registrering (all-time, ikke periodefiltrert)
+// Hent dato pÃ¥ seneste time-registrering (all-time, ikke periodefiltrert)
 function fetchLatestHourDate(key,id){
   return gqlQ(key,'{hours(pagination:{cursor:null,limit:1},orderBy:{field:"startTime",direction:DESC},filters:{case:'+id+'}){items{startTime}}}')
     .then(function(d){return (d.hours&&d.hours.items&&d.hours.items[0]&&d.hours.items[0].startTime)||null;});
 }
-// Hent dato på seneste faktura (all-time, ikke periodefiltrert)
+// Hent dato pÃ¥ seneste faktura (all-time, ikke periodefiltrert)
 function fetchLatestInvoiceDate(key,id){
   return gqlQ(key,'{salesInvoices(pagination:{cursor:null,limit:1},orderBy:{field:"date",direction:DESC},filters:{caseIds:['+id+']}){items{date}}}')
     .then(function(d){return (d.salesInvoices&&d.salesInvoices.items&&d.salesInvoices.items[0]&&d.salesInvoices.items[0].date)||null;});
 }
-// Hent dato på seneste materialtransaksjon (all-time, ikke periodefiltrert)
-// Bruker materialDate-feltet og type:MATERIAL (påkrevd av OS GraphQL-skjema)
-// null = ingen dato satt (historiske/importerte poster) → behandles som "eldre enn faktura"
+// Hent dato pÃ¥ seneste materialtransaksjon (all-time, ikke periodefiltrert)
+// Bruker materialDate-feltet og type:MATERIAL (pÃ¥krevd av OS GraphQL-skjema)
+// null = ingen dato satt (historiske/importerte poster) â behandles som "eldre enn faktura"
 function fetchLatestMaterialDate(key,id){
   return gqlQ(key,'{caseMaterials(pagination:{cursor:null,limit:1},orderBy:{field:"materialDate",direction:DESC},caseId:'+id+',type:MATERIAL){items{materialDate}}}')
     .then(function(d){return (d.caseMaterials&&d.caseMaterials.items&&d.caseMaterials.items[0]&&d.caseMaterials.items[0].materialDate)||null;})
     .catch(function(){return null;});
 }
-// ─── HISTORISK MODUS ────────────────────────────────────────────────────────
-// Hent alle saks-IDer som har fått faktura ETTER periodeslutt.
-// Disse sakene var IKKE Bokfurt på periodeslutt-datoen, men er det i dag.
+// âââ HISTORISK MODUS ââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+// Hent alle saks-IDer som har fÃ¥tt faktura ETTER periodeslutt.
+// Disse sakene var IKKE Bokfurt pÃ¥ periodeslutt-datoen, men er det i dag.
 // Metode: company-wide salesInvoices (uten caseIds-filter) gir case{id} per faktura.
-// Returnerer Set<caseId> — tomme Set for inneværende periode (ingen fremtidige fakturaer).
+// Returnerer Set<caseId> â tomme Set for innevÃ¦rende periode (ingen fremtidige fakturaer).
 function fetchPostPeriodInvoicedCases(key, periodEndUnix){
   var todayUnix = Math.floor(Date.now()/1000);
-  // Legg til 1 dag margin for å unngå fakturaer eksakt på periodeslutt
+  // Legg til 1 dag margin for Ã¥ unngÃ¥ fakturaer eksakt pÃ¥ periodeslutt
   var fromUnix = periodEndUnix + 86400;
   if(fromUnix >= todayUnix) return Promise.resolve(new Set());
   var caseIds = new Set();
@@ -1166,9 +1166,9 @@ function fetchPostPeriodInvoicedCases(key, periodEndUnix){
 }
 
 // Signal 2: sak fikk terminal-status ETTER periodeslutt (uten ny faktura).
-// Eksempel: sak var "Klar for fakturering" på 30.06, bokføres 01.07 uten ny faktura.
-// OS API ignorerer between-filter på changedAt — filtrerer klientsiden.
-// Henter kun første side (200 poster DESC) — post-periode endringer er alltid øverst.
+// Eksempel: sak var "Klar for fakturering" pÃ¥ 30.06, bokfÃ¸res 01.07 uten ny faktura.
+// OS API ignorerer between-filter pÃ¥ changedAt â filtrerer klientsiden.
+// Henter kun fÃ¸rste side (200 poster DESC) â post-periode endringer er alltid Ã¸verst.
 function fetchPostPeriodStatusChangedCases(key, periodEndUnix){
   var todayUnix = Math.floor(Date.now()/1000);
   if(periodEndUnix + 86400 >= todayUnix) return Promise.resolve(new Set());
@@ -1242,7 +1242,7 @@ function fetchBenchmark(key){
 function benchChip(type,dg){
   var b = BENCH[type];
   if(b==null) return '<span class="bench bench-na">Ingen bench.</span>';
-  if(dg==null) return '<span class="bench bench-na">–</span>';
+  if(dg==null) return '<span class="bench bench-na">â</span>';
   var diff = (dg-b)*100, sign = diff>=0?'+':'';
   var cls = Math.abs(diff)<=5 ? 'bench-ok' : diff<-5 ? 'bench-bad' : 'bench-warn';
   return '<span class="bench '+cls+'" title="Snitt DG% for avsluttede '+type+'-ordrer: '+(b*100).toFixed(1)+'%">'+sign+diff.toFixed(1)+'pp vs snitt</span>';
@@ -1254,12 +1254,12 @@ function benchChip(type,dg){
 function getHist(){ return JSON.parse(localStorage.getItem(HIST_KEY)||'[]'); }
 async function syncHistSP(btn){
   var entity=_currentEntity||document.getElementById('lentity').value||'';
-  if(!entity){alert('Last inn data for et selskap først, så vet vi hvilken historikk som skal hentes.');return;}
-  if(btn){btn.disabled=true;btn.textContent='⏳ Henter...';}
+  if(!entity){alert('Last inn data for et selskap fÃ¸rst, sÃ¥ vet vi hvilken historikk som skal hentes.');return;}
+  if(btn){btn.disabled=true;btn.textContent='â³ Henter...';}
   var ok=await spLoadHist(entity);
-  if(btn){btn.disabled=false;btn.innerHTML='☁️ Synk fra SharePoint';}
-  if(ok){alert('✅ Historikk hentet og slått sammen fra SharePoint.');}
-  else{alert('Ingen historikk funnet i SharePoint for '+entity+'. Logg inn med Microsoft-knappen på startsiden hvis du ikke er innlogget.');}
+  if(btn){btn.disabled=false;btn.innerHTML='âï¸ Synk fra SharePoint';}
+  if(ok){alert('â Historikk hentet og slÃ¥tt sammen fra SharePoint.');}
+  else{alert('Ingen historikk funnet i SharePoint for '+entity+'. Logg inn med Microsoft-knappen pÃ¥ startsiden hvis du ikke er innlogget.');}
 }
 
 function getPrevPOCData(ordreNr){
@@ -1286,27 +1286,27 @@ function isNewOrder(ordreNr){
 }
 function prevFG(n){
   var p = getPrevPOCData(n);
-  if(!p||p.fg==null) return '–';
-  return '<span title="'+p.period+'">📊 '+(p.fg*100).toFixed(0)+'%</span>';
+  if(!p||p.fg==null) return 'â';
+  return '<span title="'+p.period+'">ð '+(p.fg*100).toFixed(0)+'%</span>';
 }
 function prevDGp(n){
   var p = getPrevPOCData(n);
-  if(!p||p.dg==null) return '–';
+  if(!p||p.dg==null) return 'â';
   return '<span title="'+p.period+'">'+(p.dg*100).toFixed(1)+'%</span>';
 }
 function prevDGCell(ordreNr, curDG){
   var prev = getPrevDG(ordreNr);
-  if(!prev) return '<span style="color:#ccc;font-size:.76rem;">–</span>';
+  if(!prev) return '<span style="color:#ccc;font-size:.76rem;">â</span>';
   var pp=(prev.dg*100).toFixed(1)+'%', cp=(curDG*100).toFixed(1)+'%', tip='Periode: '+prev.period;
-  if(Math.abs(prev.dg-curDG)<0.001) return '<span style="color:var(--mid);" title="'+tip+'">→ '+pp+'</span>';
-  if(curDG>prev.dg) return '<span style="color:var(--green);font-weight:700;" title="Økt fra '+pp+' til '+cp+' ('+tip+')">▲ '+pp+'</span>';
-  return '<span style="color:var(--red);font-weight:700;" title="Redusert fra '+pp+' til '+cp+' ('+tip+')">▼ '+pp+'</span>';
+  if(Math.abs(prev.dg-curDG)<0.001) return '<span style="color:var(--mid);" title="'+tip+'">â '+pp+'</span>';
+  if(curDG>prev.dg) return '<span style="color:var(--green);font-weight:700;" title="Ãkt fra '+pp+' til '+cp+' ('+tip+')">â² '+pp+'</span>';
+  return '<span style="color:var(--red);font-weight:700;" title="Redusert fra '+pp+' til '+cp+' ('+tip+')">â¼ '+pp+'</span>';
 }
 function newBadge(ordreNr){
-  return isNewOrder(ordreNr) ? '<span title="Ny ordre — ikke vært med i tidligere vurdering" style="background:#DBEAFE;color:#1D4ED8;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">NY</span>' : '';
+  return isNewOrder(ordreNr) ? '<span title="Ny ordre â ikke vÃ¦rt med i tidligere vurdering" style="background:#DBEAFE;color:#1D4ED8;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">NY</span>' : '';
 }
 function histBadge(r){
-  return r.historicalReopen ? '<span title="Saken er Bokfurt i dag, men var aktiv og åpen per periodeslutt-dato. Inkludert via historisk fakturadato-analyse." style="background:#FEF3C7;color:#92400E;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">📅 HIST</span>' : '';
+  return r.historicalReopen ? '<span title="Saken er Bokfurt i dag, men var aktiv og Ã¥pen per periodeslutt-dato. Inkludert via historisk fakturadato-analyse." style="background:#FEF3C7;color:#92400E;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">ð HIST</span>' : '';
 }
 
 /* ============================================================
@@ -1322,28 +1322,28 @@ function saveStatus(pl,period,entity){
 function clearAllReady(){ localStorage.removeItem(STATUS_KEY); rStatus(); alert('Status nullstilt.'); }
 async function markReady(){
   var btn = document.getElementById('ready-btn');
-  if(btn && btn.disabled) return; // blokkér dobbel-submit
+  if(btn && btn.disabled) return; // blokkÃ©r dobbel-submit
   var pl = document.getElementById('pp').value||(_currentUser&&!_currentUser.isDL?_currentUser.plName:'');
-  if(!pl){ alert('Velg prosjektleder i filteret øverst, eller logg inn for automatisk gjenkjenning.'); return; }
+  if(!pl){ alert('Velg prosjektleder i filteret Ã¸verst, eller logg inn for automatisk gjenkjenning.'); return; }
   var period = _currentPeriod || document.getElementById('aperiod').textContent;
   var entity = _currentEntity || document.getElementById('lentity').value || document.getElementById('atitle').textContent;
   var dgR = ACTIVE.filter(function(r){return !r.hasTilbud && r.pl===pl;});
   var vurderte = dgR.filter(function(r){var inp=DGI[r.ordreNr]||{};return inp.k&&inp.k.trim().length>0;});
   if(vurderte.length < dgR.length){
     var igjen = dgR.length - vurderte.length;
-    if(!confirm('Det gjenstår '+igjen+' ordre uten begrunnelse. Vil du likevel markere som ferdig?')) return;
+    if(!confirm('Det gjenstÃ¥r '+igjen+' ordre uten begrunnelse. Vil du likevel markere som ferdig?')) return;
   }
-  if(btn){ btn.disabled=true; btn.textContent='⏳ Lagrer…'; }
+  if(btn){ btn.disabled=true; btn.textContent='â³ Lagrerâ¦'; }
   try{
     saveStatus(pl,period,entity);
     await spMarkDone(period,entity,pl);
-    if(btn){ btn.textContent='✅ Ferdig med mine vurderinger'; }
-    alert('✅ '+pl+' er markert som ferdig for '+period+'!\nDaglig leder kan se status i Status-fanen.');
+    if(btn){ btn.textContent='â Ferdig med mine vurderinger'; }
+    alert('â '+pl+' er markert som ferdig for '+period+'!\nDaglig leder kan se status i Status-fanen.');
     rStatus(); ST('status');
   }catch(e){
     console.warn('[SP] markReady feilet:',e);
-    if(btn){ btn.disabled=false; btn.textContent='✅ Ferdig med mine vurderinger'; }
-    alert('⚠️ Feil ved lagring av status. Prøv igjen.');
+    if(btn){ btn.disabled=false; btn.textContent='â Ferdig med mine vurderinger'; }
+    alert('â ï¸ Feil ved lagring av status. PrÃ¸v igjen.');
   }
 }
 function rStatus(){
@@ -1352,7 +1352,7 @@ function rStatus(){
   var entity = _currentEntity || document.getElementById('lentity').value || '';
   var pls = [...new Set(ACTIVE.map(function(r){return r.pl;}))].filter(Boolean).sort();
   if(!pls.length){
-    document.getElementById('statustbl').innerHTML='<tbody><tr><td colspan="6" style="padding:24px;text-align:center;color:#888;">Last inn data fra Ordrestyring for å se status.</td></tr></tbody>';
+    document.getElementById('statustbl').innerHTML='<tbody><tr><td colspan="6" style="padding:24px;text-align:center;color:#888;">Last inn data fra Ordrestyring for Ã¥ se status.</td></tr></tbody>';
     return;
   }
   var rows = pls.map(function(pl){
@@ -1367,20 +1367,20 @@ function rStatus(){
   });
   var ferdig = rows.filter(function(r){return r.done;}).length;
   document.getElementById('statustbl').innerHTML =
-    '<thead><tr><th>Prosjektleder</th><th style="text-align:center">Ordrer</th><th style="text-align:center" title="Fastprisordrer">Fastpris</th><th style="text-align:center" title="Andel DG%-ordrer med begrunnelse">Fullført</th><th style="text-align:center">Status</th><th>Ferdig kl.</th></tr></thead>'+
+    '<thead><tr><th>Prosjektleder</th><th style="text-align:center">Ordrer</th><th style="text-align:center" title="Fastprisordrer">Fastpris</th><th style="text-align:center" title="Andel DG%-ordrer med begrunnelse">FullfÃ¸rt</th><th style="text-align:center">Status</th><th>Ferdig kl.</th></tr></thead>'+
     '<tbody>'+rows.map(function(r){
       var bar = '<div style="height:6px;background:#E0E0E0;border-radius:3px;overflow:hidden;width:80px;display:inline-block;vertical-align:middle;margin-right:6px;"><div style="height:100%;width:'+r.pct+'%;background:'+(r.done?'var(--green)':'var(--amber)')+'"></div></div>';
       var _lts2=localStorage.getItem('VIA_LOAD_TS');
       var _stale2=r.done&&_lts2&&r.done.ts&&new Date(_lts2)>new Date(r.done.ts);
-      var _stTag2=_stale2?'<span title="Data lastet inn etter ferdig-melding — bør bekrefte på nytt" style="font-size:.7rem;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:4px;padding:0 5px;margin-left:4px;cursor:help;">⚠️ ny data</span>':'';
-      var _unlockBtn=(_currentUser&&_currentUser.isDL&&r.done)?'<button onclick="unlockPL(\''+r.pl+'\')" style="font-size:.7rem;margin-left:6px;padding:1px 7px;background:#fff;border:1px solid var(--amber);color:var(--amber);border-radius:4px;cursor:pointer;">Åpne</button>':'';
-      var statusBadge = r.done ? '<span class="status-done">✅ Ferdig</span>'+_stTag2+_unlockBtn : '<span class="status-wait">⏳ Ikke meldt</span>';
-      var ts = r.done ? new Date(r.done.ts).toLocaleString('no-NO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : '–';
+      var _stTag2=_stale2?'<span title="Data lastet inn etter ferdig-melding â bÃ¸r bekrefte pÃ¥ nytt" style="font-size:.7rem;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:4px;padding:0 5px;margin-left:4px;cursor:help;">â ï¸ ny data</span>':'';
+      var _unlockBtn=(_currentUser&&_currentUser.isDL&&r.done)?'<button onclick="unlockPL(\''+r.pl+'\')" style="font-size:.7rem;margin-left:6px;padding:1px 7px;background:#fff;border:1px solid var(--amber);color:var(--amber);border-radius:4px;cursor:pointer;">Ãpne</button>':'';
+      var statusBadge = r.done ? '<span class="status-done">â Ferdig</span>'+_stTag2+_unlockBtn : '<span class="status-wait">â³ Ikke meldt</span>';
+      var ts = r.done ? new Date(r.done.ts).toLocaleString('no-NO',{day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}) : 'â';
       return '<tr><td><strong>'+r.pl+'</strong></td><td class="c">'+r.total+'</td><td class="c">'+r.pocTotal+'</td><td class="c">'+bar+r.pct+'%</td><td class="c">'+statusBadge+'</td><td style="font-size:.8rem;color:#888;">'+ts+'</td></tr>';
     }).join('')+'</tbody>';
   document.getElementById('status-sum').innerHTML =
     '<strong>'+ferdig+' av '+rows.length+'</strong> prosjektledere har meldt seg ferdige for <strong>'+period+'</strong>.'+
-    (ferdig===rows.length ? ' ✅ Alle er ferdige — daglig leder kan nå låse perioden!' : '');
+    (ferdig===rows.length ? ' â Alle er ferdige â daglig leder kan nÃ¥ lÃ¥se perioden!' : '');
 }
 
 /* ============================================================
@@ -1396,7 +1396,7 @@ function startApiLoad(){
   document.getElementById('api-err').style.display = 'none';
   var todayStr = new Date().toISOString().slice(0,10);
   var isHistorical = dateStr < todayStr;
-  setP(0,'Henter ordreliste og benchmark'+(isHistorical?' (historisk: '+dateStr+')'  :'')+'…','');
+  setP(0,'Henter ordreliste og benchmark'+(isHistorical?' (historisk: '+dateStr+')'  :'')+'â¦','');
   document.getElementById('startPanel').style.display = 'none';
   document.getElementById('progressWrap').style.display = 'block';
   var uf = toUnix(co.paStartDato || '2025-01-01'), ut = toUnix(dateStr);
@@ -1404,41 +1404,41 @@ function startApiLoad(){
   Promise.all([
     fetchBenchmark(co.key),
     paginate(co.key, function(c){
-      return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC},between:{field:createdAt,from:'+uf+',to:'+ut+'}){items{id caseNumber description status{text} caseType{text} customer{name} foreman{fullName} offerTotal parentCaseId economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice}}nextCursor}}';
+      return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC},between:{field:createdAt,from:'+uf+',to:'+ut+'}){items{id caseNumber description status{text} caseType{text} customer{name} projectLeader{fullName} foreman{fullName} offerTotal parentCaseId economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice}}nextCursor}}';
     }, function(d){return d.cases;}),
-    // Historisk modus: hent saks-IDer som var aktive på periodeslutt men er terminal i dag.
+    // Historisk modus: hent saks-IDer som var aktive pÃ¥ periodeslutt men er terminal i dag.
     // Signal 1: fikk faktura etter periodeslutt (Bokfurt i etterkant)
-    // Signal 2: statusendring til terminal etter periodeslutt (uten ny faktura, f.eks. direktebokføring)
+    // Signal 2: statusendring til terminal etter periodeslutt (uten ny faktura, f.eks. direktebokfÃ¸ring)
     fetchPostPeriodInvoicedCases(co.key, ut),
     fetchPostPeriodStatusChangedCases(co.key, ut)
   ]).then(function(res){
     BENCH = res[0];
     var cases = res[1];
-    // Slå sammen begge re-åpningssignaler til ett Set
+    // SlÃ¥ sammen begge re-Ã¥pningssignaler til ett Set
     var reopenCaseIds = res[2];
     res[3].forEach(function(id){ reopenCaseIds.add(id); });
-    console.log('[HIST] Totalt re-åpningssett (faktura+statusendring):', reopenCaseIds.size);
+    console.log('[HIST] Totalt re-Ã¥pningssett (faktura+statusendring):', reopenCaseIds.size);
     var bn = Object.keys(BENCH).length;
-    document.getElementById('sec2note').innerHTML = 'Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet.'+(bn>0?' <span style="background:var(--bluebg);color:var(--blue);border-radius:4px;padding:2px 8px;font-size:.78rem;font-weight:700;">📊 Benchmark: '+bn+' ordretyper</span>':'')+'  <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span>';
+    document.getElementById('sec2note').innerHTML = 'Ingen fastpris â prosjektleder skriver inn forventet DG% og begrunner estimatet.'+(bn>0?' <span style="background:var(--bluebg);color:var(--blue);border-radius:4px;padding:2px 8px;font-size:.78rem;font-weight:700;">ð Benchmark: '+bn+' ordretyper</span>':'')+'  <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">â¹ï¸ OS-merke</span>';
 
     // Telle alle statuser for diagnostikk
     var _statusTeller = {};
     cases.forEach(function(c){ var s=(c.status&&c.status.text)||'(tom)'; _statusTeller[s]=(_statusTeller[s]||0)+1; });
     console.log('[FILTER] Alle statuser fra OS:', _statusTeller);
 
-    // Bygg sett av foreldre-IDer — ordrer som har minst én underordre i datasettet.
+    // Bygg sett av foreldre-IDer â ordrer som har minst Ã©n underordre i datasettet.
     // Disse ekskluderes selv (barna vises istedet og grupperes via detectGroups).
     var _parentIds = new Set();
     cases.forEach(function(c){ if(c.parentCaseId) _parentIds.add(String(c.parentCaseId)); });
 
     var histReopenCount = 0;
     var active = cases.filter(function(c){
-      // Ekskluder toppordrer som har underordrer — barna vises gruppert istedet
+      // Ekskluder toppordrer som har underordrer â barna vises gruppert istedet
       if(_parentIds.has(String(c.id))) return false;
       // Underordrer (parentCaseId != null) inkluderes og vises gruppert via detectGroups()
       var typeText = (c.caseType&&c.caseType.text)||'';
       var statusText = (c.status&&c.status.text)||'';
-      // Ekskluder ordrer uten påløpte kostnader OG uten forventet DG OG uten tilbud — uten aktivitet er disse uaktuelle
+      // Ekskluder ordrer uten pÃ¥lÃ¸pte kostnader OG uten forventet DG OG uten tilbud â uten aktivitet er disse uaktuelle
       var hkp = (c.economy&&c.economy.hoursCostprice)||0;
       var mkp = (c.economy&&c.economy.materialsCostprice)||0;
       var expDG = (c.economy&&c.economy.expectedCoverageRatio)||0;
@@ -1446,16 +1446,16 @@ function startApiLoad(){
       // Inkluder ordrer med signert tilbud selv uten registrerte kostnader (matcher PA-modulen)
       if(hkp === 0 && mkp === 0 && expDG <= 0 && !harTilbud) return false;
       if(EXCL_TYPES.has(typeText)) return false;
-      // Ekskluder interne klær og verktøy-ordre (per-ansatt kostnadsordre, ikke fakturerbart)
-      // Matcher: "Klær og verktøy 2025 - Navn", "Verktøy og klær Navn", "Verktøy og klær + Timebank" etc.
+      // Ekskluder interne klÃ¦r og verktÃ¸y-ordre (per-ansatt kostnadsordre, ikke fakturerbart)
+      // Matcher: "KlÃ¦r og verktÃ¸y 2025 - Navn", "VerktÃ¸y og klÃ¦r Navn", "VerktÃ¸y og klÃ¦r + Timebank" etc.
       var descLower = (c.description||'').toLowerCase();
-      if(/klær.*verktøy|verktøy.*klær/.test(descLower)) return false;
-      // Ekskluder varetelling-ordre uavhengig av lokasjon eller år — ikke fakturerbart
+      if(/klÃ¦r.*verktÃ¸y|verktÃ¸y.*klÃ¦r/.test(descLower)) return false;
+      // Ekskluder varetelling-ordre uavhengig av lokasjon eller Ã¥r â ikke fakturerbart
       // Matcher: "Varetelling 2024", "Varetelling biler 2025", "Varetelling Ski" etc.
       if(/varetelling/.test(descLower)) return false;
-      // ── Historisk re-inkludering ─────────────────────────────────────────
-      // En sak kan i dag være Bokfurt/terminal, men var aktiv på periodeslutt-dato.
-      // Signal: saken fikk sin (slutt)faktura ETTER periodeslutt → den var ikke Bokfurt da.
+      // ââ Historisk re-inkludering âââââââââââââââââââââââââââââââââââââââââ
+      // En sak kan i dag vÃ¦re Bokfurt/terminal, men var aktiv pÃ¥ periodeslutt-dato.
+      // Signal: saken fikk sin (slutt)faktura ETTER periodeslutt â den var ikke Bokfurt da.
       // Vi markerer disse med _historicalReopen = true og hopper over datokontroll.
       if(EXCL_STATUS.has(statusText)){
         if(reopenCaseIds.has(c.id)){
@@ -1465,11 +1465,11 @@ function startApiLoad(){
         }
         return false;
       }
-      // Inkluder ALT som ikke er en kjent terminal-status — fanger ukjente aktive statuser
+      // Inkluder ALT som ikke er en kjent terminal-status â fanger ukjente aktive statuser
       return statusText !== '';
     });
     if(histReopenCount > 0){
-      console.log('[HIST] '+histReopenCount+' saker gjeninkludert (var aktive ved '+dateStr+', er nå Bokfurt)');
+      console.log('[HIST] '+histReopenCount+' saker gjeninkludert (var aktive ved '+dateStr+', er nÃ¥ Bokfurt)');
     }
 
     // Diagnostikk: vis nye statuser som ikke var i opprinnelig VSTATUS
@@ -1477,11 +1477,11 @@ function startApiLoad(){
       return !EXCL_STATUS.has(s) && !VSTATUS.has(s) && s !== '(tom)' && _statusTeller[s] > 0;
     });
     if(nyeStatuser.length){
-      console.warn('[FILTER] ⚠️ Nye/ukjente aktive statuser inkludert i modellen:', nyeStatuser.map(function(s){return s+' ('+_statusTeller[s]+')';}));
+      console.warn('[FILTER] â ï¸ Nye/ukjente aktive statuser inkludert i modellen:', nyeStatuser.map(function(s){return s+' ('+_statusTeller[s]+')';}));
       logEvent('NyStatus',{statuser:nyeStatuser,selskap:co.name}).catch(function(){});
     }
 
-    setP(10,'Henter økonomidata for '+active.length+' ordrer…','5 parallelle forespørsler');
+    setP(10,'Henter Ã¸konomidata for '+active.length+' ordrerâ¦','5 parallelle forespÃ¸rsler');
     var done = 0;
 
     function pool(tasks,max){
@@ -1497,11 +1497,18 @@ function startApiLoad(){
     var tasks = active.map(function(c){
       return function(){
         var rawDG = (c.economy&&c.economy.expectedCoverageRatio)||0;
-        var dg = rawDG>1 ? rawDG/100 : rawDG;
+        var expDG = rawDG>1 ? rawDG/100 : rawDG;
         var tilbud = c.offerTotal>0 ? c.offerTotal/100 : null;
-        // Steg 1: hent økonomidata
+        var hsp=(c.economy&&c.economy.hoursSalesprice)||0;
+        var msp=(c.economy&&c.economy.materialsSalesprice)||0;
+        var hcp=(c.economy&&c.economy.hoursCostprice)||0;
+        var mcp=(c.economy&&c.economy.materialsCostprice)||0;
+        var totalSp=hsp+msp;
+        var agreementDG=totalSp>100 ? (totalSp-(hcp+mcp))/totalSp : null;
+        var dg=(!tilbud&&agreementDG!==null) ? agreementDG : expDG;
+        // Steg 1: hent Ã¸konomidata
         // mk (punkt-i-tid): economy.materialsCostprice (all-time, inkl. NULL-daterte) MINUS
-        // materialer med materialDate etter periodeslutt. Gir riktig periodetotal uten å miste
+        // materialer med materialDate etter periodeslutt. Gir riktig periodetotal uten Ã¥ miste
         // historiske poster uten dato.
         var allTimeMkOre = (c.economy&&c.economy.materialsCostprice)||0;
         return Promise.all([
@@ -1513,11 +1520,11 @@ function startApiLoad(){
           var fk = r[1].reduce(function(s,i){return s+(i.amount||0);},0)/100;
           var mk = Math.max(0, allTimeMkOre - r[2]) / 100;
           var tot = tk + mk;
-          // Steg 2: datokontroll — utelat sluttfakturerte ordrer (ingen kostnader tilført etter siste faktura)
+          // Steg 2: datokontroll â utelat sluttfakturerte ordrer (ingen kostnader tilfÃ¸rt etter siste faktura)
           // Sjekker ALLE fakturerte ordrer uavhengig av om de har materialer eller ikke
           // Historisk re-inkluderte saker: vi vet de var aktive ved periodeslutt
-          // (sluttfakturaen kom etter periodeslutt) → ingen datokontroll nødvendig
-          // I historisk modus (periodeslutt < i dag) kjøres IKKE sluttfakturert-sjekken:
+          // (sluttfakturaen kom etter periodeslutt) â ingen datokontroll nÃ¸dvendig
+          // I historisk modus (periodeslutt < i dag) kjÃ¸res IKKE sluttfakturert-sjekken:
           // periodeavslutning skal inkludere alle ordrer med kostnader i perioden.
           var isHistoricalReport = ut < Math.floor(Date.now()/1000);
           if(fk > 0 && !c._historicalReopen && !isHistoricalReport){
@@ -1530,25 +1537,25 @@ function startApiLoad(){
               var lastInvDate  = dates[1];
               var lastMatDate  = dates[2];
               if(!lastInvDate) return buildRow(c,tk,mk,fk,tot,dg,tilbud);
-              // Timer tilført etter siste faktura? Sammenlign per dag (ikke sekund) for å
-              // unngå falske positiver der timer og faktura er registrert samme dag.
+              // Timer tilfÃ¸rt etter siste faktura? Sammenlign per dag (ikke sekund) for Ã¥
+              // unngÃ¥ falske positiver der timer og faktura er registrert samme dag.
               var SEC_PER_DAY = 86400;
               var hoursAfterInv = tk > 0 && lastHourDate && Math.floor(lastHourDate/SEC_PER_DAY) > Math.floor(lastInvDate/SEC_PER_DAY);
-              // Materialer tilført etter siste faktura?
-              // null lastMatDate = ingen dato satt (historisk/importert) → behandles som "gammel" (ikke etter faktura)
-              // Aktive ordrer med nye materialer har typisk også nye timer → hoursAfterInv fanger disse
+              // Materialer tilfÃ¸rt etter siste faktura?
+              // null lastMatDate = ingen dato satt (historisk/importert) â behandles som "gammel" (ikke etter faktura)
+              // Aktive ordrer med nye materialer har typisk ogsÃ¥ nye timer â hoursAfterInv fanger disse
               var matsAfterInv = mk > 0 && lastMatDate !== null && Math.floor(lastMatDate/SEC_PER_DAY) > Math.floor(lastInvDate/SEC_PER_DAY);
-              // Ingen kostnader etter siste faktura → sluttfakturert, utelat
+              // Ingen kostnader etter siste faktura â sluttfakturert, utelat
               if(!hoursAfterInv && !matsAfterInv){
-                done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrer…','');
+                done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrerâ¦','');
                 return null;
               }
               return buildRow(c,tk,mk,fk,tot,dg,tilbud);
             });
           }
           // fk=0: ingen faktura i perioden (faktura er etter periodelutt, eller aldri fakturert).
-          // Disse ordrene er aktive i perioden — inkluder alltid.
-          // (Sluttfakturert-sjekken håndteres kun for fk>0, der fakturaen er i perioden.)
+          // Disse ordrene er aktive i perioden â inkluder alltid.
+          // (Sluttfakturert-sjekken hÃ¥ndteres kun for fk>0, der fakturaen er i perioden.)
           return buildRow(c,tk,mk,fk,tot,dg,tilbud);
 
           function buildRow(c,tk,mk,fk,tot,dg,tilbud){
@@ -1556,7 +1563,7 @@ function startApiLoad(){
             var isTM = !tilbud&&((((c.economy&&c.economy.hoursSalesprice)||0)>((c.economy&&c.economy.hoursCostprice)||0)*1.05)||(((c.economy&&c.economy.materialsSalesprice)||0)>((c.economy&&c.economy.materialsCostprice)||0)*1.05));
             var fsv = isTM ? tmRev : (dg>0&&dg<1) ? tot/(1-dg) : tot;
             var via = fsv - fk;
-            done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrer…','');
+            done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrerâ¦','');
             return {
               id:c.id,
               ordreNr:String(c.caseNumber||'').trim(),
@@ -1565,7 +1572,7 @@ function startApiLoad(){
               type:(c.caseType&&c.caseType.text)||'',
               beskr:String(c.description||'').replace(/[\n\r\xa0]+/g,' ').trim(),
               kunde:(c.customer&&c.customer.name)||'',
-              pl:(c.foreman&&c.foreman.fullName)||'',
+              pl:(c.projectLeader&&c.projectLeader.fullName)||(c.foreman&&c.foreman.fullName)||'',
               tilbud:tilbud,
               hasTilbud:tilbud!=null&&tilbud>0,
               totOmk:tot,
@@ -1588,7 +1595,7 @@ function startApiLoad(){
       setTimeout(function(){
         var d2=new Date(dateStr), prd=d2.toLocaleDateString('no',{month:'long',year:'numeric'});
         document.getElementById('lentity').value = co.name;
-        parseRows(rows, co.name+' – t.o.m. '+dateStr, prd);
+        parseRows(rows, co.name+' â t.o.m. '+dateStr, prd);
         logEvent('DataLastet',{selskap:co.name,periode:prd,antallOrdrer:rows.length}).catch(function(){});
         document.getElementById('progressWrap').style.display = 'none';
         document.getElementById('api-btn').disabled = false;
@@ -1599,7 +1606,7 @@ function startApiLoad(){
     document.getElementById('startPanel').style.display = 'block';
     document.getElementById('api-btn').disabled = false;
     var el = document.getElementById('api-err');
-    el.innerHTML = '<strong>❌ Feil:</strong> '+e.message;
+    el.innerHTML = '<strong>â Feil:</strong> '+e.message;
     el.style.display = 'block';
     console.error(e);
     logEvent('DataLastFeil',{feil:e.message,stack:e.stack?e.stack.substring(0,400):null}).catch(function(){});
@@ -1631,7 +1638,7 @@ function parseExcel(raw,fname){
       if(tilbud&&tilbud<=0) tilbud=null;
       var tot=n(r[H['Totale omk. (NOK)']]),fk=n(r[H['Fakturert (NOK)']]),via=n(r[H['Periodisert inntekt (NOK)']]);
       return {
-        ordreNr:String(r[H['Ordre nr.']]||'').replace('▸','').trim(),
+        ordreNr:String(r[H['Ordre nr.']]||'').replace('â¸','').trim(),
         status:String(r[H['Status']]||'').trim(),
         type:String(r[H['Type']]||'').trim(),
         beskr:String(r[H['Beskrivelse']]||'').replace(/[\n\r\xa0]+/g,' ').trim(),
@@ -1676,17 +1683,17 @@ function toggleGrpMode(base){
 
 function parseRows(rows,src,prd){
   localStorage.setItem('VIA_LOAD_TS',new Date().toISOString());
-  // Nullstill all periode-spesifikk state for å unngå krysskontaminering mellom perioder
-  // Ekskluder ordrer med 0 i faktiske påløpte kostnader — UNNTAK: ordrer med signert tilbud (POC)
-  // inkluderes selv uten kostnader ennå, da de representerer fremtidig fakturareserve (matcher PA)
+  // Nullstill all periode-spesifikk state for Ã¥ unngÃ¥ krysskontaminering mellom perioder
+  // Ekskluder ordrer med 0 i faktiske pÃ¥lÃ¸pte kostnader â UNNTAK: ordrer med signert tilbud (POC)
+  // inkluderes selv uten kostnader ennÃ¥, da de representerer fremtidig fakturareserve (matcher PA)
   ACTIVE = rows.filter(function(r){ return (r.totOmk||0) > 0 || r.hasTilbud; });
   DGI = {};
   POC = {};
   LOCKED = false;
   _ghVurCache = {};
-  // Tilbakestill UI-elementer som reflekterer låstatus
+  // Tilbakestill UI-elementer som reflekterer lÃ¥status
   var btnlock = document.getElementById('btnlock');
-  if(btnlock){ btnlock.textContent='🔒 Lås periode'; btnlock.disabled=false; }
+  if(btnlock){ btnlock.textContent='ð LÃ¥s periode'; btnlock.disabled=false; }
   detectGroups();
   // Build type averages
   var ts={},tc={};
@@ -1718,7 +1725,7 @@ function parseRows(rows,src,prd){
     else if(effDG!=null && effDG<0.10 && (r.totOmk||0)>50000) s+=2;
     if(!r.isTM && effDG!=null && effDG!==0 && ROUND.has(+effDG.toFixed(3))) s+=1;
     if(!r.hasTilbud && !(DGI[r.ordreNr]&&DGI[r.ordreNr].k&&DGI[r.ordreNr].k.trim())) s+=1;
-    r.sc=s; r.risk=s>=4?'HØY':s>=2?'MIDDELS':'LAV';
+    r.sc=s; r.risk=s>=4?'HÃY':s>=2?'MIDDELS':'LAV';
     // Flags
     var f=[];
     if(effDG===0) f.push({t:'DG% = 0',c:'er'});
@@ -1739,11 +1746,11 @@ function parseRows(rows,src,prd){
   // Auto-sett PL-filter etter login
   if(_currentUser&&!_currentUser.isDL){
     var myName=_currentUser.plName||'';
-    // Prøv eksakt match, deretter case-insensitiv
+    // PrÃ¸v eksakt match, deretter case-insensitiv
     var match=pls.find(function(p){return p===myName;}) ||
                pls.find(function(p){return p.toLowerCase()===myName.toLowerCase();}) ||
                pls.find(function(p){
-                 // Fuzzy: første+siste ord matcher (håndterer mellomnavn-forskjeller)
+                 // Fuzzy: fÃ¸rste+siste ord matcher (hÃ¥ndterer mellomnavn-forskjeller)
                  var pa=p.toLowerCase().split(' ');var na=myName.toLowerCase().split(' ');
                  return pa[0]===na[0]&&pa[pa.length-1]===na[na.length-1];
                });
@@ -1752,9 +1759,9 @@ function parseRows(rows,src,prd){
       var qpSel=document.getElementById('qp');if(qpSel)qpSel.value=match;
       if(match!==myName)_currentUser.plName=match; // juster til datasettnavnet
     } else if(myName){
-      // Navn fra Azure AD finnes ikke i datasett — vis advarsel
+      // Navn fra Azure AD finnes ikke i datasett â vis advarsel
       setTimeout(function(){
-        spShowError('⚠️ Ditt navn ('+myName+') ble ikke funnet i datasettet. Kontakt daglig leder for å sjekke at prosjektledernavn stemmer overens med Ordrestyring.');
+        spShowError('â ï¸ Ditt navn ('+myName+') ble ikke funnet i datasettet. Kontakt daglig leder for Ã¥ sjekke at prosjektledernavn stemmer overens med Ordrestyring.');
       },500);
     }
   }
@@ -1762,12 +1769,12 @@ function parseRows(rows,src,prd){
   while(qt.options.length>1) qt.remove(1);
   types.forEach(function(t){var o=document.createElement('option');o.value=t;o.textContent=t;qt.appendChild(o);});
 
-  _currentEntity=src.replace(/\s*[–\-]\s*t\.o\.m\..*$/i,'').trim()||src.trim();
+  _currentEntity=src.replace(/\s*[â\-]\s*t\.o\.m\..*$/i,'').trim()||src.trim();
   _currentPeriod=prd;
   document.getElementById('atitle').textContent=src;
   document.getElementById('aperiod').textContent=prd;
   document.getElementById('lperiod').value=prd;
-  document.getElementById('lentity').value=_currentEntity; // sett alltid — kritisk for PL-flyt
+  document.getElementById('lentity').value=_currentEntity; // sett alltid â kritisk for PL-flyt
   document.getElementById('startPanel').style.display='none';
   document.getElementById('app').style.display='block';
   window.scrollTo(0,0);
@@ -1781,7 +1788,7 @@ function rDash(){
   var a = ACTIVE;
   var _pocOrdrer = a.filter(function(r){return r.hasTilbud;}).length;
   var _dg2 = a.filter(function(r){return !r.hasTilbud;});
-  var _manglerBegr = _dg2.filter(function(r){return !r.isTM&&(r.risk==='MIDDELS'||r.risk==='HØY')&&!(DGI[r.ordreNr]&&DGI[r.ordreNr].k&&DGI[r.ordreNr].k.trim().length>0);}).length;
+  var _manglerBegr = _dg2.filter(function(r){return !r.isTM&&(r.risk==='MIDDELS'||r.risk==='HÃY')&&!(DGI[r.ordreNr]&&DGI[r.ordreNr].k&&DGI[r.ordreNr].k.trim().length>0);}).length;
   var _pls = [...new Set(ACTIVE.map(function(r){return r.pl;}))].filter(Boolean);
   var _st = getStatus();
   var _curPrd = _currentPeriod || document.getElementById('aperiod').textContent;
@@ -1800,20 +1807,20 @@ function rDash(){
   var _wgtDG = _dgTotCost>0?_dgVurd.reduce(function(s,r){var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return s+(e||0)*(r.totOmk||0);},0)/_dgTotCost:null;
 
   document.getElementById('kpis').innerHTML =
-    '<div class="kpi"><div class="lb">Aktive ordrer</div><div class="vl">'+a.length+'</div><div style="font-size:.74rem;color:#888;margin-top:3px;">'+_pocOrdrer+' fastpris · '+_dg2.length+' regningsordrer</div></div>'+
+    '<div class="kpi"><div class="lb">Aktive ordrer</div><div class="vl">'+a.length+'</div><div style="font-size:.74rem;color:#888;margin-top:3px;">'+_pocOrdrer+' fastpris Â· '+_dg2.length+' regningsordrer</div></div>'+
     '<div class="kpi '+((_plFerdig===_pls.length&&_pls.length>0)?'g':'a')+'"><div class="lb">PLer ferdige</div><div class="vl">'+_plFerdig+'/'+_pls.length+'</div><div style="font-size:.74rem;color:#888;margin-top:3px;">Har meldt seg ferdig i Status-fanen</div></div>'+
-    '<div class="kpi '+(_wgtDG==null?'':_wgtDG>=0.30?'g':_wgtDG>=0.18?'a':'r')+'"><div class="lb">Snitt DG%</div><div class="vl">'+(_wgtDG!=null?Math.round(_wgtDG*100)+'%':'–')+'</div><div style="font-size:.74rem;color:#888;margin-top:3px;">Vektet snitt — regningsordrer</div></div>'+
+    '<div class="kpi '+(_wgtDG==null?'':_wgtDG>=0.30?'g':_wgtDG>=0.18?'a':'r')+'"><div class="lb">Snitt DG%</div><div class="vl">'+(_wgtDG!=null?Math.round(_wgtDG*100)+'%':'â')+'</div><div style="font-size:.74rem;color:#888;margin-top:3px;">Vektet snitt â regningsordrer</div></div>'+
     '<div class="kpi '+(_posVIARisk.length>0?'a':'g')+'"><div class="lb">Underbilling</div><div class="vl">'+_posVIARisk.length+'</div><div style="font-size:.74rem;color:#888;margin-top:3px;">'+(_posVIARisk.length>0?'Ikke fakturert: '+NK(_posVIAkr):'Ingen underbilling &gt; 50k')+'</div></div>';
 
-  var h=a.filter(function(r){return r.risk==='HØY';}),
+  var h=a.filter(function(r){return r.risk==='HÃY';}),
       m=a.filter(function(r){return r.risk==='MIDDELS';}),
       l=a.filter(function(r){return r.risk==='LAV';});
   var hv=h.reduce(function(s,r){return s+(r.via||0);},0);
   var mv=m.reduce(function(s,r){return s+(r.via||0);},0);
   document.getElementById('rcards').innerHTML =
-    '<div class="rc h"><div class="n">'+h.length+'</div><div class="l">🔴 Høy risiko</div><div style="font-size:.8rem;margin-top:4px;">VIA: '+NK(hv)+'</div></div>'+
-    '<div class="rc m"><div class="n">'+m.length+'</div><div class="l">🟡 Middels risiko</div><div style="font-size:.8rem;margin-top:4px;">VIA: '+NK(mv)+'</div></div>'+
-    '<div class="rc lo"><div class="n">'+l.length+'</div><div class="l">🟢 Lav risiko</div></div>';
+    '<div class="rc h"><div class="n">'+h.length+'</div><div class="l">ð´ HÃ¸y risiko</div><div style="font-size:.8rem;margin-top:4px;">VIA: '+NK(hv)+'</div></div>'+
+    '<div class="rc m"><div class="n">'+m.length+'</div><div class="l">ð¡ Middels risiko</div><div style="font-size:.8rem;margin-top:4px;">VIA: '+NK(mv)+'</div></div>'+
+    '<div class="rc lo"><div class="n">'+l.length+'</div><div class="l">ð¢ Lav risiko</div></div>';
 
   var rnd = a.filter(function(r){return !r.isTM&&r.dg!=null&&ROUND.has(+r.dg.toFixed(3));}).length;
   var _lavMargin = a.filter(function(r){return r.dg!=null&&r.dg!==0&&r.dg<0.10&&(r.totOmk||0)>50000;});
@@ -1821,15 +1828,15 @@ function rDash(){
   var fs=[];
   var _dgFall=_dg2.filter(function(r){var p=getPrevDG(r.ordreNr);var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return p&&e!=null&&(p.dg-e)>0.02;});
   var _overbill=ACTIVE.filter(function(r){return r.hasTilbud&&r.tilbud!=null&&r.fakt!=null&&r.fakt>r.tilbud;});
-  if(_overbill.length>0) fs.push('🚨 '+_overbill.length+' ordre(r) har fakturert mer enn kontraktssum ('+_overbill.map(function(r){return r.ordreNr;}).join(', ')+') — avklar med PL.');
-  if(_dgFall.length>0) fs.push('🔴 '+_dgFall.length+' ordre(r) har lavere DG% enn forrige periode.');
-  if(_posVIARisk.length>0) fs.push('⚠️ '+_posVIARisk.length+' ordre(r) har positiv VIA over 50 000 kr (underbilling, samlet: '+NK(_posVIAkr)+') — vurder fakturering.');
-  if(_negVIA.length>0) fs.push('ℹ️ '+_negVIA.length+' ordre(r) med negativ VIA (akonto-overbilling: '+NK(_negVIAkr)+') — OK hvis aktive prosjekter.');
-  if(_manglerBegr>0) fs.push('⚠️ '+_manglerBegr+' MIDDELS/HØY-ordre mangler begrunnelse.');
-  if(_lavMargin.length) fs.push('🔴 '+_lavMargin.length+' ordre(r) med under 10% margin og kostnader over 50 000 kr.');
-  if(rnd>a.length*.3) fs.push('ℹ️ '+rnd+' ordrer har rund DG% — be PLene om presisering.');
-  if(_plIkkeFerdig>0) fs.push('⏳ '+_plIkkeFerdig+' prosjektleder(e) har ikke meldt seg ferdige ennå.');
-  if(!fs.length) fs.push('✅ Alle vurderinger ser OK ut. Klar for låsing.');
+  if(_overbill.length>0) fs.push('ð¨ '+_overbill.length+' ordre(r) har fakturert mer enn kontraktssum ('+_overbill.map(function(r){return r.ordreNr;}).join(', ')+') â avklar med PL.');
+  if(_dgFall.length>0) fs.push('ð´ '+_dgFall.length+' ordre(r) har lavere DG% enn forrige periode.');
+  if(_posVIARisk.length>0) fs.push('â ï¸ '+_posVIARisk.length+' ordre(r) har positiv VIA over 50 000 kr (underbilling, samlet: '+NK(_posVIAkr)+') â vurder fakturering.');
+  if(_negVIA.length>0) fs.push('â¹ï¸ '+_negVIA.length+' ordre(r) med negativ VIA (akonto-overbilling: '+NK(_negVIAkr)+') â OK hvis aktive prosjekter.');
+  if(_manglerBegr>0) fs.push('â ï¸ '+_manglerBegr+' MIDDELS/HÃY-ordre mangler begrunnelse.');
+  if(_lavMargin.length) fs.push('ð´ '+_lavMargin.length+' ordre(r) med under 10% margin og kostnader over 50 000 kr.');
+  if(rnd>a.length*.3) fs.push('â¹ï¸ '+rnd+' ordrer har rund DG% â be PLene om presisering.');
+  if(_plIkkeFerdig>0) fs.push('â³ '+_plIkkeFerdig+' prosjektleder(e) har ikke meldt seg ferdige ennÃ¥.');
+  if(!fs.length) fs.push('â Alle vurderinger ser OK ut. Klar for lÃ¥sing.');
   document.getElementById('findings').innerHTML = fs.map(function(f){return '<div style="margin-bottom:5px">'+f+'</div>';}).join('');
 
   // Per PL table
@@ -1842,7 +1849,7 @@ function rDash(){
   var pr=Object.entries(pm).sort(function(a,b){return b[1].c-a[1].c;});
   var stObj=getStatus();
   document.getElementById('pltbl').innerHTML=
-    '<thead><tr><th>Prosjektleder</th><th title="Antall aktive ordrer">Ordrer</th><th title="Vektet snitt DG% på regningsordrer">Snitt DG%</th><th title="Ordrer uten begrunnelse">Ikke vurdert</th><th title="Ordrer med negativ VIA (akonto-overbilling) — ikke nødvendigvis negativt">Akonto/overbill.</th><th title="Sum akonto-overbilling">Overbill. beløp</th><th>Status</th></tr></thead>'+
+    '<thead><tr><th>Prosjektleder</th><th title="Antall aktive ordrer">Ordrer</th><th title="Vektet snitt DG% pÃ¥ regningsordrer">Snitt DG%</th><th title="Ordrer uten begrunnelse">Ikke vurdert</th><th title="Ordrer med negativ VIA (akonto-overbilling) â ikke nÃ¸dvendigvis negativt">Akonto/overbill.</th><th title="Sum akonto-overbilling">Overbill. belÃ¸p</th><th>Status</th></tr></thead>'+
     '<tbody>'+pr.map(function(e){
       var pl=e[0];
       var ikkeVurdertPL=ACTIVE.filter(function(r){return r.pl===pl&&!r.hasTilbud&&!(DGI[r.ordreNr]&&DGI[r.ordreNr].k&&DGI[r.ordreNr].k.trim().length>0);}).length;
@@ -1852,14 +1859,14 @@ function rDash(){
       var stDone=stKey&&stObj[stKey]&&stObj[stKey].done;
       var _lts=localStorage.getItem('VIA_LOAD_TS');
       var _stale=stDone&&_lts&&stObj[stKey]&&stObj[stKey].ts&&new Date(_lts)>new Date(stObj[stKey].ts);
-      var _stTag=_stale?'<span title="Data lastet inn etter ferdig-melding — bør bekrefte på nytt" style="font-size:.67rem;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:4px;padding:0 4px;margin-left:3px;cursor:help;">⚠️ ny data</span>':'';
+      var _stTag=_stale?'<span title="Data lastet inn etter ferdig-melding â bÃ¸r bekrefte pÃ¥ nytt" style="font-size:.67rem;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:4px;padding:0 4px;margin-left:3px;cursor:help;">â ï¸ ny data</span>':'';
       // Weighted avg DG% for this PL's T&M orders
       var _plDGRows=ACTIVE.filter(function(r){var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return r.pl===pl&&!r.hasTilbud&&e!=null&&e>0&&(r.totOmk||0)>500;});
       var _plCost=_plDGRows.reduce(function(s,r){return s+(r.totOmk||0);},0);
       var _plDG=_plCost>0?_plDGRows.reduce(function(s,r){var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return s+(e||0)*(r.totOmk||0);},0)/_plCost:null;
       var _plDGcol=_plDG==null?'#aaa':_plDG>=0.30?'var(--green)':_plDG>=0.18?'var(--amber)':'var(--red)';
-      var _plDGstr=_plDG!=null?'<span style="color:'+_plDGcol+';font-weight:700">'+Math.round(_plDG*100)+'%</span>':'–';
-      return '<tr><td>'+pl+'</td><td class="c">'+e[1].c+'</td><td class="c">'+_plDGstr+'</td><td class="c">'+(ikkeVurdertPL>0?'<span style="color:var(--amber);font-weight:700">'+ikkeVurdertPL+'</span>':'<span style="color:var(--green)">0</span>')+'</td><td class="c">'+(negVIAPL>0?'<span style="color:var(--mid);font-weight:600">'+negVIAPL+'</span>':'–')+'</td><td class="r" style="font-weight:600;color:var(--mid);">'+NK(ekspPL)+'</td><td class="c">'+(stDone?'<span class="status-done">✅</span>'+_stTag:'<span class="status-wait">⏳</span>')+'</td></tr>';
+      var _plDGstr=_plDG!=null?'<span style="color:'+_plDGcol+';font-weight:700">'+Math.round(_plDG*100)+'%</span>':'â';
+      return '<tr><td>'+pl+'</td><td class="c">'+e[1].c+'</td><td class="c">'+_plDGstr+'</td><td class="c">'+(ikkeVurdertPL>0?'<span style="color:var(--amber);font-weight:700">'+ikkeVurdertPL+'</span>':'<span style="color:var(--green)">0</span>')+'</td><td class="c">'+(negVIAPL>0?'<span style="color:var(--mid);font-weight:600">'+negVIAPL+'</span>':'â')+'</td><td class="r" style="font-weight:600;color:var(--mid);">'+NK(ekspPL)+'</td><td class="c">'+(stDone?'<span class="status-done">â</span>'+_stTag:'<span class="status-wait">â³</span>')+'</td></tr>';
     }).join('')+'</tbody>';
 }
 
@@ -1894,7 +1901,7 @@ function rQA(){
   document.getElementById('qatbl').innerHTML=hdr+'<tbody>'+rows.map(function(r){
     var vc=(r.via||0)>50000?'color:var(--amber);font-weight:700':(r.via||0)<-5000?'color:var(--mid);font-weight:600':'';
     var _qdg = r.hasTilbud ? r.dg : (DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0 ? DGI[r.ordreNr].dg/100 : r.dg);
-    return '<tr><td><strong>'+r.ordreNr+'</strong>'+histBadge(r)+'</td><td>'+r.status+'</td><td>'+r.type+'</td><td style="white-space:nowrap">'+r.pl+'</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+r.beskr.substring(0,48)+(r.beskr.length>48?'…':'')+'</td><td>'+r.kunde+'</td><td class="r">'+NK(r.totOmk)+'</td><td class="r">'+PC(_qdg)+'</td><td class="r">'+NK(r.tilbud)+'</td><td class="r">'+NK(r.fakt)+'</td><td class="r" style="'+vc+'">'+NK(r.via)+'</td><td class="c">'+rb(r.risk)+'</td><td>'+fh(r.flags)+'</td></tr>';
+    return '<tr><td><strong>'+r.ordreNr+'</strong>'+histBadge(r)+'</td><td>'+r.status+'</td><td>'+r.type+'</td><td style="white-space:nowrap">'+r.pl+'</td><td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+r.beskr.substring(0,48)+(r.beskr.length>48?'â¦':'')+'</td><td>'+r.kunde+'</td><td class="r">'+NK(r.totOmk)+'</td><td class="r">'+PC(_qdg)+'</td><td class="r">'+NK(r.tilbud)+'</td><td class="r">'+NK(r.fakt)+'</td><td class="r" style="'+vc+'">'+NK(r.via)+'</td><td class="c">'+rb(r.risk)+'</td><td>'+fh(r.flags)+'</td></tr>';
   }).join('')+'</tbody>';
 }
 
@@ -1942,7 +1949,7 @@ function calcDG(r){
   var dgVal=inp.dg!=null?inp.dg:35;
   var dg=dgVal/100;
   var useTM=r.isTM&&!inp.tmOverride;
-  // Fix 3: DL-justerbar kontraktsverdi — overstyrer fs-beregning
+  // Fix 3: DL-justerbar kontraktsverdi â overstyrer fs-beregning
   var kv=(inp.kv!=null&&inp.kv>0)?inp.kv:null;
   var fs=kv!=null?kv:useTM?(r.fSalgsverdi||r.totOmk):(r.totOmk!=null&&dg>0&&dg<1)?r.totOmk/(1-dg):r.totOmk;
   // Fix 1+2: ferdighetskortgrad (default 100 = ingen endring i eksisterende beregning). T&M bruker alltid FG=100.
@@ -2004,7 +2011,7 @@ function rPOC(){
     var c=DGS.col,asc=DGS.asc;
     var keys=['ordreNr','pl','type','beskr','kunde','totOmk','fakt',null,null,null,null,'fSalgsverdi','via',null,'risk'];
     var k=keys[c];
-    if(k) dgR.sort(function(a,b){var va,vb;if(k==='risk'){var rm={LAV:0,MIDDELS:1,'HØY':2};va=rm[a.risk]||0;vb=rm[b.risk]||0;}else{va=a[k];vb=b[k];}if(va==null)va=asc?'zzz':-Infinity;if(vb==null)vb=asc?'zzz':-Infinity;if(typeof va==='string')return asc?va.localeCompare(vb):vb.localeCompare(va);return asc?va-vb:vb-va;});
+    if(k) dgR.sort(function(a,b){var va,vb;if(k==='risk'){var rm={LAV:0,MIDDELS:1,'HÃY':2};va=rm[a.risk]||0;vb=rm[b.risk]||0;}else{va=a[k];vb=b[k];}if(va==null)va=asc?'zzz':-Infinity;if(vb==null)vb=asc?'zzz':-Infinity;if(typeof va==='string')return asc?va.localeCompare(vb):vb.localeCompare(va);return asc?va-vb:vb-va;});
     else dgR.sort(function(a,b){return(b.totOmk||0)-(a.totOmk||0);});
   })();
   if(HIDE_SETTLED){
@@ -2018,7 +2025,7 @@ function rPOC(){
   document.getElementById('poctbl').innerHTML=
     '<thead><tr>'+
     (function(){
-      var allCols=['Ordre','PL','Beskrivelse','Kontraktssum','Påløpte kostnader','Gjenst. timer','kr/t','Gjenst. mat.','Gjenst. kost','Est. sluttkost','Ferdiggrad','Periodisert','DG% ved ferdig','Fakturert','VIA','FG (forr.p.)','DG% (forr.p.)','Kommentar'];
+      var allCols=['Ordre','PL','Beskrivelse','Kontraktssum','PÃ¥lÃ¸pte kostnader','Gjenst. timer','kr/t','Gjenst. mat.','Gjenst. kost','Est. sluttkost','Ferdiggrad','Periodisert','DG% ved ferdig','Fakturert','VIA','FG (forr.p.)','DG% (forr.p.)','Kommentar'];
       var visIdx=_showPrevCols?allCols.map(function(_,i){return i;}):[0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,17];
       return visIdx.map(function(i){
         var n=allCols[i];
@@ -2044,7 +2051,7 @@ function rPOC(){
           (field==='timer'?' style="width:74px"':field==='tk'?' style="width:74px"':' style="width:96px"')+'>';
       }
       function cmtInp(oid,val,d,w){
-        return '<input class="ci'+(w?' req':'')+'" placeholder="'+(w?'⚠️ Påkrevet':'Kommentar…')+'"'+
+        return '<input class="ci'+(w?' req':'')+'" placeholder="'+(w?'â ï¸ PÃ¥krevet':'Kommentarâ¦')+'"'+
           ' value="'+(val||'')+'" '+d+
           ' data-o="'+oid+'" onchange="sP(this.dataset.o,\'k\',this.value)">';
       }
@@ -2056,9 +2063,9 @@ function rPOC(){
         if(c.via!=null) pv+=c.via;
         var overbill=r.tilbud!=null&&r.fakt!=null&&r.fakt>r.tilbud;
         var warn=(c.via!=null&&Math.abs(c.via)>50000&&!inp.k)||overbill;
-        var bs=r.beskr?r.beskr.substring(0,40)+(r.beskr.length>40?'…':''):'–';
+        var bs=r.beskr?r.beskr.substring(0,40)+(r.beskr.length>40?'â¦':''):'â';
         return '<tr class="'+(warn?'rwarn':'')+'"'+(indent?' style="border-left:3px solid #3b82f6;"':'')+'>'+
-          '<td style="'+(indent?'padding-left:22px;':'')+'">'+(indent?'↳ ':'')+
+          '<td style="'+(indent?'padding-left:22px;':'')+'">'+(indent?'â³ ':'')+
             '<strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+histBadge(r)+'</td>'+
           '<td style="white-space:nowrap">'+r.pl+'</td>'+
           '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+bs+'</td>'+
@@ -2069,10 +2076,10 @@ function rPOC(){
           '<td>'+piInp(r.ordreNr,'mat',fmtI(inp.mat||0),d,warn)+'</td>'+
           '<td class="r calc">'+NR(c.gk)+'</td>'+
           '<td class="r calc">'+NR(c.esk)+'</td>'+
-          '<td class="r calc">'+(c.fg!=null?PC(c.fg):'–')+'</td>'+
+          '<td class="r calc">'+(c.fg!=null?PC(c.fg):'â')+'</td>'+
           '<td class="r calc">'+NK(c.innt)+'</td>'+
-          '<td class="r calc">'+(c.estDG!=null?PC(c.estDG):'–')+'</td>'+
-          '<td class="r'+(overbill?' vneg':'')+'" title="'+(overbill?'⚠️ Fakturert overgår kontraktssum!':'')+'">'+(overbill?'⚠️ ':'')+NK(r.fakt)+'</td>'+
+          '<td class="r calc">'+(c.estDG!=null?PC(c.estDG):'â')+'</td>'+
+          '<td class="r'+(overbill?' vneg':'')+'" title="'+(overbill?'â ï¸ Fakturert overgÃ¥r kontraktssum!':'')+'">'+(overbill?'â ï¸ ':'')+NK(r.fakt)+'</td>'+
           '<td class="r '+(c.via==null?'':(c.via<0?'vneg':'vpos'))+'">'+NK(c.via)+'</td>'+
           (_showPrevCols?'<td class="c">'+prevFG(r.ordreNr)+'</td>'+'<td class="c">'+prevDGp(r.ordreNr)+'</td>':'')+
           '<td>'+cmtInp(r.ordreNr,inp.k,d,warn)+'</td>'+
@@ -2090,7 +2097,7 @@ function rPOC(){
         var aggT=0,aggO=0,aggF=0;
         gRows.forEach(function(x){aggT+=x.tilbud||0;aggO+=x.totOmk||0;aggF+=x.fakt||0;});
         var btnBg=mode==='samlet'?'#1d8348':'#2563eb';
-        var btnLabel=mode==='samlet'?'📋 Individuelt':'🔗 Samlet';
+        var btnLabel=mode==='samlet'?'ð Individuelt':'ð Samlet';
         var btn='<button data-base="'+base+'" onclick="toggleGrpMode(this.dataset.base)"'+
           ' style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:'+btnBg+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+btnLabel+'</button>';
         if(mode==='samlet'){
@@ -2101,10 +2108,10 @@ function rPOC(){
           if(cA.via!=null) pv+=cA.via;
           var overbillA=aggT>0&&aggF>aggT;
           var wA=(cA.via!=null&&Math.abs(cA.via)>50000&&!inpA.k)||overbillA;
-          var bsA=gRows[0].beskr?gRows[0].beskr.substring(0,40)+(gRows[0].beskr.length>40?'…':''):'–';
+          var bsA=gRows[0].beskr?gRows[0].beskr.substring(0,40)+(gRows[0].beskr.length>40?'â¦':''):'â';
           var disA=LOCKED?'disabled':'';
           pocHtml+='<tr class="'+(wA?'rwarn':'')+'" style="background:#eff6ff;">'+
-            '<td><strong>'+base+'</strong><span style="color:#555;font-size:.72rem;font-weight:400;"> ('+gRows.length+'×)</span>'+btn+'</td>'+
+            '<td><strong>'+base+'</strong><span style="color:#555;font-size:.72rem;font-weight:400;"> ('+gRows.length+'Ã)</span>'+btn+'</td>'+
             '<td style="white-space:nowrap">'+gRows[0].pl+'</td>'+
             '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+gRows[0].beskr+'">'+bsA+'</td>'+
             '<td class="r">'+NK(aggT)+'</td>'+
@@ -2114,17 +2121,17 @@ function rPOC(){
             '<td>'+piInp(base,'mat',fmtI(inpA.mat||0),disA,wA)+'</td>'+
             '<td class="r calc">'+NR(cA.gk)+'</td>'+
             '<td class="r calc">'+NR(cA.esk)+'</td>'+
-            '<td class="r calc">'+(cA.fg!=null?PC(cA.fg):'–')+'</td>'+
+            '<td class="r calc">'+(cA.fg!=null?PC(cA.fg):'â')+'</td>'+
             '<td class="r calc">'+NK(cA.innt)+'</td>'+
-            '<td class="r calc">'+(cA.estDG!=null?PC(cA.estDG):'–')+'</td>'+
-            '<td class="r'+(overbillA?' vneg':'')+'" title="'+(overbillA?'⚠️ Fakturert overgår kontraktssum!':'')+'">'+(overbillA?'⚠️ ':'')+NK(aggF)+'</td>'+
+            '<td class="r calc">'+(cA.estDG!=null?PC(cA.estDG):'â')+'</td>'+
+            '<td class="r'+(overbillA?' vneg':'')+'" title="'+(overbillA?'â ï¸ Fakturert overgÃ¥r kontraktssum!':'')+'">'+(overbillA?'â ï¸ ':'')+NK(aggF)+'</td>'+
             '<td class="r '+(cA.via==null?'':(cA.via<0?'vneg':'vpos'))+'">'+NK(cA.via)+'</td>'+
-            (_showPrevCols?'<td class="c">–</td><td class="c">–</td>':'')+
+            (_showPrevCols?'<td class="c">â</td><td class="c">â</td>':'')+
             '<td>'+cmtInp(base,inpA.k,disA,wA)+'</td>'+
             '</tr>';
         } else {
           pocHtml+='<tr style="background:#dbeafe;"><td colspan="'+(16+(_showPrevCols?2:0))+'" style="padding:5px 12px;font-size:.8rem;color:#1e3a8a;">'+
-            '📁 <strong>Ordre '+base+'</strong> — '+gRows.length+' underordre · Sum kontrakt: '+NK(aggT)+' · Sum kostnader: '+NK(aggO)+btn+'</td></tr>';
+            'ð <strong>Ordre '+base+'</strong> â '+gRows.length+' underordre Â· Sum kontrakt: '+NK(aggT)+' Â· Sum kostnader: '+NK(aggO)+btn+'</td></tr>';
           gRows.forEach(function(gr){ pocHtml+=pocRow(gr,true); });
         }
       });
@@ -2138,14 +2145,14 @@ function rPOC(){
   var dv=0;
   document.getElementById('dgtbl').innerHTML=
     '<thead><tr>'+
-    ['Ordre','PL','Type','Beskrivelse','Kunde','Påløpte kostnader','Fakturert','FG%','Justert kontrakt','DG%','DG% forrige periode','Forv. salgsverdi','VIA','Begrunnelse','Risiko'].map(function(n,i){
+    ['Ordre','PL','Type','Beskrivelse','Kunde','PÃ¥lÃ¸pte kostnader','Fakturert','FG%','Justert kontrakt','DG%','DG% forrige periode','Forv. salgsverdi','VIA','Begrunnelse','Risiko'].map(function(n,i){
       var sortable=[0,1,2,3,4,5,6,11,12,14].indexOf(i)>=0;
       var style=([5,6,11,12].indexOf(i)>=0)?'style="text-align:right"':([7,9].indexOf(i)>=0)?'style="text-align:right;color:#9EC8FF"':([8].indexOf(i)>=0)?'style="text-align:right;color:#aaa"':([10,14].indexOf(i)>=0)?'style="text-align:center"':'';
       var cls=DGS.col===i?(DGS.asc?' class="sa"':' class="sd"'):'';
       if(sortable) return '<th'+cls+' '+style+' onclick="DGS={col:'+i+',asc:DGS.col==='+i+'?!DGS.asc:false};rPOC()">'+n+'</th>';
       var dg2tip=(i===10)?' title="DG% fra forrige vurderingsperiode"':'';
-      var fgTip=(i===7)?' title="Ferdighetskortgrad — andel av prosjektet fullført. Påvirker opptjent VIA."':'';
-      var kvTip=(i===8)?' title="Justert kontraktsverdi (DL-input) — overstyrer beregnet salgsverdi"':'';
+      var fgTip=(i===7)?' title="Ferdighetskortgrad â andel av prosjektet fullfÃ¸rt. PÃ¥virker opptjent VIA."':'';
+      var kvTip=(i===8)?' title="Justert kontraktsverdi (DL-input) â overstyrer beregnet salgsverdi"':'';
       return '<th '+style+dg2tip+fgTip+kvTip+'>'+n+'</th>';
     }).join('')+
     '</tr></thead><tbody>'+
@@ -2154,16 +2161,16 @@ function rPOC(){
       var inp=DGI[r.ordreNr]||{dg:r.dg!=null?Math.round(r.dg*100):35,k:''};
       var c=calcDG(r);
       if(c.via!=null) dv+=c.via;
-      var warn=!inp.k&&(r.risk==='MIDDELS'||r.risk==='HØY');
-      var bs=r.beskr?r.beskr.substring(0,36)+(r.beskr.length>36?'…':''):'–';
+      var warn=!inp.k&&(r.risk==='MIDDELS'||r.risk==='HÃY');
+      var bs=r.beskr?r.beskr.substring(0,36)+(r.beskr.length>36?'â¦':''):'â';
       var _tmPct=r.isTM&&r.fSalgsverdi&&r.fSalgsverdi>r.totOmk?Math.round((r.fSalgsverdi-r.totOmk)/r.fSalgsverdi*100):35;
       var _tmOvr=inp.tmOverride;
       var dgCell = r.isTM
         ? '<div style="display:flex;align-items:center;gap:4px;">'
           +(_tmOvr
             ?'<input class="pi" type="text" inputmode="numeric" value="'+(inp.dg!=null?inp.dg:_tmPct)+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:52px"><span style="font-size:.8rem;color:#666">%</span>'
-              +'<button onclick="resetTM(\''+r.ordreNr+'\')" style="font-size:.7rem;padding:1px 6px;background:var(--greenbg);color:var(--green);border:1px solid var(--green);border-radius:4px;cursor:pointer;line-height:1.6" title="Tilbake til Auto T&M">⚡</button>'
-            :'<input class="pi" type="text" inputmode="numeric" value="'+_tmPct+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:52px;border-color:var(--green);color:var(--green);font-weight:600;" title="Auto T&M — rediger for å overstyre"><span style="font-size:.8rem;color:var(--green)">% <span title="Hentet automatisk fra Ordrestyring" style="font-size:.65rem;background:var(--green);color:#fff;border-radius:3px;padding:0 3px;margin-left:1px;font-weight:700;letter-spacing:.3px">OS</span></span>'
+              +'<button onclick="resetTM(\''+r.ordreNr+'\')" style="font-size:.7rem;padding:1px 6px;background:var(--greenbg);color:var(--green);border:1px solid var(--green);border-radius:4px;cursor:pointer;line-height:1.6" title="Tilbake til Auto T&M">â¡</button>'
+            :'<input class="pi" type="text" inputmode="numeric" value="'+_tmPct+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:52px;border-color:var(--green);color:var(--green);font-weight:600;" title="Auto T&M â rediger for Ã¥ overstyre"><span style="font-size:.8rem;color:var(--green)">% <span title="Hentet automatisk fra Ordrestyring" style="font-size:.65rem;background:var(--green);color:#fff;border-radius:3px;padding:0 3px;margin-left:1px;font-weight:700;letter-spacing:.3px">OS</span></span>'
             )
           +'</div>'
         : '<div style="display:flex;align-items:center;gap:4px;"><input class="pi" type="text" inputmode="numeric" value="'+(inp.dg!=null?inp.dg:35)+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:56px"><span style="font-size:.8rem;color:#666">%</span></div>';
@@ -2171,20 +2178,20 @@ function rPOC(){
       var kvVal=inp.kv!=null&&inp.kv>0?inp.kv:null;
       var isDL=_currentUser&&_currentUser.isDL;
       var fgCell=r.isTM
-        ?'<span style="color:#aaa;font-size:.85rem;display:block;text-align:right;" title="T&M: inntekt = kostnader, FG alltid 100%">–</span>'
+        ?'<span style="color:#aaa;font-size:.85rem;display:block;text-align:right;" title="T&M: inntekt = kostnader, FG alltid 100%">â</span>'
         :'<div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">'+
           '<input class="pi" type="text" inputmode="numeric" value="'+fgVal+'" '+dis+
           ' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'fg\',this)"'+
           ' style="width:48px;border-color:#9EC8FF;color:#9EC8FF;text-align:right;"'+
-          ' title="Ferdighetskortgrad — andel av prosjektet fullført">'+
+          ' title="Ferdighetskortgrad â andel av prosjektet fullfÃ¸rt">'+
           '<span style="font-size:.8rem;color:#9EC8FF">%</span></div>';
       var kvCell=isDL
         ?'<div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">'+
           '<input class="pi" type="text" inputmode="numeric" value="'+(kvVal!=null?fmtI(kvVal):'')+'" '+
           ' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'kv\',this)"'+
-          ' style="width:88px;border-color:#ccc;color:#aaa;text-align:right;" placeholder="–"'+
+          ' style="width:88px;border-color:#ccc;color:#aaa;text-align:right;" placeholder="â"'+
           ' title="Justert kontraktsverdi (DL-input)"></div>'
-        :'<span style="color:#aaa;font-size:.85rem;">'+(kvVal!=null?NK(kvVal):'–')+'</span>';
+        :'<span style="color:#aaa;font-size:.85rem;">'+(kvVal!=null?NK(kvVal):'â')+'</span>';
       return '<tr>'+
         '<td><strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+'</td>'+
         '<td style="white-space:nowrap">'+r.pl+'</td>'+
@@ -2199,7 +2206,7 @@ function rPOC(){
         '<td class="c">'+prevDGCell(r.ordreNr,c.dg)+'</td>'+
         '<td class="r calc">'+NK(c.fs)+'</td>'+
         '<td class="r '+(c.via==null?'':(c.via<0?'vneg':'vpos'))+'">'+NK(c.via)+'</td>'+
-        '<td><input class="ci'+(warn?' req':'')+'" placeholder="'+(warn?'⚠️ Begrunnelse påkrevet':'Begrunnelse for DG%-estimat…')+'" value="'+(inp.k||'')+'" '+dis+' onchange="sD(\''+r.ordreNr+'\',\'k\',this.value)"></td>'+
+        '<td><input class="ci'+(warn?' req':'')+'" placeholder="'+(warn?'â ï¸ Begrunnelse pÃ¥krevet':'Begrunnelse for DG%-estimatâ¦')+'" value="'+(inp.k||'')+'" '+dis+' onchange="sD(\''+r.ordreNr+'\',\'k\',this.value)"></td>'+
         '<td class="c">'+rb(r.risk)+'</td>'+
         '</tr>';
     }).join('')+'</tbody>';
@@ -2218,10 +2225,10 @@ function rHist(){
   var hist=getHist();
   var el=document.getElementById('histcontent');
   if(!hist.length){
-    el.innerHTML='<div class="hist-empty">📁 Ingen historikk enda.<br>Lås en periode for å aktivere <strong>"DG% forrige periode"</strong>-kolonnen i seksjon 2.</div>';
+    el.innerHTML='<div class="hist-empty">ð Ingen historikk enda.<br>LÃ¥s en periode for Ã¥ aktivere <strong>"DG% forrige periode"</strong>-kolonnen i seksjon 2.</div>';
     return;
   }
-  el.innerHTML='<div class="tw"><table><thead><tr><th>Periode</th><th>Selskap</th><th>Låst av</th><th>Dato</th><th style="text-align:right">Total VIA</th><th style="text-align:right">POC-VIA</th><th style="text-align:right">DG-VIA</th><th style="text-align:center">Ordrer</th><th style="text-align:center">Kritiske</th></tr></thead><tbody>'+
+  el.innerHTML='<div class="tw"><table><thead><tr><th>Periode</th><th>Selskap</th><th>LÃ¥st av</th><th>Dato</th><th style="text-align:right">Total VIA</th><th style="text-align:right">POC-VIA</th><th style="text-align:right">DG-VIA</th><th style="text-align:center">Ordrer</th><th style="text-align:center">Kritiske</th></tr></thead><tbody>'+
     hist.slice().reverse().map(function(h){
       return '<tr><td><strong>'+h.period+'</strong></td><td>'+h.entity+'</td><td>'+h.lockedBy+'</td><td>'+new Date(h.lockedAt).toLocaleDateString('no-NO')+'</td><td class="r" style="font-weight:700;color:'+(h.summary.totalVIA>100000?'var(--amber)':'var(--dark)')+'">'+NK(h.summary.totalVIA)+'</td><td class="r">'+NK(h.summary.pocVIA)+'</td><td class="r">'+NK(h.summary.dgVIA)+'</td><td class="c">'+h.summary.projectCount+'</td><td class="c">'+(h.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+h.summary.highRisk+'</span>':'0')+'</td></tr>';
     }).join('')+'</tbody></table></div>';
@@ -2241,7 +2248,7 @@ function doLock(){
   LOCKED=true;
   closeLock();
   saveSession();
-  document.getElementById('btnlock').textContent='✅ Låst: '+period;
+  document.getElementById('btnlock').textContent='â LÃ¥st: '+period;
   document.getElementById('btnlock').disabled=true;
   rPOC(); rHist(); ST('hist');
   printLockReport(name,entity,period);
@@ -2259,12 +2266,12 @@ function printLockReport(lockedBy,entity,period){
     if(via!=null)pls[r.pl].via+=via;
   });
   var totalVIA=Math.round(pv+dv);
-  var NK2=function(v){return v==null?'–':(v<0?'− ':'')+'kr '+Math.abs(Math.round(v)).toLocaleString('no-NO');};
-  var PC2=function(v){return v==null?'–':Math.round(v*1000)/10+'%';};
+  var NK2=function(v){return v==null?'â':(v<0?'â ':'')+'kr '+Math.abs(Math.round(v)).toLocaleString('no-NO');};
+  var PC2=function(v){return v==null?'â':Math.round(v*1000)/10+'%';};
   var plRows=Object.values(pls).sort(function(a,b){return b.via-a.via;}).map(function(p){
     var st=getStatus();
     var k=period+'__'+entity+'__'+p.name;
-    var ferdig=st[k]?'✓':'–';
+    var ferdig=st[k]?'â':'â';
     return '<tr><td>'+p.name+'</td><td class="c">'+p.ordrer+'</td><td class="c">'+p.poc+'</td><td class="c">'+p.dg+'</td><td class="r"'+(p.via>50000?' style="color:var(--amber);font-weight:700"':'')+'>'+NK2(p.via)+'</td><td class="c">'+ferdig+'</td></tr>';
   }).join('');
   var pocRows=ACTIVE.filter(function(r){return r.hasTilbud;}).map(function(r){
@@ -2277,12 +2284,12 @@ function printLockReport(lockedBy,entity,period){
   }).join('');
   var tsNow=new Date().toLocaleString('no-NO',{day:'numeric',month:'long',year:'numeric',hour:'2-digit',minute:'2-digit'});
   document.getElementById('print-report').innerHTML=
-    '<h1>VIA/Fakturareserve — Perioderapport</h1>'+
+    '<h1>VIA/Fakturareserve â Perioderapport</h1>'+
     '<div class="pr-meta">'+
       '<div><strong>Selskap:</strong> '+entity+'</div>'+
       '<div><strong>Periode:</strong> '+period+'</div>'+
-      '<div><strong>Låst av:</strong> '+lockedBy+'</div>'+
-      '<div><strong>Låst:</strong> '+tsNow+'</div>'+
+      '<div><strong>LÃ¥st av:</strong> '+lockedBy+'</div>'+
+      '<div><strong>LÃ¥st:</strong> '+tsNow+'</div>'+
     '</div>'+
     '<div class="pr-kpi">'+
       '<div><div class="k-val">'+NK2(totalVIA)+'</div><div class="k-lbl">Total VIA</div></div>'+
@@ -2292,7 +2299,7 @@ function printLockReport(lockedBy,entity,period){
     '</div>'+
     '<h2>Prosjektledere</h2>'+
     '<table><thead><tr><th>Prosjektleder</th><th class="c">Ordrer</th><th class="c">Fastpris</th><th class="c">Regning</th><th class="r">VIA</th><th class="c">Ferdig</th></tr></thead><tbody>'+plRows+'</tbody></table>'+
-    '<div class="pr-footer">Generert av VIA QA-verktøyet · '+tsNow+'</div>';
+    '<div class="pr-footer">Generert av VIA QA-verktÃ¸yet Â· '+tsNow+'</div>';
   document.getElementById('report-overlay').classList.add('open');
   window.scrollTo(0,0);
 }
@@ -2318,7 +2325,7 @@ function saveSnap(name,entity,period){
   });
   var snap={
     id:Date.now(),period:period,entity:entity,lockedBy:name,lockedAt:new Date().toISOString(),
-    summary:{totalVIA:Math.round(pv+dv),pocVIA:Math.round(pv),dgVIA:Math.round(dv),projectCount:ACTIVE.length,highRisk:ACTIVE.filter(function(r){return r.risk==='HØY';}).length},
+    summary:{totalVIA:Math.round(pv+dv),pocVIA:Math.round(pv),dgVIA:Math.round(dv),projectCount:ACTIVE.length,highRisk:ACTIVE.filter(function(r){return r.risk==='HÃY';}).length},
     projects:projects
   };
   var filtered=hist.filter(function(e){return e.period!==period;});
@@ -2330,12 +2337,12 @@ function saveSnap(name,entity,period){
 }
 
 function doSnap(){
-  if(!ACTIVE||!ACTIVE.length){alert('Ingen data lastet inn ennå.');return;}
+  if(!ACTIVE||!ACTIVE.length){alert('Ingen data lastet inn ennÃ¥.');return;}
   var name=_currentUser?_currentUser.name:'Ukjent';
   var period=document.getElementById('aperiod').textContent||'?';
   var entity=_currentEntity||document.getElementById('lentity').value||'?';
   saveSnap(name,entity,period);
-  alert('📸 Snapshot lagret for '+period+' ('+entity+').');
+  alert('ð¸ Snapshot lagret for '+period+' ('+entity+').');
 }
 
 /* ============================================================
@@ -2366,9 +2373,9 @@ function _xlsxDownload(wb,filename){
 function expPOC(){
   try{
     if(typeof XLSX==='undefined'){alert('XLSX-biblioteket er ikke lastet.');return;}
-    if(!ACTIVE.length){alert('Ingen rader lastet – last inn data først.');return;}
+    if(!ACTIVE.length){alert('Ingen rader lastet â last inn data fÃ¸rst.');return;}
     var stk=parseFloat(document.getElementById('stk').value)||650;
-    // One sheet, all orders – AOA avoids SheetJS type-inference crash on heterogeneous rows
+    // One sheet, all orders â AOA avoids SheetJS type-inference crash on heterogeneous rows
     var H=['Ordre','Prosjektleder','Beskrivelse','Type','Kunde',
            'Omsetning','Fakturert','Risiko',
            // POC-only cols (index 8-15)
