@@ -59,5 +59,17 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-08-14T12:09:40.545Z",
+    "bruker": "Susann Endrestad",
+    "epost": "susann.endrestad@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "DataLastFeil",
+    "detaljer": {
+      "feil": "Cannot query field \"projectLeader\" on type \"Case\". Did you mean \"projectName\"?",
+      "stack": "Error: Cannot query field \"projectLeader\" on type \"Case\". Did you mean \"projectName\"?\n    at https://minelkapasitet.github.io/minel-avvikssystem/public/VIA_QA.html:1065:43\n    at async Promise.all (index 1)"
+    }
   }
 ]
