@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.63</title>
+<title>VIA QA – Minel AS v9.65</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -190,7 +190,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.63</span>
+  <span class="hd-badge">v9.65</span>
 </header>
 
 <!-- START PANEL -->
@@ -218,7 +218,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
       <div id="pl-co-picker" style="display:none;margin-top:20px;">
         <p style="color:#aaa;font-size:.84rem;margin:0 0 10px;">Velg ditt selskap — huskes til neste gang:</p>
         <select id="pl-co-sel" style="width:100%;padding:10px 12px;border-radius:8px;border:none;font-size:.95rem;margin-bottom:10px;color:#222;">
-          <option value="">— Velg selskap —</option><option value="Minel Elmontasje Elverum AS">Minel Elmontasje Elverum AS</option><option value="Minel Elmontasje AS">Minel Elmontasje AS</option><option value="Minel Gjøvik Installasjon AS">Minel Gjøvik Installasjon AS</option><option value="Minel Gudbrandsdal AS">Minel Gudbrandsdal AS</option><option value="Minel Kreativ Elektro Ski AS">Minel Kreativ Elektro Ski AS</option><option value="Minel Land Elektriske AS">Minel Land Elektriske AS</option><option value="Minel Skogvang Installasjon AS">Minel Skogvang Installasjon AS</option><option value="Minel Ainstall AS">Minel Ainstall AS</option><option value="Minel Drøbak Elektriske AS">Minel Drøbak Elektriske AS</option>
+          <option value="">— Velg selskap —</option><option value="Minel Elmontasje Elverum AS">Minel Elmontasje Elverum AS</option><option value="Minel Elmontasje AS">Minel Elmontasje AS</option><option value="Minel Gjøvik AS">Minel Gjøvik AS</option><option value="Minel Gudbrandsdal AS">Minel Gudbrandsdal AS</option><option value="Minel Kreativ Elektro Ski AS">Minel Kreativ Elektro Ski AS</option><option value="Minel Land Elektriske AS">Minel Land Elektriske AS</option><option value="Minel Skogvang Installasjon AS">Minel Skogvang Installasjon AS</option><option value="Minel Ainstall AS">Minel Ainstall AS</option><option value="Minel Drøbak Elektriske AS">Minel Drøbak Elektriske AS</option>
         </select>
         <button class="btn btn-grn" style="width:100%;padding:12px;" onclick="var v=document.getElementById('pl-co-sel').value;if(!v)return;plLoadDataset(v)">📂 Hent datasett</button>
       </div>
@@ -459,7 +459,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.63 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.65 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 // ════ GITHUB DATALAGRING (erstatter SharePoint) ════
@@ -592,7 +592,7 @@ var DL_LIST={
   'oyvind.saethersmoen@elkonor.no':'__SUPER__',
   'anthoni.hulthin@minel.no':'Minel Elmontasje Elverum AS',
   'bjornar.sleppen@minel.no':'Minel Elmontasje AS',
-  'geitatle.sangnaes@minel.no':'Minel Gjøvik Installasjon AS',
+  'geitatle.sangnaes@minel.no':'Minel Gjøvik AS',
   'susann.endrestad@minel.no':'Minel Gudbrandsdal AS',
   'ola.sillerud@minel.no':'Minel Kreativ Elektro Ski AS',
   'lars.aamodt@minel.no':'Minel Land Elektriske AS',
@@ -1404,7 +1404,7 @@ function startApiLoad(){
   Promise.all([
     fetchBenchmark(co.key),
     paginate(co.key, function(c){
-      return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC},between:{field:createdAt,from:'+uf+',to:'+ut+'}){items{id caseNumber description status{text} caseType{text} customer{name} projectLeader{fullName} foreman{fullName} offerTotal parentCaseId economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice}}nextCursor}}';
+      return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC},between:{field:createdAt,from:'+uf+',to:'+ut+'}){items{id caseNumber description status{text} caseType{text} customer{name} foreman{fullName} offerTotal parentCaseId economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice}}nextCursor}}';
     }, function(d){return d.cases;}),
     // Historisk modus: hent saks-IDer som var aktive på periodeslutt men er terminal i dag.
     // Signal 1: fikk faktura etter periodeslutt (Bokfurt i etterkant)
@@ -1572,7 +1572,7 @@ function startApiLoad(){
               type:(c.caseType&&c.caseType.text)||'',
               beskr:String(c.description||'').replace(/[\n\r\xa0]+/g,' ').trim(),
               kunde:(c.customer&&c.customer.name)||'',
-              pl:(c.projectLeader&&c.projectLeader.fullName)||(c.foreman&&c.foreman.fullName)||'',
+              pl:(c.foreman&&c.foreman.fullName)||'',
               tilbud:tilbud,
               hasTilbud:tilbud!=null&&tilbud>0,
               totOmk:tot,
