@@ -238,60 +238,74 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
     <div class="help-mtitle">&#128218; Bruksanvisning &mdash; VIA / Fakturareserve QA</div>
     <div class="help-body">
       <div class="help-tab-row">
-        <button class="help-tab active" onclick="helpTab(this,'hpl')">For prosjektleder</button>
-        <button class="help-tab" onclick="helpTab(this,'hdl')">For daglig leder</button>
-        <button class="help-tab" onclick="helpTab(this,'hkol')">Kolonner forklart</button>
-        <button class="help-tab" onclick="helpTab(this,'hord')">Ordliste</button>
+        <button class="help-tab active" onclick="helpTab(this,'hpl')">Prosjektleder</button>
+        <button class="help-tab" onclick="helpTab(this,'hdl')">Daglig leder</button>
+        <button class="help-tab" onclick="helpTab(this,'happ')">App-oversikt</button>
+        <button class="help-tab" onclick="helpTab(this,'hkol')">Kolonner &amp; ord</button>
       </div>
+
       <div id="hpl" class="help-panel active">
         <div class="help-section"><p>Som <strong>prosjektleder</strong> skal du godkjenne VIA-tallene for dine ordrer ved m&aring;nedsslutt. Hele prosessen tar 5&ndash;10 minutter.</p></div>
-        <div class="help-step"><div class="help-step-num">1</div><div class="help-step-body"><strong>Logg inn med Microsoft</strong><br>Klikk p&aring; &laquo;Logg inn med Microsoft&raquo; i PL-panelet til venstre. Bruk din Minel-bruker. Siden husker deg neste gang &mdash; ingen ny innlogging n&oslash;dvendig.</div></div>
-        <div class="help-step"><div class="help-step-num">2</div><div class="help-step-body"><strong>Se dine ordrer</strong><br>Tabellen viser automatisk kun ordrer der du er registrert som PL. Antall ordrer vises &oslash;verst i tabellen.<div class="help-warn">Ser du for f&aring; ordrer? Ditt fulle navn m&aring; stemme n&oslash;yaktig med slik det st&aring;r i Ordrestyring. Ta kontakt med DL om noe mangler.</div></div></div>
-        <div class="help-step"><div class="help-step-num">3</div><div class="help-step-body"><strong>Forst&aring; hva du ser</strong><br>For hver rad, sammenlign disse tre tallene:<div class="help-compare"><div class="help-compare-item"><span class="hbc blue">VIA-bel&oslash;p</span>Estimert verdi av p&aring;g&aring;ende arbeid (kostnader &times; DG-faktor)</div><div class="help-compare-item"><span class="hbc green">Bokf&oslash;rt</span>Faktisk registrert i regnskapet denne perioden</div><div class="help-compare-item"><span class="hbc amber">Differanse</span>VIA minus bokf&oslash;rt &mdash; negativt betyr underdekning</div></div><em>Sp&oslash;r deg selv: Stemmer VIA-bel&oslash;pet med fremdriften i prosjektet?</em></div></div>
-        <div class="help-step"><div class="help-step-num">4</div><div class="help-step-body"><strong>Sett status p&aring; hver ordre</strong><br><div class="help-status-row"><span class="hbadge ok">Godkjent</span><span>Bel&oslash;pet stemmer &mdash; ingen videre handling n&oslash;dvendig</span></div><div class="help-status-row"><span class="hbadge avvik">Avvik</span><span>Noe er feil eller uklart &mdash; <strong>legg alltid inn kommentar!</strong></span></div><div class="help-status-row"><span class="hbadge uv">Ikke vurdert</span><span>Du har ikke behandlet denne enn&aring; (startverdi)</span></div></div></div>
-        <div class="help-step"><div class="help-step-num">5</div><div class="help-step-body"><strong>Lagre og lever</strong><br>Klikk <strong>Lagre</strong> p&aring; raden etter du har satt status og eventuell kommentar. N&aring;r alle ordrer er vurdert, klikk <strong>Ferdig for denne perioden</strong>. DL ser umiddelbart at du er ferdig.</div></div>
-        <div class="help-tip">Rader med r&oslash;d bakgrunn er ikke vurdert enn&aring; &mdash; behandle disse f&oslash;r m&aring;nedsslutt.</div>
+        <div class="help-step"><div class="help-step-num">1</div><div class="help-step-body"><strong>Logg inn med Microsoft</strong><br>Klikk &laquo;Logg inn med Microsoft&raquo; i PL-panelet til venstre. Bruk din Minel-bruker. Siden husker deg neste gang.</div></div>
+        <div class="help-step"><div class="help-step-num">2</div><div class="help-step-body"><strong>Hent datasettet</strong><br>Velg ditt selskap fra listen. Datasettet er klargjort av DL og inneholder kun ordrer for gjeldende periode.<div class="help-warn">Ser du for f&aring; ordrer? Ditt fulle navn m&aring; stemme n&oslash;yaktig med slik det st&aring;r i Ordrestyring. Ta kontakt med DL.</div></div></div>
+        <div class="help-step"><div class="help-step-num">3</div><div class="help-step-body"><strong>Forst&aring; tallene</strong><br>Tabellen &aring;pnes p&aring; fanen <strong>QA &ndash; Alle</strong> &mdash; her arbeider du. Tre n&oslash;kkeltall per ordre:<div class="help-compare"><div class="help-compare-item"><span class="hbc blue">VIA-bel&oslash;p</span>Estimert verdi av p&aring;g&aring;ende arbeid (kostnader &times; DG&nbsp;%)</div><div class="help-compare-item"><span class="hbc green">Bokf&oslash;rt</span>Faktisk lagt inn i regnskapet denne perioden</div><div class="help-compare-item"><span class="hbc amber">Differanse</span>VIA minus bokf&oslash;rt &mdash; negativt = underdekning</div></div></div></div>
+        <div class="help-step"><div class="help-step-num">4</div><div class="help-step-body"><strong>Justere DG&nbsp;% ved behov</strong><br>G&aring; til fanen <strong>POC + DG</strong> for &aring; justere dekningsgraden p&aring; en ordre. DG&nbsp;% p&aring;virker direkte VIA-bel&oslash;pet. Lagre etter endring.</div></div>
+        <div class="help-step"><div class="help-step-num">5</div><div class="help-step-body"><strong>Sett status p&aring; hver ordre</strong><br><div class="help-status-row"><span class="hbadge ok">Godkjent</span><span>Bel&oslash;pet stemmer &mdash; ingen videre handling</span></div><div class="help-status-row"><span class="hbadge avvik">Avvik</span><span>Noe er feil &mdash; <strong>legg alltid inn kommentar!</strong></span></div><div class="help-status-row"><span class="hbadge uv">Ikke vurdert</span><span>Startverdi &mdash; m&aring; behandles f&oslash;r m&aring;nedsslutt</span></div></div></div>
+        <div class="help-step"><div class="help-step-num">6</div><div class="help-step-body"><strong>Lever til daglig leder</strong><br>N&aring;r alle ordrer er behandlet, klikk <strong>Ferdig for denne perioden</strong>. DL ser umiddelbart at du er ferdig og status oppdateres i Status-fanen.</div></div>
+        <div class="help-tip">Rader med r&oslash;d bakgrunn er enn&aring; ikke vurdert. Fanen <strong>Risikoregister</strong> viser ordrer med st&oslash;rst differanse &mdash; start gjerne der.</div>
       </div>
+
       <div id="hdl" class="help-panel">
-        <div class="help-section"><p>Som <strong>daglig leder</strong> laster du data, deler med PLene og f&oslash;lger opp at alle leverer. Alt skjer direkte i nettleseren &mdash; ingen eksport fra Ordrestyring n&oslash;dvendig.</p></div>
-        <div class="help-step"><div class="help-step-num">1</div><div class="help-step-body"><strong>Last inn data</strong><br>I DL-panelet til h&oslash;yre: velg <strong>Selskap</strong>, sett <strong>Periodeslutt</strong> (f.eks. 31.07.2026) og klikk <strong>Last data fra Ordrestyring</strong>. Tabellen fylles med alle aktive ordrer for selskapet.</div></div>
-        <div class="help-step"><div class="help-step-num">2</div><div class="help-step-body"><strong>Del med PLene</strong><br>Bruk <strong>Del datasett</strong>-knappen for &aring; generere en lenke PLene kan bruke. PLene trenger ikke tilgang til Ordrestyring &mdash; de logger inn med Microsoft og ser kun sine egne ordrer.</div></div>
-        <div class="help-step"><div class="help-step-num">3</div><div class="help-step-body"><strong>F&oslash;lg opp PLer som ikke har levert</strong><br>Sorter p&aring; kolonnen <strong>PL-status</strong> for &aring; se hvem som gjest&aring;r. PLer med status &laquo;Ikke vurdert&raquo; har ikke begynt. Ta direkte kontakt med disse.</div></div>
-        <div class="help-step"><div class="help-step-num">4</div><div class="help-step-body"><strong>Gjennomg&aring; avvik</strong><br>Filtrer p&aring; <strong>Status = Avvik</strong> for &aring; se alle ordrer PLene har flagget. Les kommentarene og vurder om bel&oslash;pene skal justeres i regnskapet.</div></div>
-        <div class="help-step"><div class="help-step-num">5</div><div class="help-step-body"><strong>Eksporter rapport</strong><br>Klikk <strong>Last ned Excel</strong> for en komplett oversikt med alle kommentarer &mdash; klar til &aring; vedlegges m&aring;nedsrapporten.</div></div>
-        <div class="help-tip">Sorter p&aring; <strong>Differanse</strong> (synkende) for raskt &aring; finne ordrer med st&oslash;rst avvik mellom VIA og bokf&oslash;rt bel&oslash;p.</div>
+        <div class="help-section"><p>Som <strong>daglig leder</strong> laster du data, deler med PLene og f&oslash;lger opp at alle leverer. Du har full oversikt via Dashboard og Status-fanen.</p></div>
+        <div class="help-step"><div class="help-step-num">1</div><div class="help-step-body"><strong>Last inn data</strong><br>I DL-panelet: velg <strong>Selskap</strong>, sett <strong>Periodeslutt</strong> (f.eks. 31.07.2026) og klikk <strong>Last data fra Ordrestyring</strong>. Data hentes direkte fra API &mdash; ingen manuell eksport n&oslash;dvendig.</div></div>
+        <div class="help-step"><div class="help-step-num">2</div><div class="help-step-body"><strong>Del datasett med PLene</strong><br>Klikk <strong>&#128228; Del datasett</strong> i menylinjen. Datasettet lastes opp til SharePoint og PLene kan n&aring; hente det via sin innlogging. PLene trenger ikke tilgang til Ordrestyring.</div></div>
+        <div class="help-step"><div class="help-step-num">3</div><div class="help-step-body"><strong>Bruk Dashboard-fanen</strong><br>Gir deg umiddelbart overblikk: totalt VIA-bel&oslash;p, antall avvik, dekning %, risikofordeling og toppfunn. Sorter per prosjektleder for &aring; se hvem som har st&oslash;rst eksponering.</div></div>
+        <div class="help-step"><div class="help-step-num">4</div><div class="help-step-body"><strong>F&oslash;lg Status-fanen</strong><br>Viser alle PLer med leveringsstatus: hvem er <strong>Ferdig</strong>, hvem <strong>ikke</strong>. Ta direkte kontakt med PLer som ikke har levert innen fristen.</div></div>
+        <div class="help-step"><div class="help-step-num">5</div><div class="help-step-body"><strong>Gjennomg&aring; avvik</strong><br>Bruk <strong>Risikoregister</strong>-fanen for ordrer DL m&aring; se n&aelig;rmere p&aring;. Les PLenes kommentarer og vurder om bel&oslash;pene skal justeres i regnskapet.</div></div>
+        <div class="help-step"><div class="help-step-num">6</div><div class="help-step-body"><strong>L&aring;s perioden</strong><br>N&aring;r alle PLer er ferdige, klikk <strong>&#128274; L&aring;s periode</strong>. PLer kan ikke lenger endre. Eksporter deretter til Excel for m&aring;nedsrapporten.</div></div>
+        <div class="help-tip">Klikk <strong>&#128247; Snapshot</strong> for &aring; lagre et punkt-i-tid-bilde av perioden &mdash; tilgjengelig i Historikk-fanen for sammenligning.</div>
       </div>
+
+      <div id="happ" class="help-panel">
+        <div class="help-section"><p>Appen har seks faner som gir deg ulike perspektiver p&aring; de samme dataene:</p></div>
+        <div class="help-table-wrap"><table>
+          <tr><td>&#128202; Dashboard</td><td>Overblikk: total VIA, dekning, antall avvik, risikofordeling og toppfunn. Tabellen per PL viser leveringsstatus og eksponering.</td></tr>
+          <tr><td>&#128269; QA &ndash; Alle</td><td>Komplett ordretabell med filter og sortering. Her setter PLer status og kommentar. DL kan ogs&aring; redigere her. Klikk kolonneoverskrift for &aring; sortere.</td></tr>
+          <tr><td>&#9888;&#65039; Risikoregister</td><td>Automatisk filtrert liste over ordrer med stor differanse, flagget avvik, eller andre risikoindikatorer. Start gjerne gjennomgangen her.</td></tr>
+          <tr><td>&#128203; POC + DG</td><td>Rediger dekningsgrad (DG&nbsp;%) per ordre. DG p&aring;virker VIA-bel&oslash;pet direkte: h&oslash;yere DG = lavere estimert VIA. Lagre etter endring.</td></tr>
+          <tr><td>&#9989; Status</td><td>Leveringsoversikt per prosjektleder. Viser hvem som er Ferdig / ikke, og n&aring;r de siste leverte. Brukes av DL for oppf&oslash;lging.</td></tr>
+          <tr><td>&#128193; Historikk</td><td>Snapshots fra tidligere perioder. Sammenlign VIA-utvikling m&aring;ned for m&aring;ned per selskap.</td></tr>
+        </table></div>
+        <div class="help-tip">Knappene i menylinjen: <strong>Del datasett</strong> deler med PLer &middot; <strong>Snapshot</strong> lagrer punkt-i-tid &middot; <strong>Eksporter Excel</strong> laster ned rapport &middot; <strong>Ny periode</strong> nullstiller appen.</div>
+      </div>
+
       <div id="hkol" class="help-panel">
-        <div class="help-section"><p>Hva betyr hver kolonne i tabellen?</p><div class="help-table-wrap"><table>
+        <div class="help-section"><p><strong>Kolonner i tabellen:</strong></p><div class="help-table-wrap"><table>
           <tr><td>Prosjekt</td><td>Prosjektnummer og -navn fra Ordrestyring</td></tr>
           <tr><td>PL</td><td>Prosjektleder &mdash; ansvarlig for &aring; vurdere ordren</td></tr>
           <tr><td>Ordre</td><td>Internt ordrenummer i Ordrestyring</td></tr>
           <tr><td>Beskrivelse</td><td>Ordretekst / kundenavn fra Ordrestyring</td></tr>
-          <tr><td>VIA-bel&oslash;p</td><td>Estimert verdi av p&aring;g&aring;ende arbeid i kroner (kostnader &times; DG-faktor)</td></tr>
-          <tr><td>Bokf&oslash;rt</td><td>Faktisk bokf&oslash;rt bel&oslash;p i regnskapet per periodeslutt</td></tr>
-          <tr><td>Differanse</td><td>VIA minus bokf&oslash;rt. Negativt = mer bokf&oslash;rt enn VIA tilsier (underdekning)</td></tr>
-          <tr><td>DG %</td><td>PLs estimat for dekningsgrad / l&oslash;nnsomhet (0&ndash;100&nbsp;%). Brukes til &aring; beregne VIA-bel&oslash;pet</td></tr>
+          <tr><td>VIA-bel&oslash;p</td><td>Estimert VIA i kroner (kostnader &times; DG-faktor)</td></tr>
+          <tr><td>Bokf&oslash;rt</td><td>Faktisk bokf&oslash;rt bel&oslash;p per periodeslutt</td></tr>
+          <tr><td>Differanse</td><td>VIA minus bokf&oslash;rt. Negativt = underdekning</td></tr>
+          <tr><td>DG&nbsp;%</td><td>PLs estimat for l&oslash;nnsomhet (0&ndash;100&nbsp;%). Redigeres i POC+DG-fanen</td></tr>
           <tr><td>Status</td><td>PLs vurdering: Godkjent / Avvik / Ikke vurdert</td></tr>
-          <tr><td>Kommentar</td><td>PLs fritekstkommentar &mdash; alltid p&aring;krevd ved status Avvik</td></tr>
-          <tr><td>Sist endret</td><td>Tidspunkt og dato for siste lagring av denne raden</td></tr>
+          <tr><td>Kommentar</td><td>PLs fritekst &mdash; alltid p&aring;krevd ved Avvik</td></tr>
+          <tr><td>Sist endret</td><td>Tidspunkt for siste lagring av raden</td></tr>
         </table></div></div>
-        <div class="help-tip">Klikk p&aring; en kolonneoverskrift for &aring; sortere. Klikk igjen for &aring; snu sorteringsrekkef&oslash;lgen.</div>
-      </div>
-      <div id="hord" class="help-panel">
-        <div class="help-section"><div class="help-table-wrap"><table>
-          <tr><td>VIA</td><td><em>Varer i arbeid</em> &mdash; verdien av utf&oslash;rt, men ikke oppgj&oslash;rt arbeid. P&aring;l&oslash;pte kostnader som enn&aring; ikke er fakturert eller inntektsf&oslash;rt.</td></tr>
-          <tr><td>Fakturareserve</td><td>Bel&oslash;p satt av i regnskapet for fremtidig fakturering, basert p&aring; VIA-bel&oslash;p og fremdrift.</td></tr>
-          <tr><td>Bokf&oslash;rt</td><td>Bel&oslash;p registrert i regnskapet for gjeldende periode &mdash; fra faktura, kreditnota eller interne posteringer.</td></tr>
-          <tr><td>Differanse</td><td>VIA minus bokf&oslash;rt. Stor negativ differanse er et signal om at noe b&oslash;r unders&oslash;kes av PL.</td></tr>
-          <tr><td>DG</td><td>Dekningsgrad i prosent &mdash; PLs estimat for l&oslash;nnsomheten p&aring; ordren. Brukes til &aring; beregne VIA-bel&oslash;pet.</td></tr>
-          <tr><td>QA</td><td><em>Quality Assurance</em> &mdash; kvalitetssikring av tallene f&oslash;r de sendes til konsernrapportering.</td></tr>
-          <tr><td>Periodeslutt</td><td>Siste dag i regnskapsperioden (f.eks. 31.07.2026). Alle tall er beregnet per denne datoen.</td></tr>
-          <tr><td>PL</td><td>Prosjektleder &mdash; ansvarlig for fremdrift og &oslash;konomi i prosjektet.</td></tr>
-          <tr><td>DL</td><td>Daglig leder &mdash; laster data, deler med PLene og godkjenner totalbildet.</td></tr>
-          <tr><td>Avvik</td><td>PLs flagging av at noe er feil eller uklart p&aring; en ordre. Krever alltid en forklarende kommentar.</td></tr>
-          <tr><td>M&aring;nedsslutt</td><td>Prosessen der regnskapet for en m&aring;ned lukkes og tallene sendes til konsernrapportering.</td></tr>
+        <div class="help-section" style="margin-top:14px;"><p><strong>Ordliste:</strong></p><div class="help-table-wrap"><table>
+          <tr><td>VIA</td><td><em>Varer i arbeid</em> &mdash; p&aring;l&oslash;pte kostnader som ikke er fakturert/inntektsf&oslash;rt</td></tr>
+          <tr><td>Fakturareserve</td><td>Bel&oslash;p satt av for fremtidig fakturering, basert p&aring; VIA</td></tr>
+          <tr><td>DG</td><td>Dekningsgrad i prosent &mdash; PLs estimat for ordrens l&oslash;nnsomhet</td></tr>
+          <tr><td>Bokf&oslash;rt</td><td>Bel&oslash;p registrert i regnskapet &mdash; faktura, kreditnota eller posteringer</td></tr>
+          <tr><td>QA</td><td>Quality Assurance &mdash; kvalitetssikring f&oslash;r konsernrapportering</td></tr>
+          <tr><td>Periodeslutt</td><td>Siste dag i regnskapsperioden (f.eks. 31.07.2026)</td></tr>
+          <tr><td>Avvik</td><td>PLs flagging av at noe er feil &mdash; krever alltid kommentar</td></tr>
+          <tr><td>M&aring;nedsslutt</td><td>Prosessen der regnskapet lukkes og tallene sendes til konsern</td></tr>
         </table></div></div>
+        <div class="help-tip">Klikk p&aring; en kolonneoverskrift for &aring; sortere. Klikk igjen for &aring; snu rekkef&oslash;lgen.</div>
       </div>
+
     </div>
     <div class="help-footer"><button class="help-close" onclick="closeHelp()">Lukk</button></div>
   </div>
@@ -312,9 +326,17 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
     <!-- PL CARD: Prosjektleder -->
     <div style="background:linear-gradient(135deg,#1a1a2e 0%,#16213e 100%);border-radius:16px;padding:36px 32px;box-shadow:0 4px 24px rgba(0,0,0,.18);text-align:center;">
       <div style="font-size:.72rem;font-weight:700;letter-spacing:2px;color:#8892b0;text-transform:uppercase;margin-bottom:10px;">Prosjektleder</div>
-      <div style="font-size:2.5rem;margin-bottom:12px;">=</div>
+  <div style="margin:0 auto 16px;width:68px;height:68px;background:rgba(96,165,250,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid rgba(96,165,250,.2);">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><circle cx="17" cy="11" r="6.5" stroke="#93c5fd" stroke-width="1.8" fill="rgba(147,197,253,.12)"/><path d="M4.5 30c0-6.9 5.6-12.5 12.5-12.5S29.5 23.1 29.5 30" stroke="#93c5fd" stroke-width="1.8" stroke-linecap="round"/></svg>
+  </div>
       <h2 style="color:#fff;margin:0 0 6px;font-size:1.2rem;">Logg inn med Microsoft</h2>
-      <p style="color:#8892b0;font-size:.84rem;margin:0 0 24px;">Hent datasettet delt av daglig leder</p>
+      <p style="color:#8892b0;font-size:.84rem;margin:0 0 14px;">Godkjenn VIA-tallene for dine ordrer ved m&aring;nedsslutt</p>
+  <div style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:11px 15px;margin-bottom:20px;text-align:left;">
+    <div style="font-size:.67rem;font-weight:700;color:#475569;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Slik fungerer det</div>
+    <div style="display:flex;align-items:center;gap:9px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05);"><span style="background:#3b82f6;color:#fff;border-radius:50%;width:17px;height:17px;min-width:17px;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;">1</span><span style="font-size:.77rem;color:#94a3b8;">Logg inn og hent datasettet fra DL</span></div>
+    <div style="display:flex;align-items:center;gap:9px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,.05);"><span style="background:#3b82f6;color:#fff;border-radius:50%;width:17px;height:17px;min-width:17px;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;">2</span><span style="font-size:.77rem;color:#94a3b8;">Gjennomg&aring; dine ordrer og sett status</span></div>
+    <div style="display:flex;align-items:center;gap:9px;padding:4px 0;"><span style="background:#3b82f6;color:#fff;border-radius:50%;width:17px;height:17px;min-width:17px;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;">3</span><span style="font-size:.77rem;color:#94a3b8;">Lever til daglig leder n&aring;r alt er vurdert</span></div>
+  </div>
       <div id="pl-login-box">
         <button id="pl-login-btn" class="btn btn-grn" style="font-size:1rem;padding:14px 32px;width:100%;" onclick="loginPL(this)">= Logg inn med Microsoft</button>
         <p id="pl-login-err" style="display:none;color:#ff6b6b;font-size:.78rem;margin:10px 0 0;"></p>
@@ -333,9 +355,17 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
     <!-- DL CARD: Daglig leder -->
     <div style="background:#fff;border-radius:16px;padding:36px 32px;box-shadow:0 4px 24px rgba(0,0,0,.10);text-align:center;">
       <div style="font-size:.72rem;font-weight:700;letter-spacing:2px;color:#999;text-transform:uppercase;margin-bottom:10px;">Daglig leder</div>
-      <div style="font-size:2.5rem;margin-bottom:12px;">=</div>
+  <div style="margin:0 auto 16px;width:68px;height:68px;background:#eef2ff;border-radius:50%;display:flex;align-items:center;justify-content:center;border:2px solid #c7d2fe;">
+    <svg width="34" height="34" viewBox="0 0 34 34" fill="none"><rect x="3" y="21" width="7" height="10" rx="2" fill="#60a5fa"/><rect x="13" y="14" width="7" height="17" rx="2" fill="#4ade80"/><rect x="23" y="7" width="7" height="24" rx="2" fill="#f59e0b"/><line x1="1" y1="31" x2="33" y2="31" stroke="#cbd5e1" stroke-width="1.5" stroke-linecap="round"/></svg>
+  </div>
       <h2 style="color:#1a1a2e;margin:0 0 6px;font-size:1.2rem;">Hent perioderegnskap</h2>
-      <p style="color:#666;font-size:.84rem;margin:0 0 20px;">Direkte fra Ordrestyring via API</p>
+      <p style="color:#666;font-size:.84rem;margin:0 0 14px;">Last data fra Ordrestyring, del med PLene og l&aring;s perioden</p>
+  <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:11px 15px;margin-bottom:18px;text-align:left;">
+    <div style="font-size:.67rem;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:1.2px;margin-bottom:8px;">Slik fungerer det</div>
+    <div style="display:flex;align-items:center;gap:9px;padding:4px 0;border-bottom:1px solid #f1f5f9;"><span style="background:#1D4ED8;color:#fff;border-radius:50%;width:17px;height:17px;min-width:17px;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;">1</span><span style="font-size:.77rem;color:#4b5563;">Velg selskap og periodeslutt, last data</span></div>
+    <div style="display:flex;align-items:center;gap:9px;padding:4px 0;border-bottom:1px solid #f1f5f9;"><span style="background:#1D4ED8;color:#fff;border-radius:50%;width:17px;height:17px;min-width:17px;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;">2</span><span style="font-size:.77rem;color:#4b5563;">Del datasett med PLene for godkjenning</span></div>
+    <div style="display:flex;align-items:center;gap:9px;padding:4px 0;"><span style="background:#1D4ED8;color:#fff;border-radius:50%;width:17px;height:17px;min-width:17px;display:inline-flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:800;">3</span><span style="font-size:.77rem;color:#4b5563;">F&oslash;lg opp, godkjenn og l&aring;s perioden</span></div>
+  </div>
       <div id="dl-login-confirm" style="display:none;background:#d1fae5;color:#065f46;border-radius:8px;padding:10px 14px;font-size:.84rem;margin-bottom:16px;text-align:center;"></div>
       <div id="dl-login-box" style="margin-bottom:16px;">
         <button class="btn" id="dl-login-btn" onclick="loginPL(this)" style="width:100%;padding:12px;font-size:.95rem;">= Logg inn med Microsoft</button>
