@@ -120,5 +120,18 @@
       "selskap": "Minel Gudbrandsdal AS",
       "period": "juli 2026"
     }
+  },
+  {
+    "tidspunkt": "2026-08-16T16:57:12.141Z",
+    "bruker": "Øyvind Sæthersmoen",
+    "epost": "oyvind.saethersmoen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Ainstall AS",
+    "hendelse": "DataLastet",
+    "detaljer": {
+      "selskap": "Minel Ainstall AS",
+      "periode": "juli 2026",
+      "antallOrdrer": 68
+    }
   }
 ]
