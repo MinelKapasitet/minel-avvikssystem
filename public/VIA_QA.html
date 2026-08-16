@@ -181,26 +181,38 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
 .hd-help-btn:hover{background:rgba(255,255,255,.22);}
 #helpOverlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:3000;overflow-y:auto;overflow-x:hidden;padding:32px 16px;align-items:flex-start;justify-content:center;}
 #helpOverlay.open{display:flex;}
-.help-modal{background:#fff;border-radius:14px;width:100%;max-width:720px;box-shadow:0 10px 50px rgba(0,0,0,.25);overflow:hidden;margin:auto;}
+.help-modal{background:#fff;border-radius:14px;width:100%;max-width:760px;box-shadow:0 10px 50px rgba(0,0,0,.25);overflow:hidden;margin:auto;}
 .help-mtitle{background:var(--navy);color:#fff;padding:16px 24px;font-size:.95rem;font-weight:700;display:flex;align-items:center;gap:10px;}
 .help-body{padding:20px 24px;max-height:78vh;overflow-y:auto;overflow-x:hidden;}
 .help-tab-row{display:flex;gap:6px;margin-bottom:18px;flex-wrap:wrap;}
 .help-tab{background:#f1f5f9;border:none;border-radius:8px;padding:6px 14px;font-size:.78rem;font-weight:600;cursor:pointer;color:#64748b;transition:all .15s;}
 .help-tab.active{background:var(--navy);color:#fff;}
 .help-panel{display:none;}.help-panel.active{display:block;}
-.help-section{margin-bottom:18px;}
-.help-section p{font-size:.82rem;color:#444;line-height:1.55;margin-bottom:6px;}
-.help-step{display:flex;gap:10px;margin-bottom:10px;align-items:flex-start;}
-.help-step-num{background:var(--navy);color:#fff;border-radius:50%;width:22px;height:22px;min-width:22px;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;}
-.help-step-body{font-size:.82rem;color:#334155;line-height:1.5;}
+.help-section{margin-bottom:16px;}
+.help-section p{font-size:.82rem;color:#444;line-height:1.55;margin-bottom:8px;}
+.help-step{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start;}
+.help-step-num{background:var(--navy);color:#fff;border-radius:50%;width:24px;height:24px;min-width:24px;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:2px;}
+.help-step-body{font-size:.82rem;color:#334155;line-height:1.5;flex:1;}
 .help-step-body strong{color:var(--navy);}
-.help-tip{background:#eff6ff;border-left:3px solid #3b82f6;border-radius:4px;padding:8px 11px;font-size:.79rem;color:#1e40af;margin:8px 0 12px 32px;line-height:1.5;}
-.help-warn{background:#fffbeb;border-left:3px solid #f59e0b;border-radius:4px;padding:8px 11px;font-size:.79rem;color:#92400e;margin:8px 0 12px 32px;line-height:1.5;}
-.help-ok{background:#f0fdf4;border-left:3px solid #22c55e;border-radius:4px;padding:8px 11px;font-size:.79rem;color:#166534;margin:8px 0 4px 0;line-height:1.5;font-weight:600;}
-.help-section table{width:100%;border-collapse:collapse;font-size:.8rem;table-layout:fixed;}
-.help-section td{padding:5px 8px;vertical-align:top;border-bottom:1px solid #f0f0f0;word-wrap:break-word;overflow-wrap:break-word;}
-.help-section td:first-child{font-weight:700;color:var(--dark);width:32%;padding-right:10px;}
-.help-section td:last-child{color:#444;}
+.help-tip{background:#eff6ff;border-left:3px solid #3b82f6;border-radius:4px;padding:8px 11px;font-size:.79rem;color:#1e40af;margin:8px 0 12px 0;line-height:1.5;}
+.help-warn{background:#fffbeb;border-left:3px solid #f59e0b;border-radius:4px;padding:8px 11px;font-size:.79rem;color:#92400e;margin:8px 0 0 0;line-height:1.5;}
+.help-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0;}
+.help-table-wrap table{width:100%;border-collapse:collapse;font-size:.81rem;}
+.help-table-wrap td{padding:6px 10px;vertical-align:top;border-bottom:1px solid #f0f0f0;line-height:1.45;}
+.help-table-wrap tr:first-child td{border-top:1px solid #e5e7eb;}
+.help-table-wrap td:first-child{font-weight:700;color:var(--dark);white-space:nowrap;padding-right:16px;}
+.help-table-wrap td:last-child{color:#444;}
+.hbadge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:.74rem;font-weight:700;margin-right:4px;white-space:nowrap;}
+.hbadge.ok{background:#dcfce7;color:#166534;}
+.hbadge.avvik{background:#fee2e2;color:#991b1b;}
+.hbadge.uv{background:#f1f5f9;color:#475569;}
+.help-status-row{display:flex;align-items:flex-start;gap:8px;margin:7px 0;font-size:.81rem;color:#334155;line-height:1.45;}
+.help-compare{background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:10px 14px;margin:8px 0;}
+.help-compare-item{display:flex;align-items:center;gap:8px;margin:5px 0;font-size:.80rem;color:#334155;}
+.hbc{padding:2px 8px;border-radius:6px;font-weight:700;font-size:.74rem;white-space:nowrap;display:inline-block;}
+.hbc.blue{background:#dbeafe;color:#1e40af;}
+.hbc.green{background:#dcfce7;color:#166534;}
+.hbc.amber{background:#fef3c7;color:#92400e;}
 .help-footer{padding:12px 24px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;}
 .help-close{background:var(--navy);color:#fff;border:none;border-radius:8px;padding:7px 22px;font-size:.85rem;font-weight:600;cursor:pointer;}
 .help-close:hover{background:var(--navydark);}
@@ -231,78 +243,57 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
         <button class="help-tab" onclick="helpTab(this,'hkol')">Kolonner forklart</button>
         <button class="help-tab" onclick="helpTab(this,'hord')">Ordliste</button>
       </div>
-
-      <!-- PL-panel -->
       <div id="hpl" class="help-panel active">
-        <div class="help-section">
-          <p><strong>Som prosjektleder (PL)</strong> er oppgaven din å godkjenne eller avvike VIA-linjer og sikre at fakturareserven er riktig før månedsavslutning.</p>
-        </div>
-        <div class="help-section">
-          <div class="help-step"><div class="help-step-num">1</div><div class="help-step-body"><strong>Finn prosjektene dine</strong><br>Tabellen viser alle prosjekter der du er registrert som PL. Bruk søkefeltet øverst til høyre for å filtrere på prosjektnummer eller navn.</div></div>
-          <div class="help-step"><div class="help-step-num">2</div><div class="help-step-body"><strong>Les gjennom VIA-linjene</strong><br>Hver rad viser en VIA-linje med estimert beløp. Sjekk at beløpene ser riktige ut opp mot fremdriften i prosjektet.</div></div>
-          <div class="help-step"><div class="help-step-num">3</div><div class="help-step-body"><strong>Vurder statusen</strong><br>Kolonnen <strong>Status</strong> viser nåværende vurdering. Ændre denne ved å klikke på nedtrekksmenyen i raden.</div></div>
-          <div class="help-step"><div class="help-step-num">4</div><div class="help-step-body"><strong>Legg inn kommentar ved behov</strong><br>Hvis du avviker en linje eller er usikker, legg inn en forklaring i kommentarfeltet. DL bruker dette som grunnlag for sin vurdering.</div></div>
-          <div class="help-step"><div class="help-step-num">5</div><div class="help-step-body"><strong>Lagre</strong><br>Klikk <strong>Lagre</strong>-knappen for å sende vurderingen din. Du kan endre frem til DL låser perioden.</div></div>
-        </div>
-        <div class="help-tip">Linjer med rød bakgrunn er ikke vurdert ennå &mdash; disse må behandles før månedsavslutning.</div>
-        <div class="help-warn">Ikke endre fakturareserven direkte i økonomisystemet &mdash; alle justeringer gjøres her i QA-verktøyet.</div>
+        <div class="help-section"><p>Som <strong>prosjektleder</strong> skal du godkjenne VIA-tallene for dine ordrer ved m&aring;nedsslutt. Hele prosessen tar 5&ndash;10 minutter.</p></div>
+        <div class="help-step"><div class="help-step-num">1</div><div class="help-step-body"><strong>Logg inn med Microsoft</strong><br>Klikk p&aring; &laquo;Logg inn med Microsoft&raquo; i PL-panelet til venstre. Bruk din Minel-bruker. Siden husker deg neste gang &mdash; ingen ny innlogging n&oslash;dvendig.</div></div>
+        <div class="help-step"><div class="help-step-num">2</div><div class="help-step-body"><strong>Se dine ordrer</strong><br>Tabellen viser automatisk kun ordrer der du er registrert som PL. Antall ordrer vises &oslash;verst i tabellen.<div class="help-warn">Ser du for f&aring; ordrer? Ditt fulle navn m&aring; stemme n&oslash;yaktig med slik det st&aring;r i Ordrestyring. Ta kontakt med DL om noe mangler.</div></div></div>
+        <div class="help-step"><div class="help-step-num">3</div><div class="help-step-body"><strong>Forst&aring; hva du ser</strong><br>For hver rad, sammenlign disse tre tallene:<div class="help-compare"><div class="help-compare-item"><span class="hbc blue">VIA-bel&oslash;p</span>Estimert verdi av p&aring;g&aring;ende arbeid (kostnader &times; DG-faktor)</div><div class="help-compare-item"><span class="hbc green">Bokf&oslash;rt</span>Faktisk registrert i regnskapet denne perioden</div><div class="help-compare-item"><span class="hbc amber">Differanse</span>VIA minus bokf&oslash;rt &mdash; negativt betyr underdekning</div></div><em>Sp&oslash;r deg selv: Stemmer VIA-bel&oslash;pet med fremdriften i prosjektet?</em></div></div>
+        <div class="help-step"><div class="help-step-num">4</div><div class="help-step-body"><strong>Sett status p&aring; hver ordre</strong><br><div class="help-status-row"><span class="hbadge ok">Godkjent</span><span>Bel&oslash;pet stemmer &mdash; ingen videre handling n&oslash;dvendig</span></div><div class="help-status-row"><span class="hbadge avvik">Avvik</span><span>Noe er feil eller uklart &mdash; <strong>legg alltid inn kommentar!</strong></span></div><div class="help-status-row"><span class="hbadge uv">Ikke vurdert</span><span>Du har ikke behandlet denne enn&aring; (startverdi)</span></div></div></div>
+        <div class="help-step"><div class="help-step-num">5</div><div class="help-step-body"><strong>Lagre og lever</strong><br>Klikk <strong>Lagre</strong> p&aring; raden etter du har satt status og eventuell kommentar. N&aring;r alle ordrer er vurdert, klikk <strong>Ferdig for denne perioden</strong>. DL ser umiddelbart at du er ferdig.</div></div>
+        <div class="help-tip">Rader med r&oslash;d bakgrunn er ikke vurdert enn&aring; &mdash; behandle disse f&oslash;r m&aring;nedsslutt.</div>
       </div>
-
-      <!-- DL-panel -->
       <div id="hdl" class="help-panel">
-        <div class="help-section">
-          <p><strong>Som daglig leder (DL)</strong> er oppgaven din å godkjenne totalbildet og låse perioden når alle PL-er har levert sine vurderinger.</p>
-        </div>
-        <div class="help-section">
-          <div class="help-step"><div class="help-step-num">1</div><div class="help-step-body"><strong>Kontroller fullstendighet</strong><br>Se at alle PL-er har levert. Linjer uten PL-vurdering vises med gult flagg. Følg opp manglende leveranser direkte med berørt PL.</div></div>
-          <div class="help-step"><div class="help-step-num">2</div><div class="help-step-body"><strong>Gjennomgå avvik</strong><br>Filtrer på Status = <em>Avvik</em> for å se alle linjer der PL har flagget noe. Les kommentarene og vurder om beløpet skal justeres.</div></div>
-          <div class="help-step"><div class="help-step-num">3</div><div class="help-step-body"><strong>Godkjenn totalbildet</strong><br>Når du er fornøyd med alle linjene, klikk <strong>Godkjenn periode</strong>. Dette låser alle PL-verdier og sender data til regnskapet.</div></div>
-          <div class="help-step"><div class="help-step-num">4</div><div class="help-step-body"><strong>Eksporter rapport</strong><br>Bruk <strong>Last ned Excel</strong>-knappen for å få en fullstendig oversikt som kan legges ved månedsrapporten.</div></div>
-        </div>
-        <div class="help-tip">Sorter på kolonnen <strong>Bokført</strong> for raskt å se hvilke prosjekter som har størst avvik mellom VIA og faktisk bokført beløp.</div>
-        <div class="help-ok">Når perioden er låst kan ingen PL-er gjøre endringer &mdash; kontakt regnskapsansvarlig om noe må korrigeres i ettertid.</div>
+        <div class="help-section"><p>Som <strong>daglig leder</strong> laster du data, deler med PLene og f&oslash;lger opp at alle leverer. Alt skjer direkte i nettleseren &mdash; ingen eksport fra Ordrestyring n&oslash;dvendig.</p></div>
+        <div class="help-step"><div class="help-step-num">1</div><div class="help-step-body"><strong>Last inn data</strong><br>I DL-panelet til h&oslash;yre: velg <strong>Selskap</strong>, sett <strong>Periodeslutt</strong> (f.eks. 31.07.2026) og klikk <strong>Last data fra Ordrestyring</strong>. Tabellen fylles med alle aktive ordrer for selskapet.</div></div>
+        <div class="help-step"><div class="help-step-num">2</div><div class="help-step-body"><strong>Del med PLene</strong><br>Bruk <strong>Del datasett</strong>-knappen for &aring; generere en lenke PLene kan bruke. PLene trenger ikke tilgang til Ordrestyring &mdash; de logger inn med Microsoft og ser kun sine egne ordrer.</div></div>
+        <div class="help-step"><div class="help-step-num">3</div><div class="help-step-body"><strong>F&oslash;lg opp PLer som ikke har levert</strong><br>Sorter p&aring; kolonnen <strong>PL-status</strong> for &aring; se hvem som gjest&aring;r. PLer med status &laquo;Ikke vurdert&raquo; har ikke begynt. Ta direkte kontakt med disse.</div></div>
+        <div class="help-step"><div class="help-step-num">4</div><div class="help-step-body"><strong>Gjennomg&aring; avvik</strong><br>Filtrer p&aring; <strong>Status = Avvik</strong> for &aring; se alle ordrer PLene har flagget. Les kommentarene og vurder om bel&oslash;pene skal justeres i regnskapet.</div></div>
+        <div class="help-step"><div class="help-step-num">5</div><div class="help-step-body"><strong>Eksporter rapport</strong><br>Klikk <strong>Last ned Excel</strong> for en komplett oversikt med alle kommentarer &mdash; klar til &aring; vedlegges m&aring;nedsrapporten.</div></div>
+        <div class="help-tip">Sorter p&aring; <strong>Differanse</strong> (synkende) for raskt &aring; finne ordrer med st&oslash;rst avvik mellom VIA og bokf&oslash;rt bel&oslash;p.</div>
       </div>
-
-      <!-- Kolonner-panel -->
       <div id="hkol" class="help-panel">
-        <div class="help-section">
-          <p>Oversikt over alle kolonner i tabellen:</p>
-          <table>
-            <tr><td>Prosjekt</td><td>Prosjektnummer og -navn fra økonomisystemet</td></tr>
-            <tr><td>PL</td><td>Prosjektleder &mdash; ansvarlig for vurderingen</td></tr>
-            <tr><td>Ordre</td><td>Ordrenummer tilknyttet VIA-linjen</td></tr>
-            <tr><td>Beskrivelse</td><td>Tekst fra VIA-linjen i økonomisystemet</td></tr>
-            <tr><td>VIA-beløp</td><td>Beregnet VIA-beløp (Varer i arbeid) i kroner</td></tr>
-            <tr><td>Bokført</td><td>Faktisk bokført beløp per dûmåned</td></tr>
-            <tr><td>Differanse</td><td>Avvik mellom VIA og bokført &mdash; negativt betyr underdekning</td></tr>
-            <tr><td>Status</td><td>PL sin vurdering: Godkjent / Avvik / Ikke vurdert</td></tr>
-            <tr><td>Kommentar</td><td>PL sin fritekstkommentar til linjen</td></tr>
-            <tr><td>Sist endret</td><td>Tidspunkt for siste lagring av denne linjen</td></tr>
-          </table>
-        </div>
-        <div class="help-tip">Klikk på en kolonneoverskrift for å sortere tabellen på den kolonnen. Klikk igjen for å snu sorteringsrekkefølgen.</div>
+        <div class="help-section"><p>Hva betyr hver kolonne i tabellen?</p><div class="help-table-wrap"><table>
+          <tr><td>Prosjekt</td><td>Prosjektnummer og -navn fra Ordrestyring</td></tr>
+          <tr><td>PL</td><td>Prosjektleder &mdash; ansvarlig for &aring; vurdere ordren</td></tr>
+          <tr><td>Ordre</td><td>Internt ordrenummer i Ordrestyring</td></tr>
+          <tr><td>Beskrivelse</td><td>Ordretekst / kundenavn fra Ordrestyring</td></tr>
+          <tr><td>VIA-bel&oslash;p</td><td>Estimert verdi av p&aring;g&aring;ende arbeid i kroner (kostnader &times; DG-faktor)</td></tr>
+          <tr><td>Bokf&oslash;rt</td><td>Faktisk bokf&oslash;rt bel&oslash;p i regnskapet per periodeslutt</td></tr>
+          <tr><td>Differanse</td><td>VIA minus bokf&oslash;rt. Negativt = mer bokf&oslash;rt enn VIA tilsier (underdekning)</td></tr>
+          <tr><td>DG %</td><td>PLs estimat for dekningsgrad / l&oslash;nnsomhet (0&ndash;100&nbsp;%). Brukes til &aring; beregne VIA-bel&oslash;pet</td></tr>
+          <tr><td>Status</td><td>PLs vurdering: Godkjent / Avvik / Ikke vurdert</td></tr>
+          <tr><td>Kommentar</td><td>PLs fritekstkommentar &mdash; alltid p&aring;krevd ved status Avvik</td></tr>
+          <tr><td>Sist endret</td><td>Tidspunkt og dato for siste lagring av denne raden</td></tr>
+        </table></div></div>
+        <div class="help-tip">Klikk p&aring; en kolonneoverskrift for &aring; sortere. Klikk igjen for &aring; snu sorteringsrekkef&oslash;lgen.</div>
       </div>
-
-      <!-- Ordliste-panel -->
       <div id="hord" class="help-panel">
-        <div class="help-section">
-          <table>
-            <tr><td>VIA</td><td><em>Varer i arbeid</em> &mdash; påløpte kostnader i et prosjekt som ennå ikke er fakturert eller inntektsført. Representerer verdien av utført, men ikke oppgjørt arbeid.</td></tr>
-            <tr><td>Fakturareserve</td><td>Beløp satt av i regnskapet for fremtidig fakturering. Basert på VIA og fremdrift.</td></tr>
-            <tr><td>QA</td><td><em>Quality Assurance</em> &mdash; kvalitetssikring. I denne sammenhengen betyr det at PL og DL gjennomgår og godkjenner tallene før de sendes til regnskapet.</td></tr>
-            <tr><td>Bokført</td><td>Beløp som er registrert (bokført) i økonomisystemet for inneværende periode.</td></tr>
-            <tr><td>Avvik</td><td>Differanse mellom forventet (VIA) og faktisk (bokført) beløp &mdash; eller PL sin vurdering om at en linje er feil.</td></tr>
-            <tr><td>Månedsavslutning</td><td>Prosessen der regnskapet for en måned lukkes og tallene sendes til konsernrapportering.</td></tr>
-            <tr><td>PL</td><td>Prosjektleder &mdash; ansvarlig for fremdrift og økonomi i prosjektet.</td></tr>
-            <tr><td>DL</td><td>Daglig leder &mdash; godkjenner totalbildet og låser perioden.</td></tr>
-            <tr><td>Periode</td><td>Den aktuelle måned/regnskapsperiode som vises i verktøyet.</td></tr>
-          </table>
-        </div>
+        <div class="help-section"><div class="help-table-wrap"><table>
+          <tr><td>VIA</td><td><em>Varer i arbeid</em> &mdash; verdien av utf&oslash;rt, men ikke oppgj&oslash;rt arbeid. P&aring;l&oslash;pte kostnader som enn&aring; ikke er fakturert eller inntektsf&oslash;rt.</td></tr>
+          <tr><td>Fakturareserve</td><td>Bel&oslash;p satt av i regnskapet for fremtidig fakturering, basert p&aring; VIA-bel&oslash;p og fremdrift.</td></tr>
+          <tr><td>Bokf&oslash;rt</td><td>Bel&oslash;p registrert i regnskapet for gjeldende periode &mdash; fra faktura, kreditnota eller interne posteringer.</td></tr>
+          <tr><td>Differanse</td><td>VIA minus bokf&oslash;rt. Stor negativ differanse er et signal om at noe b&oslash;r unders&oslash;kes av PL.</td></tr>
+          <tr><td>DG</td><td>Dekningsgrad i prosent &mdash; PLs estimat for l&oslash;nnsomheten p&aring; ordren. Brukes til &aring; beregne VIA-bel&oslash;pet.</td></tr>
+          <tr><td>QA</td><td><em>Quality Assurance</em> &mdash; kvalitetssikring av tallene f&oslash;r de sendes til konsernrapportering.</td></tr>
+          <tr><td>Periodeslutt</td><td>Siste dag i regnskapsperioden (f.eks. 31.07.2026). Alle tall er beregnet per denne datoen.</td></tr>
+          <tr><td>PL</td><td>Prosjektleder &mdash; ansvarlig for fremdrift og &oslash;konomi i prosjektet.</td></tr>
+          <tr><td>DL</td><td>Daglig leder &mdash; laster data, deler med PLene og godkjenner totalbildet.</td></tr>
+          <tr><td>Avvik</td><td>PLs flagging av at noe er feil eller uklart p&aring; en ordre. Krever alltid en forklarende kommentar.</td></tr>
+          <tr><td>M&aring;nedsslutt</td><td>Prosessen der regnskapet for en m&aring;ned lukkes og tallene sendes til konsernrapportering.</td></tr>
+        </table></div></div>
       </div>
     </div>
-    <div class="help-footer">
-      <button class="help-close" onclick="closeHelp()">Lukk</button>
-    </div>
+    <div class="help-footer"><button class="help-close" onclick="closeHelp()">Lukk</button></div>
   </div>
 </div>
 
@@ -572,7 +563,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.66 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.67 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
