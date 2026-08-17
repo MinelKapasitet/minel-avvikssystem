@@ -208,12 +208,12 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
 .hbadge.amber{background:#fef3c7;color:#92400e;}
 .help-status-row{display:flex;align-items:center;gap:10px;padding:7px 0;font-size:.88rem;color:#374151;border-bottom:1px solid #f3f4f6;}
 .help-status-row:last-child{border-bottom:none;}
-.help-app-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:.87rem;}
-.help-app-table td{padding:11px 14px;border-bottom:1px solid #e5e7eb;vertical-align:top;word-break:break-word;overflow-wrap:break-word;line-height:1.55;}
-.help-app-table tr:last-child td{border-bottom:none;}
-.help-app-table tr.happ-hl{background:#fff0f2;}
-.help-app-table tr.happ-hl td{border-left:3px solid #c8102e;}
-.help-app-table tr.happ-hl td:first-child{padding-left:11px;font-weight:700;color:#c8102e;}
+.help-app-row{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid #e5e7eb;}
+.help-app-row:last-child{border-bottom:none;}
+.help-app-label{flex:0 0 36%;font-size:.87rem;font-weight:600;color:#374151;word-break:break-word;}
+.help-app-desc{flex:1;font-size:.87rem;line-height:1.55;color:#4b5563;word-break:break-word;}
+.help-app-row.happ-hl .help-app-label{color:#c8102e;font-weight:700;}
+.help-app-row.happ-hl{background:#fff0f2;margin:0 -26px;padding:11px 26px;border-left:3px solid #c8102e;}
 .help-kol-table{width:100%;border-collapse:collapse;table-layout:fixed;font-size:.87rem;}
 .help-kol-table td{padding:8px 10px;border-bottom:1px solid #f3f4f6;vertical-align:top;word-break:break-word;overflow-wrap:break-word;line-height:1.55;}
 .help-kol-table tr:last-child td{border-bottom:none;}
@@ -358,35 +358,30 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
 
     <div id="happ" class="help-panel">
       <p style="margin:0 0 16px;color:#374151;font-size:.9rem;">Appen har seks faner som gir ulike perspektiver p&aring; de samme dataene:</p>
-      <table class="help-app-table">
-        <colgroup><col style="width:33%"><col style="width:67%"></colgroup>
-        <tbody>
-          <tr class="happ-hl">
-            <td>&#128202; POC + DG</td>
-            <td><strong>Viktigste fane.</strong> Her justerer du dekningsgraden (DG&nbsp;%) per ordre. DG er inngangsverdien i POC-beregningen og p&aring;virker VIA-bel&oslash;pet direkte. Lagre etter hver endring.</td>
-          </tr>
-          <tr>
-            <td>&#128269; QA &#8211; Alle</td>
-            <td>Komplett ordretabell med filter og sortering. PLer setter status og kommentar her. DL kan ogs&aring; redigere direkte.</td>
-          </tr>
-          <tr>
-            <td>&#128202; Dashboard</td>
-            <td>Overblikk for DL: total VIA, dekning, antall avvik og risikofordeling. Leveringsstatus per PL.</td>
-          </tr>
-          <tr>
-            <td>&#9888;&#65039; Risikoregister</td>
-            <td>Automatisk filtrert liste over ordrer med stor differanse, flaggede avvik eller andre risikoindikatorer.</td>
-          </tr>
-          <tr>
-            <td>&#9989; Status</td>
-            <td>Leveringsoversikt per PL. Viser hvem som er Ferdig / ikke, og n&aring;r de siste leverte. Brukes av DL til oppf&oslash;lging.</td>
-          </tr>
-          <tr>
-            <td>&#128194; Historikk</td>
-            <td>Snapshots fra tidligere perioder. Viser ordrens utvikling gjennom hele prosjektets levetid &#8212; n&aring;r du gj&oslash;r ny vurdering ser du hva som ble besluttet tidligere. Unng&aring;r overraskelser.</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="help-app-row happ-hl">
+        <div class="help-app-label">&#128202; POC + DG</div>
+        <div class="help-app-desc"><strong>Viktigste fane.</strong> Her justerer du dekningsgraden (DG&nbsp;%) per ordre. DG er inngangsverdien i POC-beregningen og p&aring;virker VIA-bel&oslash;pet direkte. Lagre etter hver endring.</div>
+      </div>
+      <div class="help-app-row">
+        <div class="help-app-label">&#128269; QA &#8211; Alle</div>
+        <div class="help-app-desc">Komplett ordretabell med filter og sortering. PLer setter status og kommentar her. DL kan ogs&aring; redigere direkte.</div>
+      </div>
+      <div class="help-app-row">
+        <div class="help-app-label">&#128202; Dashboard</div>
+        <div class="help-app-desc">Overblikk for DL: total VIA, dekning, antall avvik og risikofordeling. Leveringsstatus per PL.</div>
+      </div>
+      <div class="help-app-row">
+        <div class="help-app-label">&#9888;&#65039; Risikoregister</div>
+        <div class="help-app-desc">Automatisk filtrert liste over ordrer med stor differanse, flaggede avvik eller andre risikoindikatorer.</div>
+      </div>
+      <div class="help-app-row">
+        <div class="help-app-label">&#9989; Status</div>
+        <div class="help-app-desc">Leveringsoversikt per PL. Viser hvem som er Ferdig / ikke, og n&aring;r de siste leverte. Brukes av DL til oppf&oslash;lging.</div>
+      </div>
+      <div class="help-app-row">
+        <div class="help-app-label">&#128194; Historikk</div>
+        <div class="help-app-desc">Snapshots fra tidligere perioder. Viser ordrens utvikling gjennom hele prosjektets levetid &#8212; n&aring;r du gj&oslash;r ny vurdering ser du hva som ble besluttet tidligere. Unng&aring;r overraskelser.</div>
+      </div>
       <div class="help-tip" style="margin-top:16px;">Knappene i menylinjen: <strong>Del datasett</strong> deler med PLer &middot; <strong>Snapshot</strong> lagrer punkt-i-tid &middot; <strong>Eksporter Excel</strong> laster ned rapport &middot; <strong>Ny periode</strong> nullstiller appen.</div>
     </div>
 
@@ -867,7 +862,7 @@ function detectUser(account){
   _currentUser={email:email,name:name,isDL:isDL,company:DL_LIST[email]||null,plName:name};
   _spUser=email;
   var badge=document.getElementById('user-badge');
-  if(badge) badge.innerHTML=(isDL?'= DL: ':'= PL: ')+'<strong>'+name+'</strong>';
+  if(badge) badge.innerHTML=(isDL?'💼 DL: ':'👤 PL: ')+'<strong>'+name+'</strong>';
   if(!isDL){
     var savedCo=localStorage.getItem('VIA_PL_COMPANY');
     if(savedCo){
