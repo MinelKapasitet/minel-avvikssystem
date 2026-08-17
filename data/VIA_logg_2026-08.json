@@ -158,5 +158,17 @@
       "periode": "juli 2026",
       "antallOrdrer": 486
     }
+  },
+  {
+    "tidspunkt": "2026-08-17T11:11:54.595Z",
+    "bruker": "Øyvind Sæthersmoen",
+    "epost": "oyvind.saethersmoen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Gudbrandsdal AS",
+      "period": "juli 2026"
+    }
   }
 ]
