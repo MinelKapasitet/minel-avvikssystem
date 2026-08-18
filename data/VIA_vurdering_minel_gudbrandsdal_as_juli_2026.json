@@ -8,11 +8,11 @@
       "kommentar": "",
       "timer": 40,
       "timekost": 300,
-      "material": 60000,
+      "material": 0,
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-18T06:29:51.701Z"
+      "updatedAt": "2026-08-18T06:29:57.895Z"
     },
     "81461": {
       "dg": 15.8,
