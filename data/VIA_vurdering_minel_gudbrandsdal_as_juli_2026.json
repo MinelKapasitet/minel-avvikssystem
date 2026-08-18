@@ -7,12 +7,12 @@
       "begrunnelse": "",
       "kommentar": "",
       "timer": 165,
-      "timekost": null,
+      "timekost": 300,
       "material": 60000,
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-18T06:25:53.358Z"
+      "updatedAt": "2026-08-18T06:27:23.684Z"
     },
     "81461": {
       "dg": 15.8,
