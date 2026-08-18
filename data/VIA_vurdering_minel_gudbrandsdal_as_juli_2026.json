@@ -38,6 +38,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-08-18T06:24:36.069Z"
     },
+    "83579": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "martin.odlolien@minel.no",
+      "updatedAt": "2026-08-18T06:45:31.666Z"
+    },
     "84869": {
       "dg": 40,
       "begrunnelse": "Lavere timepris enn service",
