@@ -98,6 +98,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-08-18T06:44:43.400Z"
     },
+    "85769": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 100,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "martin.odlolien@minel.no",
+      "updatedAt": "2026-08-18T06:44:56.736Z"
+    },
     "86155": {
       "dg": 30,
       "begrunnelse": "Antatt DG",
