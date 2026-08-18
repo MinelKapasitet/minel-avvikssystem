@@ -40,7 +40,7 @@
     },
     "83579": {
       "dg": 36,
-      "begrunnelse": "",
+      "begrunnelse": "Riktig DG",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -48,7 +48,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-18T06:46:37.265Z"
+      "updatedAt": "2026-08-18T06:46:49.796Z"
     },
     "84869": {
       "dg": 40,
