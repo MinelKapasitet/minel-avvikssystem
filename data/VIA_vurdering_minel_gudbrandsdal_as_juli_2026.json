@@ -40,7 +40,7 @@
     },
     "81464": {
       "dg": 10.74,
-      "begrunnelse": "",
+      "begrunnelse": "Kostnader for andre hytter i samme prosjekt ligger på denne ordren",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -48,7 +48,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-18T06:48:19.428Z"
+      "updatedAt": "2026-08-18T06:48:43.058Z"
     },
     "83579": {
       "dg": 36.6,
