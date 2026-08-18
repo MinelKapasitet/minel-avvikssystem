@@ -26,6 +26,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-08-12T06:00:01.001Z"
     },
+    "81462": {
+      "dg": 20.16,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "martin.odlolien@minel.no",
+      "updatedAt": "2026-08-18T07:12:02.106Z"
+    },
     "81463": {
       "dg": 20.95,
       "begrunnelse": "Jobb er ferdig, reelt tall før kontroll av materiell",
