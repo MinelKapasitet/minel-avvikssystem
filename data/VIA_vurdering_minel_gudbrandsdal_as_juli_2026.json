@@ -6,13 +6,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 100,
+      "timer": 50,
       "timekost": 650,
       "material": 60000,
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-08-18T06:28:30.830Z"
+      "updatedAt": "2026-08-18T06:28:34.573Z"
     },
     "81461": {
       "dg": 15.8,
