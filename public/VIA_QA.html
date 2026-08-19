@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.72</title>
+<title>VIA QA – Minel AS v9.73</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.72</span>
+  <span class="hd-badge">v9.73</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -709,7 +709,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.72 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.73 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -780,15 +780,22 @@ async function ghSaveVurdering(company,period,retries){
 }
 // ════ AKTIVITETSLOGG (GitHub) ════
 var _loggedLogin=false;
-async function logEventRaw(tok,hendelse,detaljer){
+async function logEventRaw(tok,hendelse,detaljer,retries){
+  retries=retries||0;
   try{
     var filename=ghLogFile();
     var current=await ghRead(filename);
     var existing=current&&Array.isArray(current.data)?current.data:[];
-    existing.push({tidspunkt:new Date().toISOString(),bruker:_currentUser?_currentUser.name:(_spUser||'Ukjent'),epost:_currentUser?_currentUser.email:(_spUser||'ukjent'),rolle:_currentUser?(_currentUser.isDL?'DL':'PL'):'?',selskap:_currentEntity||(_currentUser&&_currentUser.company)||'',hendelse:hendelse,detaljer:detaljer||null});
+    existing.push({tidspunkt:new Date().toISOString(),bruker:_currentUser?_currentUser.name:(_spUser||'Ukjent'),epost:_currentUser?_currentUser.email:(_spUser||'ukjent'),rolle:_currentUser?(_currentUser.isDL?'DL':'PL'):'?',selskap:_currentEntity||(_currentUser&&_currentUser.company)||''  ,hendelse:hendelse,detaljer:detaljer||null});
     await ghWrite(filename,existing,current?current.sha:undefined);
     console.log('[LOG]',hendelse,detaljer);
-  }catch(e){console.warn('[LOG] Logging feilet stille:',e);}
+  }catch(e){
+    if(e.message&&(e.message.indexOf('422')>=0||e.message.indexOf('409')>=0)&&retries<3){
+      await new Promise(function(r){setTimeout(r,300+Math.random()*500);});
+      await logEventRaw(tok,hendelse,detaljer,retries+1);
+    }else{console.warn('[LOG] Logging feilet stille:',e);}
+  }
+}
 }
 async function logEvent(hendelse,detaljer){
   try{await logEventRaw(null,hendelse,detaljer);}catch(e){console.warn('[LOG] logEvent feilet:',e);}
