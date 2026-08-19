@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.77</title>
+<title>VIA QA – Minel AS v9.78</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -795,7 +795,6 @@ async function logEventRaw(tok,hendelse,detaljer,retries){
       await logEventRaw(tok,hendelse,detaljer,retries+1);
     }else{console.warn('[LOG] Logging feilet stille:',e);}
   }
-}
 }
 async function logEvent(hendelse,detaljer){
   try{await logEventRaw(null,hendelse,detaljer);}catch(e){console.warn('[LOG] logEvent feilet:',e);}
