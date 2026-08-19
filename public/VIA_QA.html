@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.69</title>
+<title>VIA QA – Minel AS v9.70</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -2420,7 +2420,7 @@ function rPOC(){
   var dv=0;
   document.getElementById('dgtbl').innerHTML=
     '<thead><tr>'+
-    ['Ordre','PL','Type','Beskrivelse','Kunde','Påløpte kostnader','Fakturert','FG%','Justert kontrakt','DG%','DG% forrige periode','Forv. salgsverdi','VIA','Begrunnelse','Risiko'].map(function(n,i){
+    ['Ordre','PL','Type','Beskrivelse','Kunde','Påløpte kostnader','Fakturert','DG%','DG% forrige periode','Forv. salgsverdi','VIA','Begrunnelse','Risiko'].map(function(n,i){
       var sortable=[0,1,2,3,4,5,6,11,12,14].indexOf(i)>=0;
       var style=([5,6,11,12].indexOf(i)>=0)?'style="text-align:right"':([7,9].indexOf(i)>=0)?'style="text-align:right;color:#9EC8FF"':([8].indexOf(i)>=0)?'style="text-align:right;color:#aaa"':([10,14].indexOf(i)>=0)?'style="text-align:center"':'';
       var cls=DGS.col===i?(DGS.asc?' class="sa"':' class="sd"'):'';
@@ -2475,8 +2475,7 @@ function rPOC(){
         '<td style="max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+r.kunde+'</td>'+
         '<td class="r">'+NK(r.totOmk)+'</td>'+
         '<td class="r">'+NK(r.fakt)+'</td>'+
-        '<td style="text-align:right;">'+fgCell+'</td>'+
-        '<td style="text-align:right;">'+kvCell+'</td>'+
+        
         '<td>'+dgCell+'</td>'+
         '<td class="c">'+prevDGCell(r.ordreNr,c.dg)+'</td>'+
         '<td class="r calc">'+NK(c.fs)+'</td>'+
