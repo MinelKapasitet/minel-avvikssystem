@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.67</title>
+<title>VIA QA – Minel AS v9.69</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -648,7 +648,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
       • Rund DG% på manuelle ordrer: +1 poeng<br>
       • Mangler begrunnelse (manuell regningsordre): +1 poeng
     </div>
-    <div class="sec-note" id="sec2note">Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet. <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span></div>
+    <div class="sec-note" id="sec2note">Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet. <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder. PL kan overstyre %-en fra OS." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span></div>
     <div style="margin:8px 0 4px;display:flex;gap:16px;flex-wrap:wrap;">
       <label style="display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--mid);cursor:pointer;">
         <input type="checkbox" id="hideSettledChk" onchange="HIDE_SETTLED=this.checked;rPOC()"> Skjul ordrer med VIA &lt; ±5 000 kr (fullt fakturerte)
@@ -1405,7 +1405,7 @@ function fetchLatestMaterialDate(key,id){
 }
 // ─── HISTORISK MODUS ────────────────────────────────────────────────────────
 // Hent alle saks-IDer som har fått faktura ETTER periodeslutt.
-// Disse sakene var IKKE Bokfurt på periodeslutt-datoen, men er det i dag.
+// Disse sakene var IKKE Bokført på periodeslutt-datoen, men er det i dag.
 // Metode: company-wide salesInvoices (uten caseIds-filter) gir case{id} per faktura.
 // Returnerer Set<caseId> — tomme Set for inneværende periode (ingen fremtidige fakturaer).
 function fetchPostPeriodInvoicedCases(key, periodEndUnix){
@@ -1566,7 +1566,7 @@ function newBadge(ordreNr){
   return isNewOrder(ordreNr) ? '<span title="Ny ordre — ikke vært med i tidligere vurdering" style="background:#DBEAFE;color:#1D4ED8;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">NY</span>' : '';
 }
 function histBadge(r){
-  return r.historicalReopen ? '<span title="Saken er Bokfurt i dag, men var aktiv og åpen per periodeslutt-dato. Inkludert via historisk fakturadato-analyse." style="background:#FEF3C7;color:#92400E;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">= HIST</span>' : '';
+  return r.historicalReopen ? '<span title="Saken er Bokført i dag, men var aktiv og åpen per periodeslutt-dato. Inkludert via historisk fakturadato-analyse." style="background:#FEF3C7;color:#92400E;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">= HIST</span>' : '';
 }
 
 /* ============================================================
@@ -1667,7 +1667,7 @@ function startApiLoad(){
       return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC},between:{field:createdAt,from:'+uf+',to:'+ut+'}){items{id caseNumber description status{text} caseType{text} customer{name} foreman{fullName} offerTotal parentCaseId economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice}}nextCursor}}';
     }, function(d){return d.cases;}),
     // Historisk modus: hent saks-IDer som var aktive på periodeslutt men er terminal i dag.
-    // Signal 1: fikk faktura etter periodeslutt (Bokfurt i etterkant)
+    // Signal 1: fikk faktura etter periodeslutt (Bokført i etterkant)
     // Signal 2: statusendring til terminal etter periodeslutt (uten ny faktura, f.eks. direktebokføring)
     fetchPostPeriodInvoicedCases(co.key, ut),
     fetchPostPeriodStatusChangedCases(co.key, ut)
@@ -1679,7 +1679,7 @@ function startApiLoad(){
     res[3].forEach(function(id){ reopenCaseIds.add(id); });
     console.log('[HIST] Totalt re-åpningssett (faktura+statusendring):', reopenCaseIds.size);
     var bn = Object.keys(BENCH).length;
-    document.getElementById('sec2note').innerHTML = 'Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet.'+(bn>0?' <span style="background:var(--bluebg);color:var(--blue);border-radius:4px;padding:2px 8px;font-size:.78rem;font-weight:700;">= Benchmark: '+bn+' ordretyper</span>':'')+'  <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span>';
+    document.getElementById('sec2note').innerHTML = 'Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet.'+(bn>0?' <span style="background:var(--bluebg);color:var(--blue);border-radius:4px;padding:2px 8px;font-size:.78rem;font-weight:700;">= Benchmark: '+bn+' ordretyper</span>':'')+'  <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder. PL kan overstyre %-en fra OS." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span>';
 
     // Telle alle statuser for diagnostikk
     var _statusTeller = {};
@@ -1725,8 +1725,8 @@ function startApiLoad(){
       // Matcher: "Varetelling 2024", "Varetelling biler 2025", "Varetelling Ski" etc.
       if(/varetelling/.test(descLower)) return false;
       // ── Historisk re-inkludering ─────────────────────────────────────────
-      // En sak kan i dag være Bokfurt/terminal, men var aktiv på periodeslutt-dato.
-      // Signal: saken fikk sin (slutt)faktura ETTER periodeslutt → den var ikke Bokfurt da.
+      // En sak kan i dag være Bokført/terminal, men var aktiv på periodeslutt-dato.
+      // Signal: saken fikk sin (slutt)faktura ETTER periodeslutt → den var ikke Bokført da.
       // Vi markerer disse med _historicalReopen = true og hopper over datokontroll.
       if(EXCL_STATUS.has(statusText)){
         if(reopenCaseIds.has(c.id)){
@@ -1740,7 +1740,7 @@ function startApiLoad(){
       return statusText !== '';
     });
     if(histReopenCount > 0){
-      console.log('[HIST] '+histReopenCount+' saker gjeninkludert (var aktive ved '+dateStr+', er nå Bokfurt)');
+      console.log('[HIST] '+histReopenCount+' saker gjeninkludert (var aktive ved '+dateStr+', er nå Bokført)');
     }
 
     // Diagnostikk: vis nye statuser som ikke var i opprinnelig VSTATUS
@@ -2260,6 +2260,7 @@ function applyGlobalDG(){
 /* ============================================================
    POC + DG RENDER
    ============================================================ */
+function plInitials(n){return (n||"").split(" ").map(function(w){return w[0]||"";}).join("").toUpperCase();}
 function rPOC(){
   var pl=document.getElementById('pp').value;
   var stk=parseFloat(document.getElementById('stk').value)||650;
@@ -2341,7 +2342,7 @@ function rPOC(){
         return '<tr class="'+(warn?'rwarn':'')+'"'+(indent?' style="border-left:3px solid #3b82f6;"':'')+'>'+
           '<td style="'+(indent?'padding-left:22px;':'')+'">'+(indent?'↳ ':'')+
             '<strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+histBadge(r)+'</td>'+
-          '<td style="white-space:nowrap">'+r.pl+'</td>'+
+          '<td style="white-space:nowrap">'+(pl?(plInitials(r.pl)+(r.kunde?'<br><small style="opacity:.65;font-weight:400">'+r.kunde+'</small>':'')):r.pl)+'</td>'+
           '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+bs+'</td>'+
           '<td class="r">'+NK(r.tilbud)+'</td>'+
           '<td class="r">'+NK(r.totOmk)+'</td>'+
@@ -2459,7 +2460,7 @@ function rPOC(){
           ' style="width:48px;border-color:#9EC8FF;color:#9EC8FF;text-align:right;"'+
           ' title="Ferdighetskortgrad — andel av prosjektet fullført">'+
           '<span style="font-size:.8rem;color:#9EC8FF">%</span></div>';
-      var kvCell=isDL
+      var kvCell=r.isTM?'<span style="color:#aaa;font-size:.85rem;display:block;text-align:right;">–</span>':isDL
         ?'<div style="display:flex;align-items:center;gap:4px;justify-content:flex-end;">'+
           '<input class="pi" type="text" inputmode="numeric" value="'+(kvVal!=null?fmtI(kvVal):'')+'" '+
           ' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'kv\',this)"'+
@@ -2468,7 +2469,7 @@ function rPOC(){
         :'<span style="color:#aaa;font-size:.85rem;">'+(kvVal!=null?NK(kvVal):'–')+'</span>';
       return '<tr>'+
         '<td><strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+'</td>'+
-        '<td style="white-space:nowrap">'+r.pl+'</td>'+
+        '<td style="white-space:nowrap">'+(pl?plInitials(r.pl):r.pl)+'</td>'+
         '<td>'+r.type+'</td>'+
         '<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+bs+'</td>'+
         '<td style="max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+r.kunde+'</td>'+
@@ -2498,19 +2499,21 @@ function rPOC(){
 function rHist(){
   var hist=getHist();
   var el=document.getElementById('histcontent');
-  if(!hist.length){
-    el.innerHTML='<div class="hist-empty">= Ingen historikk enda.<br>Lås en periode for å aktivere <strong>"DG% forrige periode"</strong>-kolonnen i seksjon 2.</div>';
-    return;
+  if(!hist.length){el.innerHTML='<div class="hist-empty">📁 Ingen historikk enda.<br>Lås en periode for å aktivere <strong>&ldquo;DG% forrige periode&rdquo;</strong>-kolonnen i seksjon 2.</div>';return;}
+  var sv=document.getElementById('hist-search')?document.getElementById('hist-search').value.trim().toUpperCase():'';
+  var sHtml='<div style="margin-bottom:12px;display:flex;gap:8px;align-items:center;"><input id="hist-search" type="text" placeholder="Søk ordrenr. — se trend på tvers av perioder…" value="'+sv+'" style="padding:6px 10px;border:1px solid #ccc;border-radius:6px;font-size:.85rem;width:280px;" oninput="rHist()">'+(sv?'<button onclick="document.getElementById(\'hist-search\').value=\'\';rHist()" style="padding:4px 10px;border:1px solid #ccc;border-radius:6px;font-size:.8rem;cursor:pointer;background:#fff;">✕ Nullstill</button>":'')+'</div>';
+  if(sv){
+    var trends=hist.slice().reverse().map(function(snap){var p=snap.projects&&snap.projects.find(function(x){return x.ordreNr&&x.ordreNr.toUpperCase()===sv;});return p?{period:snap.period,entity:snap.entity,via:p.via,dg:p.dg,totOmk:p.totOmk,fakt:p.fakt,risk:p.risk,beskr:p.beskr,pl:p.pl}:null;}).filter(Boolean);
+    if(!trends.length){el.innerHTML=sHtml+'<div style="padding:24px;color:#888;text-align:center;">🔍 Ingen historikk for ordrenr. &laquo;'+sv+'&raquo;</div>';return;}
+    var t0=trends[0];
+    el.innerHTML=sHtml+'<div style="margin-bottom:8px;font-size:.85rem;color:#555;"><strong>'+sv+'</strong>'+(t0.beskr?' — '+t0.beskr:'')+(t0.pl?' · PL: '+t0.pl:'')+'</div><div class="tw"><table><thead><tr><th>Periode</th><th>Selskap</th><th style="text-align:right">Kostnader</th><th style="text-align:right">Fakturert</th><th style="text-align:right;color:#9EC8FF">DG%</th><th style="text-align:right">VIA</th><th style="text-align:center">Risiko</th></tr></thead><tbody>'
+      +trends.map(function(t){var dgPct=t.dg!=null?(Math.round(t.dg*1000)/10)+'%':'–';var viaFmt=t.via!=null?NK(t.via):'–';var viaCol=t.via!=null&&t.via<0?'color:var(--red)':t.via!=null&&t.via>50000?'color:var(--amber)':'';
+        return '<tr><td><strong>'+t.period+'</strong></td><td>'+t.entity+'</td><td class="r">'+NK(t.totOmk)+'</td><td class="r">'+NK(t.fakt)+'</td><td class="r" style="color:#9EC8FF">'+dgPct+'</td><td class="r" style="font-weight:700;'+viaCol+'">'+viaFmt+'</td><td class="c">'+rb(t.risk)+'</td></tr>';
+      }).join('')+'</tbody></table></div>';return;
   }
-  el.innerHTML='<div class="tw"><table><thead><tr><th>Periode</th><th>Selskap</th><th>Låst av</th><th>Dato</th><th style="text-align:right">Total VIA</th><th style="text-align:right">POC-VIA</th><th style="text-align:right">DG-VIA</th><th style="text-align:center">Ordrer</th><th style="text-align:center">Kritiske</th></tr></thead><tbody>'+
-    hist.slice().reverse().map(function(h){
-      return '<tr><td><strong>'+h.period+'</strong></td><td>'+h.entity+'</td><td>'+h.lockedBy+'</td><td>'+new Date(h.lockedAt).toLocaleDateString('no-NO')+'</td><td class="r" style="font-weight:700;color:'+(h.summary.totalVIA>100000?'var(--amber)':'var(--dark)')+'">'+NK(h.summary.totalVIA)+'</td><td class="r">'+NK(h.summary.pocVIA)+'</td><td class="r">'+NK(h.summary.dgVIA)+'</td><td class="c">'+h.summary.projectCount+'</td><td class="c">'+(h.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+h.summary.highRisk+'</span>':'0')+'</td></tr>';
-    }).join('')+'</tbody></table></div>';
+  el.innerHTML=sHtml+'<div class="tw"><table><thead><tr><th>Periode</th><th>Selskap</th><th>Låst av</th><th>Dato</th><th style="text-align:right">Total VIA</th><th style="text-align:right">POC-VIA</th><th style="text-align:right">DG-VIA</th><th style="text-align:center">Ordrer</th><th style="text-align:center">Kritiske</th></tr></thead><tbody>'
+    +hist.slice().reverse().map(function(snap){return '<tr><td><strong>'+snap.period+'</strong></td><td>'+snap.entity+'</td><td>'+snap.lockedBy+'</td><td>'+new Date(snap.lockedAt).toLocaleDateString('no-NO')+'</td><td class="r" style="font-weight:700;color:'+(snap.summary.totalVIA>100000?'var(--amber)':'var(--dark)')+'">'+NK(snap.summary.totalVIA)+'</td><td class="r">'+NK(snap.summary.pocVIA)+'</td><td class="r">'+NK(snap.summary.dgVIA)+'</td><td class="c">'+snap.summary.projectCount+'</td><td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td></tr>';}).join('')+'</tbody></table></div>';
 }
-
-/* ============================================================
-   LOCK & SAVE
-   ============================================================ */
 function openLock(){ document.getElementById('lmodal').classList.add('open'); }
 function closeLock(){ document.getElementById('lmodal').classList.remove('open'); }
 function doLock(){
