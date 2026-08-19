@@ -1164,10 +1164,12 @@ var EXCL_TYPES = new Set(['Intern','Internordre','Intern ordre',
   var d = new Date(); d.setDate(0);
   document.getElementById('period-date').value = d.toISOString().substring(0,10);
   var dz = document.getElementById('dz');
-  dz.addEventListener('dragover', function(e){e.preventDefault();dz.classList.add('over');});
-  dz.addEventListener('dragleave', function(){dz.classList.remove('over');});
-  dz.addEventListener('drop', function(e){e.preventDefault();dz.classList.remove('over');goExcel(e.dataTransfer.files[0]);});
-  document.getElementById('fi').addEventListener('change', function(e){goExcel(e.target.files[0]);});
+  if(dz){
+    dz.addEventListener('dragover', function(e){e.preventDefault();dz.classList.add('over');});
+    dz.addEventListener('dragleave', function(){dz.classList.remove('over');});
+    dz.addEventListener('drop', function(e){e.preventDefault();dz.classList.remove('over');goExcel(e.dataTransfer.files[0]);});
+  }
+  var fi=document.getElementById('fi');if(fi)fi.addEventListener('change',function(e){goExcel(e.target.files[0]);});
   loadSession();
 })();
 
