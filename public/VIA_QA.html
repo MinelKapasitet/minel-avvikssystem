@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.67</span>
+  <span class="hd-badge">v9.68</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -487,6 +487,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
         <p style="margin-top:8px;color:#8892b0;font-size:.74rem;">Påkrevd for å laste og dele data</p>
       </div>
       <div id="dl-section" style="display:none;text-align:left;">
+        <div id="dl-resume" style="display:none;margin-bottom:14px;"></div>
         <div style="margin-bottom:12px;">
           <label style="font-size:.78rem;font-weight:600;color:#555;display:block;margin-bottom:4px;">Selskap</label>
           <select id="co-sel" style="width:100%;padding:9px 12px;border-radius:8px;border:1.5px solid #ddd;font-size:.9rem;color:#222;">
@@ -708,7 +709,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.67 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.68 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -884,6 +885,9 @@ function detectUser(account){
       dlConf.innerHTML='✅ Innlogget som <strong>'+name+'</strong>';
     }
     var snapBtn=document.getElementById('snap-btn');if(snapBtn)snapBtn.style.display='';
+    var _dlSavedCo=localStorage.getItem('VIA_DL_CO');
+    var _dlSavedPd=localStorage.getItem('VIA_DL_PERIOD');
+    if(_dlSavedCo&&_dlSavedPd){var _coEl=document.getElementById('co-sel');var _pdEl=document.getElementById('period-date');if(_coEl)_coEl.value=_dlSavedCo;if(_pdEl)_pdEl.value=_dlSavedPd;var _resumeDiv=document.getElementById('dl-resume');if(_resumeDiv){var _coName=_coEl&&_coEl.selectedIndex>=0?_coEl.options[_coEl.selectedIndex].text:'';var _pdFmt=_dlSavedPd?new Date(_dlSavedPd).toLocaleDateString('no-NO',{day:'numeric',month:'long',year:'numeric'}):'';_resumeDiv.style.display='block';_resumeDiv.innerHTML='<button onclick="startApiLoad()" style="width:100%;padding:11px 14px;background:#1a2332;color:#fff;border:none;border-radius:8px;font-size:.88rem;font-weight:600;cursor:pointer;text-align:left;">▶ Fortsett: <span style=\'opacity:.8\'>'+_coName+' – '+_pdFmt+'<\/span><\/button>'}}
     rPOC();
   }
 }
@@ -1948,6 +1952,9 @@ function toggleGrpMode(base){
 
 function parseRows(rows,src,prd){
   localStorage.setItem('VIA_LOAD_TS',new Date().toISOString());
+  var _dlCoEl=document.getElementById('co-sel');var _dlPdEl=document.getElementById('period-date');
+  if(_dlCoEl&&_dlCoEl.value)localStorage.setItem('VIA_DL_CO',_dlCoEl.value);
+  if(_dlPdEl&&_dlPdEl.value)localStorage.setItem('VIA_DL_PERIOD',_dlPdEl.value);
   // Nullstill all periode-spesifikk state for å unngå krysskontaminering mellom perioder
   // Ekskluder ordrer med 0 i faktiske påløpte kostnader — UNNTAK: ordrer med signert tilbud (POC)
   // inkluderes selv uten kostnader ennå, da de representerer fremtidig fakturareserve (matcher PA)
