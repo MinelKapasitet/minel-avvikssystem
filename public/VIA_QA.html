@@ -2498,21 +2498,61 @@ function rPOC(){
    ============================================================ */
 function rHist(){
   var hist=getHist();
-  var el=document.getElementById('histcontent');
-  if(!hist.length){el.innerHTML='<div class="hist-empty">📁 Ingen historikk enda.<br>Lås en periode for å aktivere <strong>&ldquo;DG% forrige periode&rdquo;</strong>-kolonnen i seksjon 2.</div>';return;}
-  var sv=document.getElementById('hist-search')?document.getElementById('hist-search').value.trim().toUpperCase():'';
-  var sHtml='<div style="margin-bottom:12px;display:flex;gap:8px;align-items:center;"><input id="hist-search" type="text" placeholder="Søk ordrenr. — se trend på tvers av perioder…" value="'+sv+'" style="padding:6px 10px;border:1px solid #ccc;border-radius:6px;font-size:.85rem;width:280px;" oninput="rHist()">'+(sv?'<button onclick="document.getElementById(\'hist-search\').value=\'\';rHist()" style="padding:4px 10px;border:1px solid #ccc;border-radius:6px;font-size:.8rem;cursor:pointer;background:#fff;">✕ Nullstill</button>":'')+'</div>';
-  if(sv){
-    var trends=hist.slice().reverse().map(function(snap){var p=snap.projects&&snap.projects.find(function(x){return x.ordreNr&&x.ordreNr.toUpperCase()===sv;});return p?{period:snap.period,entity:snap.entity,via:p.via,dg:p.dg,totOmk:p.totOmk,fakt:p.fakt,risk:p.risk,beskr:p.beskr,pl:p.pl}:null;}).filter(Boolean);
-    if(!trends.length){el.innerHTML=sHtml+'<div style="padding:24px;color:#888;text-align:center;">🔍 Ingen historikk for ordrenr. &laquo;'+sv+'&raquo;</div>';return;}
-    var t0=trends[0];
-    el.innerHTML=sHtml+'<div style="margin-bottom:8px;font-size:.85rem;color:#555;"><strong>'+sv+'</strong>'+(t0.beskr?' — '+t0.beskr:'')+(t0.pl?' · PL: '+t0.pl:'')+'</div><div class="tw"><table><thead><tr><th>Periode</th><th>Selskap</th><th style="text-align:right">Kostnader</th><th style="text-align:right">Fakturert</th><th style="text-align:right;color:#9EC8FF">DG%</th><th style="text-align:right">VIA</th><th style="text-align:center">Risiko</th></tr></thead><tbody>'
-      +trends.map(function(t){var dgPct=t.dg!=null?(Math.round(t.dg*1000)/10)+'%':'–';var viaFmt=t.via!=null?NK(t.via):'–';var viaCol=t.via!=null&&t.via<0?'color:var(--red)':t.via!=null&&t.via>50000?'color:var(--amber)':'';
-        return '<tr><td><strong>'+t.period+'</strong></td><td>'+t.entity+'</td><td class="r">'+NK(t.totOmk)+'</td><td class="r">'+NK(t.fakt)+'</td><td class="r" style="color:#9EC8FF">'+dgPct+'</td><td class="r" style="font-weight:700;'+viaCol+'">'+viaFmt+'</td><td class="c">'+rb(t.risk)+'</td></tr>';
-      }).join('')+'</tbody></table></div>';return;
+  var el=document.getElementById("histcontent");
+  if(!hist.length){
+    el.innerHTML='<div class="hist-empty">📁 Ingen historikk enda.<br>Lås en periode for å aktivere <strong>&ldquo;DG% forrige periode&rdquo;</strong>-kolonnen i seksjon 2.</div>';
+    return;
   }
-  el.innerHTML=sHtml+'<div class="tw"><table><thead><tr><th>Periode</th><th>Selskap</th><th>Låst av</th><th>Dato</th><th style="text-align:right">Total VIA</th><th style="text-align:right">POC-VIA</th><th style="text-align:right">DG-VIA</th><th style="text-align:center">Ordrer</th><th style="text-align:center">Kritiske</th></tr></thead><tbody>'
-    +hist.slice().reverse().map(function(snap){return '<tr><td><strong>'+snap.period+'</strong></td><td>'+snap.entity+'</td><td>'+snap.lockedBy+'</td><td>'+new Date(snap.lockedAt).toLocaleDateString('no-NO')+'</td><td class="r" style="font-weight:700;color:'+(snap.summary.totalVIA>100000?'var(--amber)':'var(--dark)')+'">'+NK(snap.summary.totalVIA)+'</td><td class="r">'+NK(snap.summary.pocVIA)+'</td><td class="r">'+NK(snap.summary.dgVIA)+'</td><td class="c">'+snap.summary.projectCount+'</td><td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td></tr>';}).join('')+'</tbody></table></div>';
+  var sv=(document.getElementById("hist-search")||{value:""}).value.trim().toUpperCase();
+  var inp='<div style="margin-bottom:12px;display:flex;gap:8px;align-items:center;">'
+    +'<input id="hist-search" type="text" placeholder="Søk ordrenr. — se trend på tvers av perioder…" value="'+sv+'"'
+    +' style="padding:6px 10px;border:1px solid #ccc;border-radius:6px;font-size:.85rem;width:280px;" oninput="rHist()">';
+  var cls=sv?'<button onclick="this.previousElementSibling.value=\x27\x27;rHist()" style="padding:4px 10px;border:1px solid #ccc;border-radius:6px;font-size:.8rem;cursor:pointer;background:#fff;">✕ Nullstill</button>':""
+  var sHtml=inp+cls+'</div>';
+  if(sv){
+    var trends=hist.slice().reverse().map(function(snap){
+      var p=snap.projects&&snap.projects.find(function(x){return x.ordreNr&&x.ordreNr.toUpperCase()===sv;});
+      return p?{period:snap.period,entity:snap.entity,via:p.via,dg:p.dg,totOmk:p.totOmk,fakt:p.fakt,risk:p.risk,beskr:p.beskr,pl:p.pl}:null;
+    }).filter(Boolean);
+    if(!trends.length){
+      el.innerHTML=sHtml+'<div style="padding:24px;color:#888;text-align:center;">🔍 Ingen historikk for ordrenr. «'+sv+'»</div>';
+      return;
+    }
+    var t0=trends[0];
+    el.innerHTML=sHtml
+      +'<div style="margin-bottom:8px;font-size:.85rem;color:#555;"><strong>'+sv+'</strong>'+(t0.beskr?' — '+t0.beskr:'')+(t0.pl?' · PL: '+t0.pl:'')+'</div>'
+      +'<div class="tw"><table><thead><tr>'
+      +'<th>Periode</th><th>Selskap</th>'
+      +'<th style="text-align:right">Kostnader</th><th style="text-align:right">Fakturert</th>'
+      +'<th style="text-align:right;color:#9EC8FF">DG%</th><th style="text-align:right">VIA</th>'
+      +'<th style="text-align:center">Risiko</th></tr></thead><tbody>'
+      +trends.map(function(t){
+        var dgPct=t.dg!=null?(Math.round(t.dg*1000)/10)+"%":"–";
+        var viaFmt=t.via!=null?NK(t.via):"–";
+        var viaCol=t.via<0?"color:var(--red)":t.via>50000?"color:var(--amber)":"";
+        return '<tr>'
+          +'<td><strong>'+t.period+'</strong></td><td>'+t.entity+'</td>'
+          +'<td class="r">'+NK(t.totOmk)+'</td><td class="r">'+NK(t.fakt)+'</td>'
+          +'<td class="r" style="color:#9EC8FF">'+dgPct+'</td>'
+          +'<td class="r" style="font-weight:700;'+viaCol+'">'+viaFmt+'</td>'
+          +'<td class="c">'+rb(t.risk)+'</td></tr>';
+      }).join("")
+      +'</tbody></table></div>';
+    return;
+  }
+  el.innerHTML=sHtml
+    +'<div class="tw"><table><thead><tr><th>Periode</th><th>Selskap</th><th>Låst av</th>'
+    +'<th>Dato</th><th style="text-align:right">Total VIA</th><th style="text-align:right">POC-VIA</th>'
+    +'<th style="text-align:right">DG-VIA</th><th style="text-align:center">Ordrer</th><th style="text-align:center">Kritiske</th></tr></thead><tbody>'
+    +hist.slice().reverse().map(function(snap){
+      return '<tr><td><strong>'+snap.period+'</strong></td><td>'+snap.entity+'</td><td>'+snap.lockedBy+'</td>'
+        +'<td>'+new Date(snap.lockedAt).toLocaleDateString("no-NO")+'</td>'
+        +'<td class="r" style="font-weight:700;color:'+(snap.summary.totalVIA>100000?"var(--amber)":"var(--dark)")+'">'+NK(snap.summary.totalVIA)+'</td>'
+        +'<td class="r">'+NK(snap.summary.pocVIA)+'</td><td class="r">'+NK(snap.summary.dgVIA)+'</td>'
+        +'<td class="c">'+snap.summary.projectCount+'</td>'
+        +'<td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td></tr>';
+    }).join("")
+    +'</tbody></table></div>';
 }
 function openLock(){ document.getElementById('lmodal').classList.add('open'); }
 function closeLock(){ document.getElementById('lmodal').classList.remove('open'); }
