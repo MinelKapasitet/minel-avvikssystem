@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.73</title>
+<title>VIA QA – Minel AS v9.74</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.73</span>
+  <span class="hd-badge">v9.74</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -709,7 +709,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.73 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.74 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -726,7 +726,7 @@ function ghPeriodSafe(p){return(p||'').replace(/[^a-z0-9]/gi,'_');}
 function ghDatasetFile(co){return 'VIA_datasett_'+ghSlug(co)+'.json';}
 function ghVurderingFile(co,per){return 'VIA_vurdering_'+ghSlug(co)+'_'+ghPeriodSafe(per)+'.json';}
 function ghHistFile(co){return 'VIA_historikk_'+ghSlug(co)+'.json';}
-function ghLogFile(){var now=new Date();return 'VIA_logg_'+now.getFullYear()+'-'+(String(now.getMonth()+1).padStart(2,'0'))+'.json';}
+function ghLogFile(){var now=new Date();var slug=_currentEntity?ghSlug(_currentEntity):'global';return 'VIA_logg_'+slug+'_'+now.getFullYear()+'-'+(String(now.getMonth()+1).padStart(2,'0'))+'.json';}
 function ghEncode(str){return btoa(unescape(encodeURIComponent(str)));}
 function ghDecode(b64){return decodeURIComponent(escape(atob(b64.replace(/\n/g,''))));}
 async function ghRead(filename){
