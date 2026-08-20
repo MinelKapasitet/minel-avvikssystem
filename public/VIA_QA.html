@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.82</title>
+<title>VIA QA – Minel AS v9.83</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.82</span>
+  <span class="hd-badge">v9.83</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -710,7 +710,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.82 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.83 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1262,7 +1262,7 @@ function clearSession(){
   if(banner)banner.style.display='none';
 }
 function clearHist(){
-  if(!confirm('Slett all historikk? Dette kan ikke angres.'))return;
+  var _ck=prompt('Skriv SLETT (store bokstaver) for å bekrefte permanent sletting av all historikk:');if(_ck!=='SLETT')return;
   localStorage.removeItem(HIST_KEY);
   rHist();
 }
@@ -2531,7 +2531,7 @@ function rHist(){
       +'<th>Periode</th><th>Selskap</th>'
       +'<th style="text-align:right">Kostnader</th><th style="text-align:right">Fakturert</th>'
       +'<th style="text-align:right;color:#9EC8FF">DG%</th><th style="text-align:right">VIA</th>'
-      +'<th style="text-align:center">Risiko</th></tr></thead><tbody>'
+      +'<th style="text-align:right">Fremdrift %</th><th style="text-align:center">Risiko</th></tr></thead><tbody>'
       +trends.map(function(t){
         var dgPct=t.dg!=null?(Math.round(t.dg*1000)/10)+"%":"–";
         var viaFmt=t.via!=null?NK(t.via):"–";
@@ -2541,7 +2541,7 @@ function rHist(){
           +'<td class="r">'+NK(t.totOmk)+'</td><td class="r">'+NK(t.fakt)+'</td>'
           +'<td class="r" style="color:#9EC8FF">'+dgPct+'</td>'
           +'<td class="r" style="font-weight:700;'+viaCol+'">'+viaFmt+'</td>'
-          +'<td class="c">'+rb(t.risk)+'</td></tr>';
+          +'<td class="c">'++'<td class="r">'+(t.pct!=null?t.pct+'%':'-')+'</td>'+rb(t.risk)+'</td></tr>';
       }).join("")
       +'</tbody></table></div>';
     return;
@@ -2651,7 +2651,7 @@ function saveSnap(name,entity,period){
       via:via!=null?Math.round(via):null,
       dg:dg!=null?Math.round(dg*10000)/10000:null,
       fg:r.hasTilbud&&_fg!=null?Math.round(_fg*1000)/1000:null,
-      hasTilbud:r.hasTilbud,risk:r.risk
+      hasTilbud:r.hasTilbud,risk:r.risk,pct:r.pct!=null?r.pct:null
     };
   });
   var snap={
