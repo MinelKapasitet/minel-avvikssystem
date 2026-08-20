@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.81</title>
+<title>VIA QA – Minel AS v9.82</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.81</span>
+  <span class="hd-badge">v9.82</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -687,7 +687,8 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
       <button class="btn btn-dark" onclick="expHist()">= Eksporter historikk</button>
       <button class="btn" style="background:#888;" onclick="clearHist()">= Slett historikk</button>
     </div>
-    <div id="histcontent"></div>
+    <div style="padding:8px 0 4px 0"><input id="hist-filter" type="text" placeholder="Søk i historikk..." style="padding:6px 10px;border:1px solid #555;border-radius:6px;background:#1e293b;color:#e2e8f0;font-size:.9rem;width:220px" oninput="rHist()"> <button onclick="document.getElementById('hist-filter').value='';rHist()" style="margin-left:6px;padding:6px 12px;background:#374151;color:#e2e8f0;border:none;border-radius:6px;cursor:pointer;font-size:.85rem">Nullstill</button></div>
+<div id="histcontent"></div>
   </div>
 </div>
 
@@ -709,7 +710,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.81 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.82 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2508,12 +2509,12 @@ function rHist(){
     el.innerHTML='<div class="hist-empty">📁 Ingen historikk enda.<br>Lås en periode for å aktivere <strong>&ldquo;DG% forrige periode&rdquo;</strong>-kolonnen i seksjon 2.</div>';
     return;
   }
-  var sv=(document.getElementById("hist-search")||{value:""}).value.trim().toUpperCase();
+  var sv=(document.getElementById("hist-filter")||{value:""}).value.trim().toUpperCase();
   var inp='<div style="margin-bottom:12px;display:flex;gap:8px;align-items:center;">'
     +'<input id="hist-search" type="text" placeholder="Søk ordrenr. — se trend på tvers av perioder…" value="'+sv+'"'
     +' style="padding:6px 10px;border:1px solid #ccc;border-radius:6px;font-size:.85rem;width:280px;" oninput="rHist()">';
   var cls=sv?'<button onclick="this.previousElementSibling.value=\x27\x27;rHist()" style="padding:4px 10px;border:1px solid #ccc;border-radius:6px;font-size:.8rem;cursor:pointer;background:#fff;">✕ Nullstill</button>':""
-  var sHtml=inp+cls+'</div>';
+  var sHtml=cls+'</div>';
   if(sv){
     var trends=hist.slice().reverse().map(function(snap){
       var p=snap.projects&&snap.projects.find(function(x){return x.ordreNr&&x.ordreNr.toUpperCase()===sv;});
@@ -2548,18 +2549,26 @@ function rHist(){
   el.innerHTML=sHtml
     +'<div class="tw"><table><thead><tr><th>Periode</th><th>Selskap</th><th>Låst av</th>'
     +'<th>Dato</th><th style="text-align:right">Total VIA</th><th style="text-align:right">POC-VIA</th>'
-    +'<th style="text-align:right">DG-VIA</th><th style="text-align:center">Ordrer</th><th style="text-align:center">Kritiske</th></tr></thead><tbody>'
+    +'<th style="text-align:right">DG-VIA</th><th style="text-align:center">Ordrer</th><th style="text-align:center">Kritiske</th><th style="text-align:right">DG%</th><th style="text-align:center">Rapport</th></tr></thead><tbody>'
     +hist.slice().reverse().map(function(snap){
       return '<tr><td><strong>'+snap.period+'</strong></td><td>'+snap.entity+'</td><td>'+snap.lockedBy+'</td>'
         +'<td>'+new Date(snap.lockedAt).toLocaleDateString("no-NO")+'</td>'
         +'<td class="r" style="font-weight:700;color:'+(snap.summary.totalVIA>100000?"var(--amber)":"var(--dark)")+'">'+NK(snap.summary.totalVIA)+'</td>'
         +'<td class="r">'+NK(snap.summary.pocVIA)+'</td><td class="r">'+NK(snap.summary.dgVIA)+'</td>'
         +'<td class="c">'+snap.summary.projectCount+'</td>'
-        +'<td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td></tr>';
+        +'<td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td><td class="r">'+(function(p){var t=p.reduce(function(s,x){return s+(x.tilbud||0);},0);var w=p.reduce(function(s,x){return s+((x.dg||0)*(x.tilbud||0));},0);return t>0?Math.round(w/t*1000)/10+'%':'-';})(snap.projects||[])+'</td>'+'<td class="c"><button onclick="openHistReport('+snap.id+')" style="padding:2px 8px;font-size:.75rem;background:#1e3a5f;color:#9EC8FF;border:1px solid #9EC8FF;border-radius:4px;cursor:pointer">📄</button></td>'+'</tr>';
     }).join("")
     +'</tbody></table></div>';
 }
 function openLock(){ document.getElementById('lmodal').classList.add('open'); }
+
+function openHistReport(id){
+  var hist=JSON.parse(localStorage.getItem(HIST_KEY)||'[]');
+  var snap=hist.find(function(s){return s.id===id;});
+  if(!snap||!snap.reportHtml){alert('Rapport ikke lagret for denne perioden.');return;}
+  document.getElementById('print-report').innerHTML=snap.reportHtml;
+  document.getElementById('report-overlay').classList.add('open');
+}
 function closeLock(){ document.getElementById('lmodal').classList.remove('open'); }
 function doLock(){
   var name=document.getElementById('lname').value.trim();
@@ -2648,7 +2657,8 @@ function saveSnap(name,entity,period){
   var snap={
     id:Date.now(),period:period,entity:entity,lockedBy:name,lockedAt:new Date().toISOString(),
     summary:{totalVIA:Math.round(pv+dv),pocVIA:Math.round(pv),dgVIA:Math.round(dv),projectCount:ACTIVE.length,highRisk:ACTIVE.filter(function(r){return r.risk==='HØY';}).length},
-    projects:projects
+    projects:projects,
+    reportHtml:(document.getElementById('print-report')||{innerHTML:''}).innerHTML
   };
   var filtered=hist.filter(function(e){return e.period!==period;});
   filtered.push(snap);
