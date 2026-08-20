@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.79</title>
+<title>VIA QA – Minel AS v9.80</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.79</span>
+  <span class="hd-badge">v9.80</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -285,7 +285,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
         <div class="help-step-num">4</div>
         <div class="help-step-body">
           <span class="help-step-title">Juster DG&nbsp;% i fanen POC + DG &#8212; viktigste steg</span>
-          <p><strong>POC</strong> (Percentage of Completion) er metoden som bestemmer hvor mye inntekt som skal inntektsf&oslash;res. <strong>DG&nbsp;%</strong> (dekningsgrad) er ditt estimat for ordrens l&oslash;nnsomhet &#8212; og er inngangsverdien i POC-beregningen.</p>
+          <p><strong>POC</strong> (Percentage of Completion) er metoden som bestemmer hvor mye inntekt som skal inntektsf&oslash;res. <strong>DG&nbsp;%</strong> (dekningsgrad) er ditt estimat for ordrens l&oslash;nnsomhet &#8212; og er inngangsverdien i POC-beregningen.</p><p><strong>⚠️ Tilbudssum er 0 eller tom?</strong> VIA QA henter tilbudssum direkte fra <em>Tilbudssum</em>-feltet på ordrekortet i Ordrestyring — ikke fra Økonomi-fanen som brukes til akontofakturering. Disse to er ikke koblet sammen, så PLer kan ha latt feltet stå tomt uten å merke det. Be PLene sjekke at <strong>Tilbudssum</strong> er fylt inn på alle fastprisordrer i OS.</p>
           <p style="margin-top:8px;">G&aring; til fanen <strong>POC + DG</strong>, finn din ordre og skriv inn korrekt DG&nbsp;%. Klikk lagre etter endring. VIA-bel&oslash;pet oppdateres umiddelbart.</p>
           <div class="help-tip" style="margin-top:10px;">Bruk faktiske p&aring;l&oslash;pte kostnader og fremdrift som utgangspunkt. H&oslash;yere DG = h&oslash;yere estimert inntekt. Et feil DG-estimat f&oslash;rer direkte til feil m&aring;nedsresultat.</div>
         </div>
@@ -648,7 +648,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
       • Rund DG% på manuelle ordrer: +1 poeng<br>
       • Mangler begrunnelse (manuell regningsordre): +1 poeng
     </div>
-    <div class="sec-note" id="sec2note">Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet. <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder. PL kan overstyre %-en fra OS." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span></div>
+    <div class="sec-note" id="sec2note">Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet. <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder. PL kan overstyre %-en fra OS." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span> <span style="cursor:help;background:#fff3cd;color:#92400e;border:1px solid #fde68a;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;" title="VIA QA beregner DG basert på tilbudssum i Ordrestyring. Sjekk at feltet Tilbudssum er fylt inn på ordrekortet i OS — det er IKKE koblet til akontofakturering og kan lett bli stående tomt.">⚠️ Tilbudssum</span></div>
     <div style="margin:8px 0 4px;display:flex;gap:16px;flex-wrap:wrap;">
       <label style="display:inline-flex;align-items:center;gap:7px;font-size:.83rem;color:var(--mid);cursor:pointer;">
         <input type="checkbox" id="hideSettledChk" onchange="HIDE_SETTLED=this.checked;rPOC()"> Skjul ordrer med VIA &lt; ±5 000 kr (fullt fakturerte)
@@ -709,7 +709,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.79 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.80 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1685,7 +1685,7 @@ function startApiLoad(){
     res[3].forEach(function(id){ reopenCaseIds.add(id); });
     console.log('[HIST] Totalt re-åpningssett (faktura+statusendring):', reopenCaseIds.size);
     var bn = Object.keys(BENCH).length;
-    document.getElementById('sec2note').innerHTML = 'Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet.'+(bn>0?' <span style="background:var(--bluebg);color:var(--blue);border-radius:4px;padding:2px 8px;font-size:.78rem;font-weight:700;">= Benchmark: '+bn+' ordretyper</span>':'')+'  <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder. PL kan overstyre %-en fra OS." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span>';
+    document.getElementById('sec2note').innerHTML = 'Ingen fastpris — prosjektleder skriver inn forventet DG% og begrunner estimatet.'+(bn>0?' <span style="background:var(--bluebg);color:var(--blue);border-radius:4px;padding:2px 8px;font-size:.78rem;font-weight:700;">= Benchmark: '+bn+' ordretyper</span>':'')+'  <span title="DG%-verdier med OS-merke er hentet automatisk fra avtalene registrert i Ordrestyring. Ordrer uten OS-merke vurderes manuelt av prosjektleder. PL kan overstyre %-en fra OS." style="cursor:help;background:#f0f4ff;color:#3b5fc0;border:1px solid #c7d4f5;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;">ℹ️ OS-merke</span> <span style=\"cursor:help;background:#fff3cd;color:#92400e;border:1px solid #fde68a;border-radius:12px;padding:1px 9px;font-size:.75rem;font-weight:600;margin-left:6px;\" title=\"VIA QA beregner DG basert på tilbudssum i Ordrestyring. Sjekk at feltet Tilbudssum er fylt inn på ordrekortet i OS — det er IKKE koblet til akontofakturering og kan lett bli stående tomt.\">⚠️ Tilbudssum</span>';
 
     // Telle alle statuser for diagnostikk
     var _statusTeller = {};
