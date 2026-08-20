@@ -51,5 +51,17 @@
       "linje": 2608,
       "stack": "TypeError: Cannot set properties of null (setting 'innerHTML')\n    at printLockReport (https://minelkapasitet.github.io/minel-avvikssystem/public/VIA_QA.html:2608:52)\n    at doLock (https://minelkapasitet.github.io/minel-avvikssystem/public/VIA_QA.html:2576:3)\n    at HTMLButtonElement.onclick (https://minelkapasitet.github.io/minel-avvikssystem/public/VIA_QA.html:707:54)"
     }
+  },
+  {
+    "tidspunkt": "2026-08-20T11:33:55.654Z",
+    "bruker": "Øyvind Sæthersmoen",
+    "epost": "oyvind.saethersmoen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Gudbrandsdal AS",
+      "period": "juli 2026"
+    }
   }
 ]
