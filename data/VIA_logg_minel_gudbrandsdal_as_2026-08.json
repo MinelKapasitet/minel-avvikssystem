@@ -114,5 +114,17 @@
       "selskap": "Minel Gudbrandsdal AS",
       "period": "juli 2026"
     }
+  },
+  {
+    "tidspunkt": "2026-08-24T08:41:49.461Z",
+    "bruker": "Øyvind Sæthersmoen",
+    "epost": "oyvind.saethersmoen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Gudbrandsdal AS",
+      "period": "juli 2026"
+    }
   }
 ]
