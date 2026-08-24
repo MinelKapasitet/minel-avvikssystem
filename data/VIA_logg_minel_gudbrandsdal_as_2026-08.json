@@ -206,5 +206,16 @@
       "linje": 687,
       "stack": "ReferenceError: expHist is not defined\n    at HTMLButtonElement.onclick (https://minelkapasitet.github.io/minel-avvikssystem/public/VIA_QA.html:687:56)"
     }
+  },
+  {
+    "tidspunkt": "2026-08-24T11:43:00.977Z",
+    "bruker": "Øyvind Sæthersmoen",
+    "epost": "oyvind.saethersmoen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "silent"
+    }
   }
 ]
