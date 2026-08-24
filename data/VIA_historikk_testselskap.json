@@ -1,0 +1,19 @@
+[
+  {
+    "id": 1787576403179,
+    "period": "2026-07",
+    "entity": "TestSelskap",
+    "lockedBy": "TEST-KRASJTEST",
+    "lockedAt": "2026-08-24T13:00:03.179Z",
+    "type": "snapshot",
+    "summary": {
+      "totalVIA": 0,
+      "pocVIA": 0,
+      "dgVIA": 0,
+      "projectCount": 0,
+      "highRisk": 0
+    },
+    "projects": [],
+    "reportHtml": ""
+  }
+]
