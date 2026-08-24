@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.92</title>
+<title>VIA QA – Minel AS v9.93</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.92</span>
+  <span class="hd-badge">v9.93</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -710,7 +710,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.92 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.93 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2457,7 +2457,7 @@ function rPOC(){
           +(_tmOvr
             ?'<input class="pi" type="text" inputmode="numeric" value="'+(inp.dg!=null?inp.dg:_tmPct)+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:52px"><span style="font-size:.8rem;color:#666">%</span>'
               +'<button onclick="resetTM(\''+r.ordreNr+'\')" style="font-size:.7rem;padding:1px 6px;background:var(--greenbg);color:var(--green);border:1px solid var(--green);border-radius:4px;cursor:pointer;line-height:1.6" title="Tilbake til Auto T&M">⚡</button>'
-            :'<input class="pi" type="text" inputmode="numeric" value="'+_tmPct+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:52px;border-color:var(--green);color:var(--green);font-weight:600;" title="Auto T&M — rediger for å overstyre"><span style="font-size:.8rem;color:var(--green)">% <span title="Hentet automatisk fra Ordrestyring" style="font-size:.65rem;background:var(--green);color:#fff;border-radius:3px;padding:0 3px;margin-left:1px;font-weight:700;letter-spacing:.3px">OS</span></span>'
+            :'<input class="pi" type="text" inputmode="numeric" value="'+_tmPct+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:52px;border-color:var(--green);color:var(--green);font-weight:600;" title="Auto T&M — rediger for å overstyre"><span style="font-size:.8rem;color:var(--green)">% <span title="Hentet fra Ordrestyring basert på innlagte timer og materialavtaler. Verdien kan overstyres ved å skrive inn et annet tall i feltet til venstre." style="font-size:.65rem;background:var(--green);color:#fff;border-radius:3px;padding:0 3px;margin-left:1px;font-weight:700;letter-spacing:.3px">OS</span></span>'
             )
           +'</div>'
         : '<div style="display:flex;align-items:center;gap:4px;"><input class="pi" type="text" inputmode="numeric" value="'+(inp.dg!=null?inp.dg:35)+'" '+dis+' onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(\''+r.ordreNr+'\',\'dg\',this)" style="width:56px"><span style="font-size:.8rem;color:#666">%</span></div>';
@@ -2752,6 +2752,7 @@ function expPOC(){
     }catch(e){alert('Eksportfeil: '+e.message);}
 }
 </script>
-</body>
+
+<div id="report-overlay"><div id="report-wrap"><div id="report-toolbar"><span style="font-weight:700;font-size:1rem;flex:1">Perioderapport</span><button class="btn-print" onclick="window.print()">&#128438; Skriv ut / PDF</button><button class="btn-close-rpt" onclick="document.getElementById('report-overlay').classList.remove('open');window.scrollTo(0,0);">&times; Lukk</button></div><div id="print-report"></div></div></div></body>
 </html>
 </html>
