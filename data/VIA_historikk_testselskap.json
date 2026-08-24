@@ -15,5 +15,22 @@
     },
     "projects": [],
     "reportHtml": ""
+  },
+  {
+    "id": 1787576437891,
+    "period": "2026-07",
+    "entity": "TestSelskap",
+    "lockedBy": "Låst periode med rapport",
+    "lockedAt": "2026-08-24T13:00:37.891Z",
+    "type": "låst",
+    "summary": {
+      "totalVIA": 0,
+      "pocVIA": 0,
+      "dgVIA": 0,
+      "projectCount": 0,
+      "highRisk": 0
+    },
+    "projects": [],
+    "reportHtml": ""
   }
 ]
