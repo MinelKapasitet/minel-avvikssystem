@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.96</title>
+<title>VIA QA – Minel AS v9.95</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.96</span>
+  <span class="hd-badge">v9.95</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -710,7 +710,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.96 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.95 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2697,12 +2697,8 @@ function doSnap(){
   var name=_currentUser?_currentUser.name:'Ukjent';
   var period=document.getElementById('aperiod').textContent||'?';
   var entity=_currentEntity||document.getElementById('lentity').value||'?';
-  var _sh=getHist(),_pv=0,_dv=0;
-  var _sp=ACTIVE.map(function(r){var c=r.hasTilbud?calcPOC(r):calcDG(r);var via=c?c.via:null,dg=c?c.estDG||c.dg:null,fg=r.hasTilbud&&c?c.fg:null;if(r.hasTilbud&&c&&c.via!=null)_pv+=c.via;else if(!r.hasTilbud&&c&&c.via!=null)_dv+=c.via;return{ordreNr:r.ordreNr,pl:r.pl,beskr:(r.beskr||'').substring(0,60),tilbud:r.tilbud,totOmk:r.totOmk,fakt:r.fakt,via:via!=null?Math.round(via):null,dg:dg!=null?Math.round(dg*10000)/10000:null,fg:fg!=null?Math.round(fg*1000)/1000:null,hasTilbud:r.hasTilbud,risk:r.risk};});
-  var _ssn={id:Date.now(),period:period,entity:entity,lockedBy:name+' 📸',lockedAt:new Date().toISOString(),type:'snapshot',summary:{totalVIA:Math.round(_pv+_dv),pocVIA:Math.round(_pv),dgVIA:Math.round(_dv),projectCount:ACTIVE.length,highRisk:ACTIVE.filter(function(r){return r.risk==='HØY';}).length},projects:_sp};
-  _sh.push(_ssn);_sh.sort(function(a,b){return a.id-b.id;});
-  localStorage.setItem(HIST_KEY,JSON.stringify(_sh));
-  rHist();ST('hist');
+  saveSnap(name,entity,period);
+  alert('= Snapshot lagret for '+period+' ('+entity+').');
 }
 
 /* ============================================================
