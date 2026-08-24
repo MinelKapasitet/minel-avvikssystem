@@ -1,11 +1,11 @@
 [
   {
-    "id": 1787575465742,
+    "id": 1787575478599,
     "period": "juli 2026",
     "entity": "Minel Gudbrandsdal AS",
-    "lockedBy": "Øyvind Sæthersmoen",
-    "lockedAt": "2026-08-24T12:44:25.742Z",
-    "type": "snapshot",
+    "lockedBy": "Øyvind",
+    "lockedAt": "2026-08-24T12:44:38.599Z",
+    "type": "låst",
     "summary": {
       "totalVIA": 13015195,
       "pocVIA": 4502506,
@@ -7823,6 +7823,6 @@
         "pct": null
       }
     ],
-    "reportHtml": ""
+    "reportHtml": "<h1>VIA/Fakturareserve — Perioderapport</h1><div class=\"pr-meta\"><div><strong>Selskap:</strong> Minel Gudbrandsdal AS</div><div><strong>Periode:</strong> juli 2026</div><div><strong>Låst av:</strong> Øyvind</div><div><strong>Låst:</strong> 24. august 2026 kl. 14:44</div></div><div class=\"pr-kpi\"><div><div class=\"k-val\">kr 13&nbsp;015&nbsp;195</div><div class=\"k-lbl\">Total VIA</div></div><div><div class=\"k-val\">kr 4&nbsp;502&nbsp;506</div><div class=\"k-lbl\">POC-VIA (fastpris)</div></div><div><div class=\"k-val\">kr 8&nbsp;512&nbsp;689</div><div class=\"k-lbl\">DG-VIA (regning)</div></div><div><div class=\"k-val\">488</div><div class=\"k-lbl\">Ordrer totalt</div></div></div><h2>Prosjektledere</h2><table><thead><tr><th>Prosjektleder</th><th class=\"c\">Ordrer</th><th class=\"c\">Fastpris</th><th class=\"c\">Regning</th><th class=\"r\">VIA</th><th class=\"c\">Ferdig</th></tr></thead><tbody><tr><td>Øyvind  Teigen</td><td class=\"c\">36</td><td class=\"c\">7</td><td class=\"c\">29</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 3&nbsp;123&nbsp;132</td><td class=\"c\">–</td></tr><tr><td>Espen Kroken</td><td class=\"c\">63</td><td class=\"c\">1</td><td class=\"c\">62</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 2&nbsp;601&nbsp;354</td><td class=\"c\">–</td></tr><tr><td>Martin Morken Odlolien</td><td class=\"c\">83</td><td class=\"c\">14</td><td class=\"c\">69</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 2&nbsp;183&nbsp;396</td><td class=\"c\">–</td></tr><tr><td>Ansgar Kaldhusdal Joten</td><td class=\"c\">52</td><td class=\"c\">0</td><td class=\"c\">52</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 1&nbsp;487&nbsp;069</td><td class=\"c\">–</td></tr><tr><td>Ole Morten Resvoll</td><td class=\"c\">58</td><td class=\"c\">0</td><td class=\"c\">58</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 1&nbsp;323&nbsp;178</td><td class=\"c\">–</td></tr><tr><td>Bjørn Bratlien</td><td class=\"c\">74</td><td class=\"c\">2</td><td class=\"c\">72</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 812&nbsp;417</td><td class=\"c\">–</td></tr><tr><td>Ole Kristian  Myhre</td><td class=\"c\">53</td><td class=\"c\">1</td><td class=\"c\">52</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 631&nbsp;347</td><td class=\"c\">–</td></tr><tr><td>Erling Lid</td><td class=\"c\">15</td><td class=\"c\">5</td><td class=\"c\">10</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 411&nbsp;137</td><td class=\"c\">–</td></tr><tr><td>Ola Slåen</td><td class=\"c\">16</td><td class=\"c\">3</td><td class=\"c\">13</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 242&nbsp;841</td><td class=\"c\">–</td></tr><tr><td>Tage Selsjord</td><td class=\"c\">12</td><td class=\"c\">0</td><td class=\"c\">12</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 148&nbsp;174</td><td class=\"c\">–</td></tr><tr><td>Susann Endrestad</td><td class=\"c\">24</td><td class=\"c\">0</td><td class=\"c\">24</td><td class=\"r\">kr 43&nbsp;512</td><td class=\"c\">–</td></tr><tr><td>Steinar Sveen Tande</td><td class=\"c\">1</td><td class=\"c\">0</td><td class=\"c\">1</td><td class=\"r\">kr 4&nbsp;459</td><td class=\"c\">–</td></tr><tr><td>Eskil Hagen</td><td class=\"c\">1</td><td class=\"c\">0</td><td class=\"c\">1</td><td class=\"r\">kr 3&nbsp;180</td><td class=\"c\">–</td></tr></tbody></table><div class=\"pr-footer\">Generert av VIA QA-verktøyet · 24. august 2026 kl. 14:44</div>"
   }
 ]
