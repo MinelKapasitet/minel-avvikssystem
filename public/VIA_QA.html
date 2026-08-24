@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.98</title>
+<title>VIA QA – Minel AS v9.99</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -743,7 +743,7 @@ async function ghWrite(filename,data,sha){
   var body={message:'Update '+filename,content:ghEncode(JSON.stringify(data,null,2))};
   if(sha)body.sha=sha;
   var r=await fetch(GH_BASE+filename,{method:'PUT',headers:{'Authorization':'Bearer '+GH_TOKEN,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});
-  if(!r.ok){var t=await r.text();throw new Error('GitHub write HTTP '+r.status+': '+t.substring(0,120));}
+  if(!r.ok&&r.status===409){var rc=await ghRead(filename);if(rc&&rc.sha){body.sha=rc.sha;r=await fetch(GH_BASE+filename,{method:'PUT',headers:{'Authorization':'Bearer '+GH_TOKEN,'Accept':'application/vnd.github+json'},body:JSON.stringify(body)});}}if(!r.ok){var t=await r.text();throw new Error('GitHub write HTTP '+r.status+': '+t.substring(0,120));}
   var j=await r.json();
   return(j.content&&j.content.sha)||sha;
 }
@@ -2578,7 +2578,7 @@ function rHist(){
         +'<td class="r" style="font-weight:700;color:'+(snap.summary.totalVIA>100000?"var(--amber)":"var(--dark)")+'">'+NK(snap.summary.totalVIA)+'</td>'
         +'<td class="r">'+NK(snap.summary.pocVIA)+'</td><td class="r">'+NK(snap.summary.dgVIA)+'</td>'
         +'<td class="c">'+snap.summary.projectCount+'</td>'
-        +'<td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td><td class="r">'+(function(p){var t=p.reduce(function(s,x){return s+(x.tilbud||0);},0);var w=p.reduce(function(s,x){return s+((x.dg||0)*(x.tilbud||0));},0);return t>0?Math.round(w/t*1000)/10+'%':'-';})(snap.projects||[])+'</td>'+'<td class="c"><button onclick="openHistReport('+snap.id+')" style="padding:2px 8px;font-size:.75rem;background:#1e3a5f;color:#9EC8FF;border:1px solid #9EC8FF;border-radius:4px;cursor:pointer">📄</button></td>'+'<td style="text-align:center"><button onclick="deleteSnap('+snap.id+')" title="Slett denne perioden fra historikk" style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:#ccc;padding:2px 6px;" onmouseover="this.style.color=\'#C8102E\'" onmouseout="this.style.color=\'#ccc\'">&#128465;</button></td>'+'</tr>';
+        +'<td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td><td class="r">'+(function(p){var t=p.reduce(function(s,x){return s+(x.tilbud||0);},0);var w=p.reduce(function(s,x){return s+((x.dg||0)*(x.tilbud||0));},0);return t>0?Math.round(w/t*1000)/10+'%':'-';})(snap.projects||[])+'</td>'+(snap.reportHtml?'<td class="c"><button onclick="openHistReport('+snap.id+')" style="padding:2px 8px;font-size:.75rem;background:#1e3a5f;color:#9EC8FF;border:1px solid #9EC8FF;border-radius:4px;cursor:pointer">📄</button></td>':'<td class="c" style="text-align:center">—</td>')+'<td style="text-align:center"><button onclick="deleteSnap('+snap.id+')" title="Slett denne perioden fra historikk" style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:#ccc;padding:2px 6px;" onmouseover="this.style.color=\'#C8102E\'" onmouseout="this.style.color=\'#ccc\'">&#128465;</button></td>'+'</tr>';
     }).join("")
     +'</tbody></table></div>';
 }
