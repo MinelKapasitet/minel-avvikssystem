@@ -217,5 +217,18 @@
     "detaljer": {
       "metode": "silent"
     }
+  },
+  {
+    "tidspunkt": "2026-08-24T12:46:19.012Z",
+    "bruker": "Øyvind Sæthersmoen",
+    "epost": "oyvind.saethersmoen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "DataLastet",
+    "detaljer": {
+      "selskap": "Minel Gudbrandsdal AS",
+      "periode": "juli 2026",
+      "antallOrdrer": 490
+    }
   }
 ]
