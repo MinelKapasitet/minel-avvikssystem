@@ -1,14 +1,14 @@
 [
   {
-    "id": 1787565496393,
+    "id": 1787569502758,
     "period": "juli 2026",
     "entity": "Minel Gudbrandsdal AS",
-    "lockedBy": "Øyvind",
-    "lockedAt": "2026-08-24T09:58:16.393Z",
+    "lockedBy": "Øyvind Sæthersmoen",
+    "lockedAt": "2026-08-24T11:05:02.758Z",
     "summary": {
-      "totalVIA": 13012430,
+      "totalVIA": 13015195,
       "pocVIA": 4502506,
-      "dgVIA": 8509924,
+      "dgVIA": 8512689,
       "projectCount": 488,
       "highRisk": 6
     },
@@ -1832,22 +1832,6 @@
         "fakt": 1451.5,
         "via": 1445,
         "dg": 0.79,
-        "fg": null,
-        "hasTilbud": false,
-        "risk": "LAV",
-        "pct": null
-      },
-      {
-        "ordreNr": "87008",
-        "pl": "Martin Morken Odlolien",
-        "type": "Nybygg",
-        "kunde": "Tove Ranveig Bergdal",
-        "beskr": "Installasjon av hytte Dokumentasjon",
-        "tilbud": null,
-        "totOmk": 9.6,
-        "fakt": 0,
-        "via": 1597,
-        "dg": 0.99,
         "fg": null,
         "hasTilbud": false,
         "risk": "LAV",
@@ -3718,7 +3702,7 @@
         "tilbud": null,
         "totOmk": 14371.4,
         "fakt": 0,
-        "via": 24005,
+        "via": 26434,
         "dg": 0.28,
         "fg": null,
         "hasTilbud": false,
@@ -5822,6 +5806,22 @@
         "pct": null
       },
       {
+        "ordreNr": "85592",
+        "pl": "Ole Morten Resvoll",
+        "type": "Service",
+        "kunde": "Elias Hjellet",
+        "beskr": "Installasjon garasje",
+        "tilbud": null,
+        "totOmk": 5708.13,
+        "fakt": 13781.1,
+        "via": 1933,
+        "dg": 0.64,
+        "fg": null,
+        "hasTilbud": false,
+        "risk": "LAV",
+        "pct": null
+      },
+      {
         "ordreNr": "85574",
         "pl": "Bjørn Bratlien",
         "type": "Service",
@@ -6532,10 +6532,10 @@
         "kunde": "Fron Bygg AS",
         "beskr": "Elektro og automasjon Skjåk Barnehage",
         "tilbud": 6619000,
-        "totOmk": 4241279.74,
+        "totOmk": 4243914.52,
         "fakt": 6447100,
         "via": 171900,
-        "dg": 0.3592,
+        "dg": 0.3588,
         "fg": 1,
         "hasTilbud": true,
         "risk": "MIDDELS",
@@ -7748,7 +7748,7 @@
         "kunde": "Den Norske Turistforening Oslo og Omegn",
         "beskr": "Glitterheim | 102 | Aggregat - nødstrøm | Service Leirvassbu",
         "tilbud": null,
-        "totOmk": 5933.6,
+        "totOmk": 9533.6,
         "fakt": 0,
         "via": 16089,
         "dg": 0.41,
@@ -7822,6 +7822,6 @@
         "pct": null
       }
     ],
-    "reportHtml": "<h1>VIA/Fakturareserve — Perioderapport</h1><div class=\"pr-meta\"><div><strong>Selskap:</strong> Minel Gudbrandsdal AS</div><div><strong>Periode:</strong> juli 2026</div><div><strong>Låst av:</strong> Øyvind</div><div><strong>Låst:</strong> 24. august 2026 kl. 11:58</div></div><div class=\"pr-kpi\"><div><div class=\"k-val\">kr 13&nbsp;012&nbsp;430</div><div class=\"k-lbl\">Total VIA</div></div><div><div class=\"k-val\">kr 4&nbsp;502&nbsp;506</div><div class=\"k-lbl\">POC-VIA (fastpris)</div></div><div><div class=\"k-val\">kr 8&nbsp;509&nbsp;924</div><div class=\"k-lbl\">DG-VIA (regning)</div></div><div><div class=\"k-val\">488</div><div class=\"k-lbl\">Ordrer totalt</div></div></div><h2>Prosjektledere</h2><table><thead><tr><th>Prosjektleder</th><th class=\"c\">Ordrer</th><th class=\"c\">Fastpris</th><th class=\"c\">Regning</th><th class=\"r\">VIA</th><th class=\"c\">Ferdig</th></tr></thead><tbody><tr><td>Øyvind  Teigen</td><td class=\"c\">36</td><td class=\"c\">7</td><td class=\"c\">29</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 3&nbsp;123&nbsp;132</td><td class=\"c\">–</td></tr><tr><td>Espen Kroken</td><td class=\"c\">63</td><td class=\"c\">1</td><td class=\"c\">62</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 2&nbsp;601&nbsp;354</td><td class=\"c\">–</td></tr><tr><td>Martin Morken Odlolien</td><td class=\"c\">84</td><td class=\"c\">14</td><td class=\"c\">70</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 2&nbsp;184&nbsp;993</td><td class=\"c\">–</td></tr><tr><td>Ansgar Kaldhusdal Joten</td><td class=\"c\">52</td><td class=\"c\">0</td><td class=\"c\">52</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 1&nbsp;487&nbsp;069</td><td class=\"c\">–</td></tr><tr><td>Ole Morten Resvoll</td><td class=\"c\">57</td><td class=\"c\">0</td><td class=\"c\">57</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 1&nbsp;321&nbsp;246</td><td class=\"c\">–</td></tr><tr><td>Bjørn Bratlien</td><td class=\"c\">74</td><td class=\"c\">2</td><td class=\"c\">72</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 812&nbsp;417</td><td class=\"c\">–</td></tr><tr><td>Ole Kristian  Myhre</td><td class=\"c\">53</td><td class=\"c\">1</td><td class=\"c\">52</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 631&nbsp;347</td><td class=\"c\">–</td></tr><tr><td>Erling Lid</td><td class=\"c\">15</td><td class=\"c\">5</td><td class=\"c\">10</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 411&nbsp;137</td><td class=\"c\">–</td></tr><tr><td>Ola Slåen</td><td class=\"c\">16</td><td class=\"c\">3</td><td class=\"c\">13</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 240&nbsp;412</td><td class=\"c\">–</td></tr><tr><td>Tage Selsjord</td><td class=\"c\">12</td><td class=\"c\">0</td><td class=\"c\">12</td><td class=\"r\" style=\"color:var(--amber);font-weight:700\">kr 148&nbsp;174</td><td class=\"c\">–</td></tr><tr><td>Susann Endrestad</td><td class=\"c\">24</td><td class=\"c\">0</td><td class=\"c\">24</td><td class=\"r\">kr 43&nbsp;512</td><td class=\"c\">–</td></tr><tr><td>Steinar Sveen Tande</td><td class=\"c\">1</td><td class=\"c\">0</td><td class=\"c\">1</td><td class=\"r\">kr 4&nbsp;459</td><td class=\"c\">–</td></tr><tr><td>Eskil Hagen</td><td class=\"c\">1</td><td class=\"c\">0</td><td class=\"c\">1</td><td class=\"r\">kr 3&nbsp;180</td><td class=\"c\">–</td></tr></tbody></table><div class=\"pr-footer\">Generert av VIA QA-verktøyet · 24. august 2026 kl. 11:58</div>"
+    "reportHtml": ""
   }
 ]
