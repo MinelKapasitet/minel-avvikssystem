@@ -1,10 +1,11 @@
 [
   {
-    "id": 1787574375929,
+    "id": 1787575462446,
     "period": "juli 2026",
     "entity": "Minel Gudbrandsdal AS",
     "lockedBy": "Øyvind Sæthersmoen",
-    "lockedAt": "2026-08-24T12:26:15.929Z",
+    "lockedAt": "2026-08-24T12:44:22.446Z",
+    "type": "snapshot",
     "summary": {
       "totalVIA": 13015195,
       "pocVIA": 4502506,
