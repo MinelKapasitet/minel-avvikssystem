@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.99</title>
+<title>VIA QA – Minel AS v10.00</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.99</span>
+  <span class="hd-badge">v10.00</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -710,7 +710,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.99 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.00 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2571,14 +2571,14 @@ function rHist(){
   el.innerHTML=sHtml
     +'<div class="tw"><table><thead><tr><th>Periode</th><th>Selskap</th><th>Låst av</th>'
     +'<th>Dato</th><th style="text-align:right">Total VIA</th><th style="text-align:right">POC-VIA</th>'
-    +'<th style="text-align:right">DG-VIA</th><th style="text-align:center">Ordrer</th><th style="text-align:center">Kritiske</th><th style="text-align:right">DG%</th><th style="text-align:center">Rapport</th></tr></thead><tbody>'
+    +'<th style="text-align:right">DG-VIA</th><th style="text-align:center">Ordrer</th><th style="text-align:center">Kritiske</th><th style="text-align:right">DG%</th><th style="text-align:center">Kilde</th><th style="text-align:center">Rapport</th></tr></thead><tbody>'
     +hist.slice().reverse().map(function(snap){
       return '<tr><td><strong>'+snap.period+'</strong></td><td>'+snap.entity+'</td><td>'+snap.lockedBy+'</td>'
         +'<td>'+new Date(snap.lockedAt).toLocaleDateString("no-NO")+'</td>'
         +'<td class="r" style="font-weight:700;color:'+(snap.summary.totalVIA>100000?"var(--amber)":"var(--dark)")+'">'+NK(snap.summary.totalVIA)+'</td>'
         +'<td class="r">'+NK(snap.summary.pocVIA)+'</td><td class="r">'+NK(snap.summary.dgVIA)+'</td>'
         +'<td class="c">'+snap.summary.projectCount+'</td>'
-        +'<td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td><td class="r">'+(function(p){var t=p.reduce(function(s,x){return s+(x.tilbud||0);},0);var w=p.reduce(function(s,x){return s+((x.dg||0)*(x.tilbud||0));},0);return t>0?Math.round(w/t*1000)/10+'%':'-';})(snap.projects||[])+'</td>'+(snap.reportHtml?'<td class="c"><button onclick="openHistReport('+snap.id+')" style="padding:2px 8px;font-size:.75rem;background:#1e3a5f;color:#9EC8FF;border:1px solid #9EC8FF;border-radius:4px;cursor:pointer">📄</button></td>':'<td class="c" style="text-align:center">—</td>')+'<td style="text-align:center"><button onclick="deleteSnap('+snap.id+')" title="Slett denne perioden fra historikk" style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:#ccc;padding:2px 6px;" onmouseover="this.style.color=\'#C8102E\'" onmouseout="this.style.color=\'#ccc\'">&#128465;</button></td>'+'</tr>';
+        +'<td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td><td class="r">'+(function(p){var t=p.reduce(function(s,x){return s+(x.tilbud||0);},0);var w=p.reduce(function(s,x){return s+((x.dg||0)*(x.tilbud||0));},0);return t>0?Math.round(w/t*1000)/10+'%':'-';})(snap.projects||[])+'</td>'+'<td style="text-align:center">'+(snap.type==='låst'?'<span style="color:#4caf50;font-size:.75rem;font-weight:600">Låst</span>':'<span style="color:#9EC8FF;font-size:.75rem">Snapshot</span>')+'</td>'+(snap.reportHtml?'<td class="c"><button onclick="openHistReport('+snap.id+')" style="padding:2px 8px;font-size:.75rem;background:#1e3a5f;color:#9EC8FF;border:1px solid #9EC8FF;border-radius:4px;cursor:pointer">📄</button></td>':'<td class="c" style="text-align:center">—</td>')+'<td style="text-align:center"><button onclick="deleteSnap('+snap.id+')" title="Slett denne perioden fra historikk" style="background:none;border:1px solid rgba(200,16,46,.4);border-radius:3px;cursor:pointer;font-size:.7rem;color:#C8102E;padding:1px 5px;opacity:.6;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='.6'">&#128465;</button></td>'+'</tr>';
     }).join("")
     +'</tbody></table></div>';
 }
@@ -2604,7 +2604,7 @@ function doLock(){
   document.getElementById('btnlock').disabled=false;
   rPOC(); rHist(); ST('hist');
   printLockReport(name,entity,period);
-  saveSnap(name,entity,period);
+  saveSnap(name,entity,period,'låst');
   var _h2=getHist();var _s2=_h2.find(function(s){return s.period===period&&s.entity===entity;});if(_s2){_s2.reportHtml=document.getElementById('print-report').innerHTML;localStorage.setItem(HIST_KEY,JSON.stringify(_h2));}
   rHist();
 }
@@ -2658,7 +2658,7 @@ function printLockReport(lockedBy,entity,period){
   document.getElementById('report-overlay').classList.add('open');
   window.scrollTo(0,0);
 }
-function saveSnap(name,entity,period){
+function saveSnap(name,entity,period,type){
   var hist=getHist(), pv=0, dv=0;
   var projects=ACTIVE.map(function(r){
     var via=null, dg=null, _fg=null;
@@ -2679,7 +2679,7 @@ function saveSnap(name,entity,period){
     };
   });
   var snap={
-    id:Date.now(),period:period,entity:entity,lockedBy:name,lockedAt:new Date().toISOString(),
+    id:Date.now(),period:period,entity:entity,lockedBy:name,lockedAt:new Date().toISOString(),type:type||'snapshot',
     summary:{totalVIA:Math.round(pv+dv),pocVIA:Math.round(pv),dgVIA:Math.round(dv),projectCount:ACTIVE.length,highRisk:ACTIVE.filter(function(r){return r.risk==='HØY';}).length},
     projects:projects,
     reportHtml:(document.getElementById('print-report')||{innerHTML:''}).innerHTML
@@ -2697,7 +2697,7 @@ function doSnap(){
   var name=_currentUser?_currentUser.name:'Ukjent';
   var period=document.getElementById('aperiod').textContent||'?';
   var entity=_currentEntity||document.getElementById('lentity').value||'?';
-  saveSnap(name,entity,period);rHist();ST('hist');
+  saveSnap(name,entity,period,'snapshot');rHist();ST('hist');
 }
 
 /* ============================================================
