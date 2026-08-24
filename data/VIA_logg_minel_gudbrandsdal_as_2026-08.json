@@ -192,5 +192,19 @@
       "linje": 687,
       "stack": "ReferenceError: expHist is not defined\n    at HTMLButtonElement.onclick (https://minelkapasitet.github.io/minel-avvikssystem/public/VIA_QA.html:687:56)"
     }
+  },
+  {
+    "tidspunkt": "2026-08-24T11:04:38.986Z",
+    "bruker": "Øyvind Sæthersmoen",
+    "epost": "oyvind.saethersmoen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "JSFeil",
+    "detaljer": {
+      "melding": "Uncaught ReferenceError: expHist is not defined",
+      "fil": "VIA_QA.html",
+      "linje": 687,
+      "stack": "ReferenceError: expHist is not defined\n    at HTMLButtonElement.onclick (https://minelkapasitet.github.io/minel-avvikssystem/public/VIA_QA.html:687:56)"
+    }
   }
 ]
