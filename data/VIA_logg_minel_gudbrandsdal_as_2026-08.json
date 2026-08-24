@@ -126,5 +126,19 @@
       "selskap": "Minel Gudbrandsdal AS",
       "period": "juli 2026"
     }
+  },
+  {
+    "tidspunkt": "2026-08-24T08:59:24.191Z",
+    "bruker": "Øyvind Sæthersmoen",
+    "epost": "oyvind.saethersmoen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "JSFeil",
+    "detaljer": {
+      "melding": "Uncaught TypeError: Cannot set properties of null (setting 'innerHTML')",
+      "fil": "VIA_QA.html",
+      "linje": 2622,
+      "stack": "TypeError: Cannot set properties of null (setting 'innerHTML')\n    at printLockReport (https://minelkapasitet.github.io/minel-avvikssystem/public/VIA_QA.html:2622:52)\n    at doLock (https://minelkapasitet.github.io/minel-avvikssystem/public/VIA_QA.html:2588:3)\n    at HTMLButtonElement.onclick (https://minelkapasitet.github.io/minel-avvikssystem/public/VIA_QA.html:708:54)"
+    }
   }
 ]
