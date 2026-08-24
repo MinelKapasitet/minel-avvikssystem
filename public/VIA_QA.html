@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v9.93</title>
+<title>VIA QA – Minel AS v9.94</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v9.93</span>
+  <span class="hd-badge">v9.94</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -710,7 +710,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.93 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.94 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2751,8 +2751,19 @@ function expPOC(){
     var ws=XLSX.utils.aoa_to_sheet(aoa),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'VIA QA');XLSX.writeFile(wb,'VIA_QA_eksport.xlsx');
     }catch(e){alert('Eksportfeil: '+e.message);}
 }
+
+function printReport(){
+  var html=document.getElementById('print-report').innerHTML;
+  var w=window.open('','_blank','width=960,height=800');
+  w.document.write('<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Perioderapport</title>'+
+    '<style>body{font-family:Arial,sans-serif;font-size:.84rem;color:#222;margin:20px 30px;}h1{font-size:1.2rem;font-weight:700;margin:0 0 6px;}h2{font-size:.95rem;font-weight:700;margin:20px 0 6px;padding-bottom:4px;border-bottom:2px solid #1A2B4A;color:#1A2B4A;}.pr-meta{display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;font-size:.82rem;color:#444;margin-bottom:16px;}.pr-kpi{display:flex;margin-bottom:20px;border:1px solid #e5e5e5;border-radius:8px;overflow:hidden;}.pr-kpi div{flex:1;text-align:center;padding:14px 8px;border-right:1px solid #e5e5e5;}.pr-kpi div:last-child{border-right:none;}.k-val{font-size:1.3rem;font-weight:700;color:#1A2B4A;}.k-lbl{font-size:.72rem;color:#666;margin-top:2px;}table{width:100%;border-collapse:collapse;margin-bottom:16px;font-size:.8rem;}th{background:#1A2B4A;color:#fff;padding:6px 10px;text-align:left;font-size:.78rem;}td{padding:5px 10px;border-bottom:1px solid #eee;}.r{text-align:right;}.c{text-align:center;}.pr-footer{font-size:.72rem;color:#999;text-align:center;margin-top:20px;padding-top:12px;border-top:1px solid #eee;}</style>'+
+    '</head><body>'+html+'</body></html>');
+  w.document.close();
+  w.focus();
+  setTimeout(function(){w.print();},400);
+}
 </script>
 
-<div id="report-overlay"><div id="report-wrap"><div id="report-toolbar"><span style="font-weight:700;font-size:1rem;flex:1">Perioderapport</span><button class="btn-print" onclick="window.print()">&#128438; Skriv ut / PDF</button><button class="btn-close-rpt" onclick="document.getElementById('report-overlay').classList.remove('open');window.scrollTo(0,0);">&times; Lukk</button></div><div id="print-report"></div></div></div></body>
+<div id="report-overlay"><div id="report-wrap"><div id="report-toolbar"><span style="font-weight:700;font-size:1rem;flex:1">Perioderapport</span><button class="btn-print" onclick="printReport()">&#128438; Skriv ut / PDF</button><button class="btn-close-rpt" onclick="document.getElementById('report-overlay').classList.remove('open');window.scrollTo(0,0);">&times; Lukk</button></div><div id="print-report"></div></div></div></body>
 </html>
 </html>
