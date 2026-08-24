@@ -1,10 +1,10 @@
 [
   {
-    "id": 1787576420557,
-    "period": "2026-07",
+    "id": 1787576437891,
+    "period": "2026-06",
     "entity": "TestSelskap",
-    "lockedBy": "SLETT-MEG",
-    "lockedAt": "2026-08-24T13:00:20.557Z",
+    "lockedBy": "Snapshot uten rapport",
+    "lockedAt": "2026-08-24T13:00:37.891Z",
     "type": "snapshot",
     "summary": {
       "totalVIA": 0,
