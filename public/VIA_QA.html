@@ -710,7 +710,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v9.95a · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v9.95 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2578,7 +2578,7 @@ function rHist(){
         +'<td class="r" style="font-weight:700;color:'+(snap.summary.totalVIA>100000?"var(--amber)":"var(--dark)")+'">'+NK(snap.summary.totalVIA)+'</td>'
         +'<td class="r">'+NK(snap.summary.pocVIA)+'</td><td class="r">'+NK(snap.summary.dgVIA)+'</td>'
         +'<td class="c">'+snap.summary.projectCount+'</td>'
-        +'<td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td><td class="r">'+(function(p){var t=p.reduce(function(s,x){return s+(x.tilbud||0);},0);var w=p.reduce(function(s,x){return s+((x.dg||0)*(x.tilbud||0));},0);return t>0?Math.round(w/t*1000)/10+'%':'-';})(snap.projects||[])+'</td>'+'<td class="c"><button onclick="openHistReport('+snap.id+')" style="padding:2px 8px;font-size:.75rem;background:#1e3a5f;color:#9EC8FF;border:1px solid #9EC8FF;border-radius:4px;cursor:pointer">📄</button></td>'+'<td style="text-align:center"><button onclick="deleteSnap('+h.id+')" title="Slett denne perioden fra historikk" style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:#ccc;padding:2px 6px;" onmouseover="this.style.color=\'#C8102E\'" onmouseout="this.style.color=\'#ccc\'">&#128465;</button></td>'+'</tr>';
+        +'<td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td><td class="r">'+(function(p){var t=p.reduce(function(s,x){return s+(x.tilbud||0);},0);var w=p.reduce(function(s,x){return s+((x.dg||0)*(x.tilbud||0));},0);return t>0?Math.round(w/t*1000)/10+'%':'-';})(snap.projects||[])+'</td>'+'<td class="c"><button onclick="openHistReport('+snap.id+')" style="padding:2px 8px;font-size:.75rem;background:#1e3a5f;color:#9EC8FF;border:1px solid #9EC8FF;border-radius:4px;cursor:pointer">📄</button></td>'+'<td style="text-align:center"><button onclick="deleteSnap('+h.id+')" title="Slett denne perioden fra historikk" style="background:none;border:none;cursor:pointer;font-size:1.1rem;color:#ccc;padding:2px 6px;" onmouseover="this.style.color='#C8102E'" onmouseout="this.style.color='#ccc'">&#128465;</button></td>'+'</tr>';
     }).join("")
     +'</tbody></table></div>';
 }
@@ -2697,8 +2697,7 @@ function doSnap(){
   var name=_currentUser?_currentUser.name:'Ukjent';
   var period=document.getElementById('aperiod').textContent||'?';
   var entity=_currentEntity||document.getElementById('lentity').value||'?';
-  saveSnap(name,entity,period);
-  alert('= Snapshot lagret for '+period+' ('+entity+').');
+  saveSnap(name,entity,period);rHist();ST('hist');
 }
 
 /* ============================================================
