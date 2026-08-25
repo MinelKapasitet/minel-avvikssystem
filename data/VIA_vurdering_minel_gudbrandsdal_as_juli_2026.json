@@ -494,7 +494,7 @@
     },
     "86565-3": {
       "dg": 0,
-      "begrunnelse": "",
+      "begrunnelse": "Faktureres via hovedordre",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -502,7 +502,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
-      "updatedAt": "2026-08-25T10:25:45.627Z"
+      "updatedAt": "2026-08-25T10:25:54.404Z"
     }
   },
   "status": {}
