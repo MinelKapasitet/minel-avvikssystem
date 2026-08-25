@@ -625,5 +625,11 @@
       "updatedAt": "2026-08-25T10:25:54.404Z"
     }
   },
-  "status": {}
+  "status": {
+    "Espen Kroken": {
+      "done": true,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T11:57:09.509Z"
+    }
+  }
 }
