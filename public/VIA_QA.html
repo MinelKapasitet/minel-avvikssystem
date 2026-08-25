@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.01</title>
+<title>VIA QA – Minel AS v10.02</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.01</span>
+  <span class="hd-badge">v10.02</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -710,7 +710,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.01 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.02 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1729,12 +1729,13 @@ function startApiLoad(){
       }
     });
 
+    window._parentCaseMap={};
+    cases.forEach(function(c){ if(_parentIds.has(String(c.id))) window._parentCaseMap[String(c.caseNumber||c.id)]=c; });
     var histReopenCount = 0;
     var active = cases.filter(function(c){
       // Ekskluder toppordrer som har aktive underordrer  barna vises gruppert istedet.
       // Toppordrer der alle underordrer er avsluttet inkluderes (selvstendige aktive prosjekter).
-      // UNNTAK: Fastpris-toppordrer (offerTotal > 0) inkluderes alltid — de vurderes som POC uavhengig av underordrestatus.
-      if(_parentIds.has(String(c.id)) && _parentActiveChildIds.has(String(c.id)) && !((c.offerTotal||0)>0)) return false;
+      if(_parentIds.has(String(c.id)) && _parentActiveChildIds.has(String(c.id))) return false;
       // Underordrer (parentCaseId != null) inkluderes og vises gruppert via detectGroups()
       var typeText = (c.caseType&&c.caseType.text)||'';
       var statusText = (c.status&&c.status.text)||'';
@@ -1977,7 +1978,8 @@ function detectGroups(){
 }
 function saveGrpMode(){ try{ localStorage.setItem(GRP_KEY,JSON.stringify(GRP_MODE)); }catch(e){} }
 function toggleGrpMode(base){
-  GRP_MODE[base]=(GRP_MODE[base]==='samlet')?'individuelt':'samlet';
+  var cur=GRP_MODE[base]||'individuelt';
+  GRP_MODE[base]=cur==='individuelt'?'samlet':cur==='samlet'?'toppordre':'individuelt';
   saveGrpMode(); rPOC();
 }
 
@@ -2326,6 +2328,39 @@ function rPOC(){
   document.getElementById('poc-cnt').textContent='('+pocR.length+' prosjekter)';
   document.getElementById('dg-cnt').textContent='('+dgR.length+' prosjekter)';
 
+  var _topSubNrs=new Set();
+  Object.keys(GROUPS).forEach(function(base){
+    if(GRP_MODE[base]!=='toppordre') return;
+    _topSubNrs.add(base);
+    (GROUPS[base]||[]).forEach(function(nr){_topSubNrs.add(nr);});
+  });
+  var _topRows=[];
+  Object.keys(GROUPS).forEach(function(base){
+    if(GRP_MODE[base]!=='toppordre') return;
+    var gAll=ACTIVE.filter(function(r){var m=r.ordreNr.match(/^(.+?)-[^-]+$/);return m&&m[1]===base;});
+    if(!gAll.length) return;
+    var pCase=(window._parentCaseMap||{})[base];
+    var aggOmk=gAll.reduce(function(s,r){return s+(r.totOmk||0);},0);
+    var aggFakt=gAll.reduce(function(s,r){return s+(r.fakt||0);},0);
+    var aggTilbud=gAll.reduce(function(s,r){return s+(r.tilbud||0);},0);
+    if(pCase){
+      aggOmk+=(((pCase.economy&&pCase.economy.hoursCostprice)||0)+((pCase.economy&&pCase.economy.materialsCostprice)||0))/100;
+      aggFakt+=((pCase.economy&&pCase.economy.revenue)||0)/100;
+      if(pCase.offerTotal>0) aggTilbud=pCase.offerTotal/100;
+    }
+    var hasTb=!!(pCase&&pCase.offerTotal>0);
+    _topRows.push({ordreNr:base,pl:gAll[0].pl,beskr:(pCase&&pCase.description)||gAll[0].beskr,
+      kunde:gAll[0].kunde,type:(pCase&&pCase.caseType&&pCase.caseType.text)||gAll[0].type,
+      totOmk:aggOmk,fakt:aggFakt,tilbud:hasTb?aggTilbud:0,hasTilbud:hasTb,
+      dg:null,isTM:false,risk:'LAV',_isTop:true,_subCnt:gAll.length,_base:base});
+  });
+  pocR=pocR.filter(function(r){return !_topSubNrs.has(r.ordreNr);});
+  dgR=dgR.filter(function(r){return !_topSubNrs.has(r.ordreNr);});
+  _topRows.forEach(function(vr){
+    if(pl&&vr.pl!==pl) return;
+    if(vr.hasTilbud) pocR.push(vr); else dgR.push(vr);
+  });
+
   var pv=0;
   document.getElementById('poctbl').innerHTML=
     '<thead><tr>'+
@@ -2391,6 +2426,35 @@ function rPOC(){
           '</tr>';
       }
       pocR.forEach(function(r){
+        if(r._isTop){
+          var _d=isEditable(r);var _ip=POC[r.ordreNr]||{timer:0,tk:null,mat:0,k:''};
+          var _tkV=_ip.tk!=null?_ip.tk:stk;var _cp=calcPOC(r,stk);
+          if(_cp.via!=null) pv+=_cp.via;
+          var _ob=r.tilbud>0&&r.fakt>r.tilbud;
+          var _wp=(_cp.via!=null&&Math.abs(_cp.via)>50000&&!_ip.k)||_ob;
+          var _bsp=r.beskr?r.beskr.substring(0,40)+(r.beskr.length>40?'\u2026':''):'\u2013';
+          var _tbP='<button data-base="'+r._base+'" onclick="toggleGrpMode(this.dataset.base)" style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:#555;color:#fff;border:none;border-radius:4px;cursor:pointer;">Vis underordre ('+r._subCnt+')</button>';
+          pocHtml+='<tr class="'+(_wp?'rwarn ':'')+' " style="border-left:3px solid #16a34a;">'+
+            '<td><strong>'+r.ordreNr+'</strong> <span style="font-size:.7rem;background:#16a34a;color:#fff;border-radius:3px;padding:0 4px;margin-right:3px">SAMLET</span>'+_tbP+'</td>'+
+            '<td style="white-space:nowrap">'+r.pl+'</td>'+
+            '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+_bsp+'</td>'+
+            '<td class="r">'+NK(r.tilbud||0)+'</td>'+
+            '<td class="r">'+NK(r.totOmk)+'</td>'+
+            '<td>'+piInp(r.ordreNr,'timer',fmtI(_ip.timer||0),_d,_wp)+'</td>'+
+            '<td>'+piInp(r.ordreNr,'tk',fmtI(_tkV),_d,_wp)+'</td>'+
+            '<td>'+piInp(r.ordreNr,'mat',fmtI(_ip.mat||0),_d,_wp)+'</td>'+
+            '<td class="r calc">'+NR(_cp.gk)+'</td>'+
+            '<td class="r calc">'+NR(_cp.esk)+'</td>'+
+            '<td class="r calc">'+(_cp.fg!=null?PC(_cp.fg):'\u2013')+'</td>'+
+            '<td class="r calc">'+NK(_cp.innt)+'</td>'+
+            '<td class="r calc">'+(_cp.estDG!=null?PC(_cp.estDG):'\u2013')+'</td>'+
+            '<td class="r'+(_ob?' vneg':'')+'">'+NK(r.fakt)+'</td>'+
+            '<td class="r '+(_cp.via==null?'':(_cp.via<0?'vneg':'vpos'))+'">'+NK(_cp.via)+'</td>'+
+            (_showPrevCols?'<td class="c">\u2013</td><td class="c">\u2013</td>':'')+
+            '<td>'+cmtInp(r.ordreNr,_ip.k,_d,_wp)+'</td>'+
+            '</tr>';
+          return;
+        }
         var m=r.ordreNr.match(/^(.+?)-[^-]+$/);
         var base=m?m[1]:null;
         var inGrp=base&&GROUPS[base]&&GROUPS[base].length>=2;
@@ -2401,8 +2465,8 @@ function rPOC(){
         var mode=GRP_MODE[base]||'individuelt';
         var aggT=0,aggO=0,aggF=0;
         gRows.forEach(function(x){aggT+=x.tilbud||0;aggO+=x.totOmk||0;aggF+=x.fakt||0;});
-        var btnBg=mode==='samlet'?'#1d8348':'#2563eb';
-        var btnLabel=mode==='samlet'?'= Individuelt':'= Samlet';
+        var btnBg=mode==='samlet'?'#7c3aed':'#2563eb';
+        var btnLabel=mode==='samlet'?'Toppordre':'Samlet';
         var btn='<button data-base="'+base+'" onclick="toggleGrpMode(this.dataset.base)"'+
           ' style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:'+btnBg+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+btnLabel+'</button>';
         if(mode==='samlet'){
@@ -2461,7 +2525,48 @@ function rPOC(){
       return '<th '+style+dg2tip+fgTip+kvTip+'>'+n+'</th>';
     }).join('')+
     '</tr></thead><tbody>'+
-    dgR.map(function(r){
+    (function(){
+      var _dgs={};
+      var _dgProc=[];
+      dgR.forEach(function(r){
+        if(r._isTop){_dgProc.push(r);return;}
+        var _bm=r.ordreNr.match(/^(.+?)-[^-]+$/);
+        var _b=_bm?_bm[1]:null;
+        var _ig=_b&&GROUPS[_b]&&GROUPS[_b].length>=2;
+        if(!_ig){_dgProc.push(r);return;}
+        if(_dgs[_b]) return;
+        _dgs[_b]=true;
+        var _gM=GRP_MODE[_b]||'individuelt';
+        var _gR=dgR.filter(function(x){var bm=x.ordreNr.match(/^(.+?)-[^-]+$/);return bm&&bm[1]===_b;});
+        var _bg=_gM==='samlet'?'#7c3aed':'#2563eb';
+        var _lb=_gM==='samlet'?'Toppordre':'Samlet';
+        var _gb='<button data-base="'+_b+'" onclick="toggleGrpMode(this.dataset.base)" style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:'+_bg+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+_lb+'</button>';
+        _dgProc.push({_grpHdr:true,base:_b,cnt:_gR.length,btn:_gb});
+        _gR.forEach(function(gr){_dgProc.push(gr);});
+      });
+      return _dgProc;
+    })().map(function(r){
+      if(r._grpHdr) return '<tr style="background:#dbeafe;"><td colspan="15" style="padding:5px 12px;font-size:.8rem;color:#1e3a8a;"><strong>Ordre '+r.base+'</strong> \u2014 '+r.cnt+' underordre'+r.btn+'</td></tr>';
+      if(r._isTop){
+        var _dis=isEditable(r);var _inp2=DGI[r.ordreNr]||{dg:35,k:''};
+        var _c2=calcDG(r);if(_c2.via!=null) dv+=_c2.via;
+        var _w2=!_inp2.k&&(r.risk==='MIDDELS'||r.risk==='H\xD8Y');
+        var _bs2=r.beskr?r.beskr.substring(0,36)+(r.beskr.length>36?'\u2026':''):'\u2013';
+        var _dgi='<div style="display:flex;align-items:center;gap:4px;"><input class="pi" type="text" inputmode="numeric" value="'+(_inp2.dg!=null?_inp2.dg:35)+'" '+_dis+' data-o="'+r.ordreNr+'" data-f="dg" onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(this.dataset.o,this.dataset.f,this)" style="width:56px"><span style="font-size:.8rem;color:#666">%</span></div>';
+        var _tb2='<button data-base="'+r._base+'" onclick="toggleGrpMode(this.dataset.base)" style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:#555;color:#fff;border:none;border-radius:4px;cursor:pointer;">Vis underordre ('+r._subCnt+')</button>';
+        return '<tr style="border-left:3px solid #16a34a;">'+
+          '<td><strong>'+r.ordreNr+'</strong> <span style="font-size:.7rem;background:#16a34a;color:#fff;border-radius:3px;padding:0 4px;margin-right:3px">SAMLET</span>'+_tb2+'</td>'+
+          '<td style="white-space:nowrap">'+r.pl+'</td><td>'+r.type+'</td>'+
+          '<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">'+_bs2+'</td>'+
+          '<td style="max-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">'+r.kunde+'</td>'+
+          '<td class="r">'+NK(r.totOmk)+'</td><td class="r">'+NK(r.fakt)+'</td>'+
+          '<td style="text-align:right;color:#aaa;">–</td><td style="text-align:right;color:#aaa;">–</td>'+
+          '<td>'+_dgi+'</td><td class="c">–</td>'+
+          '<td class="r calc">'+NK(_c2.fs)+'</td>'+
+          '<td class="r '+(_c2.via==null?'':(_c2.via<0?'vneg':'vpos'))+'">'+NK(_c2.via)+'</td>'+
+          '<td><input class="ci'+(_w2?' req':'')+' " placeholder="'+(_w2?'Begrunnelse p\xE5krevet':'Begrunnelse for DG%-estimat\u2026')+'" value="'+(_inp2.k||'')+'" '+_dis+' data-o="'+r.ordreNr+'" data-f="k" onchange="sD(this.dataset.o,this.dataset.f,this.value)"></td>'+
+          '<td class="c">'+rb(r.risk)+'</td></tr>';
+      }
       var dis=isEditable(r);
       var inp=DGI[r.ordreNr]||{dg:r.dg!=null?Math.round(r.dg*100):35,k:''};
       var c=calcDG(r);
