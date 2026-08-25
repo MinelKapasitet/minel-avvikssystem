@@ -432,6 +432,18 @@
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:24:15.761Z"
     },
+    "87205": {
+      "dg": 31.64,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:26:47.507Z"
+    },
     "86565-7": {
       "dg": 0,
       "begrunnelse": "Faktureres via hovedordre",
