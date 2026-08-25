@@ -1,5 +1,17 @@
 {
   "items": {
+    "84402": {
+      "dg": 33,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:09:48.480Z"
+    },
     "84817": {
       "dg": 20,
       "begrunnelse": "Faktureres etter medgått tid og materiell, lav pga dårlig prisantydning fra EK",
