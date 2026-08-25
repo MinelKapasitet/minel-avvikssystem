@@ -1,1 +1,17 @@
-{}
+{
+  "items": {
+    "86657": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 0,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:05:07.304Z"
+    }
+  },
+  "status": {}
+}
