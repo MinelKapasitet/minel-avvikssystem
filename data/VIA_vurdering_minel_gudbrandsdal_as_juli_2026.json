@@ -1,5 +1,17 @@
 {
   "items": {
+    "84817": {
+      "dg": 20,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:09:04.938Z"
+    },
     "84904": {
       "dg": 23.7,
       "begrunnelse": "Ble bokført 25/8 (noe reklamasjon)",
