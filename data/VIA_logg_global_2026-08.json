@@ -42,5 +42,17 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-08-25T10:20:37.860Z",
+    "bruker": "Øyvind Sæthersmoen",
+    "epost": "oyvind.saethersmoen@minel.no",
+    "rolle": "DL",
+    "selskap": "__SUPER__",
+    "hendelse": "PromiseFeil",
+    "detaljer": {
+      "melding": "TypeError: Cannot read properties of null (reading 'sha')",
+      "stack": "TypeError: Cannot read properties of null (reading 'sha')\n    at <anonymous>:4:22"
+    }
   }
 ]
