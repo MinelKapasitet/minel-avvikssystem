@@ -1,7 +1,7 @@
 {
   "items": {
     "84402": {
-      "dg": 33,
+      "dg": 33.12,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -10,7 +10,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
-      "updatedAt": "2026-08-25T10:09:48.480Z"
+      "updatedAt": "2026-08-25T10:10:07.815Z"
     },
     "84817": {
       "dg": 20,
