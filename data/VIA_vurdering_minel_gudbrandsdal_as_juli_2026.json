@@ -491,6 +491,18 @@
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:24:09.277Z"
+    },
+    "86565-3": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:25:45.627Z"
     }
   },
   "status": {}
