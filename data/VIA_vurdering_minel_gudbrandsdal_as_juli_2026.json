@@ -168,6 +168,30 @@
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:05:27.455Z"
     },
+    "86783": {
+      "dg": 0,
+      "begrunnelse": "Faktureres ikke",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:24:49.906Z"
+    },
+    "86824": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:24:10.086Z"
+    },
     "86855": {
       "dg": 40,
       "begrunnelse": "",
@@ -288,6 +312,18 @@
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:15:43.178Z"
     },
+    "87173": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:25:16.948Z"
+    },
     "87193": {
       "dg": 57.2,
       "begrunnelse": "",
@@ -311,6 +347,18 @@
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:17:09.867Z"
+    },
+    "87203": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:24:15.761Z"
     },
     "86565-7": {
       "dg": 0,
@@ -395,6 +443,30 @@
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:24:07.640Z"
+    },
+    "86565-4": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:24:08.588Z"
+    },
+    "86565-10": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:24:09.277Z"
     }
   },
   "status": {}
