@@ -1,5 +1,17 @@
 {
   "items": {
+    "83801": {
+      "dg": 33.12,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:10:23.864Z"
+    },
     "84402": {
       "dg": 35,
       "begrunnelse": "",
