@@ -86,7 +86,7 @@
     },
     "85463": {
       "dg": 15,
-      "begrunnelse": "",
+      "begrunnelse": "Familierabatt",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -94,7 +94,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
-      "updatedAt": "2026-08-25T10:27:27.549Z"
+      "updatedAt": "2026-08-25T10:27:37.904Z"
     },
     "85494": {
       "dg": 50,
