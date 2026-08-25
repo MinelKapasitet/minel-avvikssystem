@@ -170,7 +170,7 @@
     },
     "87120": {
       "dg": 13.5,
-      "begrunnelse": "",
+      "begrunnelse": "Feil kost på timer i OS",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -178,7 +178,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
-      "updatedAt": "2026-08-25T10:15:28.729Z"
+      "updatedAt": "2026-08-25T10:15:43.178Z"
     },
     "86565-7": {
       "dg": 0,
