@@ -132,6 +132,18 @@
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:24:05.245Z"
     },
+    "86566": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:24:05.980Z"
+    },
     "86639": {
       "dg": 40,
       "begrunnelse": "",
@@ -359,6 +371,18 @@
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:15:01.713Z"
+    },
+    "86679-1": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-08-25T10:24:06.643Z"
     }
   },
   "status": {}
