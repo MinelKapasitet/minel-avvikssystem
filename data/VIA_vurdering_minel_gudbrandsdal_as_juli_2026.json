@@ -1,5 +1,17 @@
 {
   "items": {
+    "80486": {
+      "dg": 34,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "bjorn.bratlien@minel.no",
+      "updatedAt": "2026-08-26T08:20:07.556Z"
+    },
     "83801": {
       "dg": 32,
       "begrunnelse": "",
