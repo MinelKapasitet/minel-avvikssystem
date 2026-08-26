@@ -34,7 +34,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "susann.endrestad@minel.no",
-      "updatedAt": "2026-08-26T13:16:00.483Z"
+      "updatedAt": "2026-08-26T13:18:01.694Z"
     },
     "83801": {
       "dg": 32,
@@ -359,6 +359,18 @@
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:05:27.455Z"
+    },
+    "86713": {
+      "dg": 9,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "susann.endrestad@minel.no",
+      "updatedAt": "2026-08-26T13:18:02.954Z"
     },
     "86783": {
       "dg": 0,
