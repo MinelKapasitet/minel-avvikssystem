@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.03</title>
+<title>VIA QA – Minel AS v10.04</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.03</span>
+  <span class="hd-badge">v10.04</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -710,7 +710,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.03 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.04 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2248,7 +2248,7 @@ function calcPOC(r,stkDefault){
   var innt=(fg!=null&&r.tilbud!=null)?r.tilbud*fg:null;
   var estDG=(esk>0&&r.tilbud!=null)?(r.tilbud-esk)/r.tilbud:null;
   var via=innt!=null&&r.fakt!=null?innt-r.fakt:null;
-  return {gk:gk,esk:esk,fg:fg,innt:innt,estDG:estDG,via:via};
+  return {gk:gk,esk:esk,fg:fg,fgIsDefault:gk===0,innt:innt,estDG:estDG,via:via};
 }
 function calcDG(r){
   var inp=DGI[r.ordreNr]||{dg:35,k:''};
@@ -2416,7 +2416,7 @@ function rPOC(){
           '<td>'+piInp(r.ordreNr,'mat',fmtI(inp.mat||0),d,warn)+'</td>'+
           '<td class="r calc">'+NR(c.gk)+'</td>'+
           '<td class="r calc">'+NR(c.esk)+'</td>'+
-          '<td class="r calc">'+(c.fg!=null?PC(c.fg):'–')+'</td>'+
+          '<td class="r calc">'+((c.fg!=null&&!c.fgIsDefault)?PC(c.fg):'–')+'</td>'+
           '<td class="r calc">'+NK(c.innt)+'</td>'+
           '<td class="r calc">'+(c.estDG!=null?PC(c.estDG):'–')+'</td>'+
           '<td class="r'+(overbill?' vneg':'')+'" title="'+(overbill?'⚠️ Fakturert overgår kontraktssum!':'')+'">'+(overbill?'⚠️ ':'')+NK(r.fakt)+'</td>'+
