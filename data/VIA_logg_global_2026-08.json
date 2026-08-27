@@ -54,5 +54,16 @@
       "melding": "TypeError: Cannot read properties of null (reading 'sha')",
       "stack": "TypeError: Cannot read properties of null (reading 'sha')\n    at <anonymous>:4:22"
     }
+  },
+  {
+    "tidspunkt": "2026-08-27T11:00:27.707Z",
+    "bruker": "Per Erik Kvesetmoen",
+    "epost": "per.kvesetmoen@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
