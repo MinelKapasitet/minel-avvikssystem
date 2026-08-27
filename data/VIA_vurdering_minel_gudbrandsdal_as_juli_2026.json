@@ -738,11 +738,11 @@
       "kommentar": "",
       "timer": 0,
       "timekost": null,
-      "material": 1500,
+      "material": 0,
       "fg": null,
       "kv": null,
       "updatedBy": "susann.endrestad@minel.no",
-      "updatedAt": "2026-08-27T12:24:37.528Z"
+      "updatedAt": "2026-08-27T12:24:51.370Z"
     }
   },
   "status": {
