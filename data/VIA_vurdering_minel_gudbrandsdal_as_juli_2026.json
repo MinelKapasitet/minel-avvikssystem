@@ -731,6 +731,18 @@
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:25:54.404Z"
+    },
+    "81394-8": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 5,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "susann.endrestad@minel.no",
+      "updatedAt": "2026-08-27T12:23:17.463Z"
     }
   },
   "status": {
