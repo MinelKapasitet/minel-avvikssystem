@@ -12,30 +12,6 @@
       "updatedBy": "bjorn.bratlien@minel.no",
       "updatedAt": "2026-08-26T08:20:07.556Z"
     },
-    "80824": {
-      "dg": 9,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": null,
-      "timekost": null,
-      "material": null,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "susann.endrestad@minel.no",
-      "updatedAt": "2026-08-26T13:18:00.255Z"
-    },
-    "83599": {
-      "dg": 9,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": null,
-      "timekost": null,
-      "material": null,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "susann.endrestad@minel.no",
-      "updatedAt": "2026-08-26T13:18:01.694Z"
-    },
     "83801": {
       "dg": 32,
       "begrunnelse": "",
@@ -94,7 +70,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "bjorn.bratlien@minel.no",
-      "updatedAt": "2026-08-26T13:01:53.690Z"
+      "updatedAt": "2026-08-27T11:36:23.229Z"
     },
     "84817": {
       "dg": 20,
@@ -156,18 +132,6 @@
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:15:51.823Z"
     },
-    "85442": {
-      "dg": 9,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": null,
-      "timekost": null,
-      "material": null,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "susann.endrestad@minel.no",
-      "updatedAt": "2026-08-26T13:17:59.254Z"
-    },
     "85463": {
       "dg": 15,
       "begrunnelse": "Familierabatt",
@@ -191,18 +155,6 @@
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:27:06.286Z"
-    },
-    "85667": {
-      "dg": 9,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": null,
-      "timekost": null,
-      "material": null,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "susann.endrestad@minel.no",
-      "updatedAt": "2026-08-26T13:16:12.771Z"
     },
     "85794": {
       "dg": 33,
@@ -239,18 +191,6 @@
       "kv": null,
       "updatedBy": "bjorn.bratlien@minel.no",
       "updatedAt": "2026-08-26T08:23:06.347Z"
-    },
-    "86205": {
-      "dg": 9,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": null,
-      "timekost": null,
-      "material": null,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "susann.endrestad@minel.no",
-      "updatedAt": "2026-08-26T13:16:27.069Z"
     },
     "86340": {
       "dg": 35,
@@ -359,18 +299,6 @@
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:05:27.455Z"
-    },
-    "86713": {
-      "dg": 9,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": null,
-      "timekost": null,
-      "material": null,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "susann.endrestad@minel.no",
-      "updatedAt": "2026-08-26T13:18:02.954Z"
     },
     "86783": {
       "dg": 0,
