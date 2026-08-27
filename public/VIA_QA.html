@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.04</title>
+<title>VIA QA – Minel AS v10.05</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.04</span>
+  <span class="hd-badge">v10.05</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -710,7 +710,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.04 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.05 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2684,7 +2684,7 @@ function rHist(){
         +'<td class="r" style="font-weight:700;color:'+(snap.summary.totalVIA>100000?"var(--amber)":"var(--dark)")+'">'+NK(snap.summary.totalVIA)+'</td>'
         +'<td class="r">'+NK(snap.summary.pocVIA)+'</td><td class="r">'+NK(snap.summary.dgVIA)+'</td>'
         +'<td class="c">'+snap.summary.projectCount+'</td>'
-        +'<td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td><td class="r">'+(function(p){var t=p.reduce(function(s,x){return s+(x.tilbud||0);},0);var w=p.reduce(function(s,x){return s+((x.dg||0)*(x.tilbud||0));},0);return t>0?Math.round(w/t*1000)/10+'%':'-';})(snap.projects||[])+'</td>'+'<td style="text-align:center">'+(snap.type==='låst'?'<span style="color:#4caf50;font-size:.75rem;font-weight:600">Låst</span>':'<span style="color:#9EC8FF;font-size:.75rem">Snapshot</span>')+'</td>'+(snap.reportHtml?'<td class="c"><button onclick="openHistReport('+snap.id+')" style="padding:2px 8px;font-size:.75rem;background:#1e3a5f;color:#9EC8FF;border:1px solid #9EC8FF;border-radius:4px;cursor:pointer">📄</button></td>':'<td class="c" style="text-align:center">—</td>')+'<td style="text-align:center"><button onclick="deleteSnap('+snap.id+')" title="Slett denne perioden fra historikk" style="background:none;border:1px solid rgba(200,16,46,.4);border-radius:3px;cursor:pointer;font-size:.7rem;color:#C8102E;padding:1px 5px;opacity:.6;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">&#128465;</button></td>'+'</tr>';
+        +'<td class="c">'+(snap.summary.highRisk>0?'<span style="color:var(--red);font-weight:800">'+snap.summary.highRisk+'</span>':'0')+'</td><td class="r">'+(function(p){var t=p.reduce(function(s,x){return s+(x.tilbud||0);},0);var w=p.reduce(function(s,x){return s+((x.dg||0)*(x.tilbud||0));},0);return t>0?Math.round(w/t*1000)/10+'%':'-';})(snap.projects||[])+'</td>'+'<td style="text-align:center">'+(snap.type==='låst'?'<span style="color:#4caf50;font-size:.75rem;font-weight:600">Låst</span>':'<span style="color:#9EC8FF;font-size:.75rem">Snapshot</span>')+'</td>'+(snap.reportHtml?'<td class="c"><button onclick="openHistReport('+snap.id+')" style="padding:2px 8px;font-size:.75rem;background:#1e3a5f;color:#9EC8FF;border:1px solid #9EC8FF;border-radius:4px;cursor:pointer">📄</button></td>':'<td class="c" style="text-align:center">—</td>')+'<td class="c" style="text-align:center"><button onclick="exportHistExcel('"+snap.id+"')" style="padding:2px 8px;font-size:.75rem;background:#1e3a5f;color:#4caf50;border:1px solid #4caf50;border-radius:4px;cursor:pointer">↓ Excel</button></td>'+'<td style="text-align:center"><button onclick="deleteSnap('+snap.id+')" title="Slett denne perioden fra historikk" style="background:none;border:1px solid rgba(200,16,46,.4);border-radius:3px;cursor:pointer;font-size:.7rem;color:#C8102E;padding:1px 5px;opacity:.6;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.6">&#128465;</button></td>'+'</tr>';
     }).join("")
     +'</tbody></table></div>';
 }
@@ -2872,6 +2872,28 @@ function expPOC(){
     });
     var ws=XLSX.utils.aoa_to_sheet(aoa),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'VIA QA');XLSX.writeFile(wb,'VIA_QA_eksport.xlsx');
     }catch(e){alert('Eksportfeil: '+e.message);}
+}
+
+function exportHistExcel(snapId){
+  if(typeof XLSX==='undefined'){alert('XLSX-biblioteket er ikke lastet.');return;}
+  var snap=getHist().find(function(s){return s.id===snapId;});
+  if(!snap){alert('Snapshot ikke funnet.');return;}
+  var H=['Ordre','PL','Beskrivelse','Type','Kunde','Kontraktssum','Kostnader','Fakturert','VIA','DG%','Ferdiggrad%','Risiko'];
+  var rows=[H];
+  (snap.projects||[]).forEach(function(p){
+    rows.push([p.ordreNr,p.pl,p.beskr,p.type,p.kunde,
+      p.tilbud!=null?Math.round(p.tilbud):null,
+      p.totOmk!=null?Math.round(p.totOmk):null,
+      p.fakt!=null?Math.round(p.fakt):null,
+      p.via!=null?Math.round(p.via):null,
+      p.dg!=null?Math.round(p.dg*10000)/100:null,
+      p.fg!=null?Math.round(p.fg*1000)/10:null,
+      p.risk]);
+  });
+  var wb=XLSX.utils.book_new();
+  var ws=XLSX.utils.aoa_to_sheet(rows);
+  XLSX.utils.book_append_sheet(wb,ws,('VIA '+snap.period).substring(0,31));
+  XLSX.writeFile(wb,'VIA_'+snap.entity+'_'+snap.period+'.xlsx');
 }
 
 function printReport(){
