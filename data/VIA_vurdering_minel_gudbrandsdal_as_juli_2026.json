@@ -50,7 +50,7 @@
     },
     "84686": {
       "dg": 25,
-      "begrunnelse": "",
+      "begrunnelse": "usikker dg",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -58,7 +58,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "bjorn.bratlien@minel.no",
-      "updatedAt": "2026-08-26T08:19:51.719Z"
+      "updatedAt": "2026-08-27T11:36:30.469Z"
     },
     "84787": {
       "dg": null,
