@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.08</title>
+<title>VIA QA – Minel AS v10.09</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.08</span>
+  <span class="hd-badge">v10.09</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.08 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.09 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -842,7 +842,7 @@ document.addEventListener('DOMContentLoaded',async function(){
       _msalApp=autoApp;
       _spUser=resp.account?resp.account.username:'Ukjent';
       if(typeof detectUser==='function')detectUser(resp.account);
-      if(!_loggedLogin){_loggedLogin=true;logEvent('Innlogget',{metode:'redirect'}).catch(function(){});}
+      if(!_loggedLogin){_loggedLogin=true;if(_ai&&_currentUser)try{_ai.setAuthenticatedUserContext(_currentUser.email||_spUser,_currentUser.name);}catch(e){}logEvent('Innlogget',{metode:'redirect'}).catch(function(){});}
       if(window.name&&window.name.indexOf('msal')===0){setTimeout(function(){try{window.close();}catch(e){}},300);}
     } else {
       // Cached account: gjenopprett innlogget bruker uten klikk
@@ -963,7 +963,7 @@ async function loginPL(btn){
   var accounts=_msalApp.getAllAccounts();
   if(accounts.length>0){
     detectUser(accounts[0]);
-    if(!_loggedLogin){_loggedLogin=true;logEvent('Innlogget',{metode:'silent'}).catch(function(){});}
+    if(!_loggedLogin){_loggedLogin=true;if(_ai&&_currentUser)try{_ai.setAuthenticatedUserContext(_currentUser.email||_spUser,_currentUser.name);}catch(e){}logEvent('Innlogget',{metode:'silent'}).catch(function(){});}
     return;
   }
   if(btn)btn.textContent='⏳ Omdirigerer til Microsoft...';
