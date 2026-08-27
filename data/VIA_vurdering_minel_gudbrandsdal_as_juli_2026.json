@@ -736,13 +736,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 5,
+      "timer": 0,
       "timekost": null,
       "material": 1500,
       "fg": null,
       "kv": null,
       "updatedBy": "susann.endrestad@minel.no",
-      "updatedAt": "2026-08-27T12:23:22.487Z"
+      "updatedAt": "2026-08-27T12:24:37.528Z"
     }
   },
   "status": {
