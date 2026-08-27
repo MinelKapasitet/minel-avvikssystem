@@ -77,5 +77,16 @@
       "melding": "Object Not Found Matching Id:2, MethodName:update, ParamCount:4",
       "stack": null
     }
+  },
+  {
+    "tidspunkt": "2026-08-27T15:30:35.622Z",
+    "bruker": "Bjørnar Sleppen",
+    "epost": "bjornar.sleppen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Elmontasje AS",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
