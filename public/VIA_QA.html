@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.07</title>
+<title>VIA QA – Minel AS v10.08</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -221,6 +221,11 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
 .help-close-btn{background:#c8102e;color:#fff;border:none;border-radius:8px;padding:10px 30px;font-size:.9rem;font-weight:600;cursor:pointer;}
 .help-close-btn:hover{background:#a50d25;}
 </style>
+<script src="https://js.monitor.azure.com/scripts/b/ai.2.min.js"></script>
+<script>
+var _ai=null;
+try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectionString:'InstrumentationKey=a6a2fcb5-d976-41bc-9bd3-7b24efcac56e;IngestionEndpoint=https://norwayeast-0.in.applicationinsights.azure.com/;LiveEndpoint=https://norwayeast.livediagnostics.monitor.azure.com/;ApplicationId=e8653d1a-a0f1-44ea-867e-21cf3368a91c',disableAjaxTracking:true,disableFetchTracking:true}});_ai.loadAppInsights();_ai.trackPageView({name:'VIA QA'});}catch(e){console.warn('[AI] Init feilet:',e);}
+</script>
 </head>
 <body>
 <header>
@@ -234,7 +239,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.07</span>
+  <span class="hd-badge">v10.08</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -710,7 +715,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.07 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.08 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -798,6 +803,7 @@ async function logEventRaw(tok,hendelse,detaljer,retries){
   }
 }
 async function logEvent(hendelse,detaljer){
+  if(_ai){try{_ai.trackEvent({name:hendelse},Object.assign({},detaljer||{},{bruker:_currentUser?_currentUser.name:(_spUser||'?'),rolle:_currentUser?(_currentUser.isDL?'DL':'PL'):'?',selskap:_currentEntity||''}));}catch(e){}}
   try{await logEventRaw(null,hendelse,detaljer);}catch(e){console.warn('[LOG] logEvent feilet:',e);}
 }
 async function spSaveHist(entity){
@@ -1051,7 +1057,9 @@ async function spSaveAssessment(period,company,ordreNr,dg,begrunnelse,kommentar,
       updatedAt:new Date().toISOString()
     };
     await ghSaveVurdering(company,period);
-  }catch(e){console.warn('[GH] Save assessment feilet:',e);spShowSaveStatus(false);}
+    if(_ai)try{_ai.trackEvent({name:'Lagret DG'},{ordreNr:ordreNr,dg:dg,selskap:company,period:period});}catch(e){}
+    spShowSaveStatus(true);
+  }catch(e){console.warn('[GH] Save assessment feilet:',e);spShowSaveStatus(false);if(_ai)try{_ai.trackEvent({name:'Lagring feilet'},{ordreNr:ordreNr,error:e.message});}catch(e2){}}
 }
 
 function plLoadDataset(company){
