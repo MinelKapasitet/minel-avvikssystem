@@ -65,5 +65,17 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-08-27T14:41:50.298Z",
+    "bruker": "Ukjent",
+    "epost": "Ukjent",
+    "rolle": "?",
+    "selskap": "",
+    "hendelse": "PromiseFeil",
+    "detaljer": {
+      "melding": "Object Not Found Matching Id:2, MethodName:update, ParamCount:4",
+      "stack": null
+    }
   }
 ]
