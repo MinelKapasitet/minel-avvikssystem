@@ -258,11 +258,11 @@
       "kommentar": "",
       "timer": 37.5,
       "timekost": null,
-      "material": 20000,
+      "material": 0,
       "fg": null,
       "kv": null,
       "updatedBy": "ola.slaen@minel.no",
-      "updatedAt": "2026-08-28T13:11:08.017Z"
+      "updatedAt": "2026-08-28T13:11:28.048Z"
     },
     "86162": {
       "dg": 25,
