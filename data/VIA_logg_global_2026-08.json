@@ -143,5 +143,16 @@
     "detaljer": {
       "metode": "silent"
     }
+  },
+  {
+    "tidspunkt": "2026-08-28T12:49:03.019Z",
+    "bruker": "Ivar Aas",
+    "epost": "ivar.aas@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
