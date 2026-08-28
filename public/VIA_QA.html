@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.10</title>
+<title>VIA QA – Minel AS v10.11</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.10 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.11 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2331,7 +2331,25 @@ function rPOC(){
     var keys=['ordreNr','pl','type','beskr','kunde','totOmk','fakt',null,null,null,null,'fSalgsverdi','via',null,'risk'];
     var k=keys[c];
     if(k) dgR.sort(function(a,b){var va,vb;if(k==='risk'){var rm={LAV:0,MIDDELS:1,'HØY':2};va=rm[a.risk]||0;vb=rm[b.risk]||0;}else{va=a[k];vb=b[k];}if(va==null)va=asc?'zzz':-Infinity;if(vb==null)vb=asc?'zzz':-Infinity;if(typeof va==='string')return asc?va.localeCompare(vb):vb.localeCompare(va);return asc?va-vb:vb-va;});
-    else dgR.sort(function(a,b){return(b.totOmk||0)-(a.totOmk||0);});
+    else {
+      // Sorter grupper etter gruppesum — ikke enkeltordrens kostnad
+      var _grpTot={};
+      dgR.forEach(function(r){
+        var _m=r.ordreNr.match(/^(.+?)-[^-]+$/);
+        var _b=_m?_m[1]:null;
+        if(_b&&GROUPS[_b]&&GROUPS[_b].length>=2) _grpTot[_b]=(_grpTot[_b]||0)+(r.totOmk||0);
+      });
+      dgR.sort(function(a,b){
+        var ma=a.ordreNr.match(/^(.+?)-[^-]+$/);
+        var mb=b.ordreNr.match(/^(.+?)-[^-]+$/);
+        var ba=ma&&GROUPS[ma[1]]&&GROUPS[ma[1]].length>=2?ma[1]:null;
+        var bb=mb&&GROUPS[mb[1]]&&GROUPS[mb[1]].length>=2?mb[1]:null;
+        if(ba&&bb&&ba===bb) return (b.totOmk||0)-(a.totOmk||0); // innad i gruppe: individuell
+        var ka=ba?_grpTot[ba]:(a.totOmk||0);
+        var kb=bb?_grpTot[bb]:(b.totOmk||0);
+        return kb-ka;
+      });
+    }
   })();
   if(HIDE_SETTLED){
     dgR=dgR.filter(function(r){return !(r.fakt>0&&r.fSalgsverdi>0&&Math.abs(r.via)<5000);});
