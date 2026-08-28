@@ -360,6 +360,18 @@
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:05:27.455Z"
     },
+    "86733": {
+      "dg": 48,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "tage.selsjord@minel.no",
+      "updatedAt": "2026-08-28T09:02:53.795Z"
+    },
     "86783": {
       "dg": 0,
       "begrunnelse": "Faktureres ikke",
