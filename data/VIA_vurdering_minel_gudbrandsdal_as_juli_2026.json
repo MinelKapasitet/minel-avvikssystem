@@ -767,6 +767,18 @@
       "kv": null,
       "updatedBy": "susann.endrestad@minel.no",
       "updatedAt": "2026-08-27T12:24:51.370Z"
+    },
+    "85157-1": {
+      "dg": 75,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "susann.endrestad@minel.no",
+      "updatedAt": "2026-08-28T07:27:26.617Z"
     }
   },
   "status": {
