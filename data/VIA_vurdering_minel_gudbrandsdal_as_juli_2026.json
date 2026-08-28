@@ -156,6 +156,18 @@
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:15:51.823Z"
     },
+    "85423": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "tage.selsjord@minel.no",
+      "updatedAt": "2026-08-28T09:02:01.571Z"
+    },
     "85463": {
       "dg": 15,
       "begrunnelse": "Familierabatt",
