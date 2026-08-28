@@ -99,5 +99,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-08-28T05:29:18.699Z",
+    "bruker": "Per Egil Nyhus",
+    "epost": "per.nyhus@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
