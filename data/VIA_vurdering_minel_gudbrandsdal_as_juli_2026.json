@@ -228,6 +228,18 @@
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-08-25T10:27:10.515Z"
     },
+    "86016": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "tage.selsjord@minel.no",
+      "updatedAt": "2026-08-28T09:03:18.396Z"
+    },
     "86083": {
       "dg": 35,
       "begrunnelse": "",
