@@ -110,5 +110,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-08-28T09:01:35.224Z",
+    "bruker": "Tage Selsjord",
+    "epost": "tage.selsjord@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
