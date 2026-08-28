@@ -564,6 +564,18 @@
       "updatedBy": "bjorn.bratlien@minel.no",
       "updatedAt": "2026-08-26T08:22:59.936Z"
     },
+    "87010": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "tage.selsjord@minel.no",
+      "updatedAt": "2026-08-28T09:03:36.365Z"
+    },
     "87090": {
       "dg": 30,
       "begrunnelse": "",
