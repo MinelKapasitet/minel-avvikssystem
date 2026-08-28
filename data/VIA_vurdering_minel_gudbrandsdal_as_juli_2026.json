@@ -66,11 +66,11 @@
       "kommentar": "",
       "timer": 500,
       "timekost": null,
-      "material": 0,
+      "material": 50000,
       "fg": null,
       "kv": null,
       "updatedBy": "susann.endrestad@minel.no",
-      "updatedAt": "2026-08-28T07:26:24.188Z"
+      "updatedAt": "2026-08-28T07:26:30.207Z"
     },
     "84787": {
       "dg": null,
