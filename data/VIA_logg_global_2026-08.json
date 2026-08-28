@@ -154,5 +154,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-08-28T13:07:15.013Z",
+    "bruker": "Ola Slåen",
+    "epost": "ola.slaen@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
