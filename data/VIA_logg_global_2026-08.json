@@ -165,5 +165,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-08-28T13:31:41.446Z",
+    "bruker": "Rolf S. Eriksrud",
+    "epost": "rolf.eriksrud@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
