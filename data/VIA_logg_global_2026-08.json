@@ -324,5 +324,21 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-08-31T12:09:26.007Z",
+    "bruker": "Geir Atle Sangnæs",
+    "epost": "geir.sangnaes@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gjøvik AS",
+    "hendelse": "NyStatus",
+    "detaljer": {
+      "statuser": [
+        "Klar til fakturering",
+        "JOBB POOL",
+        "Småjobb"
+      ],
+      "selskap": "Minel Gjøvik AS"
+    }
   }
 ]
