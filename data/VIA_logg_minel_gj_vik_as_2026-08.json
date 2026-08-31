@@ -1,0 +1,15 @@
+[
+  {
+    "tidspunkt": "2026-08-31T10:11:58.764Z",
+    "bruker": "Geir Atle Sangnæs",
+    "epost": "geir.sangnaes@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gjøvik AS",
+    "hendelse": "DataLastet",
+    "detaljer": {
+      "selskap": "Minel Gjøvik AS",
+      "periode": "juli 2026",
+      "antallOrdrer": 393
+    }
+  }
+]
