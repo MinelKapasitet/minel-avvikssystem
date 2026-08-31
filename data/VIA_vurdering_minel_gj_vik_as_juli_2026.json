@@ -13,6 +13,18 @@
       "kv": null,
       "updatedBy": "einar.dotseth@minel.no",
       "updatedAt": "2026-08-31T10:25:48.861Z"
+    },
+    "64425": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "per.nyhus@minel.no",
+      "updatedAt": "2026-08-31T10:32:22.374Z"
     }
   },
   "status": {}
