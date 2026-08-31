@@ -253,5 +253,16 @@
     "detaljer": {
       "metode": "silent"
     }
+  },
+  {
+    "tidspunkt": "2026-08-31T05:01:00.692Z",
+    "bruker": "Geir Atle Sangnæs",
+    "epost": "geir.sangnaes@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "silent"
+    }
   }
 ]
