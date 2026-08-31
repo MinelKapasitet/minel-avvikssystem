@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.13</title>
+<title>VIA QA – Minel AS v10.14</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -224,7 +224,7 @@ footer{text-align:center;padding:14px;color:#888;font-size:.75rem;margin-top:20p
 <script src="https://js.monitor.azure.com/scripts/b/ai.2.min.js"></script>
 <script>
 var _ai=null;
-try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectionString:'InstrumentationKey=a6a2fcb5-d976-41bc-9bd3-7b24efcac56e;IngestionEndpoint=https://norwayeast-0.in.applicationinsights.azure.com/;LiveEndpoint=https://norwayeast.livediagnostics.monitor.azure.com/;ApplicationId=e8653d1a-a0f1-44ea-867e-21cf3368a91c',disableAjaxTracking:true,disableFetchTracking:true}});_ai.loadAppInsights();_ai.trackPageView({name:'VIA QA'});}catch(e){console.warn('[AI] Init feilet:',e);}
+try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectionString:'InstrumentationKey=a6a2fcb5-d976-41bc-9bd3-7b24efcac56e;IngestionEndpoint=https://norwayeast-0.in.applicationinsights.azure.com/;LiveEndpoint=https://norwayeast.livediagnostics.monitor.azure.com/;ApplicationId=e8653d1a-a0f1-44ea-867e-21cf3368a91c',disableAjaxTracking:true,disableFetchTracking:true}});_ai.loadAppInsights();}catch(e){console.warn('[AI] Init feilet:',e);}
 </script>
 </head>
 <body>
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.13 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.14 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -842,7 +842,7 @@ document.addEventListener('DOMContentLoaded',async function(){
       _msalApp=autoApp;
       _spUser=resp.account?resp.account.username:'Ukjent';
       if(typeof detectUser==='function')detectUser(resp.account);
-      if(!_loggedLogin){_loggedLogin=true;if(_ai&&_currentUser)try{_ai.setAuthenticatedUserContext(_currentUser.email||_spUser,_currentUser.name);}catch(e){}logEvent('Innlogget',{metode:'redirect'}).catch(function(){});}
+      if(!_loggedLogin){_loggedLogin=true;if(_ai&&_currentUser)try{_ai.setAuthenticatedUserContext(_currentUser.email||_spUser,_currentUser.name);_ai.trackPageView({name:'VIA QA'});}catch(e){}logEvent('Innlogget',{metode:'redirect'}).catch(function(){});}
       if(window.name&&window.name.indexOf('msal')===0){setTimeout(function(){try{window.close();}catch(e){}},300);}
     } else {
       // Cached account: gjenopprett innlogget bruker uten klikk
