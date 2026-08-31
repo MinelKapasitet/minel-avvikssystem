@@ -198,5 +198,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-08-31T04:14:14.186Z",
+    "bruker": "Geir Atle Sangnæs",
+    "epost": "geir.sangnaes@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
