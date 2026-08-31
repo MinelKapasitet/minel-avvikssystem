@@ -1,0 +1,19 @@
+{
+  "period": "juli 2026",
+  "company": "Minel Gjøvik AS",
+  "items": {
+    "62149": {
+      "dg": 20,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "einar.dotseth@minel.no",
+      "updatedAt": "2026-08-31T10:25:48.861Z"
+    }
+  },
+  "status": {}
+}
