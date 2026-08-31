@@ -264,5 +264,16 @@
     "detaljer": {
       "metode": "silent"
     }
+  },
+  {
+    "tidspunkt": "2026-08-31T05:04:18.905Z",
+    "bruker": "Einar Dotseth",
+    "epost": "einar.dotseth@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
