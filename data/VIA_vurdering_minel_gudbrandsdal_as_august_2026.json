@@ -86,6 +86,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-09-01T11:54:51.413Z"
     },
+    "84508": {
+      "dg": 37,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "martin.odlolien@minel.no",
+      "updatedAt": "2026-09-01T11:58:14.653Z"
+    },
     "84862": {
       "dg": 30,
       "begrunnelse": "Feil tall og langtur",
