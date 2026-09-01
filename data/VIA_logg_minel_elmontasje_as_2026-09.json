@@ -60,5 +60,17 @@
       "selskap": "Minel Elmontasje AS",
       "period": "juli 2026"
     }
+  },
+  {
+    "tidspunkt": "2026-09-01T08:09:51.557Z",
+    "bruker": "Per Thomas Hagen",
+    "epost": "per.hagen@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Elmontasje AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Elmontasje AS",
+      "period": "juli 2026"
+    }
   }
 ]
