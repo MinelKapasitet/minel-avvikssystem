@@ -1,9 +1,9 @@
-﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.15</title>
+<title>VIA QA – Minel AS v10.16</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.15</span>
+  <span class="hd-badge">v10.16</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.15 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.16 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1744,7 +1744,7 @@ function startApiLoad(){
     var active = cases.filter(function(c){
       // Ekskluder toppordrer som har aktive underordrer  barna vises gruppert istedet.
       // Toppordrer der alle underordrer er avsluttet inkluderes (selvstendige aktive prosjekter).
-      if(_parentIds.has(String(c.id)) && _parentActiveChildIds.has(String(c.id))) return false;
+      if(_parentIds.has(String(c.id)) && _parentActiveChildIds.has(String(c.id))){if(!((c.offerTotal||0)>0)){var _chOf=false;var _scs=c.subCases||[];for(var _si2=0;_si2<_scs.length;_si2++){var _scc=caseById[String((_scs[_si2]||{}).id)];if(_scc&&(_scc.offerTotal||0)>0){_chOf=true;break;}}if(!_chOf) return false;}}
       // Underordrer (parentCaseId != null) inkluderes og vises gruppert via detectGroups()
       var typeText = (c.caseType&&c.caseType.text)||'';
       var statusText = (c.status&&c.status.text)||'';
@@ -2313,9 +2313,12 @@ function rPOC(){
   var stk=parseFloat(document.getElementById('stk').value)||650;
   var dis=LOCKED?'disabled':'';
 
-  var pocR=ACTIVE.filter(function(r){
-    return r.hasTilbud&&(!pl||r.pl===pl)&&!(HIDE_SMALL_POC&&(r.totOmk||0)<1000);
-  });
+  var pocAll=ACTIVE.filter(function(r){return r.hasTilbud&&(!pl||r.pl===pl);});
+  var _pocNrSet=new Set(pocAll.map(function(r){return r.ordreNr;}));
+  var _childAbsorbed=new Set();
+  var _parentExtra={};
+  pocAll.forEach(function(r){var m=r.ordreNr.match(/^(.+?)-[^-]+$/);if(!m)return;var base=m[1];if(!_pocNrSet.has(base))return;_childAbsorbed.add(r.ordreNr);if(!_parentExtra[base])_parentExtra[base]={totOmk:0,fakt:0};_parentExtra[base].totOmk+=(r.totOmk||0);_parentExtra[base].fakt+=(r.fakt||0);});
+  var pocR=pocAll.filter(function(r){if(_childAbsorbed.has(r.ordreNr))return false;return !(HIDE_SMALL_POC&&(r.totOmk||0)<1000&&!_parentExtra[r.ordreNr]);}).map(function(r){if(!_parentExtra[r.ordreNr])return r;var rx=Object.assign({},r);rx.totOmk=(rx.totOmk||0)+_parentExtra[r.ordreNr].totOmk;rx.fakt=(rx.fakt||0)+_parentExtra[r.ordreNr].fakt;return rx;});
   // Sort POC section
   (function(){
     var c=POCS.col,asc=POCS.asc;
