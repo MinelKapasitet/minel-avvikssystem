@@ -1,9 +1,9 @@
-﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.20</title>
+<title>VIA QA – Minel AS v10.21</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.20</span>
+  <span class="hd-badge">v10.21</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.20 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.21 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1896,7 +1896,8 @@ function startApiLoad(){
               materialkost:mk,
               dg:dg,
               fakt:fk,
-              fSalgsverdi:fsv,
+              parentCaseId:c.parentCaseId||null,
+            fSalgsverdi:fsv,
               via:via,
               historicalReopen:!!c._historicalReopen
             };
@@ -2318,6 +2319,7 @@ function rPOC(){
   var _pocChildAbsorbed=new Set();
   var _pocParentKids={};
   pocAll.forEach(function(r){var m=r.ordreNr.match(/^(.+?)-[^-]+$/);if(!m)return;var base=m[1];if(!_pocNrSet.has(base))return;_pocChildAbsorbed.add(r.ordreNr);if(!_pocParentKids[base])_pocParentKids[base]=[];_pocParentKids[base].push(r);});
+  var _pocIdToRow={};pocAll.forEach(function(r){if(r.id)_pocIdToRow[String(r.id)]=r;});pocAll.forEach(function(r){if(!r.parentCaseId)return;var _pr=_pocIdToRow[String(r.parentCaseId)];if(!_pr||_pocChildAbsorbed.has(r.ordreNr))return;_pocChildAbsorbed.add(r.ordreNr);if(!_pocParentKids[_pr.ordreNr])_pocParentKids[_pr.ordreNr]=[];_pocParentKids[_pr.ordreNr].push(r);});
   var pocR=pocAll.filter(function(r){if(_pocChildAbsorbed.has(r.ordreNr))return false;return !(HIDE_SMALL_POC&&(r.totOmk||0)<1000&&!_pocParentKids[r.ordreNr]);}).map(function(r){if(!_pocParentKids[r.ordreNr])return r;var rx=Object.assign({},r);_pocParentKids[r.ordreNr].forEach(function(ch){rx.totOmk=(rx.totOmk||0)+(ch.totOmk||0);rx.fakt=(rx.fakt||0)+(ch.fakt||0);});return rx;});
   // Sort POC section
   (function(){
@@ -2333,6 +2335,7 @@ function rPOC(){
   var _dgChildAbsorbed=new Set();
   var _dgParentKids={};
   dgAll.forEach(function(r){var m=r.ordreNr.match(/^(.+?)-[^-]+$/);if(!m)return;var base=m[1];if(!_dgNrSet.has(base))return;_dgChildAbsorbed.add(r.ordreNr);if(!_dgParentKids[base])_dgParentKids[base]=[];_dgParentKids[base].push(r);});
+  var _dgIdToRow={};dgAll.forEach(function(r){if(r.id)_dgIdToRow[String(r.id)]=r;});dgAll.forEach(function(r){if(!r.parentCaseId)return;var _pr=_dgIdToRow[String(r.parentCaseId)];if(!_pr||_dgChildAbsorbed.has(r.ordreNr))return;_dgChildAbsorbed.add(r.ordreNr);if(!_dgParentKids[_pr.ordreNr])_dgParentKids[_pr.ordreNr]=[];_dgParentKids[_pr.ordreNr].push(r);});
   var dgR=dgAll.filter(function(r){if(_dgChildAbsorbed.has(r.ordreNr))return false;return !(HIDE_SMALL&&(r.totOmk||0)<1000&&!_dgParentKids[r.ordreNr]);}).map(function(r){if(!_dgParentKids[r.ordreNr])return r;var rx=Object.assign({},r);_dgParentKids[r.ordreNr].forEach(function(ch){rx.totOmk=(rx.totOmk||0)+(ch.totOmk||0);rx.fakt=(rx.fakt||0)+(ch.fakt||0);});return rx;});
   // Sort DG section
   (function(){
