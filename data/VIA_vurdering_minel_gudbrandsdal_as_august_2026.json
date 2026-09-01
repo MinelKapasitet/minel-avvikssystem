@@ -62,6 +62,18 @@
       "updatedBy": "susann.endrestad@minel.no",
       "updatedAt": "2026-09-01T06:09:55.903Z"
     },
+    "83819": {
+      "dg": 35,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "martin.odlolien@minel.no",
+      "updatedAt": "2026-09-01T11:55:27.185Z"
+    },
     "84275": {
       "dg": 37,
       "begrunnelse": "Hentet feil tall",
