@@ -115,5 +115,17 @@
       "periode": "juli 2026",
       "antallOrdrer": 410
     }
+  },
+  {
+    "tidspunkt": "2026-09-01T10:00:32.691Z",
+    "bruker": "Geir Atle Sangnæs",
+    "epost": "geir.sangnaes@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gjøvik AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Gjøvik AS",
+      "period": "juli 2026"
+    }
   }
 ]
