@@ -1,0 +1,15 @@
+[
+  {
+    "tidspunkt": "2026-09-01T05:55:52.347Z",
+    "bruker": "Øyvind Sæthersmoen",
+    "epost": "oyvind.saethersmoen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Ainstall AS",
+    "hendelse": "DataLastet",
+    "detaljer": {
+      "selskap": "Minel Ainstall AS",
+      "periode": "juli 2026",
+      "antallOrdrer": 64
+    }
+  }
+]
