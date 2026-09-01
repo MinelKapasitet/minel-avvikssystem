@@ -306,13 +306,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 90,
+      "timer": 100,
       "timekost": null,
       "material": 0,
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-09-01T11:52:33.060Z"
+      "updatedAt": "2026-09-01T11:52:35.327Z"
     },
     "87322": {
       "dg": 9,
