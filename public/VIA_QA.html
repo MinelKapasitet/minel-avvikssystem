@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.38</title>
+<title>VIA QA – Minel AS v10.39</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.38</span>
+  <span class="hd-badge">v10.39</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.38 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.39 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1827,8 +1827,7 @@ function startApiLoad(){
         var expDG = rawDG>1 ? rawDG/100 : rawDG;
         var tilbud = c.offerTotal>0 ? c.offerTotal/100 : null;
         
-        if(!tilbud && c.parentCaseId){var _pp=caseById[String(c.parentCaseId)];if(_pp&&(_pp.offerTotal||0)>0) tilbud=_pp.offerTotal/100;}
-    if(!tilbud && c.subCases&&c.subCases.length>0){for(var _si=0;_si<c.subCases.length;_si++){var _sc=caseById[String((c.subCases[_si]||{}).id)];if(_sc&&(_sc.offerTotal||0)>0){tilbud=_sc.offerTotal/100;break;}}}
+        if(!tilbud && c.subCases&&c.subCases.length>0){for(var _si=0;_si<c.subCases.length;_si++){var _sc=caseById[String((c.subCases[_si]||{}).id)];if(_sc&&(_sc.offerTotal||0)>0){tilbud=_sc.offerTotal/100;break;}}}
         var hsp=(c.economy&&c.economy.hoursSalesprice)||0;
         var msp=(c.economy&&c.economy.materialsSalesprice)||0;
         var hcp=(c.economy&&c.economy.hoursCostprice)||0;
@@ -1935,7 +1934,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.38] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.39] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
 parseRows(rows, co.name+' – t.o.m. '+dateStr, prd);
@@ -2287,8 +2286,8 @@ function calcPOC(r,stkDefault){
   var gk=(inp.timer||0)*tk+(inp.mat||0);
   var esk=(r.totOmk||0)+gk;
   var fg=esk>0?Math.min((r.totOmk||0)/esk,1):null;
-  var innt=(fg!=null&&r.tilbud!=null)?r.tilbud*fg:null;
-  var estDG=(esk>0&&r.tilbud!=null)?(r.tilbud-esk)/r.tilbud:null;
+  var _tb=r.parentCaseId?null:r.tilbud;var innt=(fg!=null&&_tb!=null)?_tb*fg:null;
+  var estDG=(esk>0&&_tb!=null)?(_tb-esk)/_tb:null;
   var via=innt!=null&&r.fakt!=null?innt-r.fakt:null;
   return {gk:gk,esk:esk,fg:fg,fgIsDefault:gk===0,innt:innt,estDG:estDG,via:via};
 }
