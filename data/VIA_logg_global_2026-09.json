@@ -46,5 +46,16 @@
       ],
       "selskap": "Minel Gjøvik AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-01T08:08:14.236Z",
+    "bruker": "Per Thomas Hagen",
+    "epost": "per.hagen@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
