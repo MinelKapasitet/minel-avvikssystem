@@ -14,17 +14,17 @@
       "updatedBy": "einar.dotseth@minel.no",
       "updatedAt": "2026-08-31T10:25:48.861Z"
     },
-    "64845": {
-      "dg": 19,
-      "begrunnelse": "Rammeavtael, 600 kr timen + 15% påslag matr",
+    "63529": {
+      "dg": null,
+      "begrunnelse": "",
       "kommentar": "",
-      "timer": null,
+      "timer": 320000,
       "timekost": null,
-      "material": null,
+      "material": 0,
       "fg": null,
       "kv": null,
-      "updatedBy": "per.nyhus@minel.no",
-      "updatedAt": "2026-09-01T10:12:01.499Z"
+      "updatedBy": "einar.dotseth@minel.no",
+      "updatedAt": "2026-09-01T11:18:14.192Z"
     },
     "63529-1": {
       "dg": 2,
