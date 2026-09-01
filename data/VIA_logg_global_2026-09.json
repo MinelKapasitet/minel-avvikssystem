@@ -14,5 +14,21 @@
       ],
       "selskap": "Minel Gjøvik AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-01T06:46:49.754Z",
+    "bruker": "Øyvind Sæthersmoen",
+    "epost": "oyvind.saethersmoen@minel.no",
+    "rolle": "DL",
+    "selskap": "__SUPER__",
+    "hendelse": "NyStatus",
+    "detaljer": {
+      "statuser": [
+        "Klar til fakturering",
+        "JOBB POOL",
+        "Småjobb"
+      ],
+      "selskap": "Minel Gjøvik AS"
+    }
   }
 ]
