@@ -198,13 +198,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 230000,
+      "timer": 80,
       "timekost": null,
       "material": 0,
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-09-01T11:50:06.724Z"
+      "updatedAt": "2026-09-01T11:50:28.907Z"
     },
     "86295": {
       "dg": null,
