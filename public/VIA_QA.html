@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.33</title>
+<title>VIA QA – Minel AS v10.34</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.33</span>
+  <span class="hd-badge">v10.34</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.33 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.34 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1934,7 +1934,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.33] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.34] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
 parseRows(rows, co.name+' – t.o.m. '+dateStr, prd);
@@ -2361,7 +2361,7 @@ function rPOC(){
   var _dgParentKids={};
   dgAll.forEach(function(r){var m=r.ordreNr.match(/^(.+?)-[^-]+$/);if(!m)return;var base=m[1];if(!_dgNrSet.has(base))return;_dgChildAbsorbed.add(r.ordreNr);if(!_dgParentKids[base])_dgParentKids[base]=[];_dgParentKids[base].push(r);});
   var _dgIdToRow={};dgAll.forEach(function(r){if(r.id)_dgIdToRow[String(r.id)]=r;});dgAll.forEach(function(r){if(!r.parentCaseId)return;var _pr=_dgIdToRow[String(r.parentCaseId)];if(!_pr||_dgChildAbsorbed.has(r.ordreNr))return;_dgChildAbsorbed.add(r.ordreNr);if(!_dgParentKids[_pr.ordreNr])_dgParentKids[_pr.ordreNr]=[];_dgParentKids[_pr.ordreNr].push(r);});
-  var dgR=dgAll.filter(function(r){if(_dgChildAbsorbed.has(r.ordreNr))return false;return !(HIDE_SMALL&&(r.totOmk||0)<1000&&!_dgParentKids[r.ordreNr]);}).map(function(r){if(!_dgParentKids[r.ordreNr])return r;var rx=Object.assign({},r);rx._ownTotOmk=r.totOmk;rx._ownFakt=r.fakt;rx._ownTimerkost=r.timerkost;rx._ownMaterialkost=r.materialkost;_dgParentKids[r.ordreNr].forEach(function(ch){rx.totOmk=(rx.totOmk||0)+(ch.totOmk||0);rx.fakt=(rx.fakt||0)+(ch.fakt||0);rx.timerkost=(rx.timerkost||0)+(ch.timerkost||0);rx.materialkost=(rx.materialkost||0)+(ch.materialkost||0);});return rx;});
+  dgAll.forEach(function(r){if(_dgChildAbsorbed.has(r.ordreNr))r.tilbud=null;});var dgR=dgAll.filter(function(r){if(_dgChildAbsorbed.has(r.ordreNr))return false;return !(HIDE_SMALL&&(r.totOmk||0)<1000&&!_dgParentKids[r.ordreNr]);}).map(function(r){if(!_dgParentKids[r.ordreNr])return r;var rx=Object.assign({},r);rx._ownTotOmk=r.totOmk;rx._ownFakt=r.fakt;rx._ownTimerkost=r.timerkost;rx._ownMaterialkost=r.materialkost;_dgParentKids[r.ordreNr].forEach(function(ch){rx.totOmk=(rx.totOmk||0)+(ch.totOmk||0);rx.fakt=(rx.fakt||0)+(ch.fakt||0);rx.timerkost=(rx.timerkost||0)+(ch.timerkost||0);rx.materialkost=(rx.materialkost||0)+(ch.materialkost||0);});return rx;});
   // Sort DG section
   (function(){
     var c=DGS.col,asc=DGS.asc;
@@ -2388,7 +2388,7 @@ function rPOC(){
       });
     }
   })();
-  if(HIDE_SETTLED){dgR=dgR.filter(function(r){return !(r.fakt>0&&r.fSalgsverdi>0&&Math.abs(r.via)<5000);});}  var _dgRE=[];dgR.forEach(function(r){if(_dgParentKids&&_dgParentKids[r.ordreNr]){r._dkm=GRP_MODE[r.ordreNr]||'samlet';if(r._dkm==='individuelt'){var ownR=Object.assign({},r);if(r._ownTotOmk!=null){ownR.totOmk=r._ownTotOmk;ownR.fakt=r._ownFakt;ownR.timerkost=r._ownTimerkost;ownR.materialkost=r._ownMaterialkost;}_dgRE.push(ownR);_dgParentKids[r.ordreNr].forEach(function(ch){var chx=Object.assign({},ch);chx._dgIndent=true;chx.tilbud=null;_dgRE.push(chx);});return;}}  _dgRE.push(r);});dgR=_dgRE;
+  if(HIDE_SETTLED){dgR=dgR.filter(function(r){return !(r.fakt>0&&r.fSalgsverdi>0&&Math.abs(r.via)<5000);});}  var _dgRE=[];dgR.forEach(function(r){if(_dgParentKids&&_dgParentKids[r.ordreNr]){r._dkm=GRP_MODE[r.ordreNr]||'samlet';if(r._dkm==='individuelt'){var ownR=Object.assign({},r);if(r._ownTotOmk!=null){ownR.totOmk=r._ownTotOmk;ownR.fakt=r._ownFakt;ownR.timerkost=r._ownTimerkost;ownR.materialkost=r._ownMaterialkost;}_dgRE.push(ownR);_dgParentKids[r.ordreNr].forEach(function(ch){var chx=Object.assign({},ch);chx._dgIndent=true;_dgRE.push(chx);});return;}}  _dgRE.push(r);});dgR=_dgRE;
 
   document.getElementById('poc-cnt').textContent='('+pocR.length+' prosjekter)';
   document.getElementById('dg-cnt').textContent='('+dgR.filter(function(r){return !r._dgIndent;}).length+' prosjekter)';
