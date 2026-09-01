@@ -49,6 +49,18 @@
       "kv": null,
       "updatedBy": "einar.dotseth@minel.no",
       "updatedAt": "2026-08-31T11:28:37.609Z"
+    },
+    "60113-1": {
+      "dg": 20,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "einar.dotseth@minel.no",
+      "updatedAt": "2026-09-01T12:23:02.921Z"
     }
   },
   "status": {}
