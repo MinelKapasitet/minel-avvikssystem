@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.41</title>
+<title>VIA QA – Minel AS v10.42</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.41</span>
+  <span class="hd-badge">v10.42</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.41 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.42 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1934,7 +1934,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.41] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.42] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
 parseRows(rows, co.name+' – t.o.m. '+dateStr, prd);
@@ -2020,7 +2020,11 @@ function detectGroups(){
 function saveGrpMode(){ try{ localStorage.setItem(GRP_KEY,JSON.stringify(GRP_MODE)); }catch(e){} }
 function toggleGrpMode(base){
   var cur=GRP_MODE[base]||'individuelt';
-  GRP_MODE[base]=cur==='individuelt'?'samlet':cur==='samlet'?'toppordre':'individuelt';
+  // 3-modus (individuelt/samlet/toppordre) kun for syntetiske grupper der basen IKKE er en egen ordre.
+  // Ekte forelder/barn-par har 2-modus toggle — ellers krever knappen dobbeltklikk og ser død ut.
+  var _synth=GROUPS[base]&&GROUPS[base].length>=2&&!ACTIVE.some(function(r){return r.ordreNr===base;});
+  if(_synth) GRP_MODE[base]=cur==='individuelt'?'samlet':cur==='samlet'?'toppordre':'individuelt';
+  else GRP_MODE[base]=cur==='individuelt'?'samlet':'individuelt';
   saveGrpMode(); rPOC();
 }
 
@@ -2394,14 +2398,15 @@ function rPOC(){
   document.getElementById('dg-cnt').textContent='('+dgR.filter(function(r){return !r._dgIndent;}).length+' prosjekter)';
 
   var _topSubNrs=new Set();
+  var _realParent=function(base){return ACTIVE.some(function(r){return r.ordreNr===base;});};
   Object.keys(GROUPS).forEach(function(base){
-    if(GRP_MODE[base]!=='toppordre') return;
+    if(GRP_MODE[base]!=='toppordre'||_realParent(base)) return;
     _topSubNrs.add(base);
     (GROUPS[base]||[]).forEach(function(nr){_topSubNrs.add(nr);});
   });
   var _topRows=[];
   Object.keys(GROUPS).forEach(function(base){
-    if(GRP_MODE[base]!=='toppordre') return;
+    if(GRP_MODE[base]!=='toppordre'||_realParent(base)) return;
     var gAll=ACTIVE.filter(function(r){var m=r.ordreNr.match(/^(.+?)-[^-]+$/);return m&&m[1]===base;});
     if(!gAll.length) return;
     var pCase=(window._parentCaseMap||{})[base];
@@ -2635,7 +2640,7 @@ function rPOC(){
       var dis=isEditable(r);
       var inp=DGI[r.ordreNr]||{dg:r.dg!=null?Math.round(r.dg*100):35,k:''};
       var c=calcDG(r);
-      if(c.via!=null&&!r._dgIndent) dv+=c.via;
+      if(c.via!=null) dv+=c.via;
       var warn=!inp.k&&(r.risk==='MIDDELS'||r.risk==='HØY');
       var bs=r.beskr?r.beskr.substring(0,36)+(r.beskr.length>36?'…':''):'–';
       var _tmPct=r.isTM&&r.fSalgsverdi&&r.fSalgsverdi>r.totOmk?Math.round((r.fSalgsverdi-r.totOmk)/r.fSalgsverdi*100):35;
@@ -2917,7 +2922,7 @@ function expPOC(){
         var tkVal=inp.tk!=null?inp.tk:stk;
         aoa.push([
           r.ordreNr,r.pl||'',r.beskr||'',r.type||'',r.kunde||'',
-          _s(r.tilbud),_s(r.fakt),r.risk||'',
+          r.parentCaseId?null:_s(r.tilbud),_s(r.fakt),r.risk||'',
           inp.timer||0,tkVal,inp.mat||0,_n(c.gk),_n(c.esk),
           _pct(c.fg),_pct(c.estDG),_n(c.innt),
           null,null,null,null,
