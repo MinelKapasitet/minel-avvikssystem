@@ -222,13 +222,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 90,
+      "timer": 80,
       "timekost": null,
       "material": 110000,
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-09-01T11:51:09.025Z"
+      "updatedAt": "2026-09-01T11:51:11.913Z"
     },
     "86689": {
       "dg": 9,
