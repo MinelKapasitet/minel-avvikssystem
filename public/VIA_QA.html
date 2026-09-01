@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.35</title>
+<title>VIA QA – Minel AS v10.36</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.35</span>
+  <span class="hd-badge">v10.36</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.35 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.36 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1934,7 +1934,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.35] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.36] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
 parseRows(rows, co.name+' – t.o.m. '+dateStr, prd);
