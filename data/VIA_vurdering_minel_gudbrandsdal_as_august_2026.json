@@ -2,6 +2,18 @@
   "period": "august 2026",
   "company": "Minel Gudbrandsdal AS",
   "items": {
+    "80706": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 50,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "martin.odlolien@minel.no",
+      "updatedAt": "2026-09-01T09:59:13.852Z"
+    },
     "80824": {
       "dg": 21,
       "begrunnelse": "",
