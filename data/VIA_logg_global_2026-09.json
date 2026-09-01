@@ -1,0 +1,18 @@
+[
+  {
+    "tidspunkt": "2026-09-01T04:09:45.516Z",
+    "bruker": "Geir Atle Sangnæs",
+    "epost": "geir.sangnaes@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gjøvik AS",
+    "hendelse": "NyStatus",
+    "detaljer": {
+      "statuser": [
+        "Klar til fakturering",
+        "JOBB POOL",
+        "Småjobb"
+      ],
+      "selskap": "Minel Gjøvik AS"
+    }
+  }
+]
