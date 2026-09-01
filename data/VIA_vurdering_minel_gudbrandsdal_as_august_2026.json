@@ -136,7 +136,7 @@
     },
     "85269": {
       "dg": 25,
-      "begrunnelse": "",
+      "begrunnelse": "Hentet feil tall",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -144,7 +144,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-09-01T11:57:50.417Z"
+      "updatedAt": "2026-09-01T11:57:54.853Z"
     },
     "85339": {
       "dg": null,
