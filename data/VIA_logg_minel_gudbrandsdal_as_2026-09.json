@@ -11,5 +11,17 @@
       "periode": "august 2026",
       "antallOrdrer": 487
     }
+  },
+  {
+    "tidspunkt": "2026-09-01T06:02:50.198Z",
+    "bruker": "Susann Endrestad",
+    "epost": "susann.endrestad@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Gudbrandsdal AS",
+      "period": "august 2026"
+    }
   }
 ]
