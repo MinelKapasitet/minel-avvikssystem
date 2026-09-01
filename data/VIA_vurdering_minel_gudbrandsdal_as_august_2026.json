@@ -556,7 +556,7 @@
     },
     "87235": {
       "dg": 0,
-      "begrunnelse": "",
+      "begrunnelse": "avlyst",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -564,7 +564,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-09-01T12:01:07.678Z"
+      "updatedAt": "2026-09-01T12:01:10.182Z"
     },
     "87236": {
       "dg": null,
