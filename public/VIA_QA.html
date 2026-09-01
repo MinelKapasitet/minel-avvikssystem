@@ -1,9 +1,9 @@
-﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.17</title>
+<title>VIA QA – Minel AS v10.18</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.17</span>
+  <span class="hd-badge">v10.18</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.17 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.18 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2334,6 +2334,7 @@ function rPOC(){
   var _dgParentKids={};
   dgAll.forEach(function(r){var m=r.ordreNr.match(/^(.+?)-[^-]+$/);if(!m)return;var base=m[1];if(!_dgNrSet.has(base))return;_dgChildAbsorbed.add(r.ordreNr);if(!_dgParentKids[base])_dgParentKids[base]=[];_dgParentKids[base].push(r);});
   var dgR=dgAll.filter(function(r){if(_dgChildAbsorbed.has(r.ordreNr))return false;return !(HIDE_SMALL&&(r.totOmk||0)<1000&&!_dgParentKids[r.ordreNr]);}).map(function(r){if(!_dgParentKids[r.ordreNr])return r;var rx=Object.assign({},r);_dgParentKids[r.ordreNr].forEach(function(ch){rx.totOmk=(rx.totOmk||0)+(ch.totOmk||0);rx.fakt=(rx.fakt||0)+(ch.fakt||0);});return rx;});
+  var _dgRE=[];dgR.forEach(function(r){_dgRE.push(r);if(_dgParentKids&&_dgParentKids[r.ordreNr]){r._dkm=GRP_MODE[r.ordreNr]||'samlet';if(r._dkm==='individuelt'){_dgParentKids[r.ordreNr].forEach(function(ch){var chx=Object.assign({},ch);chx._dgIndent=true;_dgRE.push(chx);});}}});dgR=_dgRE;
   // Sort DG section
   (function(){
     var c=DGS.col,asc=DGS.asc;
@@ -2498,7 +2499,7 @@ function rPOC(){
         var base=m?m[1]:null;
         var inGrp=base&&GROUPS[base]&&GROUPS[base].length>=2;
         if(inGrp&&seenBases[base]) return;
-        if(!inGrp){ var _kids=_pocParentKids&&_pocParentKids[r.ordreNr];if(!_kids||!_kids.length){pocHtml+=pocRow(r,false);}else{var _km=GRP_MODE[r.ordreNr]||'samlet';var _kb='<button data-base="'+r.ordreNr+'" onclick="toggleGrpMode(this.dataset.base)" style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:'+(_km==='samlet'?'#1d8348':'#2563eb')+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+(_km==='samlet'?'ðŸ“‹ Individuelt':'ðŸ”— Samlet')+'</button>';pocHtml+=pocRow(r,false).replace('<strong>'+r.ordreNr+'</strong>','<strong>'+r.ordreNr+'</strong>'+_kb);if(_km==='individuelt')_kids.forEach(function(ch){pocHtml+=pocRow(ch,true);});}return; }
+        if(!inGrp){ var _kids=_pocParentKids&&_pocParentKids[r.ordreNr];if(!_kids||!_kids.length){pocHtml+=pocRow(r,false);}else{var _km=GRP_MODE[r.ordreNr]||'samlet';var _kb='<button data-base="'+r.ordreNr+'" onclick="toggleGrpMode(this.dataset.base)" style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:'+(_km==='samlet'?'#1d8348':'#2563eb')+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+(_km==='samlet'?'Individuelt':'Samlet')+'</button>';pocHtml+=pocRow(r,false).replace('<strong>'+r.ordreNr+'</strong>','<strong>'+r.ordreNr+'</strong>'+_kb);if(_km==='individuelt')_kids.forEach(function(ch){pocHtml+=pocRow(ch,true);});}return; }
         seenBases[base]=true;
         var gRows=pocR.filter(function(x){var bm=x.ordreNr.match(/^(.+?)-[^-]+$/);return bm&&bm[1]===base;});
         var mode=GRP_MODE[base]||'individuelt';
@@ -2642,7 +2643,7 @@ function rPOC(){
           ' title="Justert kontraktsverdi (DL-input)"></div>'
         :'<span style="color:#aaa;font-size:.85rem;">'+(kvVal!=null?NK(kvVal):'–')+'</span>';
       return '<tr>'+
-        '<td><strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+'</td>'+
+        '<td style="'+(r._dgIndent?'padding-left:22px;':'')+'">'+(r._dkm?'<button data-base="'+r.ordreNr+'" onclick="toggleGrpMode(this.dataset.base)" style="margin-right:5px;padding:1px 7px;font-size:.7rem;background:'+(r._dkm==='samlet'?'#2563eb':'#1d8348')+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+(r._dkm==='samlet'?'Individuelt':'Samlet')+'</button>':'')+(r._dgIndent?'&#x21B3; ':'')+'<strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+'</td>'+
         '<td style="white-space:nowrap">'+(pl?plInitials(r.pl):r.pl)+'</td>'+
         '<td>'+r.type+'</td>'+
         '<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+bs+'</td>'+
