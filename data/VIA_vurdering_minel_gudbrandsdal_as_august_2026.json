@@ -272,11 +272,11 @@
       "kommentar": "",
       "timer": 80,
       "timekost": null,
-      "material": 0,
+      "material": 100000,
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-09-01T11:51:25.831Z"
+      "updatedAt": "2026-09-01T11:51:29.688Z"
     },
     "87299": {
       "dg": 9,
