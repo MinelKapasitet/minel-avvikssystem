@@ -302,6 +302,18 @@
       "updatedBy": "susann.endrestad@minel.no",
       "updatedAt": "2026-09-01T06:10:02.447Z"
     },
+    "87316": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 120,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "martin.odlolien@minel.no",
+      "updatedAt": "2026-09-01T11:52:25.392Z"
+    },
     "87322": {
       "dg": 9,
       "begrunnelse": "",
