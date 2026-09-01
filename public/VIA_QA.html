@@ -1,9 +1,9 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.21</title>
+<title>VIA QA – Minel AS v10.22</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.21</span>
+  <span class="hd-badge">v10.22</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.21 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.22 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2369,7 +2369,7 @@ function rPOC(){
   }
 
   document.getElementById('poc-cnt').textContent='('+pocR.length+' prosjekter)';
-  document.getElementById('dg-cnt').textContent='('+dgR.length+' prosjekter)';
+  document.getElementById('dg-cnt').textContent='('+dgR.filter(function(r){return !r._dgIndent;}).length+' prosjekter)';
 
   var _topSubNrs=new Set();
   Object.keys(GROUPS).forEach(function(base){
@@ -2502,7 +2502,7 @@ function rPOC(){
         var base=m?m[1]:null;
         var inGrp=base&&GROUPS[base]&&GROUPS[base].length>=2;
         if(inGrp&&seenBases[base]) return;
-        if(!inGrp){ var _kids=_pocParentKids&&_pocParentKids[r.ordreNr];if(!_kids||!_kids.length){pocHtml+=pocRow(r,false);}else{var _km=GRP_MODE[r.ordreNr]||'samlet';var _kb='<button data-base="'+r.ordreNr+'" onclick="toggleGrpMode(this.dataset.base)" style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:'+(_km==='samlet'?'#2563eb':'#1d8348')+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+(_km==='samlet'?'Individuelt':'Samlet')+'</button>';pocHtml+=pocRow(r,false).replace('<strong>'+r.ordreNr+'</strong>','<strong>'+r.ordreNr+'</strong>'+_kb);if(_km==='individuelt')_kids.forEach(function(ch){pocHtml+=pocRow(ch,true);});}return; }
+        if(!inGrp){ var _kids=_pocParentKids&&_pocParentKids[r.ordreNr];if(!_kids||!_kids.length){pocHtml+=pocRow(r,false);}else{var _km=GRP_MODE[r.ordreNr]||'samlet';var _kb='<button data-base="'+r.ordreNr+'" onclick="toggleGrpMode(this.dataset.base)" style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:'+(_km==='samlet'?'#2563eb':'#1d8348')+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+(_km==='samlet'?'Individuelt':'Samlet')+'</button>';pocHtml+=pocRow(r,false).replace('<strong>'+r.ordreNr+'</strong>','<strong>'+r.ordreNr+'</strong>'+_kb);if(_km==='individuelt')_kids.forEach(function(ch){var _pvSv=pv;pocHtml+=pocRow(ch,true);pv=_pvSv;});}return; }
         seenBases[base]=true;
         var gRows=pocR.filter(function(x){var bm=x.ordreNr.match(/^(.+?)-[^-]+$/);return bm&&bm[1]===base;});
         var mode=GRP_MODE[base]||'individuelt';
@@ -2592,7 +2592,7 @@ function rPOC(){
       if(r._grpHdr) return '<tr style="background:#dbeafe;"><td colspan="15" style="padding:5px 12px;font-size:.8rem;color:#1e3a8a;"><strong>Ordre '+r.base+'</strong> \u2014 '+r.cnt+' underordre'+r.btn+'</td></tr>';
       if(r._isTop){
         var _dis=isEditable(r);var _inp2=DGI[r.ordreNr]||{dg:35,k:''};
-        var _c2=calcDG(r);if(_c2.via!=null) dv+=_c2.via;
+        var _c2=calcDG(r);if(_c2.via!=null&&!r._dgIndent) dv+=_c2.via;
         var _w2=!_inp2.k&&(r.risk==='MIDDELS'||r.risk==='H\xD8Y');
         var _bs2=r.beskr?r.beskr.substring(0,36)+(r.beskr.length>36?'\u2026':''):'\u2013';
         var _dgi='<div style="display:flex;align-items:center;gap:4px;"><input class="pi" type="text" inputmode="numeric" value="'+(_inp2.dg!=null?_inp2.dg:35)+'" '+_dis+' data-o="'+r.ordreNr+'" data-f="dg" onfocus="piFocus(this)" onblur="piBlur(this)" onchange="piChange(this.dataset.o,this.dataset.f,this)" style="width:56px"><span style="font-size:.8rem;color:#666">%</span></div>';
@@ -2665,7 +2665,7 @@ function rPOC(){
 
   var dvHasFG=dgR.some(function(r){var inp=DGI[r.ordreNr];return inp&&inp.fg!=null&&inp.fg!==100;});
   document.getElementById('dgtot').innerHTML=
-    '<span>Prosjekter: <strong>'+dgR.length+'</strong></span>'+
+    '<span>Prosjekter: <strong>'+dgR.filter(function(r){return !r._dgIndent;}).length+'</strong></span>'+
     '<span>DG-VIA'+(dvHasFG?' <span title="FG-justert" style="font-size:.7rem;background:#9EC8FF;color:#000;border-radius:3px;padding:0 4px;font-weight:700;">FG</span>':'')+':<strong style="color:'+(dv>50000?'var(--amber)':'var(--dark)')+'">'+NK(dv)+'</strong></span>'+
     '<span>Kombinert VIA: <strong style="color:'+((pv+dv)>100000?'var(--amber)':'var(--dark)')+'">'+NK(pv+dv)+'</strong></span>';
 }
