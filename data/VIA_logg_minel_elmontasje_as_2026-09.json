@@ -109,5 +109,17 @@
       "periode": "august 2026",
       "antallOrdrer": 309
     }
+  },
+  {
+    "tidspunkt": "2026-09-01T08:13:45.037Z",
+    "bruker": "Bjørnar Sleppen",
+    "epost": "bjornar.sleppen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Elmontasje AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Elmontasje AS",
+      "period": "august 2026"
+    }
   }
 ]
