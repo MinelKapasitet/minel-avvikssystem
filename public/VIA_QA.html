@@ -1,9 +1,9 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.22</title>
+<title>VIA QA – Minel AS v10.23</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.22</span>
+  <span class="hd-badge">v10.23</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.22 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.23 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -2613,7 +2613,7 @@ function rPOC(){
       var dis=isEditable(r);
       var inp=DGI[r.ordreNr]||{dg:r.dg!=null?Math.round(r.dg*100):35,k:''};
       var c=calcDG(r);
-      if(c.via!=null) dv+=c.via;
+      if(c.via!=null&&!r._dgIndent) dv+=c.via;
       var warn=!inp.k&&(r.risk==='MIDDELS'||r.risk==='HØY');
       var bs=r.beskr?r.beskr.substring(0,36)+(r.beskr.length>36?'…':''):'–';
       var _tmPct=r.isTM&&r.fSalgsverdi&&r.fSalgsverdi>r.totOmk?Math.round((r.fSalgsverdi-r.totOmk)/r.fSalgsverdi*100):35;
@@ -2816,7 +2816,7 @@ function saveSnap(name,entity,period,type){
       if(c.via!=null) pv+=c.via;
     } else {
       var c=calcDG(r); via=c.via; dg=c.dg;
-      if(c.via!=null) dv+=c.via;
+      if(c.via!=null&&!r._dgIndent) dv+=c.via;
     }
     return {
       ordreNr:r.ordreNr,pl:r.pl,type:r.type,kunde:r.kunde,
