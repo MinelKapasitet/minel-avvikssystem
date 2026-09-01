@@ -4,7 +4,7 @@
   "items": {
     "35071": {
       "dg": 45,
-      "begrunnelse": "",
+      "begrunnelse": "løpende service ordre hos kunde.",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -12,7 +12,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-01T07:45:52.043Z"
+      "updatedAt": "2026-09-01T07:46:34.970Z"
     },
     "35162": {
       "dg": 35,
