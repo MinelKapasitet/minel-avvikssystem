@@ -760,7 +760,7 @@
     },
     "82336-3": {
       "dg": 0,
-      "begrunnelse": "",
+      "begrunnelse": "reklamasjon",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -768,7 +768,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
-      "updatedAt": "2026-09-01T12:00:58.508Z"
+      "updatedAt": "2026-09-01T12:01:06.221Z"
     }
   },
   "status": {
