@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.40</title>
+<title>VIA QA – Minel AS v10.41</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.40</span>
+  <span class="hd-badge">v10.41</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.40 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.41 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1826,7 +1826,7 @@ function startApiLoad(){
         var rawDG = (c.economy&&c.economy.expectedCoverageRatio)||0;
         var expDG = rawDG>1 ? rawDG/100 : rawDG;
         var tilbud = c.offerTotal>0 ? c.offerTotal/100 : null;
-        
+        if(!tilbud && c.parentCaseId){var _pp=caseById[String(c.parentCaseId)];if(_pp&&(_pp.offerTotal||0)>0) tilbud=_pp.offerTotal/100;}
         if(!tilbud && c.subCases&&c.subCases.length>0){for(var _si=0;_si<c.subCases.length;_si++){var _sc=caseById[String((c.subCases[_si]||{}).id)];if(_sc&&(_sc.offerTotal||0)>0){tilbud=_sc.offerTotal/100;break;}}}
         var hsp=(c.economy&&c.economy.hoursSalesprice)||0;
         var msp=(c.economy&&c.economy.materialsSalesprice)||0;
@@ -1934,7 +1934,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.40] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.41] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
 parseRows(rows, co.name+' – t.o.m. '+dateStr, prd);
@@ -2466,7 +2466,7 @@ function rPOC(){
         var tkVal=inp.tk!=null?inp.tk:stk;
         var c=calcPOC(r,stk);
         if(c.via!=null) pv+=c.via;
-        var overbill=r.tilbud!=null&&r.fakt!=null&&r.fakt>r.tilbud;
+        var overbill=!r.parentCaseId&&r.tilbud!=null&&r.fakt!=null&&r.fakt>r.tilbud;
         var warn=(c.via!=null&&Math.abs(c.via)>50000&&!inp.k)||overbill;
         var bs=r.beskr?r.beskr.substring(0,40)+(r.beskr.length>40?'…':''):'–';
         return '<tr class="'+(warn?'rwarn':'')+'"'+(indent?' style="border-left:3px solid #3b82f6;"':'')+'>'+
@@ -2474,7 +2474,7 @@ function rPOC(){
             '<strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+histBadge(r)+'</td>'+
           '<td style="white-space:nowrap">'+(pl?(plInitials(r.pl)+(r.kunde?'<br><small style="opacity:.65;font-weight:400">'+r.kunde+'</small>':'')):r.pl)+'</td>'+
           '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+bs+'</td>'+
-          '<td class="r">'+NK(r.tilbud)+'</td>'+
+          '<td class="r">'+(r.parentCaseId?'–':NK(r.tilbud))+'</td>'+
           '<td class="r">'+NK(r.totOmk)+'</td>'+
           '<td>'+piInp(r.ordreNr,'timer',fmtI(inp.timer||0),d,warn)+'</td>'+
           '<td>'+piInp(r.ordreNr,'tk',fmtI(tkVal),d,warn)+'</td>'+
@@ -2524,7 +2524,7 @@ function rPOC(){
         var base=m?m[1]:null;
         var inGrp=base&&GROUPS[base]&&GROUPS[base].length>=2;
         if(inGrp&&seenBases[base]) return;
-        if(!inGrp){ var _kids=_pocParentKids&&_pocParentKids[r.ordreNr];if(!_kids||!_kids.length){pocHtml+=pocRow(r,false);}else{var _km=GRP_MODE[r.ordreNr]||'individuelt';var _kb='<button data-base="'+r.ordreNr+'" onclick="toggleGrpMode(this.dataset.base)" style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:'+(_km==='samlet'?'#2563eb':'#1d8348')+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+(_km==='samlet'?'Individuelt':'Samlet')+'</button>';pocHtml+=pocRow(r,false).replace('<strong>'+r.ordreNr+'</strong>','<strong>'+r.ordreNr+'</strong>'+_kb);if(_km==='individuelt')_kids.forEach(function(ch){var _pvSv=pv;pocHtml+=pocRow(ch,true);pv=_pvSv;});}return; }
+        if(!inGrp){ var _kids=_pocParentKids&&_pocParentKids[r.ordreNr];if(!_kids||!_kids.length){pocHtml+=pocRow(r,false);}else{var _km=GRP_MODE[r.ordreNr]||'individuelt';var _kb='<button data-base="'+r.ordreNr+'" onclick="toggleGrpMode(this.dataset.base)" style="margin-left:8px;padding:1px 7px;font-size:.7rem;background:'+(_km==='samlet'?'#2563eb':'#1d8348')+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+(_km==='samlet'?'Individuelt':'Samlet')+'</button>';var _pr=r;if(_km==='individuelt'&&r._ownTotOmk!=null){_pr=Object.assign({},r);_pr.totOmk=r._ownTotOmk;_pr.fakt=r._ownFakt;_pr.timerkost=r._ownTimerkost;_pr.materialkost=r._ownMaterialkost;}pocHtml+=pocRow(_pr,false).replace('<strong>'+r.ordreNr+'</strong>','<strong>'+r.ordreNr+'</strong>'+_kb);if(_km==='individuelt')_kids.forEach(function(ch){pocHtml+=pocRow(ch,true);});}return; }
         seenBases[base]=true;
         var gRows=pocR.filter(function(x){var bm=x.ordreNr.match(/^(.+?)-[^-]+$/);return bm&&bm[1]===base;});
         var mode=GRP_MODE[base]||'individuelt';
