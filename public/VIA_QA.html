@@ -1,9 +1,9 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.28</title>
+<title>VIA QA – Minel AS v10.29</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.28</span>
+  <span class="hd-badge">v10.29</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.28 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.29 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1894,7 +1894,7 @@ function startApiLoad(){
             var via = fsv - fk;
             done++; setP(10+Math.round((done/active.length)*88),'Laster '+done+' av '+active.length+' ordrer…','');
             return {
-              id:c.id,
+              id:c.id,parentCaseId:c.parentCaseId||null,
               ordreNr:String(c.caseNumber||'').trim(),
               isTM:isTM||false,
               status:(c.status&&c.status.text)||'',
@@ -1925,7 +1925,19 @@ function startApiLoad(){
       setTimeout(function(){
         var d2=new Date(dateStr), prd=d2.toLocaleDateString('no',{month:'long',year:'numeric'});
         document.getElementById('lentity').value = co.name;
-        parseRows(rows, co.name+' – t.o.m. '+dateStr, prd);
+        window._caseIdToNr={};
+        cases.forEach(function(c){if(c.id)window._caseIdToNr[String(c.id)]=String(c.caseNumber||'').trim();});
+        var _pIdx={};
+        rows.forEach(function(r){
+          if(!r.parentCaseId)return;
+          var pNr=window._caseIdToNr[String(r.parentCaseId)];
+          if(!pNr)return;
+          if(!_pIdx[pNr])_pIdx[pNr]=0;
+          _pIdx[pNr]++;
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.29] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+        });
+        window._dgRowsDebug=rows;
+parseRows(rows, co.name+' – t.o.m. '+dateStr, prd);
         logEvent('DataLastet',{selskap:co.name,periode:prd,antallOrdrer:rows.length}).catch(function(){});
         document.getElementById('progressWrap').style.display = 'none';
         document.getElementById('api-btn').disabled = false;
