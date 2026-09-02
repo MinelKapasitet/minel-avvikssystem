@@ -334,5 +334,18 @@
       "periode": "juli 2026",
       "antallOrdrer": 876
     }
+  },
+  {
+    "tidspunkt": "2026-09-02T12:55:41.178Z",
+    "bruker": "Ukjent",
+    "epost": "Ukjent",
+    "rolle": "?",
+    "selskap": "Minel Gjøvik AS",
+    "hendelse": "DataLastet",
+    "detaljer": {
+      "selskap": "Minel Gjøvik AS",
+      "periode": "juli 2026",
+      "antallOrdrer": 936
+    }
   }
 ]
