@@ -74,6 +74,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-09-01T11:55:34.765Z"
     },
+    "83838": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ole.myhre@minel.no",
+      "updatedAt": "2026-09-02T07:20:47.516Z"
+    },
     "84275": {
       "dg": 37,
       "begrunnelse": "Hentet feil tall",
