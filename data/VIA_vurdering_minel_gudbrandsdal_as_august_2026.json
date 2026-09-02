@@ -342,13 +342,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 0,
+      "timer": 15,
       "timekost": null,
       "material": 5000,
       "fg": null,
       "kv": null,
       "updatedBy": "ole.myhre@minel.no",
-      "updatedAt": "2026-09-02T06:56:21.900Z"
+      "updatedAt": "2026-09-02T06:56:26.350Z"
     },
     "86155": {
       "dg": 0,
