@@ -1477,6 +1477,18 @@
       "kv": null,
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T07:08:35.871Z"
+    },
+    "85499-4": {
+      "dg": 35,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ole.resvoll@minel.no",
+      "updatedAt": "2026-09-02T12:15:27.077Z"
     }
   },
   "status": {
