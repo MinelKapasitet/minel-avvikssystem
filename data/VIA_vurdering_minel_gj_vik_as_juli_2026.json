@@ -2,6 +2,18 @@
   "period": "juli 2026",
   "company": "Minel Gjøvik AS",
   "items": {
+    "51162": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 100,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "geir.sangnaes@minel.no",
+      "updatedAt": "2026-09-02T11:20:01.002Z"
+    },
     "61206": {
       "dg": 35,
       "begrunnelse": "Privat ordre ansatt",
