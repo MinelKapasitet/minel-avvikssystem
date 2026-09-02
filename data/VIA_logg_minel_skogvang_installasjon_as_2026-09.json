@@ -1,0 +1,15 @@
+[
+  {
+    "tidspunkt": "2026-09-02T14:16:11.082Z",
+    "bruker": "Jon Hulberg",
+    "epost": "jon.hulberg@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Skogvang Installasjon AS",
+    "hendelse": "DataLastet",
+    "detaljer": {
+      "selskap": "Minel Skogvang Installasjon AS",
+      "periode": "august 2026",
+      "antallOrdrer": 396
+    }
+  }
+]
