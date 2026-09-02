@@ -2,6 +2,18 @@
   "period": "august 2026",
   "company": "Minel Elmontasje AS",
   "items": {
+    "34849": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 100000,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-02T11:56:23.696Z"
+    },
     "35071": {
       "dg": 45,
       "begrunnelse": "løpende service ordre hos kunde.",
