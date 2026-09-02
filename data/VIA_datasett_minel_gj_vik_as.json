@@ -1,11 +1,12 @@
 {
   "src": "Minel Gjøvik AS",
   "period": "juli 2026",
-  "exported": "2026-09-01T10:00:30.246Z",
+  "exported": "2026-09-02T04:15:31.150Z",
   "exportedBy": "Geir Atle Sangnæs",
   "rows": [
     {
       "id": 7644,
+      "parentCaseId": null,
       "ordreNr": "65035",
       "isTM": false,
       "status": "Åpen",
@@ -23,8 +24,8 @@
       "fSalgsverdi": 2835.65,
       "via": 2835.65,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -36,6 +37,7 @@
     },
     {
       "id": 7643,
+      "parentCaseId": null,
       "ordreNr": "65034",
       "isTM": true,
       "status": "Avsluttet",
@@ -53,8 +55,8 @@
       "fSalgsverdi": 6117.74,
       "via": 6117.74,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.16571035731744282,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.16554397255101327,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -66,6 +68,7 @@
     },
     {
       "id": 7641,
+      "parentCaseId": null,
       "ordreNr": "65032",
       "isTM": true,
       "status": "Avsluttet",
@@ -83,8 +86,8 @@
       "fSalgsverdi": 1919.7,
       "via": 1919.7,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.030885796547633626,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.030845161241325136,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -96,6 +99,7 @@
     },
     {
       "id": 7640,
+      "parentCaseId": null,
       "ordreNr": "65031",
       "isTM": true,
       "status": "Åpen",
@@ -113,8 +117,8 @@
       "fSalgsverdi": 38342.34,
       "via": 38342.34,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.3009936560990408,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.3008272713326112,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -126,6 +130,7 @@
     },
     {
       "id": 7639,
+      "parentCaseId": null,
       "ordreNr": "65030",
       "isTM": true,
       "status": "I arbeid",
@@ -138,13 +143,13 @@
       "totOmk": 964.89,
       "timerkost": 753.93,
       "materialkost": 210.96,
-      "dg": 0.21110621708861177,
+      "dg": 0.2136256060797417,
       "fakt": 0,
-      "fSalgsverdi": 3042.26,
-      "via": 3042.26,
+      "fSalgsverdi": 3642.26,
+      "via": 3642.26,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.060537027359743534,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.058058273674922084,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -156,6 +161,7 @@
     },
     {
       "id": 7637,
+      "parentCaseId": null,
       "ordreNr": "65028",
       "isTM": false,
       "status": "Åpen",
@@ -173,8 +179,8 @@
       "fSalgsverdi": 0,
       "via": 0,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2716432444483553,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.2716838797546638,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -186,6 +192,7 @@
     },
     {
       "id": 7634,
+      "parentCaseId": null,
       "ordreNr": "65025",
       "isTM": true,
       "status": "Avsluttet",
@@ -203,8 +210,8 @@
       "fSalgsverdi": 1494.6,
       "via": 1494.6,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.19824349013435244,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1980771053679229,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -216,6 +223,7 @@
     },
     {
       "id": 7632,
+      "parentCaseId": null,
       "ordreNr": "65023",
       "isTM": true,
       "status": "Åpen",
@@ -233,8 +241,8 @@
       "fSalgsverdi": 1500,
       "via": 1500,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.05495335183005279,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.05511973659648234,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -246,6 +254,7 @@
     },
     {
       "id": 7631,
+      "parentCaseId": null,
       "ordreNr": "65022",
       "isTM": true,
       "status": "Avsluttet",
@@ -263,8 +272,8 @@
       "fSalgsverdi": 10295.63,
       "via": 10295.63,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.04398840448227262,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.04402903978858111,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -276,6 +285,7 @@
     },
     {
       "id": 7630,
+      "parentCaseId": null,
       "ordreNr": "65021",
       "isTM": true,
       "status": "Avsluttet",
@@ -293,8 +303,8 @@
       "fSalgsverdi": 853.83,
       "via": 853.83,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.05210219879022049,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.05226858355665004,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -306,6 +316,7 @@
     },
     {
       "id": 7629,
+      "parentCaseId": null,
       "ordreNr": "65020",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -323,8 +334,8 @@
       "fSalgsverdi": 1323,
       "via": 1323,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.2682061341865761,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.2680397494201465,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -336,6 +347,7 @@
     },
     {
       "id": 7628,
+      "parentCaseId": null,
       "ordreNr": "65019",
       "isTM": true,
       "status": "Avsluttet",
@@ -353,8 +365,8 @@
       "fSalgsverdi": 2214.28,
       "via": 2214.28,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.27831430382918865,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.27827366852288016,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -366,6 +378,7 @@
     },
     {
       "id": 7625,
+      "parentCaseId": null,
       "ordreNr": "65016",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -383,8 +396,8 @@
       "fSalgsverdi": 37386.23,
       "via": 37386.23,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.10479674600008415,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1046303612336546,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -396,6 +409,7 @@
     },
     {
       "id": 7622,
+      "parentCaseId": null,
       "ordreNr": "65013",
       "isTM": true,
       "status": "Avsluttet",
@@ -413,8 +427,8 @@
       "fSalgsverdi": 2966.03,
       "via": 2966.03,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.15852742887681798,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.15836104411038843,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -426,6 +440,7 @@
     },
     {
       "id": 7620,
+      "parentCaseId": null,
       "ordreNr": "65011",
       "isTM": true,
       "status": "Åpen",
@@ -443,8 +458,8 @@
       "fSalgsverdi": 19009.9,
       "via": 19009.9,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.14459988095917803,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.14443349619274848,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -456,6 +471,7 @@
     },
     {
       "id": 7619,
+      "parentCaseId": null,
       "ordreNr": "65010",
       "isTM": true,
       "status": "Avsluttet",
@@ -473,8 +489,8 @@
       "fSalgsverdi": 10968.66,
       "via": 10968.66,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.03682697889706704,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.03678634359075855,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -486,6 +502,7 @@
     },
     {
       "id": 7618,
+      "parentCaseId": null,
       "ordreNr": "65009",
       "isTM": false,
       "status": "Avsluttet",
@@ -503,8 +520,8 @@
       "fSalgsverdi": 3225.225,
       "via": 3225.225,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2716432444483553,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.2716838797546638,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -516,6 +533,7 @@
     },
     {
       "id": 7617,
+      "parentCaseId": null,
       "ordreNr": "65008",
       "isTM": true,
       "status": "Avsluttet",
@@ -533,8 +551,8 @@
       "fSalgsverdi": 4916.66,
       "via": 4916.66,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.10387196731292125,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.1040383520793508,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -546,6 +564,7 @@
     },
     {
       "id": 7615,
+      "parentCaseId": null,
       "ordreNr": "65006",
       "isTM": true,
       "status": "Avsluttet",
@@ -563,8 +582,8 @@
       "fSalgsverdi": 2192.1,
       "via": 2192.1,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.07701508026702308,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.07684869550059353,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -576,6 +595,7 @@
     },
     {
       "id": 7614,
+      "parentCaseId": null,
       "ordreNr": "65005",
       "isTM": true,
       "status": "Avsluttet",
@@ -593,8 +613,8 @@
       "fSalgsverdi": 7111.11,
       "via": 7111.11,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.08394125112222894,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.0837748663557994,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -606,6 +626,7 @@
     },
     {
       "id": 7613,
+      "parentCaseId": null,
       "ordreNr": "65004",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -623,8 +644,8 @@
       "fSalgsverdi": 7157.72,
       "via": 7157.72,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.020478433710594213,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.020312048944164662,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -636,6 +657,7 @@
     },
     {
       "id": 7612,
+      "parentCaseId": 7230,
       "ordreNr": "64656-4",
       "isTM": true,
       "status": "I arbeid",
@@ -666,6 +688,7 @@
     },
     {
       "id": 7611,
+      "parentCaseId": null,
       "ordreNr": "65003",
       "isTM": true,
       "status": "Avsluttet",
@@ -696,6 +719,7 @@
     },
     {
       "id": 7610,
+      "parentCaseId": null,
       "ordreNr": "65002",
       "isTM": true,
       "status": "Avsluttet",
@@ -726,6 +750,7 @@
     },
     {
       "id": 7608,
+      "parentCaseId": 3476,
       "ordreNr": "62123-3",
       "isTM": false,
       "status": "Avsluttet",
@@ -743,8 +768,8 @@
       "fSalgsverdi": 1107,
       "via": 1107,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -756,6 +781,7 @@
     },
     {
       "id": 7607,
+      "parentCaseId": null,
       "ordreNr": "65000",
       "isTM": true,
       "status": "Avsluttet",
@@ -773,8 +799,8 @@
       "fSalgsverdi": 2817.31,
       "via": 2817.31,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.19725547690681042,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.19742186167323997,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -786,6 +812,7 @@
     },
     {
       "id": 7606,
+      "parentCaseId": null,
       "ordreNr": "64999",
       "isTM": true,
       "status": "Avsluttet",
@@ -803,8 +830,8 @@
       "fSalgsverdi": 49834.685,
       "via": 49834.685,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.01660445574914632,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.016438070982716768,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -816,6 +843,7 @@
     },
     {
       "id": 7599,
+      "parentCaseId": null,
       "ordreNr": "64992",
       "isTM": true,
       "status": "Avsluttet",
@@ -833,8 +861,8 @@
       "fSalgsverdi": 3252.68,
       "via": 3252.68,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.2714028836434644,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.2712364988770348,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -846,6 +874,7 @@
     },
     {
       "id": 7598,
+      "parentCaseId": null,
       "ordreNr": "64991",
       "isTM": true,
       "status": "Åpen",
@@ -863,8 +892,8 @@
       "fSalgsverdi": 42289.52,
       "via": 42289.52,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.0686833931601954,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.06851700839376584,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -876,6 +905,7 @@
     },
     {
       "id": 7593,
+      "parentCaseId": null,
       "ordreNr": "64986",
       "isTM": true,
       "status": "Avsluttet",
@@ -893,8 +923,8 @@
       "fSalgsverdi": 499,
       "via": 499,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.12141939366092919,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.12125300889449964,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -906,6 +936,7 @@
     },
     {
       "id": 7592,
+      "parentCaseId": null,
       "ordreNr": "64985",
       "isTM": true,
       "status": "Avsluttet",
@@ -923,8 +954,8 @@
       "fSalgsverdi": 1003.4,
       "via": 1003.4,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.14751663666162546,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.147683021428055,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -936,6 +967,7 @@
     },
     {
       "id": 7591,
+      "parentCaseId": null,
       "ordreNr": "64984",
       "isTM": true,
       "status": "Avsluttet",
@@ -953,8 +985,8 @@
       "fSalgsverdi": 1100,
       "via": 1100,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.10852607910278006,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.10869246386920961,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -966,6 +998,7 @@
     },
     {
       "id": 7590,
+      "parentCaseId": null,
       "ordreNr": "64983",
       "isTM": true,
       "status": "Avsluttet",
@@ -983,8 +1016,8 @@
       "fSalgsverdi": 6037.5,
       "via": 6037.5,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.1869514100747091,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.18678502530827956,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -996,6 +1029,7 @@
     },
     {
       "id": 7588,
+      "parentCaseId": null,
       "ordreNr": "64981",
       "isTM": true,
       "status": "Avsluttet",
@@ -1026,6 +1060,7 @@
     },
     {
       "id": 7587,
+      "parentCaseId": null,
       "ordreNr": "64980",
       "isTM": true,
       "status": "Avsluttet",
@@ -1056,6 +1091,7 @@
     },
     {
       "id": 7586,
+      "parentCaseId": null,
       "ordreNr": "64979",
       "isTM": true,
       "status": "Avsluttet",
@@ -1086,6 +1122,7 @@
     },
     {
       "id": 7581,
+      "parentCaseId": null,
       "ordreNr": "64974",
       "isTM": true,
       "status": "I arbeid",
@@ -1103,8 +1140,8 @@
       "fSalgsverdi": 58255.75,
       "via": 58255.75,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.26576855115806425,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.2656021663916347,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1116,6 +1153,7 @@
     },
     {
       "id": 7579,
+      "parentCaseId": null,
       "ordreNr": "64972",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -1133,8 +1171,8 @@
       "fSalgsverdi": 2495,
       "via": 2495,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.1425215980697468,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.14235521330331724,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1146,6 +1184,7 @@
     },
     {
       "id": 7578,
+      "parentCaseId": null,
       "ordreNr": "64971",
       "isTM": true,
       "status": "Avsluttet",
@@ -1163,8 +1202,8 @@
       "fSalgsverdi": 3174.63,
       "via": 3174.63,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.12697443188017482,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.12680804711374527,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1176,6 +1215,7 @@
     },
     {
       "id": 7576,
+      "parentCaseId": null,
       "ordreNr": "64969",
       "isTM": true,
       "status": "Avsluttet",
@@ -1193,8 +1233,8 @@
       "fSalgsverdi": 2004.45,
       "via": 2004.45,
       "historicalReopen": true,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.11986608058107007,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.11975939413720527,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1206,6 +1246,7 @@
     },
     {
       "id": 7573,
+      "parentCaseId": null,
       "ordreNr": "64966",
       "isTM": true,
       "status": "Åpen",
@@ -1223,8 +1264,8 @@
       "fSalgsverdi": 1509.9,
       "via": 1509.9,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -1.785533522702296,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -1.7856999074687256,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1236,6 +1277,7 @@
     },
     {
       "id": 7571,
+      "parentCaseId": null,
       "ordreNr": "64964",
       "isTM": true,
       "status": "Avsluttet",
@@ -1253,8 +1295,8 @@
       "fSalgsverdi": 4072.18,
       "via": 4072.18,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.12242643000670295,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1222600452402734,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1266,6 +1308,7 @@
     },
     {
       "id": 7569,
+      "parentCaseId": null,
       "ordreNr": "64962",
       "isTM": true,
       "status": "Avsluttet",
@@ -1283,8 +1326,8 @@
       "fSalgsverdi": 7566.18,
       "via": 7566.18,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.17375154284599242,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.17358515807956287,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1296,6 +1339,7 @@
     },
     {
       "id": 7568,
+      "parentCaseId": null,
       "ordreNr": "64961",
       "isTM": true,
       "status": "Avsluttet",
@@ -1313,8 +1357,8 @@
       "fSalgsverdi": 1200,
       "via": 1200,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.33494008888497806,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.33489945357866957,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1326,6 +1370,7 @@
     },
     {
       "id": 7564,
+      "parentCaseId": null,
       "ordreNr": "64957",
       "isTM": true,
       "status": "Avsluttet",
@@ -1343,8 +1388,8 @@
       "fSalgsverdi": 1589.04,
       "via": 1589.04,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.036220532014314966,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.036386916780744516,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1356,6 +1401,7 @@
     },
     {
       "id": 7563,
+      "parentCaseId": null,
       "ordreNr": "64956",
       "isTM": false,
       "status": "Avsluttet",
@@ -1373,8 +1419,8 @@
       "fSalgsverdi": 1193.22,
       "via": 508.85,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -1386,6 +1432,7 @@
     },
     {
       "id": 7562,
+      "parentCaseId": null,
       "ordreNr": "64955",
       "isTM": true,
       "status": "Avsluttet",
@@ -1403,8 +1450,8 @@
       "fSalgsverdi": 18353,
       "via": 18353,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.12398633105557899,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.12381994628914944,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1416,6 +1463,7 @@
     },
     {
       "id": 7561,
+      "parentCaseId": null,
       "ordreNr": "64954",
       "isTM": true,
       "status": "Avsluttet",
@@ -1433,8 +1481,8 @@
       "fSalgsverdi": 1323,
       "via": 323,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.2682061341865761,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.2680397494201465,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1446,6 +1494,7 @@
     },
     {
       "id": 7558,
+      "parentCaseId": null,
       "ordreNr": "64951",
       "isTM": true,
       "status": "Åpen",
@@ -1463,8 +1512,8 @@
       "fSalgsverdi": 22815,
       "via": 22815,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.3693732753963963,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.3694402734903365,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1476,6 +1525,7 @@
     },
     {
       "id": 7555,
+      "parentCaseId": null,
       "ordreNr": "64948",
       "isTM": true,
       "status": "Avsluttet",
@@ -1493,8 +1543,8 @@
       "fSalgsverdi": 2820.15,
       "via": 2820.15,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.13476776229508242,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.13460137752865287,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1506,6 +1556,7 @@
     },
     {
       "id": 7553,
+      "parentCaseId": null,
       "ordreNr": "64946",
       "isTM": true,
       "status": "Avsluttet",
@@ -1523,8 +1574,8 @@
       "fSalgsverdi": 866.6,
       "via": 866.6,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.06594112011992126,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.06610750488635081,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1536,6 +1587,7 @@
     },
     {
       "id": 7551,
+      "parentCaseId": null,
       "ordreNr": "64944",
       "isTM": true,
       "status": "Åpen",
@@ -1553,8 +1605,8 @@
       "fSalgsverdi": 2231.25,
       "via": 2231.25,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.032248782011563726,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.032142095567698925,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1566,6 +1618,7 @@
     },
     {
       "id": 7548,
+      "parentCaseId": null,
       "ordreNr": "64941",
       "isTM": true,
       "status": "Avsluttet",
@@ -1583,8 +1636,8 @@
       "fSalgsverdi": 6655.43,
       "via": 6655.43,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.17845792287346002,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.17829153810703047,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1596,6 +1649,7 @@
     },
     {
       "id": 7547,
+      "parentCaseId": null,
       "ordreNr": "64940",
       "isTM": true,
       "status": "I arbeid",
@@ -1613,8 +1667,8 @@
       "fSalgsverdi": 7553.59,
       "via": 7553.59,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.4043452995396933,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.40417891477326373,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1626,6 +1680,7 @@
     },
     {
       "id": 7546,
+      "parentCaseId": null,
       "ordreNr": "64939",
       "isTM": true,
       "status": "I arbeid",
@@ -1643,8 +1698,8 @@
       "fSalgsverdi": 197160.62,
       "via": 197160.62,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.42384299249063356,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.423676607724204,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1656,6 +1711,7 @@
     },
     {
       "id": 7544,
+      "parentCaseId": null,
       "ordreNr": "64937",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -1673,8 +1729,8 @@
       "fSalgsverdi": 1998.12,
       "via": 1998.12,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.10222399034950239,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.10226462565581088,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1686,6 +1742,7 @@
     },
     {
       "id": 7542,
+      "parentCaseId": null,
       "ordreNr": "64935",
       "isTM": true,
       "status": "Avsluttet",
@@ -1703,8 +1760,8 @@
       "fSalgsverdi": 11532.46,
       "via": 11532.46,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.011813190692109066,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.011772555385800576,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1716,6 +1773,7 @@
     },
     {
       "id": 7541,
+      "parentCaseId": null,
       "ordreNr": "64934",
       "isTM": true,
       "status": "Avsluttet",
@@ -1733,8 +1791,8 @@
       "fSalgsverdi": 12174.98,
       "via": 12174.98,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.08617012590278228,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.08633651066921183,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1746,6 +1804,7 @@
     },
     {
       "id": 7537,
+      "parentCaseId": null,
       "ordreNr": "64930",
       "isTM": true,
       "status": "Avsluttet",
@@ -1763,8 +1822,8 @@
       "fSalgsverdi": 47338.87,
       "via": 47338.87,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.238317095901378,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.23815071113494846,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1776,6 +1835,7 @@
     },
     {
       "id": 7535,
+      "parentCaseId": null,
       "ordreNr": "64928",
       "isTM": true,
       "status": "Avsluttet",
@@ -1793,8 +1853,8 @@
       "fSalgsverdi": 48864.12,
       "via": 48864.12,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.2589273459971495,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.258886710690841,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1806,6 +1866,7 @@
     },
     {
       "id": 7532,
+      "parentCaseId": null,
       "ordreNr": "64926",
       "isTM": true,
       "status": "Avsluttet",
@@ -1823,8 +1884,8 @@
       "fSalgsverdi": 6356.27,
       "via": 6356.27,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.07881936963191505,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.07877873432560656,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1836,6 +1897,7 @@
     },
     {
       "id": 7531,
+      "parentCaseId": null,
       "ordreNr": "64925",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -1853,8 +1915,8 @@
       "fSalgsverdi": 1425.65,
       "via": 1425.65,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.12299525931876529,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.12303589462507378,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1866,6 +1928,7 @@
     },
     {
       "id": 7529,
+      "parentCaseId": null,
       "ordreNr": "64923",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -1883,8 +1946,8 @@
       "fSalgsverdi": 3463.84,
       "via": 3463.84,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.2295251565323485,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.22969154129877806,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1896,6 +1959,7 @@
     },
     {
       "id": 7527,
+      "parentCaseId": null,
       "ordreNr": "64921",
       "isTM": true,
       "status": "I arbeid",
@@ -1913,8 +1977,8 @@
       "fSalgsverdi": 8570.48,
       "via": 8570.48,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.09860724011229938,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.09850055366843458,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1926,6 +1990,7 @@
     },
     {
       "id": 7523,
+      "parentCaseId": 7268,
       "ordreNr": "64691-2",
       "isTM": true,
       "status": "I arbeid",
@@ -1943,8 +2008,8 @@
       "fSalgsverdi": 25496,
       "via": 3259.5,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.1330107346350811,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.13307773272902126,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1956,6 +2021,7 @@
     },
     {
       "id": 7522,
+      "parentCaseId": null,
       "ordreNr": "64917",
       "isTM": true,
       "status": "I arbeid",
@@ -1973,8 +2039,8 @@
       "fSalgsverdi": 4042.885,
       "via": 4042.885,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.08310073578312444,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.08293435101669488,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -1986,6 +2052,7 @@
     },
     {
       "id": 7519,
+      "parentCaseId": null,
       "ordreNr": "64914",
       "isTM": true,
       "status": "Avsluttet",
@@ -2003,8 +2070,8 @@
       "fSalgsverdi": 3911.4,
       "via": 3911.4,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.26823067434983167,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.2680642895834021,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2016,6 +2083,7 @@
     },
     {
       "id": 7518,
+      "parentCaseId": null,
       "ordreNr": "64913",
       "isTM": true,
       "status": "Avsluttet",
@@ -2033,8 +2101,8 @@
       "fSalgsverdi": 4182.26,
       "via": 4182.26,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.10506582440480589,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.10489943963837634,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2046,6 +2114,7 @@
     },
     {
       "id": 7517,
+      "parentCaseId": null,
       "ordreNr": "64912",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -2063,8 +2132,8 @@
       "fSalgsverdi": 27846.56,
       "via": 27846.56,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.4202795243313115,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.42011313956488194,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2076,6 +2145,7 @@
     },
     {
       "id": 7516,
+      "parentCaseId": 7346,
       "ordreNr": "64765-1",
       "isTM": true,
       "status": "Åpen",
@@ -2093,8 +2163,8 @@
       "fSalgsverdi": 998,
       "via": 998,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.13786227943247226,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1376958946660427,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2106,6 +2176,7 @@
     },
     {
       "id": 7514,
+      "parentCaseId": null,
       "ordreNr": "64910",
       "isTM": true,
       "status": "Avsluttet",
@@ -2123,8 +2194,8 @@
       "fSalgsverdi": 5002.89,
       "via": 5002.89,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.18633622279581347,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.18616983802938392,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2136,6 +2207,7 @@
     },
     {
       "id": 7512,
+      "parentCaseId": null,
       "ordreNr": "64908",
       "isTM": true,
       "status": "Avsluttet",
@@ -2153,8 +2225,8 @@
       "fSalgsverdi": 17695.38,
       "via": 17695.38,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.06247664402197184,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.06231025925554229,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2166,6 +2238,7 @@
     },
     {
       "id": 7511,
+      "parentCaseId": null,
       "ordreNr": "64907",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -2183,8 +2256,8 @@
       "fSalgsverdi": 1816.1,
       "via": 1816.1,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.21005298042037396,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.2098865956539444,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2196,6 +2269,7 @@
     },
     {
       "id": 7510,
+      "parentCaseId": null,
       "ordreNr": "64906",
       "isTM": true,
       "status": "Åpen",
@@ -2213,8 +2287,8 @@
       "fSalgsverdi": 12838.5,
       "via": 12838.5,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.4035411467190845,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.40360814481302465,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2226,6 +2300,7 @@
     },
     {
       "id": 7507,
+      "parentCaseId": null,
       "ordreNr": "64903",
       "isTM": true,
       "status": "Avsluttet",
@@ -2243,8 +2318,8 @@
       "fSalgsverdi": 25731.64,
       "via": 25731.64,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.14124052465819276,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1410741398917632,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2256,6 +2331,7 @@
     },
     {
       "id": 7505,
+      "parentCaseId": null,
       "ordreNr": "64901",
       "isTM": false,
       "status": "I arbeid",
@@ -2273,8 +2349,8 @@
       "fSalgsverdi": 1248.66,
       "via": 1248.66,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -2286,6 +2362,7 @@
     },
     {
       "id": 7498,
+      "parentCaseId": null,
       "ordreNr": "64895",
       "isTM": true,
       "status": "Åpen",
@@ -2303,8 +2380,8 @@
       "fSalgsverdi": 1996,
       "via": 1996,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.11402460408177084,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.11385821931534129,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2316,6 +2393,7 @@
     },
     {
       "id": 7497,
+      "parentCaseId": null,
       "ordreNr": "64894",
       "isTM": true,
       "status": "Avsluttet",
@@ -2333,8 +2411,8 @@
       "fSalgsverdi": 4054,
       "via": 4054,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.2593510388951569,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.2591846541287274,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2346,6 +2424,7 @@
     },
     {
       "id": 7492,
+      "parentCaseId": null,
       "ordreNr": "64890",
       "isTM": true,
       "status": "Avsluttet",
@@ -2363,8 +2442,8 @@
       "fSalgsverdi": 1960.4,
       "via": 1960.4,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.1638346506184271,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.16366826585199756,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2376,6 +2455,7 @@
     },
     {
       "id": 7490,
+      "parentCaseId": null,
       "ordreNr": "64888",
       "isTM": true,
       "status": "Åpen",
@@ -2393,8 +2473,8 @@
       "fSalgsverdi": 556,
       "via": 556,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.11017498317796537,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.11028166962183017,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2406,6 +2486,7 @@
     },
     {
       "id": 7488,
+      "parentCaseId": null,
       "ordreNr": "64886",
       "isTM": true,
       "status": "Åpen",
@@ -2423,8 +2504,8 @@
       "fSalgsverdi": 11369.7,
       "via": 11369.7,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.21073529858326528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.21090168334969484,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2436,6 +2517,7 @@
     },
     {
       "id": 7486,
+      "parentCaseId": null,
       "ordreNr": "64884",
       "isTM": true,
       "status": "Avsluttet",
@@ -2453,8 +2535,8 @@
       "fSalgsverdi": 3750,
       "via": 3750,
       "historicalReopen": true,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.017003386055663205,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.017110072499528006,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2466,6 +2548,7 @@
     },
     {
       "id": 7484,
+      "parentCaseId": null,
       "ordreNr": "64882",
       "isTM": true,
       "status": "Avsluttet",
@@ -2483,8 +2566,8 @@
       "fSalgsverdi": 5751.52,
       "via": 5751.52,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.08222103838470446,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.08218040307839597,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2496,6 +2579,7 @@
     },
     {
       "id": 7483,
+      "parentCaseId": null,
       "ordreNr": "64881",
       "isTM": true,
       "status": "Åpen",
@@ -2513,8 +2597,8 @@
       "fSalgsverdi": 12193.4,
       "via": 12193.4,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.1080794692378308,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.10824585400426034,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2526,6 +2610,7 @@
     },
     {
       "id": 7481,
+      "parentCaseId": 7410,
       "ordreNr": "64822-2",
       "isTM": false,
       "status": "Åpen",
@@ -2543,8 +2628,8 @@
       "fSalgsverdi": 1336,
       "via": 1336,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2716432444483553,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.2716838797546638,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -2556,6 +2641,7 @@
     },
     {
       "id": 7472,
+      "parentCaseId": 7410,
       "ordreNr": "64822-1",
       "isTM": false,
       "status": "I arbeid",
@@ -2573,8 +2659,8 @@
       "fSalgsverdi": 1929.98,
       "via": 1929.98,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2716432444483553,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.2716838797546638,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -2586,6 +2672,7 @@
     },
     {
       "id": 7471,
+      "parentCaseId": 7230,
       "ordreNr": "64656-3",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -2603,8 +2690,8 @@
       "fSalgsverdi": 38831.07,
       "via": 38831.07,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.08912369117970206,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.08919068927364224,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2616,6 +2703,7 @@
     },
     {
       "id": 7470,
+      "parentCaseId": 5946,
       "ordreNr": "64397-8",
       "isTM": false,
       "status": "Åpen",
@@ -2633,8 +2721,8 @@
       "fSalgsverdi": 38605.11,
       "via": 38605.11,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -2646,6 +2734,7 @@
     },
     {
       "id": 7469,
+      "parentCaseId": 5946,
       "ordreNr": "64397-7",
       "isTM": false,
       "status": "Åpen",
@@ -2663,8 +2752,8 @@
       "fSalgsverdi": 28596,
       "via": 28596,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -2676,6 +2765,7 @@
     },
     {
       "id": 7468,
+      "parentCaseId": 5946,
       "ordreNr": "64397-6",
       "isTM": false,
       "status": "Åpen",
@@ -2693,8 +2783,8 @@
       "fSalgsverdi": 3820.79,
       "via": 3820.79,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -2706,6 +2796,7 @@
     },
     {
       "id": 7467,
+      "parentCaseId": null,
       "ordreNr": "64875",
       "isTM": true,
       "status": "Avsluttet",
@@ -2723,8 +2814,8 @@
       "fSalgsverdi": 3582.52,
       "via": 3582.52,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.29748965641472436,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.29744902110841587,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2736,6 +2827,7 @@
     },
     {
       "id": 7464,
+      "parentCaseId": null,
       "ordreNr": "64872",
       "isTM": true,
       "status": "Avsluttet",
@@ -2753,8 +2845,8 @@
       "fSalgsverdi": 7021.15,
       "via": 7021.15,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.07665535221460518,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.07682173698103473,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2766,6 +2858,7 @@
     },
     {
       "id": 7462,
+      "parentCaseId": null,
       "ordreNr": "64870",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -2783,8 +2876,8 @@
       "fSalgsverdi": 12494,
       "via": 12494,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.0018985670031816393,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.001939202309490129,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2796,6 +2889,7 @@
     },
     {
       "id": 7461,
+      "parentCaseId": null,
       "ordreNr": "64869",
       "isTM": true,
       "status": "Åpen",
@@ -2813,8 +2907,8 @@
       "fSalgsverdi": 998,
       "via": 998,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.15995646780922573,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.15979008304279618,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2826,6 +2920,7 @@
     },
     {
       "id": 7459,
+      "parentCaseId": null,
       "ordreNr": "64867",
       "isTM": true,
       "status": "Avsluttet",
@@ -2843,8 +2938,8 @@
       "fSalgsverdi": 4900,
       "via": 4900,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.010328184123073292,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.010287548816764802,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2856,6 +2951,7 @@
     },
     {
       "id": 7454,
+      "parentCaseId": null,
       "ordreNr": "64862",
       "isTM": true,
       "status": "Avsluttet",
@@ -2873,8 +2969,8 @@
       "fSalgsverdi": 17054.79,
       "via": 17054.79,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.0889884498573324,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.08882206509090285,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2886,6 +2982,7 @@
     },
     {
       "id": 7451,
+      "parentCaseId": null,
       "ordreNr": "64859",
       "isTM": true,
       "status": "Avsluttet",
@@ -2903,8 +3000,8 @@
       "fSalgsverdi": 8538.98,
       "via": 8538.98,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.22517199621146602,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.22533838097789557,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2916,6 +3013,7 @@
     },
     {
       "id": 7442,
+      "parentCaseId": null,
       "ordreNr": "64853",
       "isTM": true,
       "status": "Avsluttet",
@@ -2933,8 +3031,8 @@
       "fSalgsverdi": 31399.84,
       "via": 31399.84,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.20131073104425484,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.2011443462778253,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2946,6 +3044,7 @@
     },
     {
       "id": 7441,
+      "parentCaseId": null,
       "ordreNr": "64852",
       "isTM": true,
       "status": "Åpen",
@@ -2963,8 +3062,8 @@
       "fSalgsverdi": 58920.99,
       "via": 58920.99,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.022489177728885257,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.022595864172750058,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -2976,6 +3075,7 @@
     },
     {
       "id": 7438,
+      "parentCaseId": null,
       "ordreNr": "64849",
       "isTM": true,
       "status": "Avsluttet",
@@ -2993,8 +3093,8 @@
       "fSalgsverdi": 26765.07,
       "via": 26765.07,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.1348222624313708,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.13465587766494125,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3006,6 +3106,7 @@
     },
     {
       "id": 7437,
+      "parentCaseId": null,
       "ordreNr": "64848",
       "isTM": true,
       "status": "Avsluttet",
@@ -3023,8 +3124,8 @@
       "fSalgsverdi": 18110.51,
       "via": 18110.51,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.019423725347784804,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.019257340581355253,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3036,6 +3137,7 @@
     },
     {
       "id": 7435,
+      "parentCaseId": null,
       "ordreNr": "64846",
       "isTM": true,
       "status": "Avsluttet",
@@ -3053,8 +3155,8 @@
       "fSalgsverdi": 13728.51,
       "via": 13728.51,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.1273685811593828,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.12753496592581234,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3066,6 +3168,7 @@
     },
     {
       "id": 7434,
+      "parentCaseId": null,
       "ordreNr": "64845",
       "isTM": true,
       "status": "I arbeid",
@@ -3083,8 +3186,8 @@
       "fSalgsverdi": 72640.03,
       "via": 72640.03,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.23011669532315782,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.23001000887929302,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3096,6 +3199,7 @@
     },
     {
       "id": 7433,
+      "parentCaseId": 5946,
       "ordreNr": "64397-5",
       "isTM": false,
       "status": "Åpen",
@@ -3113,8 +3217,8 @@
       "fSalgsverdi": 13807.130000000001,
       "via": 13807.130000000001,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -3126,6 +3230,7 @@
     },
     {
       "id": 7432,
+      "parentCaseId": null,
       "ordreNr": "64844",
       "isTM": true,
       "status": "Avsluttet",
@@ -3143,8 +3248,8 @@
       "fSalgsverdi": 300,
       "via": 300,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.18530335183005278,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.18546973659648233,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3156,6 +3261,7 @@
     },
     {
       "id": 7423,
+      "parentCaseId": null,
       "ordreNr": "64835",
       "isTM": false,
       "status": "Avsluttet",
@@ -3186,6 +3292,7 @@
     },
     {
       "id": 7420,
+      "parentCaseId": null,
       "ordreNr": "64832",
       "isTM": false,
       "status": "Avsluttet",
@@ -3203,8 +3310,8 @@
       "fSalgsverdi": 6249.415,
       "via": 6249.415,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2716432444483553,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.2716838797546638,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -3216,6 +3323,7 @@
     },
     {
       "id": 7419,
+      "parentCaseId": null,
       "ordreNr": "64831",
       "isTM": true,
       "status": "Avsluttet",
@@ -3233,8 +3341,8 @@
       "fSalgsverdi": 2262.38,
       "via": 2262.38,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.14432722879742804,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1441608440309985,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3246,6 +3354,7 @@
     },
     {
       "id": 7417,
+      "parentCaseId": null,
       "ordreNr": "64829",
       "isTM": true,
       "status": "Avsluttet",
@@ -3263,8 +3372,8 @@
       "fSalgsverdi": 390.78,
       "via": 390.78,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.25378916314000705,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.2536227783735775,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3276,6 +3385,7 @@
     },
     {
       "id": 7414,
+      "parentCaseId": null,
       "ordreNr": "64826",
       "isTM": true,
       "status": "Avsluttet",
@@ -3293,8 +3403,8 @@
       "fSalgsverdi": 22111.74,
       "via": 12111.740000000002,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.03760179107544914,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.03776817584187869,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3306,6 +3416,7 @@
     },
     {
       "id": 7411,
+      "parentCaseId": null,
       "ordreNr": "64823",
       "isTM": true,
       "status": "Avsluttet",
@@ -3323,8 +3434,8 @@
       "fSalgsverdi": 3902.88,
       "via": 3902.88,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.2445163412122526,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.24468272597868215,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3336,6 +3447,7 @@
     },
     {
       "id": 7410,
+      "parentCaseId": null,
       "ordreNr": "64822",
       "isTM": false,
       "status": "I arbeid",
@@ -3353,8 +3465,8 @@
       "fSalgsverdi": 25992.745,
       "via": -54007.255000000005,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2716432444483553,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.2716838797546638,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -3366,6 +3478,7 @@
     },
     {
       "id": 7400,
+      "parentCaseId": 3142,
       "ordreNr": "61808-2",
       "isTM": false,
       "status": "Avsluttet",
@@ -3383,8 +3496,8 @@
       "fSalgsverdi": 240.58,
       "via": 240.58,
       "historicalReopen": true,
-      "normDG": 0.19008949804776656,
-      "dgAvvik": -0.19008949804776656,
+      "normDG": 0.19301562200962888,
+      "dgAvvik": -0.19301562200962888,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -3396,6 +3509,7 @@
     },
     {
       "id": 7398,
+      "parentCaseId": null,
       "ordreNr": "64812",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -3413,8 +3527,8 @@
       "fSalgsverdi": 8277.39,
       "via": 8277.39,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.01954217341175346,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.01943548696788866,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3426,11 +3540,12 @@
     },
     {
       "id": 7393,
+      "parentCaseId": null,
       "ordreNr": "64807",
       "isTM": true,
       "status": "I arbeid",
       "type": "Service næring",
-      "beskr": "Installasjon i forbindelse med oppussing av to klasserom og grupperom.",
+      "beskr": "Installasjon i forbindelse med oppussing av to klasserom og grupperom. Rekvisisjon nr. 3645",
       "kunde": "Gjøvik Kommune",
       "pl": "Brede  Strangstadstuen",
       "tilbud": null,
@@ -3443,8 +3558,8 @@
       "fSalgsverdi": 115755.025,
       "via": 115755.025,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.11052652402952251,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.110567159335831,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3456,6 +3571,7 @@
     },
     {
       "id": 7389,
+      "parentCaseId": null,
       "ordreNr": "64803",
       "isTM": true,
       "status": "Avsluttet",
@@ -3473,8 +3589,8 @@
       "fSalgsverdi": 3260.29,
       "via": 3260.29,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.003178654831931249,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.0030122700655016987,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3486,6 +3602,7 @@
     },
     {
       "id": 7388,
+      "parentCaseId": null,
       "ordreNr": "64802",
       "isTM": true,
       "status": "I arbeid",
@@ -3503,8 +3620,8 @@
       "fSalgsverdi": 3150,
       "via": 3150,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.1558571853729082,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.1557504989290434,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3516,6 +3633,7 @@
     },
     {
       "id": 7387,
+      "parentCaseId": 7116,
       "ordreNr": "64552-1",
       "isTM": true,
       "status": "Avsluttet",
@@ -3533,8 +3651,8 @@
       "fSalgsverdi": 3493,
       "via": 3493,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.15995646780922573,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.15979008304279618,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3546,6 +3664,7 @@
     },
     {
       "id": 7385,
+      "parentCaseId": 7350,
       "ordreNr": "64769-1",
       "isTM": true,
       "status": "Åpen",
@@ -3563,8 +3682,8 @@
       "fSalgsverdi": 19275.83,
       "via": 19275.83,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.18689923765636623,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.18673285288993668,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3576,6 +3695,7 @@
     },
     {
       "id": 7384,
+      "parentCaseId": 5611,
       "ordreNr": "64092-1",
       "isTM": true,
       "status": "Avsluttet",
@@ -3593,8 +3713,8 @@
       "fSalgsverdi": 1784.25,
       "via": 1784.25,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.003917322122588385,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.0037509373561588344,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3606,6 +3726,7 @@
     },
     {
       "id": 7383,
+      "parentCaseId": null,
       "ordreNr": "64800",
       "isTM": true,
       "status": "Avsluttet",
@@ -3623,8 +3744,8 @@
       "fSalgsverdi": 77316.93,
       "via": 77316.93,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.2575015366493939,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.2574609013430854,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3636,6 +3757,7 @@
     },
     {
       "id": 7382,
+      "parentCaseId": 5610,
       "ordreNr": "64091-2",
       "isTM": true,
       "status": "Avsluttet",
@@ -3653,8 +3775,8 @@
       "fSalgsverdi": 1784.25,
       "via": 1784.25,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.003917322122588385,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.0037509373561588344,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3666,6 +3788,7 @@
     },
     {
       "id": 7378,
+      "parentCaseId": null,
       "ordreNr": "64796",
       "isTM": true,
       "status": "Avsluttet",
@@ -3683,8 +3806,8 @@
       "fSalgsverdi": 21867.36,
       "via": 21867.36,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.11421177829996748,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.11404539353353793,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3696,6 +3819,7 @@
     },
     {
       "id": 7377,
+      "parentCaseId": null,
       "ordreNr": "64795",
       "isTM": true,
       "status": "Avsluttet",
@@ -3713,8 +3837,8 @@
       "fSalgsverdi": 41085.598,
       "via": 41085.598,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.32363594459445105,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.3234695598280215,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3726,6 +3850,7 @@
     },
     {
       "id": 7367,
+      "parentCaseId": null,
       "ordreNr": "64786",
       "isTM": true,
       "status": "Avsluttet",
@@ -3743,8 +3868,8 @@
       "fSalgsverdi": 19937.32,
       "via": 19937.32,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.13088544696537202,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.13071906219894247,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3756,6 +3881,7 @@
     },
     {
       "id": 7362,
+      "parentCaseId": null,
       "ordreNr": "64781",
       "isTM": false,
       "status": "Åpen",
@@ -3773,8 +3899,8 @@
       "fSalgsverdi": 0,
       "via": 0,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2716432444483553,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.2716838797546638,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -3786,6 +3912,7 @@
     },
     {
       "id": 7360,
+      "parentCaseId": null,
       "ordreNr": "64779",
       "isTM": true,
       "status": "Avsluttet",
@@ -3803,8 +3930,8 @@
       "fSalgsverdi": 9481,
       "via": 9481,
       "historicalReopen": true,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.05854413154664517,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.058650817990509974,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3816,6 +3943,7 @@
     },
     {
       "id": 7358,
+      "parentCaseId": null,
       "ordreNr": "64777",
       "isTM": true,
       "status": "Avsluttet",
@@ -3833,8 +3961,8 @@
       "fSalgsverdi": 7476,
       "via": 0,
       "historicalReopen": true,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.14822007519423996,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.14832676163810476,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3846,6 +3974,7 @@
     },
     {
       "id": 7352,
+      "parentCaseId": null,
       "ordreNr": "64771",
       "isTM": true,
       "status": "Avsluttet",
@@ -3863,8 +3992,8 @@
       "fSalgsverdi": 45141.31,
       "via": 45141.31,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.18332361886486054,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.183157234098431,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3876,6 +4005,7 @@
     },
     {
       "id": 7351,
+      "parentCaseId": null,
       "ordreNr": "64770",
       "isTM": true,
       "status": "Avsluttet",
@@ -3893,8 +4023,8 @@
       "fSalgsverdi": 17296.07,
       "via": 17296.07,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.030842232945820724,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.031008617712250275,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3906,6 +4036,7 @@
     },
     {
       "id": 7350,
+      "parentCaseId": null,
       "ordreNr": "64769",
       "isTM": true,
       "status": "Åpen",
@@ -3923,8 +4054,8 @@
       "fSalgsverdi": 5892.96,
       "via": 5892.96,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.1487529010547453,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.14858651628831576,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3936,6 +4067,7 @@
     },
     {
       "id": 7346,
+      "parentCaseId": null,
       "ordreNr": "64765",
       "isTM": true,
       "status": "Åpen",
@@ -3953,8 +4085,8 @@
       "fSalgsverdi": 63372.17,
       "via": 63372.17,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.06900753825782019,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.06884115349139064,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3966,6 +4098,7 @@
     },
     {
       "id": 7344,
+      "parentCaseId": null,
       "ordreNr": "64763",
       "isTM": true,
       "status": "Åpen",
@@ -3983,8 +4116,8 @@
       "fSalgsverdi": 998,
       "via": 998,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.14292239967295323,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.14275601490652368,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -3996,6 +4129,7 @@
     },
     {
       "id": 7339,
+      "parentCaseId": null,
       "ordreNr": "64758",
       "isTM": true,
       "status": "Avsluttet",
@@ -4013,8 +4147,8 @@
       "fSalgsverdi": 6416,
       "via": 6416,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.2000758952025175,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.20003525989620902,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4026,6 +4160,7 @@
     },
     {
       "id": 7335,
+      "parentCaseId": null,
       "ordreNr": "64754",
       "isTM": true,
       "status": "Åpen",
@@ -4043,8 +4178,8 @@
       "fSalgsverdi": 743.75,
       "via": 743.75,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.009709654351061192,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.009876039117490742,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4056,6 +4191,7 @@
     },
     {
       "id": 7334,
+      "parentCaseId": null,
       "ordreNr": "64753",
       "isTM": true,
       "status": "Åpen",
@@ -4073,8 +4209,8 @@
       "fSalgsverdi": 7047.11,
       "via": 7047.11,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.07286072095016016,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.07302710571658971,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4086,6 +4222,7 @@
     },
     {
       "id": 7332,
+      "parentCaseId": null,
       "ordreNr": "64751",
       "isTM": true,
       "status": "Åpen",
@@ -4103,8 +4240,8 @@
       "fSalgsverdi": 1355.5,
       "via": 1355.5,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.260175272703987,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.2601346373976785,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4116,6 +4253,7 @@
     },
     {
       "id": 7323,
+      "parentCaseId": null,
       "ordreNr": "64742",
       "isTM": true,
       "status": "Avsluttet",
@@ -4133,8 +4271,8 @@
       "fSalgsverdi": 73775,
       "via": 19825,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.049845659522360475,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.050012044288790025,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4146,6 +4284,7 @@
     },
     {
       "id": 7318,
+      "parentCaseId": null,
       "ordreNr": "64737",
       "isTM": true,
       "status": "Åpen",
@@ -4163,8 +4302,8 @@
       "fSalgsverdi": 4423.62,
       "via": 4423.62,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.0021314791454830617,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.0019650943790535114,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4176,6 +4315,7 @@
     },
     {
       "id": 7316,
+      "parentCaseId": null,
       "ordreNr": "64735",
       "isTM": true,
       "status": "Avsluttet",
@@ -4193,8 +4333,8 @@
       "fSalgsverdi": 1865.04,
       "via": 1865.04,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.13707776595995827,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.13711840126626676,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4206,6 +4346,7 @@
     },
     {
       "id": 7315,
+      "parentCaseId": null,
       "ordreNr": "64734",
       "isTM": true,
       "status": "Åpen",
@@ -4223,8 +4364,8 @@
       "fSalgsverdi": 4462.5,
       "via": 4462.5,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.032248782011563726,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.032142095567698925,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4236,6 +4377,7 @@
     },
     {
       "id": 7311,
+      "parentCaseId": 5355,
       "ordreNr": "63857-5",
       "isTM": false,
       "status": "Åpen",
@@ -4253,8 +4395,8 @@
       "fSalgsverdi": 0,
       "via": 0,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -4266,6 +4408,7 @@
     },
     {
       "id": 7307,
+      "parentCaseId": null,
       "ordreNr": "64728",
       "isTM": false,
       "status": "Avsluttet",
@@ -4283,8 +4426,8 @@
       "fSalgsverdi": 14959.2,
       "via": 14959.2,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2716432444483553,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.2716838797546638,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -4296,6 +4439,7 @@
     },
     {
       "id": 7294,
+      "parentCaseId": null,
       "ordreNr": "64715",
       "isTM": false,
       "status": "I arbeid",
@@ -4305,16 +4449,16 @@
       "pl": "Brede  Strangstadstuen",
       "tilbud": 160839,
       "hasTilbud": true,
-      "totOmk": 49941.145000000004,
+      "totOmk": 50134.744999999995,
       "timerkost": 30874.335,
-      "materialkost": 19066.81,
+      "materialkost": 19260.41,
       "dg": 0,
       "fakt": 80000,
-      "fSalgsverdi": 49941.145000000004,
-      "via": -30058.854999999996,
+      "fSalgsverdi": 50134.744999999995,
+      "via": -29865.255000000005,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2716432444483553,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.2716838797546638,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -4326,6 +4470,7 @@
     },
     {
       "id": 7293,
+      "parentCaseId": null,
       "ordreNr": "64714",
       "isTM": false,
       "status": "Åpen",
@@ -4356,6 +4501,7 @@
     },
     {
       "id": 7292,
+      "parentCaseId": null,
       "ordreNr": "64713",
       "isTM": false,
       "status": "Åpen",
@@ -4386,6 +4532,7 @@
     },
     {
       "id": 7287,
+      "parentCaseId": null,
       "ordreNr": "64708",
       "isTM": true,
       "status": "I arbeid",
@@ -4403,8 +4550,8 @@
       "fSalgsverdi": 499,
       "via": 499,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.14292239967295323,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.14275601490652368,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4416,6 +4563,7 @@
     },
     {
       "id": 7283,
+      "parentCaseId": 1003,
       "ordreNr": "51162-87",
       "isTM": false,
       "status": "Avsluttet",
@@ -4433,8 +4581,8 @@
       "fSalgsverdi": 11323.970000000001,
       "via": 11323.970000000001,
       "historicalReopen": true,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -4446,6 +4594,7 @@
     },
     {
       "id": 7281,
+      "parentCaseId": null,
       "ordreNr": "64703",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -4463,8 +4612,8 @@
       "fSalgsverdi": 31250.1,
       "via": 31250.1,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2339675250106575,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.234008160316966,
       "sc": 4,
       "risk": "HØY",
       "flags": [
@@ -4476,6 +4625,7 @@
     },
     {
       "id": 7279,
+      "parentCaseId": null,
       "ordreNr": "64701",
       "isTM": false,
       "status": "Åpen",
@@ -4493,8 +4643,8 @@
       "fSalgsverdi": 4705.6,
       "via": 4705.6,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -4506,6 +4656,7 @@
     },
     {
       "id": 7276,
+      "parentCaseId": null,
       "ordreNr": "64698",
       "isTM": true,
       "status": "JOBB POOL",
@@ -4523,8 +4674,8 @@
       "fSalgsverdi": 1812.51,
       "via": 1812.51,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.10411159125991637,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.10394520649348682,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4536,6 +4687,7 @@
     },
     {
       "id": 7274,
+      "parentCaseId": null,
       "ordreNr": "64696",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -4553,8 +4705,8 @@
       "fSalgsverdi": 48311.39,
       "via": 48311.39,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.25376194467992275,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.25372130937361426,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4566,6 +4718,7 @@
     },
     {
       "id": 7269,
+      "parentCaseId": 7268,
       "ordreNr": "64691-1",
       "isTM": true,
       "status": "I arbeid",
@@ -4583,8 +4736,8 @@
       "fSalgsverdi": 50233.94,
       "via": 2115.800000000003,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.021882518294707887,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.02194951638864806,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4596,6 +4749,7 @@
     },
     {
       "id": 7266,
+      "parentCaseId": null,
       "ordreNr": "64689",
       "isTM": true,
       "status": "I arbeid",
@@ -4608,13 +4762,13 @@
       "totOmk": 227.7,
       "timerkost": 0,
       "materialkost": 227.7,
-      "dg": 0.38623078455337534,
+      "dg": 0.396944668428355,
       "fakt": 0,
-      "fSalgsverdi": 8132.78,
-      "via": 8132.78,
+      "fSalgsverdi": 11632.78,
+      "via": 11632.78,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.011277432723322545,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.021824931831872674,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4626,6 +4780,7 @@
     },
     {
       "id": 7261,
+      "parentCaseId": null,
       "ordreNr": "64684",
       "isTM": true,
       "status": "I arbeid",
@@ -4643,8 +4798,8 @@
       "fSalgsverdi": 12772.71,
       "via": 12772.71,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.03796691420990159,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.038007549516210076,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4656,6 +4811,7 @@
     },
     {
       "id": 7253,
+      "parentCaseId": null,
       "ordreNr": "64676",
       "isTM": true,
       "status": "Avsluttet",
@@ -4673,8 +4829,8 @@
       "fSalgsverdi": 25603.923,
       "via": 25603.923,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.18054667838016142,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.18038029361373187,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4686,6 +4842,7 @@
     },
     {
       "id": 7248,
+      "parentCaseId": null,
       "ordreNr": "64671",
       "isTM": true,
       "status": "Åpen",
@@ -4716,9 +4873,10 @@
     },
     {
       "id": 7245,
+      "parentCaseId": 5355,
       "ordreNr": "63857-4",
       "isTM": false,
-      "status": "Åpen",
+      "status": "Avsluttet",
       "type": "Anlegg",
       "beskr": "Jording B 689 og 690 Endringsmelding EL-005 Faktureres ihht. medgått timer og matriell Prosjekt 20200279",
       "kunde": "BETONMAST INNLANDET AS",
@@ -4732,9 +4890,9 @@
       "fakt": 0,
       "fSalgsverdi": 20712.07,
       "via": 20712.07,
-      "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "historicalReopen": true,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -4746,6 +4904,7 @@
     },
     {
       "id": 7238,
+      "parentCaseId": null,
       "ordreNr": "64662",
       "isTM": true,
       "status": "Avsluttet",
@@ -4763,8 +4922,8 @@
       "fSalgsverdi": 56222.7,
       "via": 16312.719999999994,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.15843007692737082,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.15826369216094127,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4776,6 +4935,7 @@
     },
     {
       "id": 7233,
+      "parentCaseId": null,
       "ordreNr": "64658",
       "isTM": true,
       "status": "Åpen",
@@ -4793,8 +4953,8 @@
       "fSalgsverdi": 2619.47,
       "via": 2619.47,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.204734523961615,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.20456813919518546,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4806,6 +4966,7 @@
     },
     {
       "id": 7230,
+      "parentCaseId": null,
       "ordreNr": "64656",
       "isTM": true,
       "status": "I arbeid",
@@ -4823,8 +4984,8 @@
       "fSalgsverdi": 153995.245,
       "via": 93995.245,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.2220056933652064,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.22207269145914657,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4836,6 +4997,7 @@
     },
     {
       "id": 7228,
+      "parentCaseId": null,
       "ordreNr": "64654",
       "isTM": true,
       "status": "I arbeid",
@@ -4853,8 +5015,8 @@
       "fSalgsverdi": 231427.12,
       "via": 231427.12,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.0973319566693433,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.09739895476328347,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4866,6 +5028,7 @@
     },
     {
       "id": 7226,
+      "parentCaseId": null,
       "ordreNr": "64652",
       "isTM": true,
       "status": "Avsluttet",
@@ -4883,8 +5046,8 @@
       "fSalgsverdi": 15275.32,
       "via": 15275.32,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.005877291946299601,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.005836656639991111,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4896,6 +5059,7 @@
     },
     {
       "id": 7220,
+      "parentCaseId": null,
       "ordreNr": "64646",
       "isTM": true,
       "status": "Avsluttet",
@@ -4913,8 +5077,8 @@
       "fSalgsverdi": 16660.48,
       "via": 16660.48,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.033922602546081176,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.033963237852389666,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4926,6 +5090,7 @@
     },
     {
       "id": 7204,
+      "parentCaseId": null,
       "ordreNr": "64631",
       "isTM": true,
       "status": "Åpen",
@@ -4943,8 +5108,8 @@
       "fSalgsverdi": 4179,
       "via": 4179,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.20063959833700007,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.20059896303069158,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4956,6 +5121,7 @@
     },
     {
       "id": 7202,
+      "parentCaseId": null,
       "ordreNr": "64629",
       "isTM": true,
       "status": "Åpen",
@@ -4973,8 +5139,8 @@
       "fSalgsverdi": 500,
       "via": 500,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.14188664816994717,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.14172026340351762,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -4986,6 +5152,7 @@
     },
     {
       "id": 7200,
+      "parentCaseId": null,
       "ordreNr": "64627",
       "isTM": true,
       "status": "I arbeid",
@@ -5003,8 +5170,8 @@
       "fSalgsverdi": 1163.33,
       "via": 1163.33,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.039274551877708674,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.039233916571400185,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5016,6 +5183,7 @@
     },
     {
       "id": 7198,
+      "parentCaseId": null,
       "ordreNr": "64625",
       "isTM": true,
       "status": "Avsluttet",
@@ -5033,8 +5201,8 @@
       "fSalgsverdi": 21392.45,
       "via": 21392.45,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.16651244568262108,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.16634606091619153,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5046,6 +5214,7 @@
     },
     {
       "id": 7195,
+      "parentCaseId": 3222,
       "ordreNr": "61883-1",
       "isTM": true,
       "status": "Åpen",
@@ -5063,8 +5232,8 @@
       "fSalgsverdi": 13628.2,
       "via": 13628.2,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.07476292418982622,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.07486961063369102,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5076,6 +5245,7 @@
     },
     {
       "id": 7176,
+      "parentCaseId": null,
       "ordreNr": "64605",
       "isTM": true,
       "status": "I arbeid",
@@ -5093,8 +5263,8 @@
       "fSalgsverdi": 11948.39,
       "via": 11948.39,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.08332973066055893,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.08316334589412938,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5106,6 +5276,7 @@
     },
     {
       "id": 7175,
+      "parentCaseId": null,
       "ordreNr": "64604",
       "isTM": true,
       "status": "Avsluttet",
@@ -5123,8 +5294,8 @@
       "fSalgsverdi": 17751.4,
       "via": 17751.4,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.011705945991640043,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.011872330758069594,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5136,6 +5307,7 @@
     },
     {
       "id": 7173,
+      "parentCaseId": 5355,
       "ordreNr": "63857-3",
       "isTM": false,
       "status": "Åpen",
@@ -5166,6 +5338,7 @@
     },
     {
       "id": 7144,
+      "parentCaseId": null,
       "ordreNr": "64575",
       "isTM": true,
       "status": "I arbeid",
@@ -5183,8 +5356,8 @@
       "fSalgsverdi": 1387,
       "via": 1387,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.2726321701154515,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.272591534809143,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5196,6 +5369,7 @@
     },
     {
       "id": 7143,
+      "parentCaseId": null,
       "ordreNr": "64574",
       "isTM": false,
       "status": "Åpen",
@@ -5213,8 +5387,8 @@
       "fSalgsverdi": 3107.45,
       "via": 3107.45,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.6477212388773247,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.6477618741836332,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -5226,6 +5400,7 @@
     },
     {
       "id": 7141,
+      "parentCaseId": null,
       "ordreNr": "64572",
       "isTM": true,
       "status": "Avsluttet",
@@ -5243,8 +5418,8 @@
       "fSalgsverdi": 2712,
       "via": 2712,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.15553890480711535,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1553725200406858,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5256,6 +5431,7 @@
     },
     {
       "id": 7137,
+      "parentCaseId": null,
       "ordreNr": "64568",
       "isTM": true,
       "status": "Avsluttet",
@@ -5286,6 +5462,7 @@
     },
     {
       "id": 7135,
+      "parentCaseId": null,
       "ordreNr": "64566",
       "isTM": true,
       "status": "Avsluttet",
@@ -5316,6 +5493,7 @@
     },
     {
       "id": 7134,
+      "parentCaseId": null,
       "ordreNr": "64565",
       "isTM": true,
       "status": "Avsluttet",
@@ -5333,8 +5511,8 @@
       "fSalgsverdi": 11120,
       "via": 11120,
       "historicalReopen": true,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.16459944360961998,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.16470613005348478,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5346,6 +5524,7 @@
     },
     {
       "id": 7133,
+      "parentCaseId": 5236,
       "ordreNr": "63746-1",
       "isTM": false,
       "status": "Åpen",
@@ -5363,8 +5542,8 @@
       "fSalgsverdi": 69735.105,
       "via": 69735.105,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -5376,6 +5555,7 @@
     },
     {
       "id": 7123,
+      "parentCaseId": 5254,
       "ordreNr": "63764-1",
       "isTM": true,
       "status": "Åpen",
@@ -5393,8 +5573,8 @@
       "fSalgsverdi": 108168.5,
       "via": 108168.5,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.09470466575231296,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.0948710505187425,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5406,6 +5586,7 @@
     },
     {
       "id": 7116,
+      "parentCaseId": null,
       "ordreNr": "64552",
       "isTM": true,
       "status": "Avsluttet",
@@ -5423,8 +5604,8 @@
       "fSalgsverdi": 24840.36,
       "via": 24840.36,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.20802410904410523,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.20785772427767568,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5436,6 +5617,7 @@
     },
     {
       "id": 6084,
+      "parentCaseId": null,
       "ordreNr": "64522",
       "isTM": true,
       "status": "Åpen",
@@ -5453,8 +5635,8 @@
       "fSalgsverdi": 6913.64,
       "via": 6913.64,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.19426906802380117,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.19422843271749268,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5466,6 +5648,7 @@
     },
     {
       "id": 6070,
+      "parentCaseId": null,
       "ordreNr": "64510",
       "isTM": true,
       "status": "Åpen",
@@ -5483,8 +5666,8 @@
       "fSalgsverdi": 78151.4,
       "via": 78151.4,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.2787953815313761,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.27896176629780567,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5496,6 +5679,7 @@
     },
     {
       "id": 6063,
+      "parentCaseId": null,
       "ordreNr": "64504",
       "isTM": true,
       "status": "Avsluttet",
@@ -5513,8 +5697,8 @@
       "fSalgsverdi": 787.33,
       "via": 787.33,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.12300176228982068,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.12283537752339113,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5526,6 +5710,7 @@
     },
     {
       "id": 6062,
+      "parentCaseId": null,
       "ordreNr": "64503",
       "isTM": true,
       "status": "Åpen",
@@ -5543,8 +5728,8 @@
       "fSalgsverdi": 41002.24,
       "via": 21002.239999999998,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.20806442963749633,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.20789804487106678,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5556,6 +5741,7 @@
     },
     {
       "id": 6057,
+      "parentCaseId": null,
       "ordreNr": "64498",
       "isTM": true,
       "status": "Åpen",
@@ -5568,13 +5754,13 @@
       "totOmk": 2605.77,
       "timerkost": 1177.4,
       "materialkost": 1428.37,
-      "dg": 0.3756564780958792,
+      "dg": 0.39772039320750424,
       "fakt": 0,
-      "fSalgsverdi": 8675.08,
-      "via": 8675.08,
+      "fSalgsverdi": 11959.08,
+      "via": 11959.08,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.0007031262658264148,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.022600656611021896,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5586,6 +5772,7 @@
     },
     {
       "id": 6054,
+      "parentCaseId": null,
       "ordreNr": "64495",
       "isTM": true,
       "status": "Avsluttet",
@@ -5603,8 +5790,8 @@
       "fSalgsverdi": 20445.11,
       "via": 10445.11,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.003399222452990902,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.0032328376865613517,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5616,6 +5803,7 @@
     },
     {
       "id": 6047,
+      "parentCaseId": 5946,
       "ordreNr": "64397-4",
       "isTM": false,
       "status": "Åpen",
@@ -5633,8 +5821,8 @@
       "fSalgsverdi": 37171.965,
       "via": 37171.965,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -5646,6 +5834,7 @@
     },
     {
       "id": 6031,
+      "parentCaseId": null,
       "ordreNr": "64474",
       "isTM": true,
       "status": "Avsluttet",
@@ -5663,8 +5852,8 @@
       "fSalgsverdi": 1497,
       "via": 1497,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.13786227943247226,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1376958946660427,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5676,6 +5865,7 @@
     },
     {
       "id": 5977,
+      "parentCaseId": null,
       "ordreNr": "64425",
       "isTM": false,
       "status": "Åpen",
@@ -5693,8 +5883,8 @@
       "fSalgsverdi": 7345.59,
       "via": 7345.59,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -5706,6 +5896,7 @@
     },
     {
       "id": 5966,
+      "parentCaseId": null,
       "ordreNr": "64415",
       "isTM": true,
       "status": "Avsluttet",
@@ -5723,8 +5914,8 @@
       "fSalgsverdi": 62458.13,
       "via": 62458.13,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.19753585013612834,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1973694653696988,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5736,6 +5927,7 @@
     },
     {
       "id": 5963,
+      "parentCaseId": null,
       "ordreNr": "64412",
       "isTM": true,
       "status": "Åpen",
@@ -5753,8 +5945,8 @@
       "fSalgsverdi": 173872.24,
       "via": 173872.24,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.20933503141042303,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.20916864664399348,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5766,6 +5958,7 @@
     },
     {
       "id": 5957,
+      "parentCaseId": null,
       "ordreNr": "64406",
       "isTM": true,
       "status": "Åpen",
@@ -5783,8 +5976,8 @@
       "fSalgsverdi": 523,
       "via": 523,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.08165513366560584,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.08176182010947064,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5796,6 +5989,7 @@
     },
     {
       "id": 5954,
+      "parentCaseId": null,
       "ordreNr": "64403",
       "isTM": true,
       "status": "Åpen",
@@ -5813,8 +6007,8 @@
       "fSalgsverdi": 1046,
       "via": 1046,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.13951364226981233,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.13962032871367713,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5826,6 +6020,7 @@
     },
     {
       "id": 5947,
+      "parentCaseId": 5946,
       "ordreNr": "64397-1",
       "isTM": false,
       "status": "Klar til fakturering",
@@ -5843,8 +6038,8 @@
       "fSalgsverdi": 152716.79,
       "via": -39958.20999999999,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -5856,6 +6051,7 @@
     },
     {
       "id": 5946,
+      "parentCaseId": null,
       "ordreNr": "64397",
       "isTM": false,
       "status": "Åpen",
@@ -5873,8 +6069,8 @@
       "fSalgsverdi": 316730.6866,
       "via": -29788.743399999978,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -5886,6 +6082,7 @@
     },
     {
       "id": 5938,
+      "parentCaseId": null,
       "ordreNr": "64389",
       "isTM": true,
       "status": "Åpen",
@@ -5903,8 +6100,8 @@
       "fSalgsverdi": 26631.58,
       "via": 16131.580000000002,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.24767887652440462,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.24751249175797507,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5916,6 +6113,7 @@
     },
     {
       "id": 5913,
+      "parentCaseId": null,
       "ordreNr": "64367",
       "isTM": true,
       "status": "Åpen",
@@ -5933,8 +6131,8 @@
       "fSalgsverdi": 16834,
       "via": 16834,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.06467940554004004,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.06478609198390484,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5946,6 +6144,7 @@
     },
     {
       "id": 5907,
+      "parentCaseId": null,
       "ordreNr": "64362",
       "isTM": true,
       "status": "Avsluttet",
@@ -5963,8 +6162,8 @@
       "fSalgsverdi": 2289.84,
       "via": 508.5000000000002,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.19643312769991705,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.19639249239360856,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -5976,6 +6175,7 @@
     },
     {
       "id": 5905,
+      "parentCaseId": null,
       "ordreNr": "64360",
       "isTM": true,
       "status": "I arbeid",
@@ -5993,8 +6193,8 @@
       "fSalgsverdi": 183770.81,
       "via": 53770.81,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.08076924220610585,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.08080987751241434,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6006,6 +6206,7 @@
     },
     {
       "id": 5900,
+      "parentCaseId": null,
       "ordreNr": "64355",
       "isTM": true,
       "status": "Åpen",
@@ -6023,8 +6224,8 @@
       "fSalgsverdi": 35113.32,
       "via": 20113.32,
       "historicalReopen": false,
-      "normDG": 0.19008949804776656,
-      "dgAvvik": 0.21862235261175525,
+      "normDG": 0.19301562200962888,
+      "dgAvvik": 0.21569622864989293,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6036,6 +6237,7 @@
     },
     {
       "id": 5897,
+      "parentCaseId": null,
       "ordreNr": "64353",
       "isTM": true,
       "status": "Avsluttet",
@@ -6053,8 +6255,8 @@
       "fSalgsverdi": 6815,
       "via": -3.75,
       "historicalReopen": true,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.04887718209381431,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.04898386853767911,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6066,6 +6268,7 @@
     },
     {
       "id": 5896,
+      "parentCaseId": null,
       "ordreNr": "64352",
       "isTM": true,
       "status": "I arbeid",
@@ -6078,13 +6281,13 @@
       "totOmk": 6629.375,
       "timerkost": 6400.335,
       "materialkost": 229.04,
-      "dg": 0.33063255633616523,
+      "dg": 0.32711190368862897,
       "fakt": 10228.94,
-      "fSalgsverdi": 9903.94,
-      "via": -325,
+      "fSalgsverdi": 10603.94,
+      "via": 375,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.10719605760817158,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.11061002381184304,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6096,6 +6299,7 @@
     },
     {
       "id": 5894,
+      "parentCaseId": null,
       "ordreNr": "64350",
       "isTM": true,
       "status": "Avsluttet",
@@ -6113,8 +6317,8 @@
       "fSalgsverdi": 14949.71,
       "via": 14949.71,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.09746569487884771,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.09763207964527726,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6126,6 +6330,7 @@
     },
     {
       "id": 5880,
+      "parentCaseId": 1038,
       "ordreNr": "50648-3",
       "isTM": false,
       "status": "Åpen",
@@ -6143,8 +6348,8 @@
       "fSalgsverdi": 14328,
       "via": 14328,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2716432444483553,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.2716838797546638,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -6156,6 +6361,7 @@
     },
     {
       "id": 5879,
+      "parentCaseId": null,
       "ordreNr": "64336",
       "isTM": true,
       "status": "I arbeid",
@@ -6173,8 +6379,8 @@
       "fSalgsverdi": 21702.97,
       "via": 21702.97,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.2121849522822415,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.21201856751581194,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6186,6 +6392,7 @@
     },
     {
       "id": 5866,
+      "parentCaseId": null,
       "ordreNr": "64323",
       "isTM": true,
       "status": "Åpen",
@@ -6216,6 +6423,7 @@
     },
     {
       "id": 5851,
+      "parentCaseId": null,
       "ordreNr": "64310",
       "isTM": true,
       "status": "Åpen",
@@ -6233,8 +6441,8 @@
       "fSalgsverdi": 2301,
       "via": 2301,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.15622005103826536,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1560536662718358,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6246,6 +6454,7 @@
     },
     {
       "id": 5793,
+      "parentCaseId": null,
       "ordreNr": "64255",
       "isTM": true,
       "status": "Åpen",
@@ -6263,8 +6472,8 @@
       "fSalgsverdi": 3495.11,
       "via": 3495.11,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.208286208306673,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.20845259307310254,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6276,6 +6485,7 @@
     },
     {
       "id": 5790,
+      "parentCaseId": null,
       "ordreNr": "64253",
       "isTM": true,
       "status": "Åpen",
@@ -6293,8 +6503,8 @@
       "fSalgsverdi": 3992,
       "via": -253,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.13786227943247226,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1376958946660427,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6306,6 +6516,7 @@
     },
     {
       "id": 5787,
+      "parentCaseId": 1040,
       "ordreNr": "50606-4",
       "isTM": false,
       "status": "I arbeid",
@@ -6315,13 +6526,13 @@
       "pl": "Brede  Strangstadstuen",
       "tilbud": 5698633,
       "hasTilbud": true,
-      "totOmk": 57354.49,
+      "totOmk": 58944.49,
       "timerkost": 38862.63,
-      "materialkost": 18491.86,
+      "materialkost": 20081.86,
       "dg": 0,
       "fakt": 50000,
-      "fSalgsverdi": 57354.49,
-      "via": 7354.489999999998,
+      "fSalgsverdi": 58944.49,
+      "via": 8944.489999999998,
       "historicalReopen": false,
       "normDG": 0.05,
       "dgAvvik": -0.05,
@@ -6336,6 +6547,7 @@
     },
     {
       "id": 5759,
+      "parentCaseId": null,
       "ordreNr": "64223",
       "isTM": true,
       "status": "Åpen",
@@ -6353,8 +6565,8 @@
       "fSalgsverdi": 37528.44,
       "via": 37528.44,
       "historicalReopen": false,
-      "normDG": 0.19008949804776656,
-      "dgAvvik": 0.06830973197618326,
+      "normDG": 0.19301562200962888,
+      "dgAvvik": 0.06538360801432094,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6366,6 +6578,7 @@
     },
     {
       "id": 5757,
+      "parentCaseId": null,
       "ordreNr": "64222",
       "isTM": true,
       "status": "I arbeid",
@@ -6383,8 +6596,8 @@
       "fSalgsverdi": 73313.59,
       "via": 31155.42,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.1784195630688084,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.17825317830237886,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6396,6 +6609,7 @@
     },
     {
       "id": 5729,
+      "parentCaseId": null,
       "ordreNr": "64194",
       "isTM": true,
       "status": "Avsluttet",
@@ -6413,8 +6627,8 @@
       "fSalgsverdi": 3671,
       "via": 3671,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.15883035833066633,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.15866397356423678,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6426,6 +6640,7 @@
     },
     {
       "id": 5724,
+      "parentCaseId": null,
       "ordreNr": "64189",
       "isTM": true,
       "status": "I arbeid",
@@ -6443,8 +6658,8 @@
       "fSalgsverdi": 5904.52,
       "via": 5904.52,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.15604451082432041,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.15587812605789086,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6456,6 +6671,7 @@
     },
     {
       "id": 5721,
+      "parentCaseId": null,
       "ordreNr": "64186",
       "isTM": true,
       "status": "Åpen",
@@ -6486,6 +6702,7 @@
     },
     {
       "id": 5717,
+      "parentCaseId": null,
       "ordreNr": "64182",
       "isTM": true,
       "status": "I arbeid",
@@ -6503,8 +6720,8 @@
       "fSalgsverdi": 12857.55,
       "via": 12857.55,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.08892118103196212,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.08875479626553257,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6516,6 +6733,7 @@
     },
     {
       "id": 5702,
+      "parentCaseId": null,
       "ordreNr": "64169",
       "isTM": true,
       "status": "I arbeid",
@@ -6533,8 +6751,8 @@
       "fSalgsverdi": 1687.5,
       "via": 1687.5,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.01790001849671946,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.01806640326314901,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6546,6 +6764,7 @@
     },
     {
       "id": 5668,
+      "parentCaseId": null,
       "ordreNr": "64136",
       "isTM": true,
       "status": "I arbeid",
@@ -6563,8 +6782,8 @@
       "fSalgsverdi": 8718.88,
       "via": 8718.88,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.13721048113931938,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.13704409637288983,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6576,6 +6795,7 @@
     },
     {
       "id": 5665,
+      "parentCaseId": null,
       "ordreNr": "64133",
       "isTM": true,
       "status": "I arbeid",
@@ -6593,8 +6813,8 @@
       "fSalgsverdi": 15511.49,
       "via": 15511.49,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.003912250378374615,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.003745865611945065,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6606,6 +6826,7 @@
     },
     {
       "id": 5658,
+      "parentCaseId": null,
       "ordreNr": "64126",
       "isTM": true,
       "status": "Åpen",
@@ -6623,8 +6844,8 @@
       "fSalgsverdi": 2994,
       "via": 2994,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.21009022248551246,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.21004958717920397,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6636,6 +6857,7 @@
     },
     {
       "id": 5655,
+      "parentCaseId": null,
       "ordreNr": "64123",
       "isTM": true,
       "status": "I arbeid",
@@ -6653,8 +6875,8 @@
       "fSalgsverdi": 29946.97,
       "via": 14946.970000000001,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.15482904351745647,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.15466265875102692,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6666,6 +6888,7 @@
     },
     {
       "id": 5648,
+      "parentCaseId": 4920,
       "ordreNr": "63445-10",
       "isTM": true,
       "status": "Åpen",
@@ -6683,8 +6906,8 @@
       "fSalgsverdi": 227899.48,
       "via": 227899.48,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.30524285871183143,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.3053098568057716,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6696,6 +6919,7 @@
     },
     {
       "id": 5645,
+      "parentCaseId": null,
       "ordreNr": "64115",
       "isTM": true,
       "status": "Åpen",
@@ -6713,8 +6937,8 @@
       "fSalgsverdi": 1400,
       "via": 1400,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.1558571853729082,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.1557504989290434,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6726,6 +6950,7 @@
     },
     {
       "id": 5642,
+      "parentCaseId": null,
       "ordreNr": "64113",
       "isTM": true,
       "status": "Avsluttet",
@@ -6743,8 +6968,8 @@
       "fSalgsverdi": 8448.5,
       "via": 8448.5,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.2604044563269302,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.2603638210206217,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6756,6 +6981,7 @@
     },
     {
       "id": 5638,
+      "parentCaseId": null,
       "ordreNr": "64109",
       "isTM": false,
       "status": "Åpen",
@@ -6773,8 +6999,8 @@
       "fSalgsverdi": 2803,
       "via": 2803,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -6786,6 +7012,7 @@
     },
     {
       "id": 5636,
+      "parentCaseId": 4920,
       "ordreNr": "63445-9",
       "isTM": true,
       "status": "Åpen",
@@ -6798,13 +7025,13 @@
       "totOmk": 21471.91,
       "timerkost": 21471.91,
       "materialkost": 0,
-      "dg": 0.5437825386632781,
+      "dg": 0.5404910996821177,
       "fakt": 0,
-      "fSalgsverdi": 272762.05,
-      "via": 272762.05,
+      "fSalgsverdi": 298082.05,
+      "via": 298082.05,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.39935896987821484,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.39613452899099466,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6816,6 +7043,7 @@
     },
     {
       "id": 5635,
+      "parentCaseId": 4920,
       "ordreNr": "63445-8",
       "isTM": true,
       "status": "Åpen",
@@ -6833,8 +7061,8 @@
       "fSalgsverdi": 19911.75,
       "via": 19911.75,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.43505663762572433,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.4351236357196645,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6846,6 +7074,7 @@
     },
     {
       "id": 5634,
+      "parentCaseId": 4920,
       "ordreNr": "63445-7",
       "isTM": true,
       "status": "Åpen",
@@ -6863,8 +7092,8 @@
       "fSalgsverdi": 75877,
       "via": 75877,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.40425765213827325,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.4043246502322134,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6876,6 +7105,7 @@
     },
     {
       "id": 5633,
+      "parentCaseId": 4920,
       "ordreNr": "63445-6",
       "isTM": true,
       "status": "Åpen",
@@ -6893,8 +7123,8 @@
       "fSalgsverdi": 3874626.32,
       "via": 3874626.32,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.37656607209467974,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.3766330701886199,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6906,6 +7136,7 @@
     },
     {
       "id": 5632,
+      "parentCaseId": 4920,
       "ordreNr": "63445-5",
       "isTM": true,
       "status": "Åpen",
@@ -6923,8 +7154,8 @@
       "fSalgsverdi": 2215376.02,
       "via": 2215376.02,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.38005495518126553,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.3801219532752057,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6936,6 +7167,7 @@
     },
     {
       "id": 5631,
+      "parentCaseId": 4920,
       "ordreNr": "63445-4",
       "isTM": true,
       "status": "Åpen",
@@ -6953,8 +7185,8 @@
       "fSalgsverdi": 2268179.91,
       "via": 2268179.91,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.3756787519342839,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.3757457500282241,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6966,6 +7198,7 @@
     },
     {
       "id": 5630,
+      "parentCaseId": 4920,
       "ordreNr": "63445-3",
       "isTM": true,
       "status": "Åpen",
@@ -6983,8 +7216,8 @@
       "fSalgsverdi": 70699.17,
       "via": 70699.17,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.3750616670387802,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.37512866513272036,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -6996,6 +7229,7 @@
     },
     {
       "id": 5629,
+      "parentCaseId": 4920,
       "ordreNr": "63445-2",
       "isTM": true,
       "status": "Åpen",
@@ -7013,8 +7247,8 @@
       "fSalgsverdi": 82734.5,
       "via": 82734.5,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.38230403578135097,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.38237103387529114,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7026,6 +7260,7 @@
     },
     {
       "id": 5628,
+      "parentCaseId": 4920,
       "ordreNr": "63445-1",
       "isTM": true,
       "status": "Åpen",
@@ -7043,8 +7278,8 @@
       "fSalgsverdi": 70139,
       "via": 70139,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.3970672565760055,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.3971342546699457,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7056,6 +7291,7 @@
     },
     {
       "id": 5623,
+      "parentCaseId": null,
       "ordreNr": "64104",
       "isTM": true,
       "status": "Avsluttet",
@@ -7086,6 +7322,7 @@
     },
     {
       "id": 5618,
+      "parentCaseId": null,
       "ordreNr": "64099",
       "isTM": true,
       "status": "Åpen",
@@ -7103,8 +7340,8 @@
       "fSalgsverdi": 1393,
       "via": 1393,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.23448670559995438,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.23432032083352483,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7116,6 +7353,7 @@
     },
     {
       "id": 5611,
+      "parentCaseId": null,
       "ordreNr": "64092",
       "isTM": true,
       "status": "Åpen",
@@ -7133,8 +7371,8 @@
       "fSalgsverdi": 40944.86,
       "via": 20944.86,
       "historicalReopen": false,
-      "normDG": 0.19008949804776656,
-      "dgAvvik": 0.19326142805138238,
+      "normDG": 0.19301562200962888,
+      "dgAvvik": 0.19033530408952007,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7146,6 +7384,7 @@
     },
     {
       "id": 5610,
+      "parentCaseId": null,
       "ordreNr": "64091",
       "isTM": true,
       "status": "Åpen",
@@ -7158,13 +7397,13 @@
       "totOmk": 22584.985,
       "timerkost": 9641.205,
       "materialkost": 12943.78,
-      "dg": 0.4038495640975715,
+      "dg": 0.4026733143252171,
       "fakt": 25000,
-      "fSalgsverdi": 56391.06,
-      "via": 31391.059999999998,
+      "fSalgsverdi": 57891.06,
+      "via": 32891.06,
       "historicalReopen": false,
-      "normDG": 0.19008949804776656,
-      "dgAvvik": 0.21376006604980494,
+      "normDG": 0.19301562200962888,
+      "dgAvvik": 0.2096576923155882,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7176,6 +7415,7 @@
     },
     {
       "id": 5601,
+      "parentCaseId": null,
       "ordreNr": "64083",
       "isTM": true,
       "status": "Åpen",
@@ -7193,8 +7433,8 @@
       "fSalgsverdi": 1158.03,
       "via": 1158.03,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.04069754119623076,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.04065690588992227,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7206,6 +7446,7 @@
     },
     {
       "id": 5596,
+      "parentCaseId": null,
       "ordreNr": "64078",
       "isTM": true,
       "status": "Åpen",
@@ -7223,8 +7464,8 @@
       "fSalgsverdi": 32530.57,
       "via": 3140.880000000001,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.02997407489502457,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.02980769012859502,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7236,6 +7477,7 @@
     },
     {
       "id": 5573,
+      "parentCaseId": null,
       "ordreNr": "64055",
       "isTM": true,
       "status": "Åpen",
@@ -7253,8 +7495,8 @@
       "fSalgsverdi": 5591.67,
       "via": 5591.67,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.0805395183956763,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.08070590316210585,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7266,6 +7508,7 @@
     },
     {
       "id": 5566,
+      "parentCaseId": null,
       "ordreNr": "64050",
       "isTM": true,
       "status": "Åpen",
@@ -7283,8 +7526,8 @@
       "fSalgsverdi": 3892,
       "via": 3892,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.16459944360961998,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.16470613005348478,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7296,6 +7539,7 @@
     },
     {
       "id": 5565,
+      "parentCaseId": null,
       "ordreNr": "64049",
       "isTM": true,
       "status": "Avsluttet",
@@ -7313,8 +7557,8 @@
       "fSalgsverdi": 1155.76,
       "via": 1155.76,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.11013005649001367,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.10996367172358412,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7326,6 +7570,7 @@
     },
     {
       "id": 5537,
+      "parentCaseId": null,
       "ordreNr": "64022",
       "isTM": true,
       "status": "Åpen",
@@ -7343,8 +7588,8 @@
       "fSalgsverdi": 416.5,
       "via": 416.5,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.04742359895025933,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.04725721418382978,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7356,6 +7601,7 @@
     },
     {
       "id": 5527,
+      "parentCaseId": null,
       "ordreNr": "64012",
       "isTM": true,
       "status": "I arbeid",
@@ -7373,8 +7619,8 @@
       "fSalgsverdi": 1085.9,
       "via": 1085.9,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.06996560940026308,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.06979922463383353,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7386,6 +7632,7 @@
     },
     {
       "id": 5510,
+      "parentCaseId": null,
       "ordreNr": "63996",
       "isTM": true,
       "status": "I arbeid",
@@ -7403,8 +7650,8 @@
       "fSalgsverdi": 626.1,
       "via": 626.1,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.07442235321692262,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.0744629885232311,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7416,6 +7663,7 @@
     },
     {
       "id": 5500,
+      "parentCaseId": null,
       "ordreNr": "63986",
       "isTM": true,
       "status": "Åpen",
@@ -7433,8 +7681,8 @@
       "fSalgsverdi": 12400.02,
       "via": 12400.02,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.10335695716422272,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.10331632185791423,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7446,6 +7694,7 @@
     },
     {
       "id": 5480,
+      "parentCaseId": null,
       "ordreNr": "63967",
       "isTM": true,
       "status": "Avsluttet",
@@ -7463,8 +7712,8 @@
       "fSalgsverdi": 9071.38,
       "via": 6658.3499999999985,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.0477368753953758,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.04790326016180535,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7476,6 +7725,7 @@
     },
     {
       "id": 5471,
+      "parentCaseId": null,
       "ordreNr": "63958",
       "isTM": true,
       "status": "Åpen",
@@ -7493,8 +7743,8 @@
       "fSalgsverdi": 109046.77,
       "via": 3242.449999999997,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.01682735214819825,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.01686798745450674,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7506,6 +7756,7 @@
     },
     {
       "id": 5450,
+      "parentCaseId": null,
       "ordreNr": "63939",
       "isTM": true,
       "status": "Avsluttet",
@@ -7523,8 +7774,8 @@
       "fSalgsverdi": 807,
       "via": 807,
       "historicalReopen": true,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.14176913439043348,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.14166244794656868,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7536,6 +7787,7 @@
     },
     {
       "id": 5441,
+      "parentCaseId": 2213,
       "ordreNr": "60959-5",
       "isTM": true,
       "status": "I arbeid",
@@ -7553,8 +7805,8 @@
       "fSalgsverdi": 1220.03,
       "via": 1220.03,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.0878046751581677,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.08797105992459725,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7566,6 +7818,7 @@
     },
     {
       "id": 5418,
+      "parentCaseId": null,
       "ordreNr": "63911",
       "isTM": true,
       "status": "I arbeid",
@@ -7583,8 +7836,8 @@
       "fSalgsverdi": 30379.04,
       "via": 18476.24,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.17382369971601314,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.17365731494958359,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7596,6 +7849,7 @@
     },
     {
       "id": 5372,
+      "parentCaseId": null,
       "ordreNr": "63873",
       "isTM": true,
       "status": "Åpen",
@@ -7613,8 +7867,8 @@
       "fSalgsverdi": 18540.69,
       "via": 18540.69,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.18697503379097852,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.18680864902454897,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7626,6 +7880,7 @@
     },
     {
       "id": 5355,
+      "parentCaseId": null,
       "ordreNr": "63857",
       "isTM": false,
       "status": "I arbeid",
@@ -7635,16 +7890,16 @@
       "pl": "Roy  Olstad",
       "tilbud": 2236467,
       "hasTilbud": true,
-      "totOmk": 970060.5599999999,
+      "totOmk": 969720.85,
       "timerkost": 246015.615,
-      "materialkost": 724044.945,
+      "materialkost": 723705.235,
       "dg": 0,
       "fakt": 1287000,
-      "fSalgsverdi": 970060.5599999999,
-      "via": -316939.44000000006,
+      "fSalgsverdi": 969720.85,
+      "via": -317279.15,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -7656,6 +7911,7 @@
     },
     {
       "id": 5352,
+      "parentCaseId": null,
       "ordreNr": "63854",
       "isTM": false,
       "status": "JOBB POOL",
@@ -7673,8 +7929,8 @@
       "fSalgsverdi": 0,
       "via": 0,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.2716432444483553,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.2716838797546638,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -7686,6 +7942,7 @@
     },
     {
       "id": 5351,
+      "parentCaseId": null,
       "ordreNr": "63853",
       "isTM": true,
       "status": "I arbeid",
@@ -7703,8 +7960,8 @@
       "fSalgsverdi": 16675.72,
       "via": 8675.720000000001,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.14527668464616056,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.14523604933985207,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7716,6 +7973,7 @@
     },
     {
       "id": 5350,
+      "parentCaseId": null,
       "ordreNr": "63852",
       "isTM": true,
       "status": "I arbeid",
@@ -7733,8 +7991,8 @@
       "fSalgsverdi": 8277.93,
       "via": 8277.93,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.05712735399835783,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.05708671869204934,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7746,6 +8004,7 @@
     },
     {
       "id": 5322,
+      "parentCaseId": null,
       "ordreNr": "63826",
       "isTM": true,
       "status": "Avsluttet",
@@ -7776,6 +8035,7 @@
     },
     {
       "id": 5321,
+      "parentCaseId": null,
       "ordreNr": "63825",
       "isTM": true,
       "status": "Avsluttet",
@@ -7806,6 +8066,7 @@
     },
     {
       "id": 5308,
+      "parentCaseId": null,
       "ordreNr": "63813",
       "isTM": true,
       "status": "Åpen",
@@ -7823,8 +8084,8 @@
       "fSalgsverdi": 162740.41,
       "via": 97740.41,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.19413171745298513,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.19396533268655558,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7836,6 +8097,7 @@
     },
     {
       "id": 5304,
+      "parentCaseId": null,
       "ordreNr": "63809",
       "isTM": true,
       "status": "I arbeid",
@@ -7853,8 +8115,8 @@
       "fSalgsverdi": 77895.25,
       "via": 20738.03,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.19364605132071494,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.1938124360871445,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7866,6 +8128,7 @@
     },
     {
       "id": 5300,
+      "parentCaseId": 2213,
       "ordreNr": "60959-4",
       "isTM": true,
       "status": "Åpen",
@@ -7883,8 +8146,8 @@
       "fSalgsverdi": 1175.62,
       "via": 1175.62,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.12490656800534755,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.1250729527717771,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7896,6 +8159,7 @@
     },
     {
       "id": 5282,
+      "parentCaseId": 3864,
       "ordreNr": "62478-2",
       "isTM": true,
       "status": "I arbeid",
@@ -7913,8 +8177,8 @@
       "fSalgsverdi": 11949.76,
       "via": 11949.76,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.27574502398102374,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.27563833753715894,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7926,6 +8190,7 @@
     },
     {
       "id": 5262,
+      "parentCaseId": null,
       "ordreNr": "63772",
       "isTM": true,
       "status": "I arbeid",
@@ -7943,8 +8208,8 @@
       "fSalgsverdi": 379085.67,
       "via": 229392.99,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.2972852341353953,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.2973522322293355,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7956,6 +8221,7 @@
     },
     {
       "id": 5261,
+      "parentCaseId": null,
       "ordreNr": "63771",
       "isTM": true,
       "status": "I arbeid",
@@ -7973,8 +8239,8 @@
       "fSalgsverdi": 2607.5,
       "via": 2607.5,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.12035675555164471,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.12031612024533622,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -7986,6 +8252,7 @@
     },
     {
       "id": 5254,
+      "parentCaseId": null,
       "ordreNr": "63764",
       "isTM": true,
       "status": "Åpen",
@@ -7998,13 +8265,13 @@
       "totOmk": 1876267.225,
       "timerkost": 930987.415,
       "materialkost": 945279.81,
-      "dg": 0.30366112217687674,
+      "dg": 0.30366965455496714,
       "fakt": 2486104.41,
-      "fSalgsverdi": 3294188.89,
-      "via": 808084.48,
+      "fSalgsverdi": 3303582.89,
+      "via": 817478.48,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.15923755339181347,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.15931308386384405,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8016,6 +8283,7 @@
     },
     {
       "id": 5236,
+      "parentCaseId": null,
       "ordreNr": "63746",
       "isTM": false,
       "status": "Klar til fakturering",
@@ -8033,8 +8301,8 @@
       "fSalgsverdi": 133099.155,
       "via": -81900.845,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -8046,6 +8314,7 @@
     },
     {
       "id": 5216,
+      "parentCaseId": null,
       "ordreNr": "63726",
       "isTM": true,
       "status": "Avsluttet",
@@ -8063,8 +8332,8 @@
       "fSalgsverdi": 39101.2,
       "via": 39101.2,
       "historicalReopen": true,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.05704190229005837,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.05708253759636686,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8076,6 +8345,7 @@
     },
     {
       "id": 5186,
+      "parentCaseId": null,
       "ordreNr": "63696",
       "isTM": true,
       "status": "Åpen",
@@ -8093,8 +8363,8 @@
       "fSalgsverdi": 5347.5,
       "via": 5347.5,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.045127623360799285,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.04519462145473946,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8106,6 +8376,7 @@
     },
     {
       "id": 5175,
+      "parentCaseId": null,
       "ordreNr": "63686",
       "isTM": true,
       "status": "I arbeid",
@@ -8123,8 +8394,8 @@
       "fSalgsverdi": 11763.98,
       "via": 11763.98,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.12518473295819635,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.12522536826450484,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8136,6 +8407,7 @@
     },
     {
       "id": 5172,
+      "parentCaseId": null,
       "ordreNr": "63683",
       "isTM": true,
       "status": "Åpen",
@@ -8153,8 +8425,8 @@
       "fSalgsverdi": 54325,
       "via": 29600,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.22437081685690638,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.22443781495084655,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8166,6 +8438,7 @@
     },
     {
       "id": 5154,
+      "parentCaseId": null,
       "ordreNr": "63666",
       "isTM": true,
       "status": "I arbeid",
@@ -8183,8 +8456,8 @@
       "fSalgsverdi": 25801.45,
       "via": 10801.45,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.10220510244286596,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.10203871767643641,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8196,6 +8469,7 @@
     },
     {
       "id": 5107,
+      "parentCaseId": null,
       "ordreNr": "63623",
       "isTM": true,
       "status": "Avsluttet",
@@ -8213,8 +8487,8 @@
       "fSalgsverdi": 8710.19,
       "via": 8710.19,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.13742295683830003,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.13725657207187048,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8226,6 +8500,7 @@
     },
     {
       "id": 5098,
+      "parentCaseId": 4189,
       "ordreNr": "62777-2",
       "isTM": false,
       "status": "Avsluttet",
@@ -8243,8 +8518,8 @@
       "fSalgsverdi": 1392.48,
       "via": 1392.48,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -8256,6 +8531,7 @@
     },
     {
       "id": 5096,
+      "parentCaseId": null,
       "ordreNr": "63613",
       "isTM": true,
       "status": "I arbeid",
@@ -8273,8 +8549,8 @@
       "fSalgsverdi": 2797.5,
       "via": 2797.5,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.1320788197517166,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.13191243498528704,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8286,6 +8562,7 @@
     },
     {
       "id": 5087,
+      "parentCaseId": null,
       "ordreNr": "63604",
       "isTM": true,
       "status": "Avsluttet",
@@ -8303,8 +8580,8 @@
       "fSalgsverdi": 1774.38,
       "via": 1774.38,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.1594023104294407,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.15923592566301115,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8316,6 +8593,7 @@
     },
     {
       "id": 5084,
+      "parentCaseId": null,
       "ordreNr": "63601",
       "isTM": true,
       "status": "Avsluttet",
@@ -8333,8 +8611,8 @@
       "fSalgsverdi": 10837.9,
       "via": 10837.9,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.19809031899178536,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1979239342253558,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8346,6 +8624,7 @@
     },
     {
       "id": 5083,
+      "parentCaseId": null,
       "ordreNr": "63600",
       "isTM": true,
       "status": "Avsluttet",
@@ -8363,8 +8642,8 @@
       "fSalgsverdi": 833,
       "via": 833,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.06783176221556547,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.06766537744913592,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8376,6 +8655,7 @@
     },
     {
       "id": 5080,
+      "parentCaseId": null,
       "ordreNr": "63597",
       "isTM": true,
       "status": "Avsluttet",
@@ -8393,8 +8673,8 @@
       "fSalgsverdi": 3802.34,
       "via": 3802.34,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.10194771435550665,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1017813295890771,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8406,6 +8686,7 @@
     },
     {
       "id": 5079,
+      "parentCaseId": null,
       "ordreNr": "63596",
       "isTM": true,
       "status": "Avsluttet",
@@ -8423,8 +8704,8 @@
       "fSalgsverdi": 3563.74,
       "via": 3563.74,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.11749839829762204,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.11733201353119249,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8436,6 +8717,7 @@
     },
     {
       "id": 5077,
+      "parentCaseId": null,
       "ordreNr": "63594",
       "isTM": true,
       "status": "Avsluttet",
@@ -8453,8 +8735,8 @@
       "fSalgsverdi": 1100.89,
       "via": 1100.89,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.0716398591174533,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.07147347435102375,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8466,6 +8748,7 @@
     },
     {
       "id": 5076,
+      "parentCaseId": null,
       "ordreNr": "63593",
       "isTM": true,
       "status": "Avsluttet",
@@ -8483,8 +8766,8 @@
       "fSalgsverdi": 6321.56,
       "via": 6321.56,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.08740404096539645,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.0872376561989669,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8496,6 +8779,7 @@
     },
     {
       "id": 5074,
+      "parentCaseId": null,
       "ordreNr": "63591",
       "isTM": true,
       "status": "Avsluttet",
@@ -8513,8 +8797,8 @@
       "fSalgsverdi": 359.35,
       "via": 359.35,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.19026161964622385,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1900952348797943,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8526,6 +8810,7 @@
     },
     {
       "id": 5073,
+      "parentCaseId": null,
       "ordreNr": "63590",
       "isTM": true,
       "status": "Avsluttet",
@@ -8543,8 +8828,8 @@
       "fSalgsverdi": 1051.54,
       "via": 1051.54,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.10574162886492788,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.10557524409849833,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8556,6 +8841,7 @@
     },
     {
       "id": 5072,
+      "parentCaseId": null,
       "ordreNr": "63589",
       "isTM": true,
       "status": "Avsluttet",
@@ -8573,8 +8859,8 @@
       "fSalgsverdi": 2091.08,
       "via": 2091.08,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.08831921545575167,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.08815283068932211,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8586,6 +8872,7 @@
     },
     {
       "id": 5071,
+      "parentCaseId": null,
       "ordreNr": "63588",
       "isTM": true,
       "status": "Avsluttet",
@@ -8603,8 +8890,8 @@
       "fSalgsverdi": 992,
       "via": 992,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.10475430946026981,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.10458792469384026,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8616,6 +8903,7 @@
     },
     {
       "id": 5070,
+      "parentCaseId": 4189,
       "ordreNr": "62777-1",
       "isTM": false,
       "status": "Avsluttet",
@@ -8633,8 +8921,8 @@
       "fSalgsverdi": 3999.07,
       "via": -11000.93,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -8646,6 +8934,7 @@
     },
     {
       "id": 5022,
+      "parentCaseId": null,
       "ordreNr": "63544",
       "isTM": true,
       "status": "Åpen",
@@ -8663,8 +8952,8 @@
       "fSalgsverdi": 146490.225,
       "via": 61490.225000000006,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.02355733378053998,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.02339094901411043,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8676,6 +8965,7 @@
     },
     {
       "id": 5019,
+      "parentCaseId": null,
       "ordreNr": "63541",
       "isTM": true,
       "status": "I arbeid",
@@ -8693,8 +8983,8 @@
       "fSalgsverdi": 5381.15,
       "via": 5381.15,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.473967417893891,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.47380103312746147,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8706,6 +8996,7 @@
     },
     {
       "id": 5007,
+      "parentCaseId": 5006,
       "ordreNr": "63529-1",
       "isTM": false,
       "status": "Åpen",
@@ -8723,8 +9014,8 @@
       "fSalgsverdi": 2351121.015,
       "via": 2351121.015,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -8736,6 +9027,7 @@
     },
     {
       "id": 5006,
+      "parentCaseId": null,
       "ordreNr": "63529",
       "isTM": false,
       "status": "Åpen",
@@ -8766,6 +9058,7 @@
     },
     {
       "id": 4966,
+      "parentCaseId": null,
       "ordreNr": "63490",
       "isTM": true,
       "status": "I arbeid",
@@ -8783,8 +9076,8 @@
       "fSalgsverdi": 73985.11,
       "via": 23985.11,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.02907983809154091,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.02891345332511136,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8796,6 +9089,7 @@
     },
     {
       "id": 4945,
+      "parentCaseId": null,
       "ordreNr": "63470",
       "isTM": true,
       "status": "Avsluttet",
@@ -8813,8 +9107,8 @@
       "fSalgsverdi": 2914.6,
       "via": 2914.6,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.20031255086671523,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.20014616610028568,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8826,6 +9120,7 @@
     },
     {
       "id": 4934,
+      "parentCaseId": null,
       "ordreNr": "63459",
       "isTM": false,
       "status": "Åpen",
@@ -8843,8 +9138,8 @@
       "fSalgsverdi": 1043.5,
       "via": 0,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -8856,6 +9151,7 @@
     },
     {
       "id": 4920,
+      "parentCaseId": null,
       "ordreNr": "63445",
       "isTM": true,
       "status": "Åpen",
@@ -8873,8 +9169,8 @@
       "fSalgsverdi": 2947785.59,
       "via": -7812466.68,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.3378049894324291,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.33787198752636927,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8886,6 +9182,7 @@
     },
     {
       "id": 4907,
+      "parentCaseId": null,
       "ordreNr": "63432",
       "isTM": true,
       "status": "Åpen",
@@ -8903,8 +9200,8 @@
       "fSalgsverdi": 17213.02,
       "via": 1867.8500000000004,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.041581922049835796,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.041415537283406245,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8916,6 +9213,7 @@
     },
     {
       "id": 4904,
+      "parentCaseId": null,
       "ordreNr": "63429",
       "isTM": false,
       "status": "Åpen",
@@ -8933,8 +9231,8 @@
       "fSalgsverdi": 3040.8199999999997,
       "via": 3040.8199999999997,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.29650977809805334,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.29655041340436183,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -8946,6 +9244,7 @@
     },
     {
       "id": 4893,
+      "parentCaseId": null,
       "ordreNr": "63418",
       "isTM": true,
       "status": "Åpen",
@@ -8963,8 +9262,8 @@
       "fSalgsverdi": 21311,
       "via": 370,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.12743251492757338,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.12749951302151355,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -8976,6 +9275,7 @@
     },
     {
       "id": 4874,
+      "parentCaseId": null,
       "ordreNr": "63401",
       "isTM": true,
       "status": "I arbeid",
@@ -8993,8 +9293,8 @@
       "fSalgsverdi": 10812.05,
       "via": 10812.05,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.19443612565109097,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.19426974088466142,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9006,6 +9306,7 @@
     },
     {
       "id": 4851,
+      "parentCaseId": null,
       "ordreNr": "63383",
       "isTM": true,
       "status": "I arbeid",
@@ -9036,6 +9337,7 @@
     },
     {
       "id": 4844,
+      "parentCaseId": null,
       "ordreNr": "63376",
       "isTM": true,
       "status": "I arbeid",
@@ -9053,8 +9355,8 @@
       "fSalgsverdi": 3749.5,
       "via": 3749.5,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.16002176610633656,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.16012845255020136,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9066,6 +9368,7 @@
     },
     {
       "id": 4842,
+      "parentCaseId": null,
       "ordreNr": "63374",
       "isTM": true,
       "status": "I arbeid",
@@ -9083,8 +9386,8 @@
       "fSalgsverdi": 3749.5,
       "via": 3749.5,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.16002176610633656,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.16012845255020136,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9096,6 +9399,7 @@
     },
     {
       "id": 4840,
+      "parentCaseId": null,
       "ordreNr": "63372",
       "isTM": true,
       "status": "I arbeid",
@@ -9113,8 +9417,8 @@
       "fSalgsverdi": 5134.5,
       "via": 5134.5,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.18239536112626398,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.18250204757012878,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9126,6 +9430,7 @@
     },
     {
       "id": 4838,
+      "parentCaseId": null,
       "ordreNr": "63370",
       "isTM": true,
       "status": "I arbeid",
@@ -9143,8 +9448,8 @@
       "fSalgsverdi": 3057,
       "via": 3057,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.15113115053063864,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.15123783697450344,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9156,6 +9461,7 @@
     },
     {
       "id": 4836,
+      "parentCaseId": null,
       "ordreNr": "63368",
       "isTM": true,
       "status": "I arbeid",
@@ -9173,8 +9479,8 @@
       "fSalgsverdi": 4155,
       "via": 4155,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.19926885897985092,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.19937554542371572,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9186,6 +9492,7 @@
     },
     {
       "id": 4803,
+      "parentCaseId": null,
       "ordreNr": "63336",
       "isTM": true,
       "status": "Åpen",
@@ -9203,8 +9510,8 @@
       "fSalgsverdi": 2729.33,
       "via": 2729.33,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.12503748841279066,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.12487110364636111,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9216,6 +9523,7 @@
     },
     {
       "id": 4778,
+      "parentCaseId": null,
       "ordreNr": "63311",
       "isTM": true,
       "status": "Åpen",
@@ -9233,8 +9541,8 @@
       "fSalgsverdi": 1122.01,
       "via": 1122.01,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.17861568944408918,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.17844930467765963,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9246,6 +9554,7 @@
     },
     {
       "id": 4663,
+      "parentCaseId": null,
       "ordreNr": "63206",
       "isTM": true,
       "status": "I arbeid",
@@ -9276,6 +9585,7 @@
     },
     {
       "id": 4629,
+      "parentCaseId": 3281,
       "ordreNr": "61941-4",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -9293,8 +9603,8 @@
       "fSalgsverdi": 10316.26,
       "via": 10316.26,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.2706827778948382,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.27074977598877836,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9306,6 +9616,7 @@
     },
     {
       "id": 4622,
+      "parentCaseId": null,
       "ordreNr": "63169",
       "isTM": true,
       "status": "Åpen",
@@ -9336,6 +9647,7 @@
     },
     {
       "id": 4514,
+      "parentCaseId": null,
       "ordreNr": "63076",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -9353,8 +9665,8 @@
       "fSalgsverdi": 281934.82,
       "via": 66934.82,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.23914309068941203,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.23918372599572052,
       "sc": 4,
       "risk": "HØY",
       "flags": [
@@ -9366,6 +9678,7 @@
     },
     {
       "id": 4507,
+      "parentCaseId": null,
       "ordreNr": "63070",
       "isTM": true,
       "status": "I arbeid",
@@ -9383,8 +9696,8 @@
       "fSalgsverdi": 2899.96,
       "via": 2899.96,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.19055789660096006,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1903915118345305,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9396,6 +9709,7 @@
     },
     {
       "id": 4488,
+      "parentCaseId": 2544,
       "ordreNr": "61256-2",
       "isTM": true,
       "status": "Åpen",
@@ -9413,8 +9727,8 @@
       "fSalgsverdi": 31388.7,
       "via": 31388.7,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.19428780820524655,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.194121423438817,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9426,6 +9740,7 @@
     },
     {
       "id": 4485,
+      "parentCaseId": null,
       "ordreNr": "63051",
       "isTM": true,
       "status": "I arbeid",
@@ -9443,8 +9758,8 @@
       "fSalgsverdi": 3043.68,
       "via": 499,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.20876965314950818,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.20893603791593773,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9456,6 +9771,7 @@
     },
     {
       "id": 4480,
+      "parentCaseId": null,
       "ordreNr": "63046",
       "isTM": true,
       "status": "I arbeid",
@@ -9473,8 +9789,8 @@
       "fSalgsverdi": 4556.43,
       "via": 228.27000000000044,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.0192631729492152,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.01909678818278565,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9486,6 +9802,7 @@
     },
     {
       "id": 4426,
+      "parentCaseId": null,
       "ordreNr": "62997",
       "isTM": true,
       "status": "Småjobb",
@@ -9503,8 +9820,8 @@
       "fSalgsverdi": 6159.66,
       "via": 3796,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.38404876841684393,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.3838823836504144,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9516,6 +9833,7 @@
     },
     {
       "id": 4393,
+      "parentCaseId": null,
       "ordreNr": "62965",
       "isTM": false,
       "status": "I arbeid",
@@ -9546,6 +9864,7 @@
     },
     {
       "id": 4385,
+      "parentCaseId": null,
       "ordreNr": "62957",
       "isTM": true,
       "status": "I arbeid",
@@ -9563,8 +9882,8 @@
       "fSalgsverdi": 5357.71,
       "via": 5357.71,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.10069389298162978,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.10052750821520023,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9576,6 +9895,7 @@
     },
     {
       "id": 4348,
+      "parentCaseId": null,
       "ordreNr": "62925",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -9593,8 +9913,8 @@
       "fSalgsverdi": 43616.67,
       "via": 35678.45,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.16411622867666636,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.16394984391023681,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9606,6 +9926,7 @@
     },
     {
       "id": 4315,
+      "parentCaseId": null,
       "ordreNr": "62901",
       "isTM": true,
       "status": "Åpen",
@@ -9623,8 +9944,8 @@
       "fSalgsverdi": 3061.6,
       "via": 3061.6,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.14105788412500336,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1408914993585738,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9636,6 +9957,7 @@
     },
     {
       "id": 4206,
+      "parentCaseId": null,
       "ordreNr": "62794",
       "isTM": true,
       "status": "Åpen",
@@ -9653,8 +9975,8 @@
       "fSalgsverdi": 6416.8,
       "via": 6416.8,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.23978597586928382,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.23967928942541902,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9666,6 +9988,7 @@
     },
     {
       "id": 4189,
+      "parentCaseId": null,
       "ordreNr": "62777",
       "isTM": false,
       "status": "Avsluttet",
@@ -9683,8 +10006,8 @@
       "fSalgsverdi": 158119.97999999998,
       "via": 8119.979999999981,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -9696,6 +10019,7 @@
     },
     {
       "id": 3991,
+      "parentCaseId": null,
       "ordreNr": "62592",
       "isTM": true,
       "status": "Åpen",
@@ -9713,8 +10037,8 @@
       "fSalgsverdi": 45208.78,
       "via": 25208.78,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.162046319472734,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.16187993470630446,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9726,6 +10050,7 @@
     },
     {
       "id": 3969,
+      "parentCaseId": 2544,
       "ordreNr": "61256-1",
       "isTM": true,
       "status": "Åpen",
@@ -9743,8 +10068,8 @@
       "fSalgsverdi": 11568.94,
       "via": 11568.94,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.14951734297863323,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.14935095821220368,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9756,6 +10081,7 @@
     },
     {
       "id": 3957,
+      "parentCaseId": null,
       "ordreNr": "62560",
       "isTM": true,
       "status": "I arbeid",
@@ -9773,8 +10099,8 @@
       "fSalgsverdi": 28563.77,
       "via": 12563.77,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.1669345012089543,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.16676811644252476,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9786,6 +10112,7 @@
     },
     {
       "id": 3902,
+      "parentCaseId": null,
       "ordreNr": "62512",
       "isTM": true,
       "status": "Åpen",
@@ -9816,6 +10143,7 @@
     },
     {
       "id": 3840,
+      "parentCaseId": null,
       "ordreNr": "62454",
       "isTM": true,
       "status": "Åpen",
@@ -9833,8 +10161,8 @@
       "fSalgsverdi": 4262,
       "via": 4262,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.3215967978955334,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.3214901114516686,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9846,6 +10174,7 @@
     },
     {
       "id": 3829,
+      "parentCaseId": null,
       "ordreNr": "62443",
       "isTM": true,
       "status": "Åpen",
@@ -9863,8 +10192,8 @@
       "fSalgsverdi": 2994,
       "via": 2994,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.2553106633672759,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.25527002806096744,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9876,6 +10205,7 @@
     },
     {
       "id": 3732,
+      "parentCaseId": 1040,
       "ordreNr": "50606-2",
       "isTM": false,
       "status": "I arbeid",
@@ -9906,6 +10236,7 @@
     },
     {
       "id": 3712,
+      "parentCaseId": null,
       "ordreNr": "62338",
       "isTM": true,
       "status": "Åpen",
@@ -9923,8 +10254,8 @@
       "fSalgsverdi": 46190.75,
       "via": 1310.6500000000015,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.20015298595593298,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.20031937072236253,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9936,6 +10267,7 @@
     },
     {
       "id": 3699,
+      "parentCaseId": 3281,
       "ordreNr": "61941-3",
       "isTM": true,
       "status": "Klar til fakturering",
@@ -9953,8 +10285,8 @@
       "fSalgsverdi": 152990.6,
       "via": 152990.6,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.08354948969042478,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.08361648778436495,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9966,6 +10298,7 @@
     },
     {
       "id": 3679,
+      "parentCaseId": null,
       "ordreNr": "62309",
       "isTM": true,
       "status": "I arbeid",
@@ -9983,8 +10316,8 @@
       "fSalgsverdi": 1550,
       "via": 1550,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.00504664816994721,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.0048802634035176595,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -9996,6 +10329,7 @@
     },
     {
       "id": 3630,
+      "parentCaseId": null,
       "ordreNr": "62267",
       "isTM": true,
       "status": "Åpen",
@@ -10026,6 +10360,7 @@
     },
     {
       "id": 3546,
+      "parentCaseId": null,
       "ordreNr": "62184",
       "isTM": true,
       "status": "I arbeid",
@@ -10043,8 +10378,8 @@
       "fSalgsverdi": 5081.64,
       "via": 5081.64,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.10039318983759782,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.10022680507116827,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10056,6 +10391,7 @@
     },
     {
       "id": 3512,
+      "parentCaseId": null,
       "ordreNr": "62152",
       "isTM": true,
       "status": "I arbeid",
@@ -10073,8 +10409,8 @@
       "fSalgsverdi": 562.5,
       "via": 562.5,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.01790001849671946,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.01806640326314901,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10086,6 +10422,7 @@
     },
     {
       "id": 3509,
+      "parentCaseId": null,
       "ordreNr": "62149",
       "isTM": true,
       "status": "I arbeid",
@@ -10103,8 +10440,8 @@
       "fSalgsverdi": 3043.5,
       "via": 3043.5,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.4476365593568786,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.4477035574508188,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10116,6 +10453,7 @@
     },
     {
       "id": 3476,
+      "parentCaseId": null,
       "ordreNr": "62123",
       "isTM": false,
       "status": "Avsluttet",
@@ -10133,8 +10471,8 @@
       "fSalgsverdi": 223569.515,
       "via": 3569.515000000014,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -10146,6 +10484,7 @@
     },
     {
       "id": 3382,
+      "parentCaseId": null,
       "ordreNr": "62037",
       "isTM": true,
       "status": "Åpen",
@@ -10176,6 +10515,7 @@
     },
     {
       "id": 3333,
+      "parentCaseId": null,
       "ordreNr": "61991",
       "isTM": true,
       "status": "Åpen",
@@ -10193,8 +10533,8 @@
       "fSalgsverdi": 1435544.144,
       "via": -234828.17599999998,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.07812485812001704,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.07819185621395722,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10206,6 +10546,7 @@
     },
     {
       "id": 3313,
+      "parentCaseId": null,
       "ordreNr": "61972",
       "isTM": true,
       "status": "I arbeid",
@@ -10223,8 +10564,8 @@
       "fSalgsverdi": 2291.6,
       "via": -412.5,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.021225082451671762,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.02105869768524221,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10236,6 +10577,7 @@
     },
     {
       "id": 3214,
+      "parentCaseId": null,
       "ordreNr": "61876",
       "isTM": false,
       "status": "I arbeid",
@@ -10253,8 +10595,8 @@
       "fSalgsverdi": 261346.31,
       "via": 116346.31,
       "historicalReopen": false,
-      "normDG": 0.19008949804776656,
-      "dgAvvik": -0.19008949804776656,
+      "normDG": 0.19301562200962888,
+      "dgAvvik": -0.19301562200962888,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -10266,6 +10608,7 @@
     },
     {
       "id": 3142,
+      "parentCaseId": null,
       "ordreNr": "61808",
       "isTM": false,
       "status": "Avsluttet",
@@ -10283,8 +10626,8 @@
       "fSalgsverdi": 141076.36,
       "via": -3923.640000000014,
       "historicalReopen": true,
-      "normDG": 0.19008949804776656,
-      "dgAvvik": -0.19008949804776656,
+      "normDG": 0.19301562200962888,
+      "dgAvvik": -0.19301562200962888,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -10296,6 +10639,7 @@
     },
     {
       "id": 3124,
+      "parentCaseId": null,
       "ordreNr": "61790",
       "isTM": true,
       "status": "Åpen",
@@ -10313,8 +10657,8 @@
       "fSalgsverdi": 6238.15,
       "via": 3238.1499999999996,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.3455903991217519,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.34542401435532233,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10326,6 +10670,7 @@
     },
     {
       "id": 3076,
+      "parentCaseId": null,
       "ordreNr": "61743",
       "isTM": true,
       "status": "I arbeid",
@@ -10343,8 +10688,8 @@
       "fSalgsverdi": 168602.61,
       "via": 48602.609999999986,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": -0.11438654480414456,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": -0.11442718011045305,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10356,6 +10701,7 @@
     },
     {
       "id": 3072,
+      "parentCaseId": null,
       "ordreNr": "61739",
       "isTM": true,
       "status": "I arbeid",
@@ -10373,8 +10719,8 @@
       "fSalgsverdi": 34641.84,
       "via": -358.1600000000035,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.10786823164013215,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.1080346164065617,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10386,6 +10732,7 @@
     },
     {
       "id": 3055,
+      "parentCaseId": null,
       "ordreNr": "61722",
       "isTM": true,
       "status": "Avsluttet",
@@ -10403,8 +10750,8 @@
       "fSalgsverdi": 22960.16,
       "via": 22960.16,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.11675249865182535,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.1165861138853958,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10416,6 +10763,7 @@
     },
     {
       "id": 3009,
+      "parentCaseId": null,
       "ordreNr": "61678",
       "isTM": true,
       "status": "I arbeid",
@@ -10428,13 +10776,13 @@
       "totOmk": 31514.35,
       "timerkost": 8268.03,
       "materialkost": 23246.32,
-      "dg": 0.23230887957901938,
+      "dg": 0.26567249293185924,
       "fakt": 50000,
-      "fSalgsverdi": 41050.82,
-      "via": -8949.18,
+      "fSalgsverdi": 46539.82,
+      "via": -3460.1800000000003,
       "historicalReopen": false,
-      "normDG": 0.19008949804776656,
-      "dgAvvik": 0.04221938153125282,
+      "normDG": 0.19301562200962888,
+      "dgAvvik": 0.07265687092223036,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10446,6 +10794,7 @@
     },
     {
       "id": 2941,
+      "parentCaseId": null,
       "ordreNr": "61615",
       "isTM": true,
       "status": "Åpen",
@@ -10463,8 +10812,8 @@
       "fSalgsverdi": 1955.63,
       "via": 1955.63,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.1582335727409903,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.15819293743468182,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10476,6 +10825,7 @@
     },
     {
       "id": 2663,
+      "parentCaseId": null,
       "ordreNr": "61369",
       "isTM": true,
       "status": "Åpen",
@@ -10493,8 +10843,8 @@
       "fSalgsverdi": 25164.89,
       "via": 25164.89,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.10150521755565106,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.10146458224934257,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10506,6 +10856,7 @@
     },
     {
       "id": 2660,
+      "parentCaseId": null,
       "ordreNr": "61366",
       "isTM": true,
       "status": "I arbeid",
@@ -10523,8 +10874,8 @@
       "fSalgsverdi": 13545.66,
       "via": 419.39999999999964,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.10060634773423571,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.10043996296780616,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10536,6 +10887,7 @@
     },
     {
       "id": 2544,
+      "parentCaseId": null,
       "ordreNr": "61256",
       "isTM": true,
       "status": "I arbeid",
@@ -10553,8 +10905,8 @@
       "fSalgsverdi": 99816.39,
       "via": 29816.39,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.15417943888698277,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.15401305412055322,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10566,6 +10918,7 @@
     },
     {
       "id": 2519,
+      "parentCaseId": null,
       "ordreNr": "61232",
       "isTM": false,
       "status": "Åpen",
@@ -10583,8 +10936,8 @@
       "fSalgsverdi": 3227.735,
       "via": 3227.735,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -4.797199400658969,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -4.797132402565029,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -10596,6 +10949,7 @@
     },
     {
       "id": 2493,
+      "parentCaseId": null,
       "ordreNr": "61206",
       "isTM": false,
       "status": "Intern",
@@ -10613,8 +10967,8 @@
       "fSalgsverdi": 28638.54,
       "via": 15274.76,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.3749533518300528,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.37511973659648234,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -10626,6 +10980,7 @@
     },
     {
       "id": 2411,
+      "parentCaseId": null,
       "ordreNr": "61129",
       "isTM": true,
       "status": "Åpen",
@@ -10643,8 +10998,8 @@
       "fSalgsverdi": 2450,
       "via": 2450,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.1558571853729082,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.1557504989290434,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10656,6 +11011,7 @@
     },
     {
       "id": 2378,
+      "parentCaseId": 1215,
       "ordreNr": "60113-1",
       "isTM": true,
       "status": "I arbeid",
@@ -10673,8 +11029,8 @@
       "fSalgsverdi": 40611.2,
       "via": 40611.2,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.1737936964028652,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.17386069449680538,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10686,6 +11042,7 @@
     },
     {
       "id": 2247,
+      "parentCaseId": null,
       "ordreNr": "60987",
       "isTM": true,
       "status": "I arbeid",
@@ -10703,8 +11060,8 @@
       "fSalgsverdi": 375385.46,
       "via": 190385.46000000002,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.16364151010199962,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.16347512533557007,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10716,6 +11073,7 @@
     },
     {
       "id": 2239,
+      "parentCaseId": null,
       "ordreNr": "60979",
       "isTM": true,
       "status": "I arbeid",
@@ -10733,8 +11091,8 @@
       "fSalgsverdi": 213743.75,
       "via": 5844.209999999992,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.16038948738957207,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.16055587215600162,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10746,6 +11104,7 @@
     },
     {
       "id": 2213,
+      "parentCaseId": null,
       "ordreNr": "60959",
       "isTM": true,
       "status": "I arbeid",
@@ -10763,8 +11122,8 @@
       "fSalgsverdi": 467718.26,
       "via": 93718.26000000001,
       "historicalReopen": false,
-      "normDG": 0.19008949804776656,
-      "dgAvvik": -0.0051757959400062226,
+      "normDG": 0.19301562200962888,
+      "dgAvvik": -0.008101919901868537,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10776,6 +11135,7 @@
     },
     {
       "id": 2168,
+      "parentCaseId": null,
       "ordreNr": "60919",
       "isTM": true,
       "status": "Åpen",
@@ -10793,8 +11153,8 @@
       "fSalgsverdi": 4599,
       "via": 4599,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": 0.21074788756981672,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": 0.21058150280338717,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10806,6 +11166,7 @@
     },
     {
       "id": 2009,
+      "parentCaseId": 1040,
       "ordreNr": "50606-1",
       "isTM": false,
       "status": "I arbeid",
@@ -10836,6 +11197,7 @@
     },
     {
       "id": 1978,
+      "parentCaseId": 1003,
       "ordreNr": "51162-7",
       "isTM": false,
       "status": "Åpen",
@@ -10853,8 +11215,8 @@
       "fSalgsverdi": 188829.285,
       "via": -476170.71499999997,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -10866,6 +11228,7 @@
     },
     {
       "id": 1977,
+      "parentCaseId": 1003,
       "ordreNr": "51162-6",
       "isTM": false,
       "status": "Åpen",
@@ -10883,8 +11246,8 @@
       "fSalgsverdi": 43346.6,
       "via": 43346.6,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -10896,6 +11259,7 @@
     },
     {
       "id": 1976,
+      "parentCaseId": 1003,
       "ordreNr": "51162-5",
       "isTM": false,
       "status": "Åpen",
@@ -10913,8 +11277,8 @@
       "fSalgsverdi": 1344925.07,
       "via": -852706.9299999999,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -10926,6 +11290,7 @@
     },
     {
       "id": 1973,
+      "parentCaseId": null,
       "ordreNr": "60758",
       "isTM": true,
       "status": "Åpen",
@@ -10943,8 +11308,8 @@
       "fSalgsverdi": 4462.5,
       "via": 4462.5,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": -0.005707605540975491,
+      "normDG": 0.437721927500472,
+      "dgAvvik": -0.00560091909711069,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -10956,6 +11321,7 @@
     },
     {
       "id": 1970,
+      "parentCaseId": 1003,
       "ordreNr": "51162-4",
       "isTM": false,
       "status": "Åpen",
@@ -10973,8 +11339,8 @@
       "fSalgsverdi": 3436893.0549999997,
       "via": -3752121.9450000003,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -10986,6 +11352,7 @@
     },
     {
       "id": 1969,
+      "parentCaseId": 1003,
       "ordreNr": "51162-3",
       "isTM": false,
       "status": "Åpen",
@@ -11003,8 +11370,8 @@
       "fSalgsverdi": 189826.27,
       "via": -299431.73,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -11016,6 +11383,7 @@
     },
     {
       "id": 1968,
+      "parentCaseId": 1003,
       "ordreNr": "51162-2",
       "isTM": false,
       "status": "Åpen",
@@ -11033,8 +11401,8 @@
       "fSalgsverdi": 685791.6,
       "via": -438718.4,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -11046,6 +11414,7 @@
     },
     {
       "id": 1958,
+      "parentCaseId": null,
       "ordreNr": "60746",
       "isTM": true,
       "status": "I arbeid",
@@ -11063,8 +11432,8 @@
       "fSalgsverdi": 12523.844,
       "via": 1496.1039999999994,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.005451464070991008,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.005617848837420558,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -11076,6 +11445,7 @@
     },
     {
       "id": 1922,
+      "parentCaseId": null,
       "ordreNr": "60712",
       "isTM": true,
       "status": "Åpen",
@@ -11106,6 +11476,7 @@
     },
     {
       "id": 1892,
+      "parentCaseId": null,
       "ordreNr": "60685",
       "isTM": true,
       "status": "I arbeid",
@@ -11123,8 +11494,8 @@
       "fSalgsverdi": 223293.79,
       "via": 7597.140000000014,
       "historicalReopen": false,
-      "normDG": 0.19008949804776656,
-      "dgAvvik": 0.029360827910693804,
+      "normDG": 0.19301562200962888,
+      "dgAvvik": 0.02643470394883149,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -11136,6 +11507,7 @@
     },
     {
       "id": 1758,
+      "parentCaseId": null,
       "ordreNr": "60560",
       "isTM": true,
       "status": "I arbeid",
@@ -11153,8 +11525,8 @@
       "fSalgsverdi": 14287.2,
       "via": 14287.2,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.008681444108455838,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.008847828874885388,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -11166,6 +11538,7 @@
     },
     {
       "id": 1669,
+      "parentCaseId": null,
       "ordreNr": "60476",
       "isTM": true,
       "status": "Avsluttet",
@@ -11183,8 +11556,8 @@
       "fSalgsverdi": 200913.24,
       "via": 9570.880000000005,
       "historicalReopen": true,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.09894062798932476,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.09887362989538459,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -11196,6 +11569,7 @@
     },
     {
       "id": 1645,
+      "parentCaseId": null,
       "ordreNr": "60454",
       "isTM": true,
       "status": "Avsluttet",
@@ -11213,8 +11587,8 @@
       "fSalgsverdi": 28846.37,
       "via": 846.369999999999,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.2427414305380497,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.24290781530447925,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -11226,6 +11600,7 @@
     },
     {
       "id": 1415,
+      "parentCaseId": null,
       "ordreNr": "60287",
       "isTM": true,
       "status": "Åpen",
@@ -11243,8 +11618,8 @@
       "fSalgsverdi": 9999,
       "via": 9999,
       "historicalReopen": false,
-      "normDG": 0.4378286139443368,
-      "dgAvvik": 0.14404407332439007,
+      "normDG": 0.437721927500472,
+      "dgAvvik": 0.14415075976825487,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -11256,6 +11631,7 @@
     },
     {
       "id": 1360,
+      "parentCaseId": null,
       "ordreNr": "60250",
       "isTM": true,
       "status": "I arbeid",
@@ -11273,8 +11649,8 @@
       "fSalgsverdi": 9551.89,
       "via": 9551.89,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.09632634062852474,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.09628570532221625,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -11286,6 +11662,7 @@
     },
     {
       "id": 1260,
+      "parentCaseId": null,
       "ordreNr": "60154",
       "isTM": false,
       "status": "Åpen",
@@ -11303,8 +11680,8 @@
       "fSalgsverdi": 2677.6,
       "via": 2677.6,
       "historicalReopen": false,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -7.613722582599284,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -7.613888967365713,
       "sc": 2,
       "risk": "MIDDELS",
       "flags": [
@@ -11316,6 +11693,7 @@
     },
     {
       "id": 1215,
+      "parentCaseId": null,
       "ordreNr": "60113",
       "isTM": true,
       "status": "I arbeid",
@@ -11333,8 +11711,8 @@
       "fSalgsverdi": 3496589.88,
       "via": 599465.8799999999,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": 0.08380027998956055,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": 0.08386727808350072,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -11346,6 +11724,7 @@
     },
     {
       "id": 1159,
+      "parentCaseId": null,
       "ordreNr": "60057",
       "isTM": true,
       "status": "Avsluttet",
@@ -11363,8 +11742,8 @@
       "fSalgsverdi": 26922.8,
       "via": 7088.34,
       "historicalReopen": true,
-      "normDG": 0.3749533518300528,
-      "dgAvvik": -0.30155831119534915,
+      "normDG": 0.37511973659648234,
+      "dgAvvik": -0.30172469596177864,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -11376,6 +11755,7 @@
     },
     {
       "id": 1087,
+      "parentCaseId": null,
       "ordreNr": "45159",
       "isTM": true,
       "status": "Åpen",
@@ -11406,6 +11786,7 @@
     },
     {
       "id": 1085,
+      "parentCaseId": null,
       "ordreNr": "45480",
       "isTM": true,
       "status": "Åpen",
@@ -11436,6 +11817,7 @@
     },
     {
       "id": 1084,
+      "parentCaseId": null,
       "ordreNr": "45899",
       "isTM": true,
       "status": "I arbeid",
@@ -11466,6 +11848,7 @@
     },
     {
       "id": 1057,
+      "parentCaseId": null,
       "ordreNr": "49949",
       "isTM": false,
       "status": "I arbeid",
@@ -11483,8 +11866,8 @@
       "fSalgsverdi": 303462.485,
       "via": -161537.515,
       "historicalReopen": false,
-      "normDG": 0.19008949804776656,
-      "dgAvvik": -0.19008949804776656,
+      "normDG": 0.19301562200962888,
+      "dgAvvik": -0.19301562200962888,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
@@ -11496,6 +11879,7 @@
     },
     {
       "id": 1054,
+      "parentCaseId": null,
       "ordreNr": "50048",
       "isTM": true,
       "status": "I arbeid",
@@ -11526,6 +11910,7 @@
     },
     {
       "id": 1052,
+      "parentCaseId": null,
       "ordreNr": "50166",
       "isTM": false,
       "status": "Åpen",
@@ -11556,6 +11941,7 @@
     },
     {
       "id": 1048,
+      "parentCaseId": null,
       "ordreNr": "50435",
       "isTM": true,
       "status": "Åpen",
@@ -11573,8 +11959,8 @@
       "fSalgsverdi": 12046,
       "via": 12046,
       "historicalReopen": false,
-      "normDG": 0.2716432444483553,
-      "dgAvvik": 0.6752943281898649,
+      "normDG": 0.2716838797546638,
+      "dgAvvik": 0.6752536928835564,
       "sc": 1,
       "risk": "LAV",
       "flags": [
@@ -11586,6 +11972,7 @@
     },
     {
       "id": 1040,
+      "parentCaseId": null,
       "ordreNr": "50606",
       "isTM": false,
       "status": "I arbeid",
@@ -11616,6 +12003,7 @@
     },
     {
       "id": 1021,
+      "parentCaseId": null,
       "ordreNr": "50975",
       "isTM": true,
       "status": "Åpen",
@@ -11646,6 +12034,7 @@
     },
     {
       "id": 1018,
+      "parentCaseId": null,
       "ordreNr": "51026",
       "isTM": true,
       "status": "Åpen",
@@ -11676,6 +12065,7 @@
     },
     {
       "id": 1003,
+      "parentCaseId": null,
       "ordreNr": "51162",
       "isTM": false,
       "status": "Åpen",
@@ -11693,8 +12083,8 @@
       "fSalgsverdi": 12831424.376999998,
       "via": 8331424.376999998,
       "historicalReopen": false,
-      "normDG": 0.14442356878506327,
-      "dgAvvik": -0.14442356878506327,
+      "normDG": 0.1443565706911231,
+      "dgAvvik": -0.1443565706911231,
       "sc": 3,
       "risk": "MIDDELS",
       "flags": [
