@@ -506,6 +506,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-09-01T12:00:10.085Z"
     },
+    "86551": {
+      "dg": 20,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ole.myhre@minel.no",
+      "updatedAt": "2026-09-02T07:31:15.546Z"
+    },
     "86563": {
       "dg": 40,
       "begrunnelse": "",
