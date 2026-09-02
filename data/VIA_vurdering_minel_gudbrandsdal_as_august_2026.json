@@ -930,13 +930,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 20,
+      "timer": 30,
       "timekost": null,
       "material": 10000,
       "fg": null,
       "kv": null,
       "updatedBy": "ole.myhre@minel.no",
-      "updatedAt": "2026-09-02T07:08:27.710Z"
+      "updatedAt": "2026-09-02T07:08:35.871Z"
     }
   },
   "status": {
