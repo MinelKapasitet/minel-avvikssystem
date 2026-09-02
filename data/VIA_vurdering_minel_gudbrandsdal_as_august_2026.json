@@ -722,6 +722,18 @@
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T07:27:56.099Z"
     },
+    "86700": {
+      "dg": 37,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ole.resvoll@minel.no",
+      "updatedAt": "2026-09-02T12:13:06.228Z"
+    },
     "86704": {
       "dg": 35,
       "begrunnelse": "",
