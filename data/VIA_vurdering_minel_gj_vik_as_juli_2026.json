@@ -8,11 +8,11 @@
       "kommentar": "",
       "timer": 100,
       "timekost": null,
-      "material": 0,
+      "material": 50000,
       "fg": null,
       "kv": null,
       "updatedBy": "geir.sangnaes@minel.no",
-      "updatedAt": "2026-09-02T11:20:01.002Z"
+      "updatedAt": "2026-09-02T11:20:19.719Z"
     },
     "61206": {
       "dg": 35,
