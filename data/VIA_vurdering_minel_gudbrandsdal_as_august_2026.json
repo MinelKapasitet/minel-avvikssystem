@@ -896,11 +896,11 @@
       "kommentar": "",
       "timer": 250,
       "timekost": null,
-      "material": 0,
+      "material": 120000,
       "fg": null,
       "kv": null,
       "updatedBy": "ole.myhre@minel.no",
-      "updatedAt": "2026-09-02T07:11:51.116Z"
+      "updatedAt": "2026-09-02T07:11:55.736Z"
     },
     "87409": {
       "dg": null,
