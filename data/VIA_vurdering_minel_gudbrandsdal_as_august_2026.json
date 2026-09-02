@@ -607,12 +607,12 @@
       "begrunnelse": "",
       "kommentar": "",
       "timer": 10,
-      "timekost": null,
+      "timekost": 464,
       "material": 1000,
       "fg": null,
       "kv": null,
       "updatedBy": "ole.myhre@minel.no",
-      "updatedAt": "2026-09-02T06:07:48.554Z"
+      "updatedAt": "2026-09-02T06:08:25.563Z"
     },
     "87209": {
       "dg": 38,
