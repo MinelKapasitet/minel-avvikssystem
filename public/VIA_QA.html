@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.50</title>
+<title>VIA QA – Minel AS v10.51</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.50</span>
+  <span class="hd-badge">v10.51</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.50 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.51 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1961,7 +1961,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.50] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.51] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
         if(window._gqlFails>0){alert('⚠️ '+window._gqlFails+' API-kall mot Ordrestyring feilet til tross for gjentatte forsøk. Tallene kan være ufullstendige — last inn på nytt om noen minutter.');logEvent('APIKallFeilet',{antall:window._gqlFails}).catch(function(){});}
@@ -2225,7 +2225,7 @@ function rDash(){
   var fs=[];
   var _dgFall=_dg2.filter(function(r){var p=getPrevDG(r.ordreNr);var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return p&&e!=null&&(p.dg-e)>0.02;});
   var _overbill=a.filter(function(r){return r.hasTilbud&&r.tilbud!=null&&r.fakt!=null&&r.fakt>r.tilbud;});
-  if(_overbill.length>0) fs.push('= '+_overbill.length+' ordre(r) har fakturert mer enn kontraktssum ('+_overbill.map(function(r){return r.ordreNr;}).join(', ')+') — avklar med PL.');
+  if(_overbill.length>0) fs.push('= '+_overbill.length+' ordre(r) har fakturert mer enn kontraktssum ('+_overbill.map(function(r){return r.ordreNr;}).join(', ')+') — sjekk med PL at endringsordrer er registrert i Tilbudssum i Ordrestyring (OS er master).');
   if(_dgFall.length>0) fs.push('= '+_dgFall.length+' ordre(r) har lavere DG% enn forrige periode.');
   if(_posVIARisk.length>0) fs.push('⚠️ '+_posVIARisk.length+' ordre(r) har positiv VIA over 50 000 kr (underbilling, samlet: '+NK(_posVIAkr)+') — vurder fakturering.');
   if(_negVIA.length>0) fs.push('ℹ️ '+_negVIA.length+' ordre(r) med negativ VIA (akonto-overbilling: '+NK(_negVIAkr)+') — OK hvis aktive prosjekter.');
@@ -2536,7 +2536,7 @@ function rPOC(){
           '<td class="r calc">'+((c.fg!=null&&!c.fgIsDefault)?PC(c.fg):'–')+'</td>'+
           '<td class="r calc">'+NK(c.innt)+'</td>'+
           '<td class="r calc">'+(c.estDG!=null?PC(c.estDG):'–')+'</td>'+
-          '<td class="r'+(overbill?' vneg':'')+'" title="'+(overbill?'⚠️ Fakturert overgår kontraktssum!':'')+'">'+(overbill?'⚠️ ':'')+NK(r.fakt)+'</td>'+
+          '<td class="r'+(overbill?' vneg':'')+'" title="'+(overbill?'⚠️ Fakturert overstiger kontraktssum — er endringsordrer registrert i Tilbudssum i OS? Oppdater ordrekortet i Ordrestyring, så korrigeres DG% og VIA automatisk.':'')+'">'+(overbill?'⚠️ ':'')+NK(r.fakt)+'</td>'+
           '<td class="r '+(c.via==null?'':(c.via<0?'vneg':'vpos'))+'">'+NK(c.via)+'</td>'+
           (_showPrevCols?'<td class="c">'+prevFG(r.ordreNr)+'</td>'+'<td class="c">'+prevDGp(r.ordreNr)+'</td>':'')+
           '<td>'+cmtInp(r.ordreNr,inp.k,d,warn)+'</td>'+
@@ -2610,7 +2610,7 @@ function rPOC(){
             '<td class="r calc">'+(cA.fg!=null?PC(cA.fg):'–')+'</td>'+
             '<td class="r calc">'+NK(cA.innt)+'</td>'+
             '<td class="r calc">'+(cA.estDG!=null?PC(cA.estDG):'–')+'</td>'+
-            '<td class="r'+(overbillA?' vneg':'')+'" title="'+(overbillA?'⚠️ Fakturert overgår kontraktssum!':'')+'">'+(overbillA?'⚠️ ':'')+NK(aggF)+'</td>'+
+            '<td class="r'+(overbillA?' vneg':'')+'" title="'+(overbillA?'⚠️ Fakturert overstiger kontraktssum — er endringsordrer registrert i Tilbudssum i OS? Oppdater ordrekortet i Ordrestyring, så korrigeres DG% og VIA automatisk.':'')+'">'+(overbillA?'⚠️ ':'')+NK(aggF)+'</td>'+
             '<td class="r '+(cA.via==null?'':(cA.via<0?'vneg':'vpos'))+'">'+NK(cA.via)+'</td>'+
             (_showPrevCols?'<td class="c">–</td><td class="c">–</td>':'')+
             '<td>'+cmtInp(base,inpA.k,disA,wA)+'</td>'+
