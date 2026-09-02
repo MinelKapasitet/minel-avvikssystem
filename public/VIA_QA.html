@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.51</title>
+<title>VIA QA – Minel AS v10.52</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.51</span>
+  <span class="hd-badge">v10.52</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.51 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.52 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1929,6 +1929,7 @@ function startApiLoad(){
               kunde:(c.customer&&c.customer.name)||'',
               pl:(c.foreman&&c.foreman.fullName)||'',
               tilbud:tilbud,
+              ownTilbud:(c.offerTotal>0?c.offerTotal/100:null),
               hasTilbud:tilbud!=null&&tilbud>0,
               totOmk:tot,
               timerkost:tk,
@@ -1961,7 +1962,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.51] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.52] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
         if(window._gqlFails>0){alert('⚠️ '+window._gqlFails+' API-kall mot Ordrestyring feilet til tross for gjentatte forsøk. Tallene kan være ufullstendige — last inn på nytt om noen minutter.');logEvent('APIKallFeilet',{antall:window._gqlFails}).catch(function(){});}
@@ -2396,7 +2397,7 @@ function rPOC(){
   var _pocParentKids={};
   pocAll.forEach(function(r){var m=r.ordreNr.match(/^(.+?)-[^-]+$/);if(!m)return;var base=m[1];if(!_pocNrSet.has(base))return;_pocChildAbsorbed.add(r.ordreNr);if(!_pocParentKids[base])_pocParentKids[base]=[];_pocParentKids[base].push(r);});
   var _pocIdToRow={};pocAll.forEach(function(r){if(r.id)_pocIdToRow[String(r.id)]=r;});pocAll.forEach(function(r){if(!r.parentCaseId)return;var _pr=_pocIdToRow[String(r.parentCaseId)];if(!_pr||_pocChildAbsorbed.has(r.ordreNr))return;_pocChildAbsorbed.add(r.ordreNr);if(!_pocParentKids[_pr.ordreNr])_pocParentKids[_pr.ordreNr]=[];_pocParentKids[_pr.ordreNr].push(r);});
-  var pocR=pocAll.filter(function(r){if(_pocChildAbsorbed.has(r.ordreNr))return false;return !(HIDE_SMALL_POC&&(r.totOmk||0)<1000&&!_pocParentKids[r.ordreNr]);}).map(function(r){if(!_pocParentKids[r.ordreNr])return r;var rx=Object.assign({},r);rx._ownTotOmk=r.totOmk;rx._ownFakt=r.fakt;rx._ownTimerkost=r.timerkost;rx._ownMaterialkost=r.materialkost;_pocParentKids[r.ordreNr].forEach(function(ch){rx.totOmk=(rx.totOmk||0)+(ch.totOmk||0);rx.fakt=(rx.fakt||0)+(ch.fakt||0);rx.timerkost=(rx.timerkost||0)+(ch.timerkost||0);rx.materialkost=(rx.materialkost||0)+(ch.materialkost||0);});return rx;});
+  var pocR=pocAll.filter(function(r){if(_pocChildAbsorbed.has(r.ordreNr))return false;return !(HIDE_SMALL_POC&&(r.totOmk||0)<1000&&!_pocParentKids[r.ordreNr]);}).map(function(r){if(!_pocParentKids[r.ordreNr])return r;var rx=Object.assign({},r);rx._ownTotOmk=r.totOmk;rx._ownFakt=r.fakt;rx._ownTimerkost=r.timerkost;rx._ownMaterialkost=r.materialkost;_pocParentKids[r.ordreNr].forEach(function(ch){rx.totOmk=(rx.totOmk||0)+(ch.totOmk||0);rx.fakt=(rx.fakt||0)+(ch.fakt||0);rx.timerkost=(rx.timerkost||0)+(ch.timerkost||0);rx.materialkost=(rx.materialkost||0)+(ch.materialkost||0);rx.tilbud=(rx.tilbud||0)+(ch.ownTilbud||0);});return rx;});
   // Sort POC section
   (function(){
     var c=POCS.col,asc=POCS.asc;
@@ -2526,7 +2527,7 @@ function rPOC(){
             '<strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+histBadge(r)+'</td>'+
           '<td style="white-space:nowrap">'+(pl?(plInitials(r.pl)+(r.kunde?'<br><small style="opacity:.65;font-weight:400">'+r.kunde+'</small>':'')):r.pl)+'</td>'+
           '<td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+bs+'</td>'+
-          '<td class="r">'+(r.parentCaseId?'–':NK(r.tilbud))+'</td>'+
+          '<td class="r">'+(r.parentCaseId?(r.ownTilbud?NK(r.ownTilbud):'–'):NK(r.tilbud))+'</td>'+
           '<td class="r">'+NK(r.totOmk)+'</td>'+
           '<td>'+piInp(r.ordreNr,'timer',fmtI(inp.timer||0),d,warn)+'</td>'+
           '<td>'+piInp(r.ordreNr,'tk',fmtI(tkVal),d,warn)+'</td>'+
@@ -2969,7 +2970,7 @@ function expPOC(){
         var tkVal=inp.tk!=null?inp.tk:stk;
         aoa.push([
           r.ordreNr,r.pl||'',r.beskr||'',r.type||'',r.kunde||'',
-          r.parentCaseId?null:_s(r.tilbud),_s(r.fakt),r.risk||'',
+          r.parentCaseId?(r.ownTilbud!=null?_s(r.ownTilbud):null):_s(r.tilbud),_s(r.fakt),r.risk||'',
           inp.timer||0,tkVal,inp.mat||0,_n(c.gk),_n(c.esk),
           _pct(c.fg),_pct(c.estDG),_n(c.innt),
           null,null,null,null,
