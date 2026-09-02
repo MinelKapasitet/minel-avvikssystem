@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.48</title>
+<title>VIA QA – Minel AS v10.49</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.48</span>
+  <span class="hd-badge">v10.49</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.48 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.49 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1342,13 +1342,23 @@ function setP(pct,t,s){
 /* ============================================================
    API HELPERS
    ============================================================ */
-function gqlQ(key,q){
+function gqlQ(key,q,_t){
   return fetchGQL(OS_GQL,{
     method:'POST',
     headers:{'Authorization':'Bearer '+key,'Content-Type':'application/json'},
     body:JSON.stringify({query:q})
   }).then(function(r){return r.json();}).then(function(j){
-    if(j.errors && j.errors.length) throw new Error(j.errors[0].message);
+    if(j.errors && j.errors.length){
+      var _m=j.errors[0].message||'';
+      // OS rate-limiter svarer HTTP 200 med "Too Many Attempts." i errors-body —
+      // MÅ retryes med backoff, ellers nulles tall stille (jf. 51162-korrupsjon).
+      if(/too many/i.test(_m) && (_t||0)<6){
+        var _d=800*Math.pow(2,_t||0)+Math.random()*500;
+        return new Promise(function(res){setTimeout(res,_d);}).then(function(){return gqlQ(key,q,(_t||0)+1);});
+      }
+      window._gqlFails=(window._gqlFails||0)+1;
+      throw new Error(_m);
+    }
     return j.data;
   });
 }
@@ -1397,12 +1407,10 @@ function fetchMaterialsAfterPeriod(key, id, periodEndUnix){
         .reduce(function(s,m){return s+(m.costPrice||0);},0);
     });
   }
-  return Promise.all([
-    fetchType('MATERIAL').catch(function(){return 0;}),
-    fetchType('PRODUCT').catch(function(){return 0;})
-  ]).then(function(r){
-    var afterOre = (r[0]||0)+(r[1]||0);
-    if(afterOre > 0) console.log('[HIST] Materialer etter periodeslutt (øre): MATERIAL='+(r[0]||0)+' PRODUCT='+(r[1]||0)+' sum='+afterOre);
+  // MERK: type PRODUCT finnes ikke lenger i OS AddedBy-enum (API-endring) — kallet
+  // feilet alltid stille og er fjernet. Gyldige typer: OFFER, ACONTO, MATERIAL, OTHER_EXPENSE, ALLOWANCE_CHARGE.
+  return fetchType('MATERIAL').then(function(afterOre){
+    if(afterOre > 0) console.log('[HIST] Materialer etter periodeslutt (øre): MATERIAL='+afterOre);
     return afterOre;
   }).catch(function(){ return 0; });
 }
@@ -1947,7 +1955,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.48] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.49] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
         if(window._gqlFails>0){alert('⚠️ '+window._gqlFails+' API-kall mot Ordrestyring feilet til tross for gjentatte forsøk. Tallene kan være ufullstendige — last inn på nytt om noen minutter.');logEvent('APIKallFeilet',{antall:window._gqlFails}).catch(function(){});}
