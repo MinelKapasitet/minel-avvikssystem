@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.45</title>
+<title>VIA QA – Minel AS v10.46</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.45</span>
+  <span class="hd-badge">v10.46</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.45 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.46 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1630,7 +1630,7 @@ async function markReady(){
   if(!pl){ alert('Velg prosjektleder i filteret øverst, eller logg inn for automatisk gjenkjenning.'); return; }
   var period = _currentPeriod || document.getElementById('aperiod').textContent;
   var entity = _currentEntity || document.getElementById('lentity').value || document.getElementById('atitle').textContent;
-  var dgR = ACTIVE.filter(function(r){return !r.hasTilbud && r.pl===pl;});
+  var dgR = ACTIVE.filter(function(r){return !r.hasTilbud && !r.famSettled && r.pl===pl;});
   var vurderte = dgR.filter(function(r){var inp=DGI[r.ordreNr]||{};return inp.k&&inp.k.trim().length>0;});
   if(vurderte.length < dgR.length){
     var igjen = dgR.length - vurderte.length;
@@ -1662,7 +1662,7 @@ function rStatus(){
     var key = period+'__'+entity+'__'+pl;
     var done = st[key];
     var plOrdrer = ACTIVE.filter(function(r){return r.pl===pl;});
-    var plDG = plOrdrer.filter(function(r){return !r.hasTilbud;});
+    var plDG = plOrdrer.filter(function(r){return !r.hasTilbud&&!r.famSettled;});
     var plPOC = plOrdrer.filter(function(r){return r.hasTilbud;});
     var vurderte = plDG.filter(function(r){var inp=DGI[r.ordreNr]||{};return inp.k&&inp.k.trim().length>0;});
     var pct = plDG.length>0 ? Math.round(vurderte.length/plDG.length*100) : 100;
@@ -1920,7 +1920,8 @@ function startApiLoad(){
               parentCaseId:c.parentCaseId||null,
             fSalgsverdi:fsv,
               via:via,
-              historicalReopen:!!c._historicalReopen
+              historicalReopen:!!c._historicalReopen,
+              famSettled:!!c._famSettled
             };
           }
         });
@@ -1942,7 +1943,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.45] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.46] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
 parseRows(rows, co.name+' – t.o.m. '+dateStr, prd);
@@ -2142,8 +2143,27 @@ function parseRows(rows,src,prd){
 /* ============================================================
    DASHBOARD
    ============================================================ */
+// Familie-aggregering for dashbord: barn (parentCaseId eller dash-mønster) foldes
+// inn i forelderen med summert totOmk/fakt/via — én familie = én ordre i nøkkeltallene.
+function _famAgg(rows){
+  var byNr={}; rows.forEach(function(r){byNr[r.ordreNr]=r;});
+  var idTo={}; rows.forEach(function(r){if(r.id)idTo[String(r.id)]=r;});
+  var absorbed=new Set(); var kidsOf={};
+  rows.forEach(function(r){
+    var par=null;
+    if(r.parentCaseId&&idTo[String(r.parentCaseId)])par=idTo[String(r.parentCaseId)];
+    else{var m=r.ordreNr.match(/^(.+?)-[^-]+$/);if(m&&byNr[m[1]])par=byNr[m[1]];}
+    if(par&&par.ordreNr!==r.ordreNr){absorbed.add(r.ordreNr);if(!kidsOf[par.ordreNr])kidsOf[par.ordreNr]=[];kidsOf[par.ordreNr].push(r);}
+  });
+  return rows.filter(function(r){return !absorbed.has(r.ordreNr);}).map(function(r){
+    var k=kidsOf[r.ordreNr]; if(!k)return r;
+    var x=Object.assign({},r);
+    k.forEach(function(ch){x.totOmk=(x.totOmk||0)+(ch.totOmk||0);x.fakt=(x.fakt||0)+(ch.fakt||0);x.via=(x.via||0)+(ch.via||0);});
+    return x;
+  });
+}
 function rDash(){
-  var a = ACTIVE;
+  var a = _famAgg(ACTIVE);
   var _pocOrdrer = a.filter(function(r){return r.hasTilbud;}).length;
   var _dg2 = a.filter(function(r){return !r.hasTilbud;});
   var _manglerBegr = _dg2.filter(function(r){return !r.isTM&&(r.risk==='MIDDELS'||r.risk==='HØY')&&!(DGI[r.ordreNr]&&DGI[r.ordreNr].k&&DGI[r.ordreNr].k.trim().length>0);}).length;
@@ -2155,9 +2175,9 @@ function rDash(){
     var k = _curPrd+'__'+_curEnt+'__'+pl;
     return _st[k]&&_st[k].done;
   }).length;
-  var _negVIA = ACTIVE.filter(function(r){return (r.via||0)<-5000;});
+  var _negVIA = a.filter(function(r){return (r.via||0)<-5000;});
   var _negVIAkr = _negVIA.reduce(function(s,r){return s+Math.abs(r.via||0);},0);
-  var _posVIARisk = ACTIVE.filter(function(r){return (r.via||0)>50000;});
+  var _posVIARisk = a.filter(function(r){return (r.via||0)>50000;});
   var _posVIAkr = _posVIARisk.reduce(function(s,r){return s+(r.via||0);},0);
   // Weighted avg DG% across all T&M orders with costs > 0
   var _dgVurd = _dg2.filter(function(r){var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return e!=null&&e>0&&(r.totOmk||0)>500;});
@@ -2185,7 +2205,7 @@ function rDash(){
   var _plIkkeFerdig = _pls.length - _plFerdig;
   var fs=[];
   var _dgFall=_dg2.filter(function(r){var p=getPrevDG(r.ordreNr);var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return p&&e!=null&&(p.dg-e)>0.02;});
-  var _overbill=ACTIVE.filter(function(r){return r.hasTilbud&&r.tilbud!=null&&r.fakt!=null&&r.fakt>r.tilbud;});
+  var _overbill=a.filter(function(r){return r.hasTilbud&&r.tilbud!=null&&r.fakt!=null&&r.fakt>r.tilbud;});
   if(_overbill.length>0) fs.push('= '+_overbill.length+' ordre(r) har fakturert mer enn kontraktssum ('+_overbill.map(function(r){return r.ordreNr;}).join(', ')+') — avklar med PL.');
   if(_dgFall.length>0) fs.push('= '+_dgFall.length+' ordre(r) har lavere DG% enn forrige periode.');
   if(_posVIARisk.length>0) fs.push('⚠️ '+_posVIARisk.length+' ordre(r) har positiv VIA over 50 000 kr (underbilling, samlet: '+NK(_posVIAkr)+') — vurder fakturering.');
@@ -2210,16 +2230,16 @@ function rDash(){
     '<thead><tr><th>Prosjektleder</th><th title="Antall aktive ordrer">Ordrer</th><th title="Vektet snitt DG% på regningsordrer">Snitt DG%</th><th title="Ordrer uten begrunnelse">Ikke vurdert</th><th title="Ordrer med negativ VIA (akonto-overbilling) — ikke nødvendigvis negativt">Akonto/overbill.</th><th title="Sum akonto-overbilling">Overbill. beløp</th><th>Status</th></tr></thead>'+
     '<tbody>'+pr.map(function(e){
       var pl=e[0];
-      var ikkeVurdertPL=ACTIVE.filter(function(r){return r.pl===pl&&!r.hasTilbud&&!(DGI[r.ordreNr]&&DGI[r.ordreNr].k&&DGI[r.ordreNr].k.trim().length>0);}).length;
-      var negVIAPL=ACTIVE.filter(function(r){return r.pl===pl&&(r.via||0)<-5000;}).length;
-      var ekspPL=ACTIVE.filter(function(r){return r.pl===pl&&(r.via||0)<-5000;}).reduce(function(s,r){return s+Math.abs(r.via);},0);
+      var ikkeVurdertPL=ACTIVE.filter(function(r){return r.pl===pl&&!r.hasTilbud&&!r.famSettled&&!(DGI[r.ordreNr]&&DGI[r.ordreNr].k&&DGI[r.ordreNr].k.trim().length>0);}).length;
+      var negVIAPL=a.filter(function(r){return r.pl===pl&&(r.via||0)<-5000;}).length;
+      var ekspPL=a.filter(function(r){return r.pl===pl&&(r.via||0)<-5000;}).reduce(function(s,r){return s+Math.abs(r.via);},0);
       var stKey=Object.keys(stObj).find(function(k){return k.indexOf('__'+pl)>0;});
       var stDone=stKey&&stObj[stKey]&&stObj[stKey].done;
       var _lts=localStorage.getItem('VIA_LOAD_TS');
       var _stale=stDone&&_lts&&stObj[stKey]&&stObj[stKey].ts&&new Date(_lts)>new Date(stObj[stKey].ts);
       var _stTag=_stale?'<span title="Data lastet inn etter ferdig-melding — bør bekrefte på nytt" style="font-size:.67rem;background:#fff3cd;color:#856404;border:1px solid #ffc107;border-radius:4px;padding:0 4px;margin-left:3px;cursor:help;">⚠️ ny data</span>':'';
       // Weighted avg DG% for this PL's T&M orders
-      var _plDGRows=ACTIVE.filter(function(r){var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return r.pl===pl&&!r.hasTilbud&&e!=null&&e>0&&(r.totOmk||0)>500;});
+      var _plDGRows=ACTIVE.filter(function(r){var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return r.pl===pl&&!r.hasTilbud&&!r.famSettled&&e!=null&&e>0&&(r.totOmk||0)>500;});
       var _plCost=_plDGRows.reduce(function(s,r){return s+(r.totOmk||0);},0);
       var _plDG=_plCost>0?_plDGRows.reduce(function(s,r){var e=(DGI[r.ordreNr]&&DGI[r.ordreNr].dg>0)?DGI[r.ordreNr].dg/100:r.dg;return s+(e||0)*(r.totOmk||0);},0)/_plCost:null;
       var _plDGcol=_plDG==null?'#aaa':_plDG>=0.30?'var(--green)':_plDG>=0.18?'var(--amber)':'var(--red)';
