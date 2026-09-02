@@ -7,12 +7,12 @@
       "begrunnelse": "",
       "kommentar": "",
       "timer": 0,
-      "timekost": null,
+      "timekost": 500,
       "material": 0,
       "fg": null,
       "kv": null,
       "updatedBy": "geir.sangnaes@minel.no",
-      "updatedAt": "2026-09-02T11:20:29.188Z"
+      "updatedAt": "2026-09-02T11:20:42.698Z"
     },
     "61206": {
       "dg": 35,
