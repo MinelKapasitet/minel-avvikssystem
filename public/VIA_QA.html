@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.49</title>
+<title>VIA QA – Minel AS v10.50</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.49</span>
+  <span class="hd-badge">v10.50</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.49 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.50 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1407,10 +1407,14 @@ function fetchMaterialsAfterPeriod(key, id, periodEndUnix){
         .reduce(function(s,m){return s+(m.costPrice||0);},0);
     });
   }
-  // MERK: type PRODUCT finnes ikke lenger i OS AddedBy-enum (API-endring) — kallet
-  // feilet alltid stille og er fjernet. Gyldige typer: OFFER, ACONTO, MATERIAL, OTHER_EXPENSE, ALLOWANCE_CHARGE.
-  return fetchType('MATERIAL').then(function(afterOre){
-    if(afterOre > 0) console.log('[HIST] Materialer etter periodeslutt (øre): MATERIAL='+afterOre);
+  // Punkt-i-tid-korreksjon for baade materialer og oevrige kostnader.
+  // (PRODUCT finnes ikke lenger i AddedBy-enum; gyldige: OFFER, ACONTO, MATERIAL, OTHER_EXPENSE, ALLOWANCE_CHARGE.)
+  return Promise.all([
+    fetchType('MATERIAL').catch(function(){return 0;}),
+    fetchType('OTHER_EXPENSE').catch(function(){return 0;})
+  ]).then(function(r){
+    var afterOre = (r[0]||0)+(r[1]||0);
+    if(afterOre > 0) console.log('[HIST] Kostnader etter periodeslutt (øre): MATERIAL='+(r[0]||0)+' OTHER_EXPENSE='+(r[1]||0));
     return afterOre;
   }).catch(function(){ return 0; });
 }
@@ -1716,7 +1720,7 @@ function startApiLoad(){
   Promise.all([
     fetchBenchmark(co.key),
     paginate(co.key, function(c){
-      return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC},between:{field:createdAt,from:'+uf+',to:'+ut+'}){items{id caseNumber description status{text} caseType{text} customer{name} foreman{fullName} offerTotal parentCaseId economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice}}nextCursor}}';
+      return '{cases(pagination:{cursor:'+(c?'"'+c+'"':'null')+',limit:200},orderBy:{field:"id",direction:DESC},between:{field:createdAt,from:'+uf+',to:'+ut+'}){items{id caseNumber description status{text} caseType{text} customer{name} foreman{fullName} offerTotal parentCaseId economy{expectedCoverageRatio revenue hoursSalesprice materialsSalesprice hoursCostprice materialsCostprice otherExpenseCostprice}}nextCursor}}';
     }, function(d){return d.cases;}),
     // Historisk modus: hent saks-IDer som var aktive på periodeslutt men er terminal i dag.
     // Signal 1: fikk faktura etter periodeslutt (Bokført i etterkant)
@@ -1855,7 +1859,9 @@ function startApiLoad(){
         // mk (punkt-i-tid): economy.materialsCostprice (all-time, inkl. NULL-daterte) MINUS
         // materialer med materialDate etter periodeslutt. Gir riktig periodetotal uten å miste
         // historiske poster uten dato.
-        var allTimeMkOre = (c.economy&&c.economy.materialsCostprice)||0;
+        // Materialer + ØVRIGE KOSTNADER (otherExpenseCostprice) — PA-paritet: prosjektregnskapet
+        // skal inkludere alle kostnadstyper, ikke bare timer og materialer.
+        var allTimeMkOre = ((c.economy&&c.economy.materialsCostprice)||0) + ((c.economy&&c.economy.otherExpenseCostprice)||0);
         return Promise.all([
           fetchHours(co.key,c.id,uf,ut).catch(function(){return[];}),
           fetchSalesInvoices(co.key,c.id,uf,ut).catch(function(){return[];}),
@@ -1955,7 +1961,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.49] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.50] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
         if(window._gqlFails>0){alert('⚠️ '+window._gqlFails+' API-kall mot Ordrestyring feilet til tross for gjentatte forsøk. Tallene kan være ufullstendige — last inn på nytt om noen minutter.');logEvent('APIKallFeilet',{antall:window._gqlFails}).catch(function(){});}
