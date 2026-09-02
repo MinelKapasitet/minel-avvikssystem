@@ -1082,6 +1082,18 @@
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T07:25:17.847Z"
     },
+    "87164": {
+      "dg": 20,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ole.resvoll@minel.no",
+      "updatedAt": "2026-09-02T12:16:54.151Z"
+    },
     "87201": {
       "dg": null,
       "begrunnelse": "",
@@ -1590,6 +1602,11 @@
       "done": true,
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T07:34:50.843Z"
+    },
+    "Ole Morten Resvoll": {
+      "done": true,
+      "updatedBy": "ole.resvoll@minel.no",
+      "updatedAt": "2026-09-02T12:16:54.131Z"
     }
   }
 }
