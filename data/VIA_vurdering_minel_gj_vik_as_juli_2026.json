@@ -30,13 +30,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 34000,
+      "timer": 0,
       "timekost": 368,
       "material": 40000000,
       "fg": null,
       "kv": null,
-      "updatedBy": "einar.dotseth@minel.no",
-      "updatedAt": "2026-09-01T11:46:47.570Z"
+      "updatedBy": "geir.sangnaes@minel.no",
+      "updatedAt": "2026-09-02T11:14:42.452Z"
     },
     "63764": {
       "dg": 20,
