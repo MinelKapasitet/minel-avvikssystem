@@ -165,5 +165,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Gudbrandsdal AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T12:20:07.053Z",
+    "bruker": "Tage Selsjord",
+    "epost": "tage.selsjord@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Tage Selsjord",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Gudbrandsdal AS"
+    }
   }
 ]
