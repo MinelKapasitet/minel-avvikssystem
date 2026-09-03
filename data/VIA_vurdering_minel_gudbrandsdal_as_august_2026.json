@@ -1790,6 +1790,18 @@
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T06:08:44.668Z"
     },
+    "87203": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-09-03T07:17:59.593Z"
+    },
     "87204": {
       "dg": 30,
       "begrunnelse": "",
