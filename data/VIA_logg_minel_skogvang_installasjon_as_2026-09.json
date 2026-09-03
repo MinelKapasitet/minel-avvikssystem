@@ -50,5 +50,18 @@
       "periode": "august 2026",
       "antallOrdrer": 374
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T12:48:29.982Z",
+    "bruker": "Jon Hulberg",
+    "epost": "jon.hulberg@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Skogvang Installasjon AS",
+    "hendelse": "DataLastet",
+    "detaljer": {
+      "selskap": "Minel Skogvang Installasjon AS",
+      "periode": "august 2026",
+      "antallOrdrer": 374
+    }
   }
 ]
