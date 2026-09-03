@@ -417,5 +417,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Elmontasje AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T13:05:40.036Z",
+    "bruker": "Per Thomas Hagen",
+    "epost": "per.hagen@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Elmontasje AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Per Thomas Grindborg Hagen",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Elmontasje AS"
+    }
   }
 ]
