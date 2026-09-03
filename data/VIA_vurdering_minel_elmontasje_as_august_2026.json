@@ -596,11 +596,11 @@
       "kommentar": "",
       "timer": 5,
       "timekost": null,
-      "material": 0,
+      "material": 5000,
       "fg": null,
       "kv": null,
       "updatedBy": "kjell.lodemel@minel.no",
-      "updatedAt": "2026-09-03T09:57:17.941Z"
+      "updatedAt": "2026-09-03T09:57:30.033Z"
     },
     "43564": {
       "dg": null,
