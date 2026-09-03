@@ -782,6 +782,18 @@
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-03T10:35:25.830Z"
+    },
+    "43411-3": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 360,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T10:35:52.318Z"
     }
   },
   "status": {
