@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.57</title>
+<title>VIA QA – Minel AS v10.58</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.57</span>
+  <span class="hd-badge">v10.58</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -732,7 +732,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.57 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.58 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -770,7 +770,10 @@ async function ghWrite(filename,data,sha){
   var body={message:'Update '+filename,content:ghEncode(JSON.stringify(data,null,2))};
   if(sha)body.sha=sha;
   var r=await fetch(GH_BASE+filename,{method:'PUT',headers:{'Authorization':'Bearer '+GH_TOKEN,'Accept':'application/vnd.github+json','Content-Type':'application/json'},body:JSON.stringify(body)});
-  if(!r.ok&&r.status===409){var rc=await ghRead(filename);if(rc&&rc.sha){body.sha=rc.sha;r=await fetch(GH_BASE+filename,{method:'PUT',headers:{'Authorization':'Bearer '+GH_TOKEN,'Accept':'application/vnd.github+json'},body:JSON.stringify(body)});}}if(!r.ok){var t=await r.text();throw new Error('GitHub write HTTP '+r.status+': '+t.substring(0,120));}
+  // MERK: Ingen blind 409-retry her! Den overskrev kollegers samtidige lagringer med
+  // eldre fildata (jf. datatap Elmontasje 03.09). Konflikten MÅ kastes til caller,
+  // som merger per ordrenummer (ghSaveVurdering) før nytt forsøk.
+  if(!r.ok){var t=await r.text();throw new Error('GitHub write HTTP '+r.status+': '+t.substring(0,120));}
   var j=await r.json();
   return(j.content&&j.content.sha)||sha;
 }
@@ -794,13 +797,27 @@ async function ghSaveVurdering(company,period,retries){
     if(newSha)cached.sha=newSha;
     spShowSaveStatus(true);
   }catch(e){
-    if(e.message&&(e.message.indexOf('422')>=0||e.message.indexOf('409')>=0)&&retries<2){
-      console.warn('[GH] SHA-konflikt, re-fetcher...');
+    if(e.message&&(e.message.indexOf('422')>=0||e.message.indexOf('409')>=0)&&retries<4){
+      console.warn('[GH] SHA-konflikt, re-fetcher og merger per ordre (nyeste updatedAt vinner)...');
       var fresh=await ghRead(ghVurderingFile(company,period));
       if(fresh){
-        Object.assign(fresh.data.items||{},cached.data.items||{});
-        Object.assign(fresh.data.status||{},cached.data.status||{});
+        // Merge per ordrenummer: behold den NYESTE versjonen av hver vurdering.
+        // Object.assign av hele items-settet overskrev kollegers ferske lagringer
+        // med egne eldre kopier — det var datatapet 03.09.
+        if(!fresh.data.items)fresh.data.items={};
+        var mine=cached.data.items||{};
+        Object.keys(mine).forEach(function(nr){
+          var f=fresh.data.items[nr];
+          if(!f||((mine[nr].updatedAt||'')>=(f.updatedAt||''))) fresh.data.items[nr]=mine[nr];
+        });
+        if(!fresh.data.status)fresh.data.status={};
+        var mSt=cached.data.status||{};
+        Object.keys(mSt).forEach(function(pl){
+          var fs=fresh.data.status[pl];
+          if(!fs||((mSt[pl].updatedAt||'')>=(fs.updatedAt||''))) fresh.data.status[pl]=mSt[pl];
+        });
         _ghVurCache[key]=fresh;
+        await new Promise(function(res){setTimeout(res,300+Math.random()*700);});
         await ghSaveVurdering(company,period,retries+1);
       }
     }else{console.warn('[GH] Vurdering-lagring feilet:',e);spShowSaveStatus(false);}
@@ -2013,7 +2030,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.57] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.58] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
         if(window._gqlFails>0){alert('⚠️ '+window._gqlFails+' API-kall mot Ordrestyring feilet til tross for gjentatte forsøk. Tallene kan være ufullstendige — last inn på nytt om noen minutter.');logEvent('APIKallFeilet',{antall:window._gqlFails}).catch(function(){});}
