@@ -6,25 +6,25 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 100,
+      "timer": 60,
       "timekost": null,
-      "material": 100000,
+      "material": 75000,
       "fg": null,
       "kv": null,
       "updatedBy": "magnus.nyeggen@minel.no",
-      "updatedAt": "2026-09-03T07:04:05.200Z"
+      "updatedAt": "2026-09-03T06:36:06.281Z"
     },
     "51162": {
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 0,
+      "timer": 1,
       "timekost": 450,
-      "material": 0,
+      "material": 404,
       "fg": null,
       "kv": null,
       "updatedBy": "geir.sangnaes@minel.no",
-      "updatedAt": "2026-09-02T11:20:51.401Z"
+      "updatedAt": "2026-09-03T07:04:56.692Z"
     },
     "61206": {
       "dg": 0,
@@ -50,18 +50,6 @@
       "updatedBy": "geir.sangnaes@minel.no",
       "updatedAt": "2026-09-03T04:24:24.965Z"
     },
-    "62123": {
-      "dg": null,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": 0,
-      "timekost": null,
-      "material": 0,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "magnus.nyeggen@minel.no",
-      "updatedAt": "2026-09-03T07:04:29.202Z"
-    },
     "62149": {
       "dg": 20,
       "begrunnelse": "",
@@ -73,6 +61,18 @@
       "kv": null,
       "updatedBy": "einar.dotseth@minel.no",
       "updatedAt": "2026-08-31T10:25:48.861Z"
+    },
+    "62777": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 0,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "geir.sangnaes@minel.no",
+      "updatedAt": "2026-09-03T06:40:47.548Z"
     },
     "63183": {
       "dg": 0,
