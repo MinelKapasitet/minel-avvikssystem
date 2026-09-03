@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.54</title>
+<title>VIA QA – Minel AS v10.55</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.54</span>
+  <span class="hd-badge">v10.55</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -732,7 +732,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.54 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.55 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -890,12 +890,20 @@ var DL_LIST={
   'jonas.prestkvern@minel.no':'Minel Ainstall AS',
   'stian.ekhougen@minel.no':'Minel Drøbak Elektriske AS'
 };
+// Skjul DL-verktøy (Lås periode, Del datasett, Snapshot) for prosjektledere —
+// PL skal ikke kunne dele/låse (jf. PL som utløste 'Delt datasett' ved feiltrykk).
+function applyRoleUI(){
+  if(_currentUser&&!_currentUser.isDL){
+    ['btnlock','share-btn','snap-btn'].forEach(function(id){var el=document.getElementById(id);if(el)el.style.display='none';});
+  }
+}
 function detectUser(account){
   if(!account)return;
   var email=(account.username||'').toLowerCase();
   var name=account.name||email.split('@')[0].split('.').map(function(p){return p.charAt(0).toUpperCase()+p.slice(1);}).join(' ');
   var isDL=!!DL_LIST[email];
   _currentUser={email:email,name:name,isDL:isDL,company:DL_LIST[email]||null,plName:name};
+  applyRoleUI();
 try{logToAI('Login',{role:isDL?'DL':'PL',email:email,entity:DL_LIST[email]||'',pl:isDL?'':name});}catch(e){}
   _spUser=email;
   var badge=document.getElementById('user-badge');
@@ -1285,7 +1293,8 @@ function resumeSession(){
     var lprd=document.getElementById('lperiod');if(lprd)lprd.value=_currentPeriod;
     if(LOCKED){var bl=document.getElementById('btnlock');if(bl){bl.textContent='✅ Låst: '+_currentPeriod;bl.disabled=true;}}
     detectGroups();
-    rDash();rQA();rRisk();rPOC();rHist();rStatus();
+    applyRoleUI();
+  rDash();rQA();rRisk();rPOC();rHist();rStatus();
     var _pls=[...new Set(ACTIVE.map(function(r){return r.pl;}))].filter(Boolean).sort();
     ['qp','pp'].forEach(function(id){var s=document.getElementById(id);if(!s)return;while(s.options.length>1)s.remove(1);_pls.forEach(function(p){var o=document.createElement('option');o.value=p;o.textContent=p;s.appendChild(o);});});
     var _pls=[...new Set(ACTIVE.map(function(r){return r.pl;}))].filter(Boolean).sort();
@@ -1638,7 +1647,9 @@ function newBadge(ordreNr){
   return isNewOrder(ordreNr) ? '<span title="Ny ordre — ikke vært med i tidligere vurdering" style="background:#DBEAFE;color:#1D4ED8;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">NY</span>' : '';
 }
 function histBadge(r){
-  return r.historicalReopen ? '<span title="Saken er Bokført i dag, men var aktiv og åpen per periodeslutt-dato. Inkludert via historisk fakturadato-analyse." style="background:#FEF3C7;color:#92400E;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">= HIST</span>' : '';
+  if(r.historicalReopen) return '<span title="Saken er Bokført i dag, men var aktiv og åpen per periodeslutt-dato. Inkludert via historisk fakturadato-analyse." style="background:#FEF3C7;color:#92400E;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">= HIST</span>';
+  if(r.famSettled) return '<span title="Avsluttet underordre i et aktivt prosjekt — kostnader og fakturert telles i familietotalene. Krever ingen vurdering. PL-navnet er historisk fra Ordrestyring." style="background:#e5e7eb;color:#6b7280;border-radius:4px;padding:1px 5px;font-size:.68rem;font-weight:700;margin-left:4px;">AVSL</span>';
+  return '';
 }
 
 /* ============================================================
@@ -1994,7 +2005,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.54] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.55] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
         if(window._gqlFails>0){alert('⚠️ '+window._gqlFails+' API-kall mot Ordrestyring feilet til tross for gjentatte forsøk. Tallene kan være ufullstendige — last inn på nytt om noen minutter.');logEvent('APIKallFeilet',{antall:window._gqlFails}).catch(function(){});}
@@ -2157,13 +2168,15 @@ function parseRows(rows,src,prd){
   // Auto-sett PL-filter etter login
   if(_currentUser&&!_currentUser.isDL){
     var myName=_currentUser.plName||'';
-    // Prøv eksakt match, deretter case-insensitiv
-    var match=pls.find(function(p){return p===myName;}) ||
-               pls.find(function(p){return p.toLowerCase()===myName.toLowerCase();}) ||
+    // Normaliser begge sider: NBSP, doble og etterfølgende mellomrom (Entra-navn kan ha usynlige tegn)
+    var _nn=function(s){return (s||'').toLowerCase().replace(/[\s ]+/g,' ').trim();};
+    var myN=_nn(myName);
+    var match=pls.find(function(p){return _nn(p)===myN;}) ||
                pls.find(function(p){
-                 // Fuzzy: første+siste ord matcher (håndterer mellomnavn-forskjeller)
-                 var pa=p.toLowerCase().split(' ');var na=myName.toLowerCase().split(' ');
-                 return pa[0]===na[0]&&pa[pa.length-1]===na[na.length-1];
+                 // Fuzzy: første+siste ord matcher (håndterer mellomnavn-forskjeller, f.eks.
+                 // Entra "Per Thomas Hagen" mot OS "Per Thomas Grindborg Hagen")
+                 var pa=_nn(p).split(' ');var na=myN.split(' ');
+                 return pa.length>0&&na.length>0&&pa[0]===na[0]&&pa[pa.length-1]===na[na.length-1];
                });
     if(match){
       var ppSel=document.getElementById('pp');if(ppSel)ppSel.value=match;
@@ -2189,6 +2202,7 @@ function parseRows(rows,src,prd){
   document.getElementById('startPanel').style.display='none';
   document.getElementById('app').style.display='block';
   window.scrollTo(0,0);
+  applyRoleUI();
   rDash();rQA();rRisk();rPOC();rHist();rStatus();if(_currentPeriod)spLoadAssessments(_currentPeriod,_currentEntity).then(function(ok){if(ok){rPOC();rStatus();saveSession();}});else saveSession();
 }
 
@@ -2753,7 +2767,7 @@ function rPOC(){
           ' title="Justert kontraktsverdi (DL-input)"></div>'
         :'<span style="color:#aaa;font-size:.85rem;">'+(kvVal!=null?NK(kvVal):'–')+'</span>';
       return '<tr>'+
-        '<td style="'+(r._dgIndent?'padding-left:22px;':'')+'">'+(r._dkm?'<button data-base="'+r.ordreNr+'" onclick="toggleGrpMode(this.dataset.base)" title="Klikk for å bytte til '+(r._dkm==='samlet'?'individuell':'samlet')+' vurdering" style="margin-right:5px;padding:1px 7px;font-size:.7rem;background:'+(r._dkm==='samlet'?'#2563eb':'#1d8348')+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+(r._dkm==='samlet'?'Samlet':'Individuelt')+'</button>':'')+(r._dgIndent?'&#x21B3; ':'')+'<strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+'</td>'+
+        '<td style="'+(r._dgIndent?'padding-left:22px;':'')+'">'+(r._dkm?'<button data-base="'+r.ordreNr+'" onclick="toggleGrpMode(this.dataset.base)" title="Klikk for å bytte til '+(r._dkm==='samlet'?'individuell':'samlet')+' vurdering" style="margin-right:5px;padding:1px 7px;font-size:.7rem;background:'+(r._dkm==='samlet'?'#2563eb':'#1d8348')+';color:#fff;border:none;border-radius:4px;cursor:pointer;">'+(r._dkm==='samlet'?'Samlet':'Individuelt')+'</button>':'')+(r._dgIndent?'&#x21B3; ':'')+'<strong>'+r.ordreNr+'</strong>'+newBadge(r.ordreNr)+histBadge(r)+'</td>'+
         '<td style="white-space:nowrap">'+(pl?plInitials(r.pl):r.pl)+'</td>'+
         '<td>'+r.type+'</td>'+
         '<td style="max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="'+r.beskr+'">'+bs+'</td>'+
