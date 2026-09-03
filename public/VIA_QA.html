@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.52</title>
+<title>VIA QA – Minel AS v10.53</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.52</span>
+  <span class="hd-badge">v10.53</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -715,7 +715,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.52 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.53 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1758,6 +1758,17 @@ function startApiLoad(){
       }
     });
 
+    // Familie-anker: foreldre-id der familien har minst ETT åpent medlem (forelder eller barn).
+    // Avsluttede familiemedlemmer gjeninkluderes KUN i levende familier — helt avsluttede
+    // prosjekter (forelder + alle barn Bokført) skal ikke hentes inn igjen (jf. Geir Atle).
+    var _famAnchorIds = new Set();
+    cases.forEach(function(c){
+      var _st=(c.status&&c.status.text)||'';
+      if(EXCL_STATUS.has(_st)) return;
+      if(c.parentCaseId) _famAnchorIds.add(String(c.parentCaseId));
+      else if(_parentIds.has(String(c.id))) _famAnchorIds.add(String(c.id));
+    });
+
     window._parentCaseMap={};
     cases.forEach(function(c){ if(_parentIds.has(String(c.id))) window._parentCaseMap[String(c.caseNumber||c.id)]=c; });
     var histReopenCount = 0;
@@ -1776,7 +1787,8 @@ function startApiLoad(){
       // Inkluder ordrer med signert tilbud selv uten registrerte kostnader (matcher PA-modulen)
       // Familie-medlemmer med fakturert omsetning inkluderes selv uten registrerte kostnader —
       // deres fakturert MÅ med i samlet-vurderingen (jf. 51162: 54 barn med kun fakturaer).
-      var _famRevInc=(c.parentCaseId||_parentIds.has(String(c.id)))&&((c.economy&&c.economy.revenue)||0)>0;
+      var _famPidY=c.parentCaseId?String(c.parentCaseId):String(c.id);
+      var _famRevInc=(c.parentCaseId||_parentIds.has(String(c.id)))&&_famAnchorIds.has(_famPidY)&&((c.economy&&c.economy.revenue)||0)>0;
       if(!_isParKid && !_famRevInc && hkp === 0 && mkp === 0 && expDG <= 0 && !harTilbud) return false;
       if(EXCL_TYPES.has(typeText)) return false;
       // Ekskluder interne klær og verktøy-ordre (per-ansatt kostnadsordre, ikke fakturerbart)
@@ -1800,10 +1812,12 @@ function startApiLoad(){
           histReopenCount++;
           return true;
         }
-        // Familie-medlemmer (forelder/barn) inkluderes selv om Bokført:
-        // samlet-vurderingen av prosjektet trenger HELE familiens kostnader og fakturert.
-        // (Jf. 51162: 85 av 93 underordrer var Bokført → 5,5M manglet i fakturert.)
-        var _famM = !!(c.parentCaseId || _parentIds.has(String(c.id)));
+        // Familie-medlemmer (forelder/barn) inkluderes selv om Bokført — men KUN når
+        // familien har minst ett åpent medlem (_famAnchorIds). Samlet-vurderingen trenger
+        // hele den levende familiens kostnader og fakturert (jf. 51162), men helt
+        // avsluttede prosjekter skal ikke gjenoppstå.
+        var _famPidX = c.parentCaseId ? String(c.parentCaseId) : String(c.id);
+        var _famM = !!((c.parentCaseId || _parentIds.has(String(c.id))) && _famAnchorIds.has(_famPidX));
         if(_famM){
           var famHkp=(c.economy&&c.economy.hoursCostprice)||0;
           var famMkp=(c.economy&&c.economy.materialsCostprice)||0;
@@ -1881,7 +1895,8 @@ function startApiLoad(){
           // Familie-ordrer (forelder/barn) skal ALDRI utelates som sluttfakturert:
           // samlet-vurderingen trenger hele familiens fakturert og kostnader,
           // ellers mangler fakturert mens kontraktssummen er full (jf. 51162: 5,5M avvik).
-          var _inFamily = !!(c.parentCaseId || _parentIds.has(String(c.id)));
+          var _famPidZ = c.parentCaseId ? String(c.parentCaseId) : String(c.id);
+          var _inFamily = !!((c.parentCaseId || _parentIds.has(String(c.id))) && _famAnchorIds.has(_famPidZ));
           if(fk > 0 && !c._historicalReopen && !isHistoricalReport && !_inFamily){
             return Promise.all([
               tk > 0 ? fetchLatestHourDate(co.key,c.id).catch(function(){return null;}) : Promise.resolve(null),
@@ -1962,7 +1977,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.52] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.53] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
         if(window._gqlFails>0){alert('⚠️ '+window._gqlFails+' API-kall mot Ordrestyring feilet til tross for gjentatte forsøk. Tallene kan være ufullstendige — last inn på nytt om noen minutter.');logEvent('APIKallFeilet',{antall:window._gqlFails}).catch(function(){});}
