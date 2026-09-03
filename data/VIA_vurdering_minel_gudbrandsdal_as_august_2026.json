@@ -292,7 +292,7 @@
     },
     "84877": {
       "dg": 35,
-      "begrunnelse": "",
+      "begrunnelse": ",",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -300,7 +300,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
-      "updatedAt": "2026-09-03T06:39:48.064Z"
+      "updatedAt": "2026-09-03T06:39:55.310Z"
     },
     "84972": {
       "dg": 38,
