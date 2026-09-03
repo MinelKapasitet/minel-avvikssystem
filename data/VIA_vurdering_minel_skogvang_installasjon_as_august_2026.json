@@ -140,6 +140,19 @@
       "tmo": null,
       "updatedBy": "torstein.sagheim@minel.no",
       "updatedAt": "2026-09-03T13:14:18.947Z"
+    },
+    "51767-14": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 0,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "torstein.sagheim@minel.no",
+      "updatedAt": "2026-09-03T13:14:29.126Z"
     }
   },
   "status": {
