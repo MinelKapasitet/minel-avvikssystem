@@ -1681,7 +1681,7 @@
       "updatedAt": "2026-09-03T10:42:35.082Z"
     },
     "43438": {
-      "dg": 100,
+      "dg": 28,
       "begrunnelse": "rammeavtalekunde",
       "kommentar": "",
       "timer": null,
@@ -1689,9 +1689,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": null,
+      "tmo": 1,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T12:32:59.022Z"
+      "updatedAt": "2026-09-03T12:34:49.647Z"
     },
     "43439": {
       "dg": 68,
