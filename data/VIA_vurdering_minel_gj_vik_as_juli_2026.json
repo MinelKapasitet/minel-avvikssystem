@@ -6,13 +6,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 0,
+      "timer": 40,
       "timekost": null,
-      "material": 0,
+      "material": 75000,
       "fg": null,
       "kv": null,
       "updatedBy": "magnus.nyeggen@minel.no",
-      "updatedAt": "2026-09-03T06:29:58.148Z"
+      "updatedAt": "2026-09-03T06:30:55.728Z"
     },
     "51162": {
       "dg": null,
