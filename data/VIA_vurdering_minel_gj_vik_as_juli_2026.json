@@ -104,11 +104,11 @@
       "kommentar": "",
       "timer": 40000,
       "timekost": 450,
-      "material": 0,
+      "material": 4000000,
       "fg": null,
       "kv": null,
       "updatedBy": "geir.sangnaes@minel.no",
-      "updatedAt": "2026-09-03T07:39:20.747Z"
+      "updatedAt": "2026-09-03T07:39:35.839Z"
     },
     "63764": {
       "dg": 20,
