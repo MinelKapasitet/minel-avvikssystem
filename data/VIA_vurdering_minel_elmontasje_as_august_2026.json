@@ -88,7 +88,7 @@
     },
     "41230": {
       "dg": 10,
-      "begrunnelse": "",
+      "begrunnelse": "salg materiell ansatt",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -96,7 +96,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T09:01:20.093Z"
+      "updatedAt": "2026-09-03T09:04:43.201Z"
     },
     "41324": {
       "dg": null,
@@ -107,8 +107,8 @@
       "material": 150000,
       "fg": null,
       "kv": null,
-      "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-01T08:28:02.319Z"
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T06:37:31.998Z"
     },
     "41325": {
       "dg": null,
@@ -122,41 +122,53 @@
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-02T11:51:38.895Z"
     },
-    "41327": {
-      "dg": null,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": 240,
-      "timekost": null,
-      "material": 200000,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-02T11:52:28.985Z"
-    },
-    "41328": {
+    "41326": {
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
       "timer": 250,
       "timekost": null,
-      "material": 200000,
+      "material": 150000,
       "fg": null,
       "kv": null,
-      "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-02T11:50:30.721Z"
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T08:41:50.182Z"
+    },
+    "41327": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 200,
+      "timekost": null,
+      "material": 170000,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T06:58:29.770Z"
+    },
+    "41328": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 200,
+      "timekost": null,
+      "material": 190000,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T06:58:38.817Z"
     },
     "41623": {
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 1800,
+      "timer": 1933,
       "timekost": null,
-      "material": 1200000,
+      "material": 1070000,
       "fg": null,
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-02T12:06:40.482Z"
+      "updatedAt": "2026-09-03T07:44:12.999Z"
     },
     "41973": {
       "dg": 13.5,
@@ -168,7 +180,31 @@
       "fg": null,
       "kv": null,
       "updatedBy": "per.hagen@minel.no",
-      "updatedAt": "2026-09-03T08:59:28.487Z"
+      "updatedAt": "2026-09-03T09:01:52.533Z"
+    },
+    "42029": {
+      "dg": 35,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T07:08:53.204Z"
+    },
+    "42633": {
+      "dg": 10,
+      "begrunnelse": "salg materiell ansatt",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T07:08:46.171Z"
     },
     "42668": {
       "dg": null,
@@ -186,29 +222,29 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 400,
+      "timer": 320,
       "timekost": null,
-      "material": 200000,
+      "material": 240000,
       "fg": null,
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-01T08:37:58.725Z"
+      "updatedAt": "2026-09-03T07:29:57.335Z"
     },
     "42781": {
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 600,
+      "timer": 740,
       "timekost": null,
-      "material": 330000,
+      "material": 364000,
       "fg": null,
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-02T11:48:55.325Z"
+      "updatedAt": "2026-09-03T07:36:42.078Z"
     },
     "42786": {
       "dg": 69,
-      "begrunnelse": "",
+      "begrunnelse": "hentet DG fra ordrestyring",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -216,19 +252,31 @@
       "fg": null,
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-02T12:12:22.196Z"
+      "updatedAt": "2026-09-03T08:35:26.319Z"
+    },
+    "42967": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 500,
+      "timekost": null,
+      "material": 250000,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T08:39:06.463Z"
     },
     "42968": {
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 180,
+      "timer": 240,
       "timekost": null,
       "material": 180000,
       "fg": null,
       "kv": null,
-      "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-02T11:58:34.247Z"
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T08:00:42.180Z"
     },
     "43022": {
       "dg": null,
@@ -254,6 +302,18 @@
       "updatedBy": "kjell.lodemel@minel.no",
       "updatedAt": "2026-09-03T08:54:35.645Z"
     },
+    "43131": {
+      "dg": 35,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T08:38:04.485Z"
+    },
     "43141": {
       "dg": null,
       "begrunnelse": "",
@@ -267,7 +327,7 @@
       "updatedAt": "2026-09-02T12:02:32.371Z"
     },
     "43156": {
-      "dg": 35,
+      "dg": 10,
       "begrunnelse": "salg materiell til søster av ansatt",
       "kommentar": "",
       "timer": null,
@@ -276,19 +336,43 @@
       "fg": null,
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-01T07:47:10.024Z"
+      "updatedAt": "2026-09-03T08:52:01.432Z"
     },
     "43170": {
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 120,
+      "timer": 130,
       "timekost": null,
       "material": 70000,
       "fg": null,
       "kv": null,
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T07:59:39.022Z"
+    },
+    "43231": {
+      "dg": 10,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-02T12:00:05.203Z"
+      "updatedAt": "2026-09-03T08:52:14.013Z"
+    },
+    "43233": {
+      "dg": 0,
+      "begrunnelse": "Salg materiell ansatt",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T09:02:15.411Z"
     },
     "43292": {
       "dg": null,
@@ -330,13 +414,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 3,
+      "timer": 7,
       "timekost": null,
-      "material": 3000,
+      "material": 5000,
       "fg": null,
       "kv": null,
-      "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-02T11:55:33.498Z"
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T06:54:40.844Z"
     },
     "43332": {
       "dg": 28,
@@ -349,6 +433,18 @@
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-01T11:37:06.311Z"
+    },
+    "43333": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 70,
+      "timekost": null,
+      "material": 50000,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T08:43:58.201Z"
     },
     "43384": {
       "dg": null,
@@ -363,16 +459,16 @@
       "updatedAt": "2026-09-02T12:00:58.761Z"
     },
     "43411": {
-      "dg": null,
+      "dg": 59,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 1224,
+      "timer": 1182,
       "timekost": 450,
-      "material": 732381,
+      "material": 785370,
       "fg": null,
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-01T07:56:34.211Z"
+      "updatedAt": "2026-09-03T07:16:41.454Z"
     },
     "43412": {
       "dg": null,
@@ -386,17 +482,41 @@
       "updatedBy": "kjell.lodemel@minel.no",
       "updatedAt": "2026-09-03T09:05:14.951Z"
     },
+    "43455": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 350,
+      "timekost": null,
+      "material": 250000,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T08:42:47.137Z"
+    },
     "43554": {
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 202,
+      "timer": 192,
       "timekost": null,
-      "material": 117584,
+      "material": 117500,
       "fg": null,
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-01T07:51:14.769Z"
+      "updatedAt": "2026-09-03T07:31:29.340Z"
+    },
+    "43564": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 60,
+      "timekost": null,
+      "material": 30000,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "per.hagen@minel.no",
+      "updatedAt": "2026-09-03T08:39:30.623Z"
     },
     "43637": {
       "dg": 0,
@@ -409,6 +529,18 @@
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-01T12:03:01.204Z"
+    },
+    "43646": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 50,
+      "timekost": null,
+      "material": 10000,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T07:47:34.554Z"
     },
     "43651": {
       "dg": null,
