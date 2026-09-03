@@ -3,7 +3,7 @@
   "company": "Minel Skogvang Installasjon AS",
   "items": {
     "53324": {
-      "dg": 59,
+      "dg": 0,
       "begrunnelse": "Kunden er ansatt",
       "kommentar": "",
       "timer": null,
@@ -11,9 +11,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": null,
+      "tmo": 1,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-03T12:56:52.395Z"
+      "updatedAt": "2026-09-03T12:56:55.564Z"
     },
     "53691": {
       "dg": 0,
