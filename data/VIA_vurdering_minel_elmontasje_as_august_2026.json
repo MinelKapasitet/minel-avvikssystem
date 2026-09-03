@@ -2911,7 +2911,7 @@
       "updatedAt": "2026-09-03T12:20:35.587Z"
     },
     "43747": {
-      "dg": 100,
+      "dg": 35,
       "begrunnelse": "ok",
       "kommentar": "",
       "timer": null,
@@ -2919,9 +2919,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": null,
+      "tmo": 1,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T12:30:30.088Z"
+      "updatedAt": "2026-09-03T12:35:40.697Z"
     },
     "43748": {
       "dg": 56,
