@@ -1356,6 +1356,19 @@
       "updatedBy": "lars.hestvik@minel.no",
       "updatedAt": "2026-09-03T09:50:44.908Z"
     },
+    "43629": {
+      "dg": 100,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:20:48.052Z"
+    },
     "43637": {
       "dg": 0,
       "begrunnelse": "",
@@ -1529,6 +1542,19 @@
       "kv": null,
       "updatedBy": "kjell.lodemel@minel.no",
       "updatedAt": "2026-09-03T11:02:44.754Z"
+    },
+    "43728": {
+      "dg": 81,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:20:36.688Z"
     },
     "43730": {
       "dg": 68,
