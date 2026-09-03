@@ -86,18 +86,6 @@
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-01T11:36:22.148Z"
     },
-    "41230": {
-      "dg": 10,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": null,
-      "timekost": null,
-      "material": null,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T09:01:20.093Z"
-    },
     "41324": {
       "dg": null,
       "begrunnelse": "",
@@ -168,7 +156,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "per.hagen@minel.no",
-      "updatedAt": "2026-09-03T08:59:28.487Z"
+      "updatedAt": "2026-09-03T09:01:52.533Z"
     },
     "42668": {
       "dg": null,
