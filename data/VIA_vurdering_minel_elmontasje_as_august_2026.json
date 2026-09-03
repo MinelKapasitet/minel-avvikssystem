@@ -200,11 +200,11 @@
       "kommentar": "",
       "timer": 200,
       "timekost": null,
-      "material": 0,
+      "material": 250000,
       "fg": null,
       "kv": null,
       "updatedBy": "per.hagen@minel.no",
-      "updatedAt": "2026-09-03T09:45:52.258Z"
+      "updatedAt": "2026-09-03T09:45:56.010Z"
     },
     "42633": {
       "dg": 10,
