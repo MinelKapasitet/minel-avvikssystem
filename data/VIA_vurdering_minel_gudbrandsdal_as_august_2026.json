@@ -2372,11 +2372,11 @@
       "kommentar": "",
       "timer": 500,
       "timekost": null,
-      "material": 0,
+      "material": 3000000,
       "fg": null,
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
-      "updatedAt": "2026-09-03T07:12:42.122Z"
+      "updatedAt": "2026-09-03T07:12:58.367Z"
     }
   },
   "status": {
