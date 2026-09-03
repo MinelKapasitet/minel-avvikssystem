@@ -212,12 +212,12 @@
       "kommentar": "",
       "timer": 0,
       "timekost": null,
-      "material": 4000,
+      "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "tage.selsjord@minel.no",
-      "updatedAt": "2026-09-03T11:58:02.255Z"
+      "updatedAt": "2026-09-03T11:58:30.382Z"
     },
     "84402": {
       "dg": 30,
