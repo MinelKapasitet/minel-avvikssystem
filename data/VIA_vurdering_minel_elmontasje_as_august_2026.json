@@ -1216,6 +1216,19 @@
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-03T12:38:17.419Z"
     },
+    "43123": {
+      "dg": 100,
+      "begrunnelse": "rammeavtalekunde",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:39:20.086Z"
+    },
     "43131": {
       "dg": 35,
       "begrunnelse": "ok",
@@ -1732,6 +1745,19 @@
       "tmo": null,
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-03T12:38:19.820Z"
+    },
+    "43394": {
+      "dg": 100,
+      "begrunnelse": "rammeavtalekunde",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:39:18.740Z"
     },
     "43396": {
       "dg": 35,
