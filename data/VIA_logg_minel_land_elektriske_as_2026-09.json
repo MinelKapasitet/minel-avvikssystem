@@ -1,0 +1,15 @@
+[
+  {
+    "tidspunkt": "2026-09-03T10:10:12.477Z",
+    "bruker": "Lars Aamodt",
+    "epost": "lars.aamodt@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Land Elektriske AS",
+    "hendelse": "DataLastet",
+    "detaljer": {
+      "selskap": "Minel Land Elektriske AS",
+      "periode": "august 2026",
+      "antallOrdrer": 526
+    }
+  }
+]
