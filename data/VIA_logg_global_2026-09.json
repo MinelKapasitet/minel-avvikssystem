@@ -236,5 +236,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T06:18:24.267Z",
+    "bruker": "Kjell Hugo Lødemel",
+    "epost": "kjell.lodemel@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
