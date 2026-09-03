@@ -948,6 +948,19 @@
       "updatedBy": "per.hagen@minel.no",
       "updatedAt": "2026-09-03T09:48:15.643Z"
     },
+    "43547": {
+      "dg": 57,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:09:14.661Z"
+    },
     "43554": {
       "dg": null,
       "begrunnelse": "",
