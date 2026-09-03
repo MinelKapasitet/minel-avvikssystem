@@ -43,15 +43,16 @@
     },
     "54625": {
       "dg": 58,
-      "begrunnelse": " ",
+      "begrunnelse": " .",
       "kommentar": "",
       "timer": null,
       "timekost": null,
       "material": null,
       "fg": null,
       "kv": null,
+      "tmo": null,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-03T08:48:25.524Z"
+      "updatedAt": "2026-09-03T13:29:02.523Z"
     },
     "54988": {
       "dg": 0,
