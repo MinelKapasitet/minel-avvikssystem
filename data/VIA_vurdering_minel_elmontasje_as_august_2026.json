@@ -336,6 +336,19 @@
       "updatedBy": "per.hagen@minel.no",
       "updatedAt": "2026-09-03T09:46:03.524Z"
     },
+    "42269": {
+      "dg": 29,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:08:47.561Z"
+    },
     "42633": {
       "dg": 10,
       "begrunnelse": "salg materiell ansatt",
