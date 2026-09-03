@@ -86,6 +86,18 @@
       "updatedBy": "bjorn.bratlien@minel.no",
       "updatedAt": "2026-09-03T06:27:35.824Z"
     },
+    "83509": {
+      "dg": 35,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ansgar.joten@minel.no",
+      "updatedAt": "2026-09-03T06:35:15.434Z"
+    },
     "83599": {
       "dg": 9,
       "begrunnelse": "",
@@ -290,6 +302,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-09-01T11:34:51.651Z"
     },
+    "85203": {
+      "dg": 10,
+      "begrunnelse": "Installasjon i nedregate for Tore S",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ansgar.joten@minel.no",
+      "updatedAt": "2026-09-03T06:34:12.062Z"
+    },
     "85205": {
       "dg": 30,
       "begrunnelse": "Liten hytte",
@@ -349,6 +373,54 @@
       "kv": null,
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-09-01T11:56:27.140Z"
+    },
+    "85403": {
+      "dg": 25,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ansgar.joten@minel.no",
+      "updatedAt": "2026-09-03T06:32:21.401Z"
+    },
+    "85405": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ansgar.joten@minel.no",
+      "updatedAt": "2026-09-03T06:34:43.774Z"
+    },
+    "85412": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ansgar.joten@minel.no",
+      "updatedAt": "2026-09-03T06:33:12.042Z"
+    },
+    "85413": {
+      "dg": 25,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ansgar.joten@minel.no",
+      "updatedAt": "2026-09-03T06:32:31.391Z"
     },
     "85442": {
       "dg": 9,
@@ -493,6 +565,18 @@
       "kv": null,
       "updatedBy": "bjorn.bratlien@minel.no",
       "updatedAt": "2026-09-03T06:27:49.733Z"
+    },
+    "86056": {
+      "dg": 45,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ansgar.joten@minel.no",
+      "updatedAt": "2026-09-03T06:35:28.054Z"
     },
     "86142": {
       "dg": 30,
@@ -902,18 +986,6 @@
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T07:29:20.932Z"
     },
-    "86657": {
-      "dg": null,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": 0,
-      "timekost": null,
-      "material": 0,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "espen.kroken@minel.no",
-      "updatedAt": "2026-09-03T06:37:11.509Z"
-    },
     "86689": {
       "dg": 9,
       "begrunnelse": "",
@@ -1069,6 +1141,18 @@
       "kv": null,
       "updatedBy": "susann.endrestad@minel.no",
       "updatedAt": "2026-09-01T06:10:26.456Z"
+    },
+    "86906": {
+      "dg": 42,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ansgar.joten@minel.no",
+      "updatedAt": "2026-09-03T06:34:19.737Z"
     },
     "86927": {
       "dg": 25,
@@ -1226,6 +1310,30 @@
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T07:25:17.847Z"
     },
+    "87162": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ansgar.joten@minel.no",
+      "updatedAt": "2026-09-03T06:33:23.999Z"
+    },
+    "87166": {
+      "dg": 36,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ansgar.joten@minel.no",
+      "updatedAt": "2026-09-03T06:35:21.122Z"
+    },
     "87201": {
       "dg": null,
       "begrunnelse": "",
@@ -1237,6 +1345,18 @@
       "kv": null,
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T06:08:44.668Z"
+    },
+    "87207": {
+      "dg": 35,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "ansgar.joten@minel.no",
+      "updatedAt": "2026-09-03T06:34:27.613Z"
     },
     "87209": {
       "dg": 38,
@@ -1574,18 +1694,6 @@
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T07:29:04.544Z"
     },
-    "87362": {
-      "dg": null,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": 0,
-      "timekost": null,
-      "material": 0,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "espen.kroken@minel.no",
-      "updatedAt": "2026-09-03T06:37:02.923Z"
-    },
     "87369": {
       "dg": null,
       "begrunnelse": "",
@@ -1597,18 +1705,6 @@
       "kv": null,
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T07:07:53.429Z"
-    },
-    "87375": {
-      "dg": null,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": 10,
-      "timekost": null,
-      "material": 14316,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "espen.kroken@minel.no",
-      "updatedAt": "2026-09-03T06:36:55.107Z"
     },
     "87377": {
       "dg": 9,
