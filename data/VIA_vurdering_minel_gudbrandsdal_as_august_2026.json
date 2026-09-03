@@ -1200,7 +1200,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "bjorn.bratlien@minel.no",
-      "updatedAt": "2026-09-03T06:08:48.767Z"
+      "updatedAt": "2026-09-03T06:31:52.381Z"
     },
     "87117": {
       "dg": 30,
@@ -1722,6 +1722,11 @@
       "done": true,
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T07:34:50.843Z"
+    },
+    "Bjørn Bratlien": {
+      "done": true,
+      "updatedBy": "bjorn.bratlien@minel.no",
+      "updatedAt": "2026-09-03T06:31:52.373Z"
     }
   }
 }
