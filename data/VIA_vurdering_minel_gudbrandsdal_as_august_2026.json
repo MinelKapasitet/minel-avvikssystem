@@ -184,7 +184,7 @@
     },
     "84686": {
       "dg": 25,
-      "begrunnelse": ".",
+      "begrunnelse": "endres til fastpris",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -192,7 +192,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "bjorn.bratlien@minel.no",
-      "updatedAt": "2026-09-03T06:15:04.091Z"
+      "updatedAt": "2026-09-03T06:31:40.834Z"
     },
     "84691": {
       "dg": 35,
