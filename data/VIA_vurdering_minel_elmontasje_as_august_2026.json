@@ -1727,14 +1727,14 @@
       "dg": 35,
       "begrunnelse": "ok",
       "kommentar": "",
-      "timer": null,
-      "timekost": null,
-      "material": null,
+      "timer": 0,
+      "timekost": 450,
+      "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T12:20:09.417Z"
+      "updatedAt": "2026-09-03T13:01:42.879Z"
     },
     "43382": {
       "dg": 69,
