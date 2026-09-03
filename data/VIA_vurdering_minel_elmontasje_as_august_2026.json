@@ -286,12 +286,12 @@
       "kommentar": "",
       "timer": 740,
       "timekost": null,
-      "material": 340,
+      "material": 340000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T11:26:08.546Z"
+      "updatedAt": "2026-09-03T11:26:15.422Z"
     },
     "42786": {
       "dg": 69,
