@@ -1,0 +1,25 @@
+{
+  "period": "august 2026",
+  "company": "Minel Skogvang Installasjon AS",
+  "items": {
+    "53324": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "jon.hulberg@minel.no",
+      "updatedAt": "2026-09-03T08:34:29.799Z"
+    }
+  },
+  "status": {
+    "Halvor Bredsten": {
+      "done": true,
+      "updatedBy": "jon.hulberg@minel.no",
+      "updatedAt": "2026-09-03T08:35:04.033Z"
+    }
+  }
+}
