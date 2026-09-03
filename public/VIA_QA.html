@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.53</title>
+<title>VIA QA – Minel AS v10.54</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.53</span>
+  <span class="hd-badge">v10.54</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -293,6 +293,18 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
           <p><strong>POC</strong> (Percentage of Completion) er metoden som bestemmer hvor mye inntekt som skal inntektsf&oslash;res. <strong>Fremdrift&nbsp;% — anslått av PL basert på gjenstående timer og materiell — er inngangsverdien i POC-beregningen.</p><p><strong>⚠️ Tilbudssum er 0 eller tom?</strong> VIA QA henter tilbudssum direkte fra <em>Tilbudssum</em>-feltet på ordrekortet i Ordrestyring — ikke fra Økonomi-fanen som brukes til akontofakturering. Disse to er ikke koblet sammen, så PLer kan ha latt feltet stå tomt uten å merke det. Be PLene sjekke at <strong>Tilbudssum</strong> er fylt inn på alle fastprisordrer i OS.</p>
           <p style="margin-top:8px;">G&aring; til fanen <strong>POC + DG</strong>, finn din ordre og juster DG&nbsp;% (dekningsgrad) og Fremdrift&nbsp;% (fullf&oslash;ringsgrad basert p&aring; gjenstående timer og materiell). Begge lagres automatisk. VIA-bel&oslash;pet oppdateres umiddelbart.</p>
           <div class="help-tip" style="margin-top:10px;">Fremdrift&nbsp;% baser p&aring; faktisk gjenstående arbeid (timer og materiell). DG&nbsp;% er din vurdering av l&oslash;nnsomheten. Begge p&aring;virker m&aring;nedsresultatet direkte &#8212; hold dem oppdatert.</div>
+        </div>
+      </div>
+      <div class="help-step">
+        <div class="help-step-num">&#128279;</div>
+        <div class="help-step-body">
+          <span class="help-step-title">Hovedordre og underordrer &#8212; slik vurderes prosjektfamilier</span>
+          <p>Ordrer med underordrer (f.eks. 51162 med 51162-1, 51162-2 &hellip;) grupperes automatisk. Knappen ved ordrenummeret viser gjeldende modus:</p>
+          <div class="help-status-row"><span class="hbadge ok">Individuelt</span>&nbsp; Standard &#8212; alle underordrer vises, og i DG%-seksjonen vurderer du hver ordre for seg</div>
+          <div class="help-status-row"><span class="hbadge blue">Samlet</span>&nbsp; Tallene sl&aring;s sammen &#8212; du gir &eacute;n felles vurdering for hele prosjektet</div>
+          <p style="margin-top:8px;"><strong>Fastprisprosjekter (Seksjon 1):</strong> Hovedraden viser alltid hele familiens tall &#8212; p&aring;l&oslash;pte kostnader, fakturert og kontraktssum (hovedordrens fastpris + underordrers <em>egne</em> fastpriser). Underordrene vises som inforader. POC-vurderingen (gjenst&aring;ende timer/materiell) legges inn p&aring; hovedraden.</p>
+          <p><strong>Avsluttede underordrer</strong> telles med i prosjektets totaler s&aring; lenge hovedordren er &aring;pen &#8212; de krever ingen egen vurdering. Helt avsluttede prosjekter hentes ikke inn.</p>
+          <div class="help-tip" style="margin-top:8px;">&#9888;&#65039; <strong>Fakturert st&oslash;rre enn kontraktssum?</strong> Da mangler trolig endringsordrer i <em>Tilbudssum</em>-feltet p&aring; ordrekortet i Ordrestyring. Oppdater der (OS er master), s&aring; korrigeres DG% og VIA automatisk i VIA QA.</div>
         </div>
       </div>
       <div class="help-step">
@@ -359,6 +371,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
         </div>
       </div>
       <div class="help-tip">Klikk <strong>Snapshot</strong> for &aring; lagre et punkt-i-tid-bilde av perioden &#8212; tilgjengelig i Historikk-fanen for sammenligning m&aring;ned for m&aring;ned.</div>
+      <div class="help-tip" style="margin-top:10px;"><strong>Prosjektfamilier:</strong> Dashboardet teller &eacute;n familie (hovedordre + underordrer) som &eacute;n ordre i alle n&oslash;kkeltall. P&aring;l&oslash;pte kostnader inkluderer timer, materialer og &oslash;vrige kostnader &#8212; samme grunnlag som PA-modulen. Ved varsel om &laquo;fakturert mer enn kontraktssum&raquo;: be PL registrere endringsordrer i Tilbudssum i Ordrestyring.</div>
     </div>
 
     <div id="happ" class="help-panel">
@@ -421,6 +434,10 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
           <tr><td><strong>Periodeslutt</strong></td><td>Siste dag i regnskapsperioden (f.eks. 31.07.2026)</td></tr>
           <tr><td><strong>Avvik</strong></td><td>PLs flagging av at noe er feil &#8212; krever alltid kommentar</td></tr>
           <tr><td><strong>M&aring;nedsslutt</strong></td><td>Prosessen der regnskapet lukkes og tallene sendes til konsern</td></tr>
+          <tr><td><strong>Hovedordre / underordre</strong></td><td>Prosjekter kan best&aring; av en hovedordre med mange underordrer (avrop/endringer). Familien vurderes samlet i POC; i DG%-seksjonen kan hver ordre vurderes individuelt eller samlet</td></tr>
+          <tr><td><strong>Samlet / Individuelt</strong></td><td>Visningsmodus for prosjektfamilier &#8212; knappen ved ordrenummeret bytter. Individuelt (standard) viser alle underordrer; Samlet sl&aring;r tallene sammen til &eacute;n vurdering</td></tr>
+          <tr><td><strong>P&aring;l&oslash;pte kostnader</strong></td><td>Timer + materialer + &oslash;vrige kostnader per periodeslutt &#8212; samme grunnlag som PA-modulen</td></tr>
+          <tr><td><strong>&#9888;&#65039; ved Fakturert</strong></td><td>Fakturert overstiger kontraktssum &#8212; registrer endringsordrer i Tilbudssum p&aring; ordrekortet i Ordrestyring (OS er master)</td></tr>
         </tbody>
       </table>
     </div>
@@ -715,7 +732,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.53 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.54 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1977,7 +1994,7 @@ function startApiLoad(){
           if(!pNr)return;
           if(!_pIdx[pNr])_pIdx[pNr]=0;
           _pIdx[pNr]++;
-          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.53] ordreNr korrigert:',pNr,'->',r.ordreNr);}
+          if(r.ordreNr===pNr){r.ordreNr=pNr+'-'+_pIdx[pNr];console.log('[v10.54] ordreNr korrigert:',pNr,'->',r.ordreNr);}
         });
         window._dgRowsDebug=rows;
         if(window._gqlFails>0){alert('⚠️ '+window._gqlFails+' API-kall mot Ordrestyring feilet til tross for gjentatte forsøk. Tallene kan være ufullstendige — last inn på nytt om noen minutter.');logEvent('APIKallFeilet',{antall:window._gqlFails}).catch(function(){});}
