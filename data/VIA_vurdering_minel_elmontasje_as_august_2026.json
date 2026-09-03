@@ -1325,7 +1325,7 @@
     },
     "43144": {
       "dg": 10,
-      "begrunnelse": "ok",
+      "begrunnelse": "salg materiell ansatt",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -1334,7 +1334,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T13:11:42.327Z"
+      "updatedAt": "2026-09-03T13:11:49.414Z"
     },
     "43156": {
       "dg": 10,
