@@ -37,6 +37,18 @@
       "kv": null,
       "updatedBy": "jon.hulberg@minel.no",
       "updatedAt": "2026-09-03T08:48:10.888Z"
+    },
+    "55188": {
+      "dg": 56,
+      "begrunnelse": " ",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "jon.hulberg@minel.no",
+      "updatedAt": "2026-09-03T08:48:21.714Z"
     }
   },
   "status": {
