@@ -258,5 +258,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T07:57:43.158Z",
+    "bruker": "Kenneth Olsen-Solberg",
+    "epost": "kenneth.olsen-solberg@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
