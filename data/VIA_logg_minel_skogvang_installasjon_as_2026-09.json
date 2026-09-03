@@ -75,5 +75,18 @@
       "selskap": "Minel Skogvang Installasjon AS",
       "period": "august 2026"
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T12:57:21.282Z",
+    "bruker": "Jon Hulberg",
+    "epost": "jon.hulberg@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Skogvang Installasjon AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Halvor Bredsten",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Skogvang Installasjon AS"
+    }
   }
 ]
