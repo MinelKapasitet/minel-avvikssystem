@@ -198,13 +198,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 0,
+      "timer": 480,
       "timekost": null,
       "material": 0,
       "fg": null,
       "kv": null,
       "updatedBy": "kjell.lodemel@minel.no",
-      "updatedAt": "2026-09-03T09:54:19.354Z"
+      "updatedAt": "2026-09-03T09:55:38.644Z"
     },
     "42029": {
       "dg": 35,
