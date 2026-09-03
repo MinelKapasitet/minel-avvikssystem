@@ -3601,6 +3601,45 @@
       "tmo": null,
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-03T12:54:19.871Z"
+    },
+    "43131-4": {
+      "dg": 69,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:54:21.160Z"
+    },
+    "43131-3": {
+      "dg": 80,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:54:22.003Z"
+    },
+    "43131-2": {
+      "dg": 75,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:54:22.902Z"
     }
   },
   "status": {
