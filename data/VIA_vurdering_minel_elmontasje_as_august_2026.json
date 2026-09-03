@@ -198,13 +198,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 600,
+      "timer": 740,
       "timekost": null,
-      "material": 330000,
+      "material": 0,
       "fg": null,
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-02T11:48:55.325Z"
+      "updatedAt": "2026-09-03T07:36:12.066Z"
     },
     "42786": {
       "dg": 69,
