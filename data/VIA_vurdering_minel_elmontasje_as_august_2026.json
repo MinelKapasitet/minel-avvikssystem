@@ -169,7 +169,7 @@
       "updatedAt": "2026-09-03T12:09:26.472Z"
     },
     "40310": {
-      "dg": 78,
+      "dg": 35,
       "begrunnelse": "utsillingsplassen avtale",
       "kommentar": "",
       "timer": null,
@@ -177,9 +177,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": null,
+      "tmo": 1,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T12:26:25.838Z"
+      "updatedAt": "2026-09-03T12:26:28.468Z"
     },
     "40674": {
       "dg": null,
