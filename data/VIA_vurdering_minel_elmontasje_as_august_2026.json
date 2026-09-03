@@ -397,6 +397,18 @@
       "kv": null,
       "updatedBy": "kjell.lodemel@minel.no",
       "updatedAt": "2026-09-03T08:54:58.426Z"
+    },
+    "43715": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 15,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "kjell.lodemel@minel.no",
+      "updatedAt": "2026-09-03T09:04:14.652Z"
     }
   },
   "status": {}
