@@ -277,5 +277,18 @@
       "periode": "august 2026",
       "antallOrdrer": 307
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T11:08:17.897Z",
+    "bruker": "Kjell Hugo Lødemel",
+    "epost": "kjell.lodemel@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Elmontasje AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Kjell Hugo Lødemel",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Elmontasje AS"
+    }
   }
 ]
