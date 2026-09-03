@@ -439,7 +439,7 @@
     },
     "43233": {
       "dg": 0,
-      "begrunnelse": "Salg materiell ansatt",
+      "begrunnelse": "Salg materiell ansatt.",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -448,7 +448,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "per.hagen@minel.no",
-      "updatedAt": "2026-09-03T10:29:59.687Z"
+      "updatedAt": "2026-09-03T11:04:58.003Z"
     },
     "43292": {
       "dg": null,
