@@ -828,12 +828,12 @@
       "kommentar": "",
       "timer": 0,
       "timekost": 0,
-      "material": 1,
+      "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T11:02:24.769Z"
+      "updatedAt": "2026-09-03T11:02:27.486Z"
     }
   },
   "status": {
