@@ -2180,11 +2180,11 @@
       "kommentar": "",
       "timer": 10,
       "timekost": null,
-      "material": 0,
+      "material": 5000,
       "fg": null,
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
-      "updatedAt": "2026-09-03T07:15:01.855Z"
+      "updatedAt": "2026-09-03T07:15:22.089Z"
     },
     "87376": {
       "dg": 36,
