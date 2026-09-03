@@ -1323,6 +1323,19 @@
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-03T13:00:43.289Z"
     },
+    "43144": {
+      "dg": 14,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T13:11:33.224Z"
+    },
     "43156": {
       "dg": 10,
       "begrunnelse": "salg materiell til søster av ansatt",
