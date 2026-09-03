@@ -56,11 +56,11 @@
       "kommentar": "",
       "timer": 4,
       "timekost": null,
-      "material": 0,
+      "material": 7500,
       "fg": null,
       "kv": null,
       "updatedBy": "kjell.lodemel@minel.no",
-      "updatedAt": "2026-09-03T08:53:50.746Z"
+      "updatedAt": "2026-09-03T11:06:01.747Z"
     },
     "40674": {
       "dg": null,
@@ -359,11 +359,11 @@
       "kommentar": "",
       "timer": 4,
       "timekost": null,
-      "material": 0,
+      "material": 6500,
       "fg": null,
       "kv": null,
       "updatedBy": "kjell.lodemel@minel.no",
-      "updatedAt": "2026-09-03T08:54:35.645Z"
+      "updatedAt": "2026-09-03T11:05:50.925Z"
     },
     "43081": {
       "dg": null,
@@ -540,11 +540,11 @@
       "kommentar": "",
       "timer": 15,
       "timekost": null,
-      "material": 0,
+      "material": 9000,
       "fg": null,
       "kv": null,
       "updatedBy": "kjell.lodemel@minel.no",
-      "updatedAt": "2026-09-03T11:04:45.667Z"
+      "updatedAt": "2026-09-03T11:05:01.888Z"
     },
     "43372": {
       "dg": null,
