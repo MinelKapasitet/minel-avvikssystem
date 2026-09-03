@@ -152,5 +152,18 @@
       "periode": "august 2026",
       "antallOrdrer": 599
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T10:27:38.765Z",
+    "bruker": "Ole Morten Resvoll",
+    "epost": "ole.resvoll@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Ole Morten Resvoll",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Gudbrandsdal AS"
+    }
   }
 ]
