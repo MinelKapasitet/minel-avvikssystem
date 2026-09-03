@@ -615,5 +615,11 @@
       "updatedAt": "2026-09-03T09:04:14.652Z"
     }
   },
-  "status": {}
+  "status": {
+    "Bjørnar Sleppen": {
+      "done": true,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T09:46:37.567Z"
+    }
+  }
 }
