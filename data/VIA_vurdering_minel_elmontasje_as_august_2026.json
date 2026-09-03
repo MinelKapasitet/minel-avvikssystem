@@ -184,7 +184,7 @@
     },
     "42786": {
       "dg": 69,
-      "begrunnelse": "",
+      "begrunnelse": "hentet DG fra ordrestyring",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -192,7 +192,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T08:34:37.215Z"
+      "updatedAt": "2026-09-03T08:35:26.319Z"
     },
     "42968": {
       "dg": null,
