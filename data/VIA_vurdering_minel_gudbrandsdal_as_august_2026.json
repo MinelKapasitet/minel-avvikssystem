@@ -2126,6 +2126,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-09-01T12:00:26.768Z"
     },
+    "87330": {
+      "dg": 60,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-09-03T07:16:59.429Z"
+    },
     "87333": {
       "dg": 15,
       "begrunnelse": "delvis reklamasjon",
