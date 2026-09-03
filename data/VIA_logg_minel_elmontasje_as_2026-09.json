@@ -379,5 +379,17 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Elmontasje AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T12:51:44.011Z",
+    "bruker": "Bjørnar Sleppen",
+    "epost": "bjornar.sleppen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Elmontasje AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Elmontasje AS",
+      "period": "august 2026"
+    }
   }
 ]
