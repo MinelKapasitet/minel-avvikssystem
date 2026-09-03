@@ -3364,13 +3364,13 @@
       "begrunnelse": "",
       "kommentar": "",
       "timer": 0,
-      "timekost": 0,
+      "timekost": null,
       "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T11:05:42.658Z"
+      "updatedAt": "2026-09-03T13:02:07.611Z"
     },
     "43379-1": {
       "dg": null,
