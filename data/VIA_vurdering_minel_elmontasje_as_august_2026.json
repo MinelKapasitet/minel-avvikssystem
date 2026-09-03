@@ -2595,7 +2595,7 @@
     },
     "43634": {
       "dg": 0,
-      "begrunnelse": "",
+      "begrunnelse": "ladeboks firmabil",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -2604,7 +2604,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T13:11:12.544Z"
+      "updatedAt": "2026-09-03T13:11:19.522Z"
     },
     "43635": {
       "dg": 35,
