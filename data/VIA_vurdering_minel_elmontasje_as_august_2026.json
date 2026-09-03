@@ -3387,6 +3387,32 @@
       "tmo": null,
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-03T12:42:31.627Z"
+    },
+    "42786-7": {
+      "dg": 100,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:42:33.604Z"
+    },
+    "42786-6": {
+      "dg": 58,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:42:34.909Z"
     }
   },
   "status": {
