@@ -690,13 +690,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 1,
+      "timer": 0,
       "timekost": null,
       "material": 0,
       "fg": null,
       "kv": null,
       "updatedBy": "per.hagen@minel.no",
-      "updatedAt": "2026-09-03T09:49:18.900Z"
+      "updatedAt": "2026-09-03T09:49:21.579Z"
     }
   },
   "status": {
