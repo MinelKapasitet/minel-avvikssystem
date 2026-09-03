@@ -520,7 +520,7 @@
     },
     "43628": {
       "dg": 0,
-      "begrunnelse": "",
+      "begrunnelse": "salg materiell ansatt",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -528,7 +528,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "lars.hestvik@minel.no",
-      "updatedAt": "2026-09-03T09:44:39.853Z"
+      "updatedAt": "2026-09-03T09:44:54.875Z"
     },
     "43637": {
       "dg": 0,
