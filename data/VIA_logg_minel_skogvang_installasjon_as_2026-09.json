@@ -63,5 +63,17 @@
       "periode": "august 2026",
       "antallOrdrer": 374
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T12:50:52.121Z",
+    "bruker": "Jon Hulberg",
+    "epost": "jon.hulberg@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Skogvang Installasjon AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Skogvang Installasjon AS",
+      "period": "august 2026"
+    }
   }
 ]
