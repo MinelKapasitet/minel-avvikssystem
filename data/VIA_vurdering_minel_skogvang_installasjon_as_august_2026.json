@@ -29,7 +29,7 @@
       "updatedAt": "2026-09-03T13:36:27.787Z"
     },
     "53848": {
-      "dg": 0,
+      "dg": 61,
       "begrunnelse": "Kunde er ansatt",
       "kommentar": "",
       "timer": null,
@@ -37,9 +37,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": 1,
+      "tmo": null,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-03T13:39:24.991Z"
+      "updatedAt": "2026-09-03T13:39:27.931Z"
     },
     "54597": {
       "dg": 10,
