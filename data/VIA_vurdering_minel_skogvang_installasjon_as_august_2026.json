@@ -28,7 +28,7 @@
     },
     "54988": {
       "dg": 0,
-      "begrunnelse": "",
+      "begrunnelse": "1 samleordre for timer, matr, alt faktureres fortløpende pr.kunde. ",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -36,7 +36,7 @@
       "fg": null,
       "kv": null,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-03T08:47:32.474Z"
+      "updatedAt": "2026-09-03T08:48:10.888Z"
     }
   },
   "status": {
