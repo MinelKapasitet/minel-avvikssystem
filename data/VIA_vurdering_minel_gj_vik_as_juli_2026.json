@@ -102,13 +102,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 40000,
+      "timer": 0,
       "timekost": 450,
       "material": 0,
       "fg": null,
       "kv": null,
       "updatedBy": "geir.sangnaes@minel.no",
-      "updatedAt": "2026-09-03T07:40:10.144Z"
+      "updatedAt": "2026-09-03T07:40:13.174Z"
     },
     "63764": {
       "dg": 20,
