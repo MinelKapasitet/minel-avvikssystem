@@ -44,11 +44,11 @@
       "kommentar": "",
       "timer": 10,
       "timekost": null,
-      "material": 0,
+      "material": 5000,
       "fg": null,
       "kv": null,
       "updatedBy": "per.hagen@minel.no",
-      "updatedAt": "2026-09-03T09:52:45.613Z"
+      "updatedAt": "2026-09-03T09:52:48.887Z"
     },
     "40188": {
       "dg": null,
