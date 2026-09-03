@@ -668,11 +668,11 @@
       "kommentar": "",
       "timer": 4,
       "timekost": null,
-      "material": 0,
+      "material": 1200,
       "fg": null,
       "kv": null,
       "updatedBy": "kjell.lodemel@minel.no",
-      "updatedAt": "2026-09-03T09:04:31.975Z"
+      "updatedAt": "2026-09-03T09:55:34.336Z"
     },
     "43712": {
       "dg": null,
