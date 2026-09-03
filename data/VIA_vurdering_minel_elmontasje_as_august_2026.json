@@ -1858,6 +1858,19 @@
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-03T12:23:16.861Z"
     },
+    "43663": {
+      "dg": 78,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:25:43.829Z"
+    },
     "43664": {
       "dg": 35,
       "begrunnelse": "avtalepriser Sirkula prosjekt.",
