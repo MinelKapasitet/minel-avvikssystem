@@ -950,6 +950,18 @@
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T07:32:16.570Z"
     },
+    "86820": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "bjorn.bratlien@minel.no",
+      "updatedAt": "2026-09-03T06:28:04.725Z"
+    },
     "86846": {
       "dg": 32,
       "begrunnelse": "liten hytte langt unna",
