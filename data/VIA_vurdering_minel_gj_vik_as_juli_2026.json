@@ -133,6 +133,18 @@
       "kv": null,
       "updatedBy": "geir.sangnaes@minel.no",
       "updatedAt": "2026-09-03T04:22:42.349Z"
+    },
+    "63183-1": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "geir.sangnaes@minel.no",
+      "updatedAt": "2026-09-03T04:22:57.491Z"
     }
   },
   "status": {}
