@@ -6,13 +6,13 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 60,
+      "timer": 100,
       "timekost": null,
       "material": 75000,
       "fg": null,
       "kv": null,
       "updatedBy": "magnus.nyeggen@minel.no",
-      "updatedAt": "2026-09-03T06:36:06.281Z"
+      "updatedAt": "2026-09-03T06:59:39.056Z"
     },
     "51162": {
       "dg": null,
@@ -61,18 +61,6 @@
       "kv": null,
       "updatedBy": "einar.dotseth@minel.no",
       "updatedAt": "2026-08-31T10:25:48.861Z"
-    },
-    "62777": {
-      "dg": null,
-      "begrunnelse": "",
-      "kommentar": "",
-      "timer": 0,
-      "timekost": null,
-      "material": 0,
-      "fg": null,
-      "kv": null,
-      "updatedBy": "geir.sangnaes@minel.no",
-      "updatedAt": "2026-09-03T06:40:47.548Z"
     },
     "63183": {
       "dg": 0,
