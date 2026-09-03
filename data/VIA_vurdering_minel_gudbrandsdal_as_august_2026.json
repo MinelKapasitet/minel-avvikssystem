@@ -1058,6 +1058,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-09-01T12:02:00.140Z"
     },
+    "86566": {
+      "dg": 68,
+      "begrunnelse": ",",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-09-03T06:41:41.869Z"
+    },
     "86570": {
       "dg": 15,
       "begrunnelse": "Bommert av elektriker",
@@ -1165,6 +1177,18 @@
       "kv": null,
       "updatedBy": "susann.endrestad@minel.no",
       "updatedAt": "2026-09-01T06:10:19.620Z"
+    },
+    "86693": {
+      "dg": 35,
+      "begrunnelse": ",",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-09-03T06:41:43.184Z"
     },
     "86698": {
       "dg": 40,
@@ -2162,6 +2186,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-09-01T12:00:21.055Z"
     },
+    "87337": {
+      "dg": 36,
+      "begrunnelse": ",",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-09-03T06:41:42.660Z"
+    },
     "87338": {
       "dg": 30,
       "begrunnelse": "",
@@ -2353,6 +2389,18 @@
       "kv": null,
       "updatedBy": "ansgar.joten@minel.no",
       "updatedAt": "2026-09-03T06:36:12.791Z"
+    },
+    "87384": {
+      "dg": 72,
+      "begrunnelse": ",",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "espen.kroken@minel.no",
+      "updatedAt": "2026-09-03T06:41:43.682Z"
     },
     "87388": {
       "dg": 25,
