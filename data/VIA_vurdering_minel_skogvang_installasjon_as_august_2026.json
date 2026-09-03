@@ -244,6 +244,19 @@
       "tmo": 1,
       "updatedBy": "jon.hulberg@minel.no",
       "updatedAt": "2026-09-03T13:21:13.969Z"
+    },
+    "54597-5": {
+      "dg": 0,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "jon.hulberg@minel.no",
+      "updatedAt": "2026-09-03T13:21:14.933Z"
     }
   },
   "status": {
