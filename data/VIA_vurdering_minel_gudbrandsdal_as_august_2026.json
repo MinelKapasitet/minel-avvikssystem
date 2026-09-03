@@ -2010,6 +2010,19 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-09-01T11:52:19.101Z"
     },
+    "87242": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "tage.selsjord@minel.no",
+      "updatedAt": "2026-09-03T12:15:59.291Z"
+    },
     "87243": {
       "dg": 45,
       "begrunnelse": "",
