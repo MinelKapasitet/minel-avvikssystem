@@ -280,5 +280,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T10:09:03.445Z",
+    "bruker": "Lars Aamodt",
+    "epost": "lars.aamodt@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Land Elektriske AS",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
