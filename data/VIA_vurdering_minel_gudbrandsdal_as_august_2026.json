@@ -146,6 +146,18 @@
       "updatedBy": "martin.odlolien@minel.no",
       "updatedAt": "2026-09-01T11:59:35.725Z"
     },
+    "84686": {
+      "dg": 25,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "bjorn.bratlien@minel.no",
+      "updatedAt": "2026-09-03T06:11:17.720Z"
+    },
     "84691": {
       "dg": 35,
       "begrunnelse": "",
