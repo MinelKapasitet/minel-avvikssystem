@@ -88,6 +88,19 @@
       "updatedBy": "kjell.lodemel@minel.no",
       "updatedAt": "2026-09-03T11:06:01.747Z"
     },
+    "40229": {
+      "dg": 38,
+      "begrunnelse": "ok",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:09:01.595Z"
+    },
     "40674": {
       "dg": null,
       "begrunnelse": "",
