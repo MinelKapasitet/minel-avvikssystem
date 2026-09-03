@@ -1412,8 +1412,9 @@
       "material": 0,
       "fg": null,
       "kv": null,
-      "updatedBy": "per.hagen@minel.no",
-      "updatedAt": "2026-09-03T09:49:21.579Z"
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:19:33.526Z"
     },
     "43411-1": {
       "dg": null,
