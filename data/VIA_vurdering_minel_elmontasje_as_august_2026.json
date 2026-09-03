@@ -2318,7 +2318,7 @@
       "kv": null,
       "tmo": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T12:22:01.838Z"
+      "updatedAt": "2026-09-03T13:12:08.597Z"
     },
     "43558": {
       "dg": 65,
@@ -3280,6 +3280,19 @@
       "tmo": 1,
       "updatedBy": "bjornar.sleppen@minel.no",
       "updatedAt": "2026-09-03T12:35:34.795Z"
+    },
+    "43727": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 0,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T13:12:07.667Z"
     },
     "43728": {
       "dg": 81,
