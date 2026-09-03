@@ -2,6 +2,18 @@
   "period": "juli 2026",
   "company": "Minel Gjøvik AS",
   "items": {
+    "49949": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 0,
+      "timekost": null,
+      "material": 75000,
+      "fg": null,
+      "kv": null,
+      "updatedBy": "magnus.nyeggen@minel.no",
+      "updatedAt": "2026-09-03T06:27:22.381Z"
+    },
     "51162": {
       "dg": null,
       "begrunnelse": "",
