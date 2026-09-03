@@ -184,7 +184,7 @@
     },
     "41973": {
       "dg": 13.5,
-      "begrunnelse": "",
+      "begrunnelse": "Salg materiell iht. avtale",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -193,7 +193,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "per.hagen@minel.no",
-      "updatedAt": "2026-09-03T10:46:59.834Z"
+      "updatedAt": "2026-09-03T11:04:53.691Z"
     },
     "41975": {
       "dg": null,
