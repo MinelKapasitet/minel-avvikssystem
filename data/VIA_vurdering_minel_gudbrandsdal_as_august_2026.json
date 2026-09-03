@@ -2370,13 +2370,13 @@
       "dg": 35,
       "begrunnelse": ",",
       "kommentar": "",
-      "timer": 0,
+      "timer": 500,
       "timekost": null,
       "material": 0,
       "fg": null,
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
-      "updatedAt": "2026-09-03T07:12:37.227Z"
+      "updatedAt": "2026-09-03T07:12:42.122Z"
     }
   },
   "status": {
