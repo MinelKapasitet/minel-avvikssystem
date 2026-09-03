@@ -214,5 +214,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-09-03T06:06:35.041Z",
+    "bruker": "Bjørn Bratlien",
+    "epost": "bjorn.bratlien@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
