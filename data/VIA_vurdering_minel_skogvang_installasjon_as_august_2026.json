@@ -62,8 +62,9 @@
       "material": null,
       "fg": null,
       "kv": null,
+      "tmo": 1,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-03T08:52:34.142Z"
+      "updatedAt": "2026-09-03T13:28:40.258Z"
     },
     "55188": {
       "dg": 56,
