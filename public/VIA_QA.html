@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>VIA QA – Minel AS v10.59</title>
+<title>VIA QA – Minel AS v10.60</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@2.38.3/lib/msal-browser.min.js"></script>
 <style>
@@ -239,7 +239,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
   <span id="user-badge" style="font-size:.76rem;color:#ccc;margin-right:8px;white-space:nowrap;"></span>
   <span id="save-badge" style="display:none;font-size:.7rem;padding:2px 9px;border-radius:10px;margin-right:8px;font-weight:600;transition:opacity .4s;"></span>
-  <span class="hd-badge">v10.59</span>
+  <span class="hd-badge">v10.60</span>
 <button class="hd-help-btn" onclick="openHelp()">&#128218; Hjelp</button>
 </header>
 <div id="helpOverlay" class="help-overlay" onclick="if(event.target===this)closeHelp()">
@@ -732,7 +732,7 @@ try{_ai=new Microsoft.ApplicationInsights.ApplicationInsights({config:{connectio
   </div>
 </div>
 
-<footer>Minel AS · VIA QA v10.59 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
+<footer>Minel AS · VIA QA v10.60 · Datobegrenset perioderegnskap · Data behandles lokalt</footer>
 
 <script>
 function helpTab(btn,id){document.querySelectorAll('.help-tab').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.help-panel').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1048,6 +1048,8 @@ async function spLoadAssessments(period,company){
       if(f.dg!=null){var _dgVal=parseFloat(f.dg);if(isNaN(_dgVal))_dgVal=35;if(!DGI[ordreNr])DGI[ordreNr]={dg:_dgVal,k:f.begrunnelse||''};else{DGI[ordreNr].dg=_dgVal;if(f.begrunnelse)DGI[ordreNr].k=f.begrunnelse;}}
       if(f.fg!=null){if(!DGI[ordreNr])DGI[ordreNr]={dg:35,k:''};DGI[ordreNr].fg=parseFloat(f.fg)||100;}
       if(f.kv!=null&&parseFloat(f.kv)>0){if(!DGI[ordreNr])DGI[ordreNr]={dg:35,k:''};DGI[ordreNr].kv=parseFloat(f.kv);}
+      // v10.60: gjenopprett T&M-overstyring — uten dette reverterte regningsordrer til OS-DG% ved refresh (Per Thomas' funn)
+      if(f.tmo){if(!DGI[ordreNr])DGI[ordreNr]={dg:35,k:''};DGI[ordreNr].tmOverride=true;}
       var _hasPoc=f.kommentar||f.timer!=null||f.timekost!=null||f.material!=null;
       if(_hasPoc){if(!POC[ordreNr])POC[ordreNr]={timer:0,tk:null,mat:0,k:''};if(f.kommentar)POC[ordreNr].k=f.kommentar;if(f.timer!=null)POC[ordreNr].timer=parseFloat(f.timer)||0;if(f.timekost!=null)POC[ordreNr].tk=parseFloat(f.timekost)||null;if(f.material!=null)POC[ordreNr].mat=parseFloat(f.material)||0;}
     });
@@ -1102,6 +1104,7 @@ async function spSaveAssessment(period,company,ordreNr,dg,begrunnelse,kommentar,
       material:poc&&poc.mat!=null?poc.mat:null,
       fg:fg!=null?fg:null,
       kv:kv!=null&&kv>0?kv:null,
+      tmo:(DGI[ordreNr]&&DGI[ordreNr].tmOverride)?1:null, // v10.60: persister T&M-overstyring
       updatedBy:_spUser,
       updatedAt:new Date().toISOString()
     };
@@ -2443,6 +2446,9 @@ function sD(id,f,v){
 function resetTM(id){
   if(DGI[id]){DGI[id].tmOverride=false;var _r=ACTIVE.find(function(x){return x.ordreNr===id;});if(_r){var pct=_r.fSalgsverdi&&_r.totOmk?Math.round((_r.fSalgsverdi-_r.totOmk)/_r.fSalgsverdi*100):35;DGI[id].dg=pct;}}
   rPOC();
+  // v10.60: persister reset — ellers gjenoppstår overstyringen fra lagret fil ved neste refresh
+  var _p=_currentPeriod||document.getElementById('aperiod').textContent,_c=_currentEntity||document.getElementById('lentity').value||'';
+  if(_p&&_c&&DGI[id])spSaveDebounced(_p,_c,id,DGI[id].dg,DGI[id].k,'',null,DGI[id].fg,DGI[id].kv);
 }
 function applyGlobalDG(){
   var val=parseFloat(document.getElementById('global-dg').value);
