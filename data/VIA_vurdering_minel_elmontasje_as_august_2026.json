@@ -532,8 +532,9 @@
       "material": 50000,
       "fg": null,
       "kv": null,
+      "tmo": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-02T12:03:49.573Z"
+      "updatedAt": "2026-09-03T12:19:34.646Z"
     },
     "42679": {
       "dg": 47,
@@ -647,8 +648,9 @@
       "material": 250000,
       "fg": null,
       "kv": null,
-      "updatedBy": "per.hagen@minel.no",
-      "updatedAt": "2026-09-03T08:39:06.463Z"
+      "tmo": null,
+      "updatedBy": "bjornar.sleppen@minel.no",
+      "updatedAt": "2026-09-03T12:19:35.728Z"
     },
     "42968": {
       "dg": null,
