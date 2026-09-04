@@ -368,5 +368,16 @@
     "detaljer": {
       "metode": "silent"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T07:32:42.777Z",
+    "bruker": "Kristian Bye",
+    "epost": "kristian.bye@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
