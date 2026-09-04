@@ -14,6 +14,19 @@
       "tmo": null,
       "updatedBy": "geir.sangnaes@minel.no",
       "updatedAt": "2026-09-04T10:09:52.988Z"
+    },
+    "63809": {
+      "dg": 18,
+      "begrunnelse": "OK",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "geir.sangnaes@minel.no",
+      "updatedAt": "2026-09-04T10:24:01.750Z"
     }
   },
   "status": {}
