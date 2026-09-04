@@ -366,6 +366,19 @@
       "updatedBy": "jan-terje.hagehaugen@minel.no",
       "updatedAt": "2026-09-04T08:27:04.961Z"
     },
+    "32423": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 800,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "jan-terje.hagehaugen@minel.no",
+      "updatedAt": "2026-09-04T08:40:26.414Z"
+    },
     "32432": {
       "dg": null,
       "begrunnelse": "",
