@@ -55,7 +55,7 @@
       "updatedAt": "2026-09-04T10:50:18.751Z"
     },
     "60685": {
-      "dg": 19.5,
+      "dg": 22,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -63,9 +63,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": 1,
+      "tmo": null,
       "updatedBy": "magnus.nyeggen@minel.no",
-      "updatedAt": "2026-09-04T10:58:10.923Z"
+      "updatedAt": "2026-09-04T10:58:16.057Z"
     },
     "60919": {
       "dg": 0,
