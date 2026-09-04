@@ -53,6 +53,19 @@
       "tmo": null,
       "updatedBy": "geir.sangnaes@minel.no",
       "updatedAt": "2026-09-04T10:28:47.277Z"
+    },
+    "64656-1": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "vegard.haugerud@minel.no",
+      "updatedAt": "2026-09-04T10:33:43.255Z"
     }
   },
   "status": {
