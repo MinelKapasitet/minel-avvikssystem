@@ -353,7 +353,7 @@
       "updatedAt": "2026-09-04T06:09:56.937Z"
     },
     "54597-6": {
-      "dg": 0,
+      "dg": 55,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -361,12 +361,12 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": 1,
+      "tmo": null,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-03T13:21:13.969Z"
+      "updatedAt": "2026-09-04T06:09:57.456Z"
     },
     "54597-5": {
-      "dg": 0,
+      "dg": 55,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -374,9 +374,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": 1,
+      "tmo": null,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-03T13:21:14.933Z"
+      "updatedAt": "2026-09-04T06:09:57.908Z"
     },
     "54597-4": {
       "dg": 0,
