@@ -73,12 +73,12 @@
       "kommentar": "",
       "timer": 22.5,
       "timekost": null,
-      "material": 0,
+      "material": 5000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kristian.bye@minel.no",
-      "updatedAt": "2026-09-04T07:41:44.817Z"
+      "updatedAt": "2026-09-04T07:44:30.468Z"
     },
     "32467": {
       "dg": 10,
