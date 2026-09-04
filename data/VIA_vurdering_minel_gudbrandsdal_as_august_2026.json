@@ -3216,6 +3216,19 @@
       "tmo": null,
       "updatedBy": "erling.lid@minel.no",
       "updatedAt": "2026-09-04T06:28:10.827Z"
+    },
+    "81394-4": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 20,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "erling.lid@minel.no",
+      "updatedAt": "2026-09-04T06:29:08.297Z"
     }
   },
   "status": {
