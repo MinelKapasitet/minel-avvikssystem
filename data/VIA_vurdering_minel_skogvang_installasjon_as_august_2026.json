@@ -327,7 +327,7 @@
       "updatedAt": "2026-09-03T13:15:36.139Z"
     },
     "54597-9": {
-      "dg": 73,
+      "dg": 34,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -335,12 +335,12 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": null,
+      "tmo": 1,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-04T06:09:55.909Z"
+      "updatedAt": "2026-09-04T06:12:32.731Z"
     },
     "54597-7": {
-      "dg": 56,
+      "dg": 34,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -348,12 +348,12 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": null,
+      "tmo": 1,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-04T06:09:56.937Z"
+      "updatedAt": "2026-09-04T06:12:33.652Z"
     },
     "54597-6": {
-      "dg": 55,
+      "dg": 0,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -361,9 +361,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": null,
+      "tmo": 1,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-04T06:09:57.456Z"
+      "updatedAt": "2026-09-04T06:10:08.736Z"
     },
     "54597-5": {
       "dg": 55,
@@ -389,7 +389,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-03T13:21:16.048Z"
+      "updatedAt": "2026-09-04T06:10:12.121Z"
     }
   },
   "status": {
