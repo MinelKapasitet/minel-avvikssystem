@@ -448,14 +448,14 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 130,
+      "timer": 110,
       "timekost": null,
       "material": 40000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "magnus.nyeggen@minel.no",
-      "updatedAt": "2026-09-04T11:11:23.513Z"
+      "updatedAt": "2026-09-04T11:13:00.469Z"
     },
     "65187": {
       "dg": 10,
