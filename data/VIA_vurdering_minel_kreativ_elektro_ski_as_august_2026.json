@@ -15,6 +15,19 @@
       "updatedBy": "ola.sillerud@minel.no",
       "updatedAt": "2026-09-04T08:00:30.362Z"
     },
+    "26436": {
+      "dg": 35,
+      "begrunnelse": "Denne var avsluttet i Visma",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "ola.sillerud@minel.no",
+      "updatedAt": "2026-09-04T08:04:04.514Z"
+    },
     "26697": {
       "dg": 0,
       "begrunnelse": "skal avsluttes gamelt fra visma",
