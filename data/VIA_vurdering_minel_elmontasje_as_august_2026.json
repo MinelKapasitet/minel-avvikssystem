@@ -961,7 +961,7 @@
     },
     "42786": {
       "dg": 69,
-      "begrunnelse": "hentet DG fra ordrestyring",
+      "begrunnelse": "ajoufakturert T&M avtalte rater",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -970,7 +970,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T10:56:04.125Z"
+      "updatedAt": "2026-09-04T07:02:15.428Z"
     },
     "42859": {
       "dg": 0,
