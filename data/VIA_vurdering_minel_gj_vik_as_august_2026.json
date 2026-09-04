@@ -223,6 +223,19 @@
       "updatedBy": "geir.sangnaes@minel.no",
       "updatedAt": "2026-09-04T10:24:30.290Z"
     },
+    "64099": {
+      "dg": 45,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "steffen.fuglerud@minel.no",
+      "updatedAt": "2026-09-04T11:01:12.705Z"
+    },
     "64397": {
       "dg": null,
       "begrunnelse": "",
