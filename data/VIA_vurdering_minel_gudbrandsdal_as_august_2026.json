@@ -734,12 +734,12 @@
       "kommentar": "",
       "timer": 10,
       "timekost": null,
-      "material": 0,
+      "material": 1000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "oyvind.teigen@minel.no",
-      "updatedAt": "2026-09-04T05:35:31.328Z"
+      "updatedAt": "2026-09-04T05:35:37.162Z"
     },
     "85955": {
       "dg": null,
