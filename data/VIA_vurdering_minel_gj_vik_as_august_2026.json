@@ -268,12 +268,12 @@
       "kommentar": "",
       "timer": 4,
       "timekost": null,
-      "material": 0,
+      "material": 500,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kenneth.olsen-solberg@minel.no",
-      "updatedAt": "2026-09-04T10:52:13.805Z"
+      "updatedAt": "2026-09-04T10:52:18.683Z"
     }
   },
   "status": {
