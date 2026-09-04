@@ -1764,6 +1764,19 @@
       "updatedBy": "ansgar.joten@minel.no",
       "updatedAt": "2026-09-03T06:38:52.522Z"
     },
+    "87042": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 15,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "oyvind.teigen@minel.no",
+      "updatedAt": "2026-09-04T05:34:22.534Z"
+    },
     "87044": {
       "dg": 36,
       "begrunnelse": "",
