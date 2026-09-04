@@ -84,14 +84,14 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 4,
+      "timer": 0,
       "timekost": null,
-      "material": 750,
+      "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kristian.bye@minel.no",
-      "updatedAt": "2026-09-04T07:48:51.650Z"
+      "updatedAt": "2026-09-04T07:49:15.650Z"
     },
     "32467": {
       "dg": 10,
