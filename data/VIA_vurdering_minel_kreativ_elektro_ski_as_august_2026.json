@@ -94,7 +94,7 @@
       "updatedAt": "2026-09-04T07:14:15.551Z"
     },
     "31433": {
-      "dg": 30,
+      "dg": 44,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -102,9 +102,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": null,
+      "tmo": 1,
       "updatedBy": "kristian.sakariassen@minel.no",
-      "updatedAt": "2026-09-04T08:45:49.359Z"
+      "updatedAt": "2026-09-04T08:45:58.559Z"
     },
     "31473": {
       "dg": null,
