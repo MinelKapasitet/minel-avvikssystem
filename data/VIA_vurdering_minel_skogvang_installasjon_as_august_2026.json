@@ -340,7 +340,7 @@
       "updatedAt": "2026-09-04T06:09:55.909Z"
     },
     "54597-7": {
-      "dg": 0,
+      "dg": 56,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -348,9 +348,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": 1,
+      "tmo": null,
       "updatedBy": "jon.hulberg@minel.no",
-      "updatedAt": "2026-09-03T13:21:12.539Z"
+      "updatedAt": "2026-09-04T06:09:56.937Z"
     },
     "54597-6": {
       "dg": 0,
