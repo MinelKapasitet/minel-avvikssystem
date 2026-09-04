@@ -217,5 +217,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Gudbrandsdal AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T06:57:53.826Z",
+    "bruker": "Erling Lid",
+    "epost": "erling.lid@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Erling Lid",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Gudbrandsdal AS"
+    }
   }
 ]
