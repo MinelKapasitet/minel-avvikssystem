@@ -770,7 +770,7 @@
       "updatedAt": "2026-09-04T08:40:00.210Z"
     },
     "32581": {
-      "dg": 65,
+      "dg": 35,
       "begrunnelse": "pågpår",
       "kommentar": "",
       "timer": null,
@@ -778,9 +778,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": null,
+      "tmo": 1,
       "updatedBy": "jan-terje.hagehaugen@minel.no",
-      "updatedAt": "2026-09-04T08:47:26.780Z"
+      "updatedAt": "2026-09-04T08:47:29.149Z"
     },
     "32583": {
       "dg": null,
