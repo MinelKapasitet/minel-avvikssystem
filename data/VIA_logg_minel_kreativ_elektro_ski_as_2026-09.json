@@ -49,5 +49,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Kreativ Elektro Ski AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T10:00:29.244Z",
+    "bruker": "Jan-Terje Hagehaugen",
+    "epost": "jan-terje.hagehaugen@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Kreativ Elektro Ski AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Jan Terje Hagehaugen",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Kreativ Elektro Ski AS"
+    }
   }
 ]
