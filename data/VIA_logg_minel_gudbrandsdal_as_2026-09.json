@@ -191,5 +191,18 @@
       "periode": "august 2026",
       "antallOrdrer": 602
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T05:40:08.265Z",
+    "bruker": "Øyvind Teigen",
+    "epost": "oyvind.teigen@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Øyvind  Teigen",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Gudbrandsdal AS"
+    }
   }
 ]
