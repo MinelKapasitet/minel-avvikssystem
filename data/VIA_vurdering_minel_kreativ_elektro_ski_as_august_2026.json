@@ -781,6 +781,19 @@
       "tmo": null,
       "updatedBy": "kristian.sakariassen@minel.no",
       "updatedAt": "2026-09-04T08:23:30.579Z"
+    },
+    "32152-1": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 5,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "kristian.sakariassen@minel.no",
+      "updatedAt": "2026-09-04T08:26:33.633Z"
     }
   },
   "status": {}
