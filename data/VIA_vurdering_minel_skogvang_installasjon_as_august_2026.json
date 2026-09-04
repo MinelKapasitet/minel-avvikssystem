@@ -1184,6 +1184,19 @@
       "updatedBy": "rune.skogheim@minel.no",
       "updatedAt": "2026-09-04T11:09:07.168Z"
     },
+    "55312": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:25:51.753Z"
+    },
     "55316": {
       "dg": 1,
       "begrunnelse": "Elektriker som tester Plejd",
