@@ -28,6 +28,19 @@
       "updatedBy": "geir.sangnaes@minel.no",
       "updatedAt": "2026-09-04T10:25:04.577Z"
     },
+    "60113": {
+      "dg": 10,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "einar.dotseth@minel.no",
+      "updatedAt": "2026-09-04T10:50:18.751Z"
+    },
     "60919": {
       "dg": 0,
       "begrunnelse": "",
