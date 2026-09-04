@@ -313,5 +313,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T06:12:12.228Z",
+    "bruker": "Stian Ekhougen",
+    "epost": "stian.ekhougen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Drøbak Elektriske AS",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
