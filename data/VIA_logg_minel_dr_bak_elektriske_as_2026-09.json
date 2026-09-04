@@ -24,5 +24,17 @@
       "periode": "august 2026",
       "antallOrdrer": 336
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T06:57:21.164Z",
+    "bruker": "Stian Ekhougen",
+    "epost": "stian.ekhougen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Drøbak Elektriske AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Drøbak Elektriske AS",
+      "period": "august 2026"
+    }
   }
 ]
