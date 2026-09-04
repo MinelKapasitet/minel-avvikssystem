@@ -444,6 +444,19 @@
       "updatedBy": "kristian.bye@minel.no",
       "updatedAt": "2026-09-04T08:03:39.331Z"
     },
+    "32511": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "kristian.bye@minel.no",
+      "updatedAt": "2026-09-04T08:20:22.245Z"
+    },
     "25000-22": {
       "dg": null,
       "begrunnelse": "",
