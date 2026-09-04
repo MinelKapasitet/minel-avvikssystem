@@ -138,12 +138,12 @@
       "kommentar": "",
       "timer": 2100,
       "timekost": null,
-      "material": 1100000,
+      "material": 1000000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "jan-terje.hagehaugen@minel.no",
-      "updatedAt": "2026-09-04T08:19:39.077Z"
+      "updatedAt": "2026-09-04T08:21:02.599Z"
     },
     "32038": {
       "dg": null,
