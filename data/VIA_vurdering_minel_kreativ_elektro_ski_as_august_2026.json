@@ -1,0 +1,20 @@
+{
+  "period": "august 2026",
+  "company": "Minel Kreativ Elektro Ski AS",
+  "items": {
+    "25000": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 0,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "ola.sillerud@minel.no",
+      "updatedAt": "2026-09-04T06:38:52.981Z"
+    }
+  },
+  "status": {}
+}
