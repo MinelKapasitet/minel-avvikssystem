@@ -615,5 +615,18 @@
       "selskap": "Minel Gjøvik AS",
       "period": "august 2026"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T10:25:28.205Z",
+    "bruker": "Geir Atle Sangnæs",
+    "epost": "geir.sangnaes@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gjøvik AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Kari  Bergengen",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Gjøvik AS"
+    }
   }
 ]
