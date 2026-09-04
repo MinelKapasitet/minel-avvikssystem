@@ -313,6 +313,19 @@
       "updatedBy": "jon.hulberg@minel.no",
       "updatedAt": "2026-09-03T08:53:08.975Z"
     },
+    "55297": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:02:11.257Z"
+    },
     "55316": {
       "dg": 1,
       "begrunnelse": "Elektriker som tester Plejd",
