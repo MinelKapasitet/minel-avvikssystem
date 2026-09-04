@@ -23,5 +23,18 @@
       "selskap": "Minel Kreativ Elektro Ski AS",
       "period": "august 2026"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T08:30:06.087Z",
+    "bruker": "Kristian Bye",
+    "epost": "kristian.bye@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Kreativ Elektro Ski AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Kristian Bye",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Kreativ Elektro Ski AS"
+    }
   }
 ]
