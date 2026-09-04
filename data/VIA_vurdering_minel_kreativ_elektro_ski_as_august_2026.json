@@ -170,6 +170,19 @@
       "tmo": null,
       "updatedBy": "ola.sillerud@minel.no",
       "updatedAt": "2026-09-04T06:40:07.625Z"
+    },
+    "25000-8": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 0,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "ola.sillerud@minel.no",
+      "updatedAt": "2026-09-04T06:53:08.122Z"
     }
   },
   "status": {}
