@@ -93,6 +93,19 @@
       "updatedBy": "ola.sillerud@minel.no",
       "updatedAt": "2026-09-04T07:14:15.551Z"
     },
+    "31433": {
+      "dg": 44,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "kristian.sakariassen@minel.no",
+      "updatedAt": "2026-09-04T08:45:44.652Z"
+    },
     "31473": {
       "dg": null,
       "begrunnelse": "",
