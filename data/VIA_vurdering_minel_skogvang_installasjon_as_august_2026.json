@@ -197,6 +197,19 @@
       "updatedBy": "jon.hulberg@minel.no",
       "updatedAt": "2026-09-04T08:17:09.861Z"
     },
+    "54998": {
+      "dg": 20,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:02:32.410Z"
+    },
     "55035": {
       "dg": 25,
       "begrunnelse": "",
