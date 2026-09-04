@@ -379,5 +379,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T07:53:32.738Z",
+    "bruker": "Jan-Terje Hagehaugen",
+    "epost": "jan-terje.hagehaugen@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
