@@ -511,7 +511,7 @@
     },
     "55272": {
       "dg": 0,
-      "begrunnelse": "",
+      "begrunnelse": "kun timer",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -520,7 +520,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "torstein.sagheim@minel.no",
-      "updatedAt": "2026-09-04T11:07:55.594Z"
+      "updatedAt": "2026-09-04T11:08:06.702Z"
     },
     "55275": {
       "dg": 63,
