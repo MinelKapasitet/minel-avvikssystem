@@ -667,7 +667,7 @@
     },
     "61475-1": {
       "dg": 32.64,
-      "begrunnelse": "",
+      "begrunnelse": "Ordre avsluttet",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -676,7 +676,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "kenneth.olsen-solberg@minel.no",
-      "updatedAt": "2026-09-04T11:04:00.894Z"
+      "updatedAt": "2026-09-04T11:15:59.939Z"
     }
   },
   "status": {
