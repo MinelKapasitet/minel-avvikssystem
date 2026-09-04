@@ -28,6 +28,32 @@
       "updatedBy": "torstein.sagheim@minel.no",
       "updatedAt": "2026-09-04T10:07:14.400Z"
     },
+    "52536": {
+      "dg": 20,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:07:35.641Z"
+    },
+    "52674": {
+      "dg": 10,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:08:32.023Z"
+    },
     "52801": {
       "dg": 48,
       "begrunnelse": "ikke avsluttet",
@@ -54,6 +80,19 @@
       "updatedBy": "rune.skogheim@minel.no",
       "updatedAt": "2026-09-04T10:42:14.205Z"
     },
+    "53253": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:07:40.953Z"
+    },
     "53324": {
       "dg": 0,
       "begrunnelse": "Kunden er ansatt",
@@ -66,6 +105,19 @@
       "tmo": 1,
       "updatedBy": "jon.hulberg@minel.no",
       "updatedAt": "2026-09-03T12:56:55.564Z"
+    },
+    "53426": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:07:31.374Z"
     },
     "53646": {
       "dg": 30,
@@ -118,6 +170,19 @@
       "tmo": 1,
       "updatedBy": "jon.hulberg@minel.no",
       "updatedAt": "2026-09-03T13:39:33.108Z"
+    },
+    "54011": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:08:11.744Z"
     },
     "54236": {
       "dg": 30,
@@ -210,6 +275,19 @@
       "updatedBy": "rune.skogheim@minel.no",
       "updatedAt": "2026-09-04T11:03:27.566Z"
     },
+    "54539": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:07:59.491Z"
+    },
     "54583": {
       "dg": 20,
       "begrunnelse": "",
@@ -262,6 +340,32 @@
       "updatedBy": "rune.skogheim@minel.no",
       "updatedAt": "2026-09-04T11:04:08.415Z"
     },
+    "54677": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:08:22.250Z"
+    },
+    "54711": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:08:02.103Z"
+    },
     "54732": {
       "dg": 28,
       "begrunnelse": "",
@@ -288,6 +392,19 @@
       "updatedBy": "rune.skogheim@minel.no",
       "updatedAt": "2026-09-04T11:03:56.733Z"
     },
+    "54858": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:07:52.015Z"
+    },
     "54928": {
       "dg": 30,
       "begrunnelse": "",
@@ -301,6 +418,19 @@
       "updatedBy": "rune.skogheim@minel.no",
       "updatedAt": "2026-09-04T10:36:26.101Z"
     },
+    "54950": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:07:47.078Z"
+    },
     "54988": {
       "dg": 45,
       "begrunnelse": "1 samleordre for timer, matr, alt faktureres fortløpende pr.kunde. ",
@@ -313,6 +443,19 @@
       "tmo": null,
       "updatedBy": "jon.hulberg@minel.no",
       "updatedAt": "2026-09-04T08:17:09.861Z"
+    },
+    "54995": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:08:07.554Z"
     },
     "54998": {
       "dg": 20,
@@ -444,6 +587,19 @@
       "updatedBy": "rune.skogheim@minel.no",
       "updatedAt": "2026-09-04T10:34:52.925Z"
     },
+    "55179": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:08:27.274Z"
+    },
     "55182": {
       "dg": 30,
       "begrunnelse": "",
@@ -470,6 +626,19 @@
       "updatedBy": "jon.hulberg@minel.no",
       "updatedAt": "2026-09-03T13:29:01.323Z"
     },
+    "55237": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:07:43.292Z"
+    },
     "55241": {
       "dg": 30,
       "begrunnelse": "",
@@ -482,6 +651,19 @@
       "tmo": 1,
       "updatedBy": "rune.skogheim@minel.no",
       "updatedAt": "2026-09-04T11:03:53.317Z"
+    },
+    "55243": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:08:17.519Z"
     },
     "55244": {
       "dg": 33,
