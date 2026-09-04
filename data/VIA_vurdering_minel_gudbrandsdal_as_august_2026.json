@@ -127,6 +127,19 @@
       "updatedBy": "susann.endrestad@minel.no",
       "updatedAt": "2026-09-01T06:09:54.315Z"
     },
+    "82377": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 150000,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "erling.lid@minel.no",
+      "updatedAt": "2026-09-04T06:37:36.820Z"
+    },
     "82412": {
       "dg": 22,
       "begrunnelse": "",
