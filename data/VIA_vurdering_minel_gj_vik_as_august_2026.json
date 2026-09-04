@@ -17,7 +17,7 @@
     },
     "63809": {
       "dg": 18,
-      "begrunnelse": "OK",
+      "begrunnelse": "",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -26,7 +26,7 @@
       "kv": null,
       "tmo": null,
       "updatedBy": "geir.sangnaes@minel.no",
-      "updatedAt": "2026-09-04T10:24:01.750Z"
+      "updatedAt": "2026-09-04T10:24:30.290Z"
     }
   },
   "status": {}
