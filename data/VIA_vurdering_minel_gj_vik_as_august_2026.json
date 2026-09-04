@@ -496,6 +496,19 @@
       "updatedBy": "steffen.fuglerud@minel.no",
       "updatedAt": "2026-09-04T11:10:19.288Z"
     },
+    "65211": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 4.5,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "magnus.nyeggen@minel.no",
+      "updatedAt": "2026-09-04T11:24:33.933Z"
+    },
     "65266": {
       "dg": 50,
       "begrunnelse": "",
