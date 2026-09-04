@@ -42,5 +42,11 @@
       "updatedAt": "2026-09-04T10:24:30.290Z"
     }
   },
-  "status": {}
+  "status": {
+    "Kari  Bergengen": {
+      "done": true,
+      "updatedBy": "geir.sangnaes@minel.no",
+      "updatedAt": "2026-09-04T10:25:24.303Z"
+    }
+  }
 }
