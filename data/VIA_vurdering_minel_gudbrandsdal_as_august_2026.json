@@ -2973,12 +2973,12 @@
       "kommentar": "",
       "timer": 0,
       "timekost": null,
-      "material": 0,
+      "material": 2800,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "ola.slaen@minel.no",
-      "updatedAt": "2026-09-04T06:00:49.903Z"
+      "updatedAt": "2026-09-04T06:00:56.263Z"
     },
     "87399": {
       "dg": 15,
