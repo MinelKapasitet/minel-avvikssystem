@@ -17,7 +17,7 @@
     },
     "30051": {
       "dg": 0,
-      "begrunnelse": "",
+      "begrunnelse": "priv",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -26,7 +26,7 @@
       "kv": null,
       "tmo": null,
       "updatedBy": "ola.sillerud@minel.no",
-      "updatedAt": "2026-09-04T07:08:20.667Z"
+      "updatedAt": "2026-09-04T07:09:07.362Z"
     },
     "32044": {
       "dg": null,
