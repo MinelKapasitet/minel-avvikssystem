@@ -628,5 +628,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Gjøvik AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T11:20:39.391Z",
+    "bruker": "Kenneth Olsen-Solberg",
+    "epost": "kenneth.olsen-solberg@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Gjøvik AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Kenneth  Olsen-Solberg",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Gjøvik AS"
+    }
   }
 ]
