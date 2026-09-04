@@ -303,7 +303,7 @@
     },
     "32342": {
       "dg": 40,
-      "begrunnelse": "",
+      "begrunnelse": "timer og materiell",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -312,7 +312,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "jan-terje.hagehaugen@minel.no",
-      "updatedAt": "2026-09-04T08:44:18.356Z"
+      "updatedAt": "2026-09-04T08:44:46.600Z"
     },
     "32351": {
       "dg": null,
