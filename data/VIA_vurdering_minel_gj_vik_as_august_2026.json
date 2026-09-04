@@ -95,7 +95,7 @@
     },
     "61232": {
       "dg": 0,
-      "begrunnelse": "",
+      "begrunnelse": "Intern mellom Minel Selskaper ",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -104,7 +104,7 @@
       "kv": null,
       "tmo": null,
       "updatedBy": "vegard.haugerud@minel.no",
-      "updatedAt": "2026-09-04T10:34:09.052Z"
+      "updatedAt": "2026-09-04T10:59:43.198Z"
     },
     "61790": {
       "dg": 50,
@@ -227,14 +227,14 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 10,
+      "timer": 15,
       "timekost": null,
-      "material": 1500,
+      "material": 3000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "vegard.haugerud@minel.no",
-      "updatedAt": "2026-09-04T10:55:05.592Z"
+      "updatedAt": "2026-09-04T10:56:19.468Z"
     },
     "64656": {
       "dg": 30,
@@ -474,14 +474,14 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 5,
+      "timer": 0,
       "timekost": null,
-      "material": 1500,
+      "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "vegard.haugerud@minel.no",
-      "updatedAt": "2026-09-04T10:54:11.248Z"
+      "updatedAt": "2026-09-04T10:56:26.422Z"
     },
     "51162-89": {
       "dg": null,
