@@ -346,5 +346,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T06:25:03.884Z",
+    "bruker": "Ola Sillerud",
+    "epost": "ola.sillerud@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Kreativ Elektro Ski AS",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
