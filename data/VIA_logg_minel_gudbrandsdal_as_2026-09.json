@@ -204,5 +204,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Gudbrandsdal AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T06:03:11.144Z",
+    "bruker": "Ola Slåen",
+    "epost": "ola.slaen@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Ola Slåen",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Gudbrandsdal AS"
+    }
   }
 ]
