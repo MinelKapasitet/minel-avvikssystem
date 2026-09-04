@@ -36,5 +36,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Kreativ Elektro Ski AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T09:01:02.987Z",
+    "bruker": "Kristian Sakariassen",
+    "epost": "kristian.sakariassen@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Kreativ Elektro Ski AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Kristian Sakariassen",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Kreativ Elektro Ski AS"
+    }
   }
 ]
