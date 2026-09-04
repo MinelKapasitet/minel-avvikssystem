@@ -372,12 +372,12 @@
       "kommentar": "",
       "timer": 900,
       "timekost": null,
-      "material": 0,
+      "material": 400000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "jan-terje.hagehaugen@minel.no",
-      "updatedAt": "2026-09-04T08:40:51.728Z"
+      "updatedAt": "2026-09-04T08:40:58.401Z"
     },
     "32432": {
       "dg": null,
