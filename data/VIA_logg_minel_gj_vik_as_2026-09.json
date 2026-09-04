@@ -654,5 +654,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Gjøvik AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T11:24:29.401Z",
+    "bruker": "Einar Dotseth",
+    "epost": "einar.dotseth@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Gjøvik AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Einar  Dotseth",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Gjøvik AS"
+    }
   }
 ]
