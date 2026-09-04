@@ -71,14 +71,14 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 100,
+      "timer": 80,
       "timekost": null,
       "material": 85000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "jan-terje.hagehaugen@minel.no",
-      "updatedAt": "2026-09-04T08:48:31.790Z"
+      "updatedAt": "2026-09-04T08:53:51.641Z"
     },
     "31137": {
       "dg": 0,
