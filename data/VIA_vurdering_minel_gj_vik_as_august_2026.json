@@ -86,12 +86,12 @@
       "kommentar": "",
       "timer": 30000,
       "timekost": null,
-      "material": 0,
+      "material": 4000000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "einar.dotseth@minel.no",
-      "updatedAt": "2026-09-04T10:36:17.851Z"
+      "updatedAt": "2026-09-04T10:37:01.471Z"
     },
     "63809": {
       "dg": 18,
