@@ -132,6 +132,19 @@
       "updatedBy": "kristian.bye@minel.no",
       "updatedAt": "2026-09-04T08:05:26.595Z"
     },
+    "32037": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 2100,
+      "timekost": null,
+      "material": 1200000,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "jan-terje.hagehaugen@minel.no",
+      "updatedAt": "2026-09-04T08:19:33.880Z"
+    },
     "32038": {
       "dg": null,
       "begrunnelse": "",
