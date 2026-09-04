@@ -1,0 +1,15 @@
+[
+  {
+    "tidspunkt": "2026-09-04T06:13:01.745Z",
+    "bruker": "Stian Ekhougen",
+    "epost": "stian.ekhougen@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Drøbak Elektriske AS",
+    "hendelse": "DataLastet",
+    "detaljer": {
+      "selskap": "Minel Drøbak Elektriske AS",
+      "periode": "august 2026",
+      "antallOrdrer": 336
+    }
+  }
+]
