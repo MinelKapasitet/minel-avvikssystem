@@ -366,6 +366,19 @@
       "updatedBy": "torstein.sagheim@minel.no",
       "updatedAt": "2026-09-04T10:57:43.817Z"
     },
+    "55175": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:04:05.689Z"
+    },
     "55178": {
       "dg": 20,
       "begrunnelse": "",
