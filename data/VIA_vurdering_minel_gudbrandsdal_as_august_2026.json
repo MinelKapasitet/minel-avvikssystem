@@ -195,6 +195,19 @@
       "updatedBy": "ole.myhre@minel.no",
       "updatedAt": "2026-09-02T07:26:41.750Z"
     },
+    "83956": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 15,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "oyvind.teigen@minel.no",
+      "updatedAt": "2026-09-04T05:32:36.062Z"
+    },
     "84259": {
       "dg": 30,
       "begrunnelse": "",
