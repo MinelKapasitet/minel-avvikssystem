@@ -119,6 +119,19 @@
       "updatedBy": "einar.dotseth@minel.no",
       "updatedAt": "2026-09-04T10:53:05.948Z"
     },
+    "62149": {
+      "dg": 20,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "einar.dotseth@minel.no",
+      "updatedAt": "2026-09-04T10:54:23.100Z"
+    },
     "62592": {
       "dg": 20,
       "begrunnelse": "",
@@ -172,7 +185,7 @@
       "updatedAt": "2026-09-04T10:46:28.205Z"
     },
     "63764": {
-      "dg": 25,
+      "dg": 20,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -182,7 +195,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "einar.dotseth@minel.no",
-      "updatedAt": "2026-09-04T10:52:46.338Z"
+      "updatedAt": "2026-09-04T10:55:43.496Z"
     },
     "63809": {
       "dg": 18,
@@ -249,6 +262,32 @@
       "updatedBy": "vegard.haugerud@minel.no",
       "updatedAt": "2026-09-04T10:46:48.386Z"
     },
+    "64951": {
+      "dg": 25,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "einar.dotseth@minel.no",
+      "updatedAt": "2026-09-04T10:54:05.680Z"
+    },
+    "64966": {
+      "dg": 25,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "einar.dotseth@minel.no",
+      "updatedAt": "2026-09-04T10:54:12.892Z"
+    },
     "65085": {
       "dg": 35,
       "begrunnelse": "",
@@ -261,6 +300,19 @@
       "tmo": null,
       "updatedBy": "geir.sangnaes@minel.no",
       "updatedAt": "2026-09-04T10:28:47.277Z"
+    },
+    "65117": {
+      "dg": 0,
+      "begrunnelse": "Reklamasjon",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "einar.dotseth@minel.no",
+      "updatedAt": "2026-09-04T10:54:41.023Z"
     },
     "64656-1": {
       "dg": 30,
