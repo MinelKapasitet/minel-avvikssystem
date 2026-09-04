@@ -463,12 +463,12 @@
       "kommentar": "",
       "timer": 15,
       "timekost": null,
-      "material": 0,
+      "material": 20000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kristian.sakariassen@minel.no",
-      "updatedAt": "2026-09-04T08:42:15.163Z"
+      "updatedAt": "2026-09-04T08:42:22.168Z"
     },
     "32481": {
       "dg": 55,
