@@ -11,5 +11,17 @@
       "periode": "august 2026",
       "antallOrdrer": 223
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T07:34:45.332Z",
+    "bruker": "Ola Sillerud",
+    "epost": "ola.sillerud@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Kreativ Elektro Ski AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Kreativ Elektro Ski AS",
+      "period": "august 2026"
+    }
   }
 ]
