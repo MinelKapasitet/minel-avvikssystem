@@ -185,7 +185,7 @@
       "updatedAt": "2026-09-04T10:46:28.205Z"
     },
     "63764": {
-      "dg": 20,
+      "dg": 31,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -193,9 +193,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": 1,
+      "tmo": null,
       "updatedBy": "einar.dotseth@minel.no",
-      "updatedAt": "2026-09-04T10:56:28.248Z"
+      "updatedAt": "2026-09-04T10:56:54.119Z"
     },
     "63809": {
       "dg": 18,
