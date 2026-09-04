@@ -667,5 +667,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Gjøvik AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T12:13:04.558Z",
+    "bruker": "Steffen Fuglerud",
+    "epost": "steffen.fuglerud@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Gjøvik AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Steffen Fuglerud",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Gjøvik AS"
+    }
   }
 ]
