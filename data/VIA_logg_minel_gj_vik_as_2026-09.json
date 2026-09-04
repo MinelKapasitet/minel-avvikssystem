@@ -641,5 +641,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Gjøvik AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T11:23:48.317Z",
+    "bruker": "Vegard Haugerud",
+    "epost": "vegard.haugerud@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Gjøvik AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Vegard Haugerud",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Gjøvik AS"
+    }
   }
 ]
