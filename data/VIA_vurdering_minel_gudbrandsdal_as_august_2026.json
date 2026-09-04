@@ -390,12 +390,12 @@
       "kommentar": "",
       "timer": 800,
       "timekost": null,
-      "material": 0,
+      "material": 395000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "erling.lid@minel.no",
-      "updatedAt": "2026-09-04T06:31:31.122Z"
+      "updatedAt": "2026-09-04T06:32:15.085Z"
     },
     "84787": {
       "dg": null,
