@@ -144,14 +144,14 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 0,
+      "timer": 15,
       "timekost": null,
       "material": 150000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "erling.lid@minel.no",
-      "updatedAt": "2026-09-04T06:38:30.203Z"
+      "updatedAt": "2026-09-04T06:48:54.530Z"
     },
     "82412": {
       "dg": 22,
