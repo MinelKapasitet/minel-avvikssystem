@@ -56,7 +56,7 @@
     },
     "30138": {
       "dg": 4,
-      "begrunnelse": "Hvordan blir det med denne? Den vil ikke gå bra, men dette er en prosjekt/ordre som har vært med helt fra Visma i Askim. ",
+      "begrunnelse": "Hvordan blir det med denne? Den vil ikke gå bra, men dette er en prosjekt/ordre som har vært med helt fra Visma i Askim. Samt at jeg vet ikke hvorfor denne legger seg her på regningsordre?",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -65,7 +65,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "kristian.bye@minel.no",
-      "updatedAt": "2026-09-04T07:58:07.787Z"
+      "updatedAt": "2026-09-04T08:21:12.288Z"
     },
     "30891": {
       "dg": null,
@@ -390,7 +390,7 @@
       "kv": null,
       "tmo": null,
       "updatedBy": "kristian.bye@minel.no",
-      "updatedAt": "2026-09-04T07:51:57.549Z"
+      "updatedAt": "2026-09-04T08:22:15.362Z"
     },
     "32492": {
       "dg": 26,
