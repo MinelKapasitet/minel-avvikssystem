@@ -171,6 +171,32 @@
       "updatedBy": "kristian.bye@minel.no",
       "updatedAt": "2026-09-04T07:53:38.533Z"
     },
+    "32326": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "kristian.bye@minel.no",
+      "updatedAt": "2026-09-04T08:08:52.705Z"
+    },
+    "32360": {
+      "dg": 55,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "kristian.bye@minel.no",
+      "updatedAt": "2026-09-04T08:07:22.108Z"
+    },
     "32380": {
       "dg": null,
       "begrunnelse": "",
@@ -313,6 +339,19 @@
       "tmo": 1,
       "updatedBy": "kristian.bye@minel.no",
       "updatedAt": "2026-09-04T08:04:21.207Z"
+    },
+    "32506": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "kristian.bye@minel.no",
+      "updatedAt": "2026-09-04T08:07:04.878Z"
     },
     "32509": {
       "dg": 49,
