@@ -281,12 +281,12 @@
       "kommentar": "",
       "timer": 77,
       "timekost": null,
-      "material": 0,
+      "material": 30000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "magnus.nyeggen@minel.no",
-      "updatedAt": "2026-09-04T11:12:34.148Z"
+      "updatedAt": "2026-09-04T11:12:44.520Z"
     },
     "64397": {
       "dg": null,
