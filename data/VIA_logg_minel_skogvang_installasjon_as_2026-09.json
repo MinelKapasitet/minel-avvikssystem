@@ -166,5 +166,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Skogvang Installasjon AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T11:10:58.216Z",
+    "bruker": "Torstein Sagheim",
+    "epost": "torstein.sagheim@minel.no",
+    "rolle": "PL",
+    "selskap": "Minel Skogvang Installasjon AS",
+    "hendelse": "PLFerdig",
+    "detaljer": {
+      "pl": "Torstein Sagheim",
+      "periode": "august 2026",
+      "ferdigSelskap": "Minel Skogvang Installasjon AS"
+    }
   }
 ]
