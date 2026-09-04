@@ -3202,6 +3202,19 @@
       "kv": null,
       "updatedBy": "espen.kroken@minel.no",
       "updatedAt": "2026-09-03T07:13:05.844Z"
+    },
+    "81394-8": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 85,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "erling.lid@minel.no",
+      "updatedAt": "2026-09-04T06:23:32.548Z"
     }
   },
   "status": {
