@@ -3209,12 +3209,12 @@
       "kommentar": "",
       "timer": 85,
       "timekost": null,
-      "material": 0,
+      "material": 20000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "erling.lid@minel.no",
-      "updatedAt": "2026-09-04T06:23:32.548Z"
+      "updatedAt": "2026-09-04T06:23:52.575Z"
     }
   },
   "status": {
