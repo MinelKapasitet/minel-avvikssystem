@@ -188,14 +188,14 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 5,
+      "timer": 0,
       "timekost": null,
       "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kristian.sakariassen@minel.no",
-      "updatedAt": "2026-09-04T08:26:38.200Z"
+      "updatedAt": "2026-09-04T08:26:41.607Z"
     },
     "32186": {
       "dg": 40,
