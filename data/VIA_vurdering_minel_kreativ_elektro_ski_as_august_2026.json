@@ -331,14 +331,14 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 4,
+      "timer": 0,
       "timekost": null,
       "material": 750,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kristian.bye@minel.no",
-      "updatedAt": "2026-09-04T07:49:12.692Z"
+      "updatedAt": "2026-09-04T07:49:20.937Z"
     }
   },
   "status": {}
