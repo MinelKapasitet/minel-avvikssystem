@@ -379,6 +379,19 @@
       "updatedBy": "rune.skogheim@minel.no",
       "updatedAt": "2026-09-04T11:16:44.956Z"
     },
+    "54519": {
+      "dg": 40,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:25:29.579Z"
+    },
     "54536": {
       "dg": 40,
       "begrunnelse": "",
