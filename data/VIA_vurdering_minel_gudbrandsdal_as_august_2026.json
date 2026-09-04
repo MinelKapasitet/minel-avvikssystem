@@ -1590,6 +1590,19 @@
       "updatedBy": "bjorn.bratlien@minel.no",
       "updatedAt": "2026-09-03T06:28:04.725Z"
     },
+    "86825": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 14,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "ola.slaen@minel.no",
+      "updatedAt": "2026-09-04T05:58:29.911Z"
+    },
     "86846": {
       "dg": 32,
       "begrunnelse": "liten hytte langt unna",
