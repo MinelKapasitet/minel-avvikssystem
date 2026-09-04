@@ -43,7 +43,7 @@
     },
     "30138": {
       "dg": 4,
-      "begrunnelse": "",
+      "begrunnelse": "Hvordan blir det med denne? Den vil ikke gå bra, men dette er en prosjekt/ordre som har vært med helt fra Visma i Askim. ",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -52,7 +52,7 @@
       "kv": null,
       "tmo": 1,
       "updatedBy": "kristian.bye@minel.no",
-      "updatedAt": "2026-09-04T07:52:45.396Z"
+      "updatedAt": "2026-09-04T07:58:07.787Z"
     },
     "31137": {
       "dg": 0,
@@ -92,6 +92,19 @@
       "tmo": null,
       "updatedBy": "ola.sillerud@minel.no",
       "updatedAt": "2026-09-04T07:46:53.658Z"
+    },
+    "32195": {
+      "dg": 0,
+      "begrunnelse": "Kjøp av materiell",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "kristian.bye@minel.no",
+      "updatedAt": "2026-09-04T07:54:16.149Z"
     },
     "32276": {
       "dg": 16.2,
