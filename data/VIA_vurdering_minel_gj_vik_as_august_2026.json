@@ -331,14 +331,14 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 65,
+      "timer": 70,
       "timekost": null,
       "material": 25000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "magnus.nyeggen@minel.no",
-      "updatedAt": "2026-09-04T12:54:52.116Z"
+      "updatedAt": "2026-09-04T12:54:58.023Z"
     },
     "64654": {
       "dg": 25,
