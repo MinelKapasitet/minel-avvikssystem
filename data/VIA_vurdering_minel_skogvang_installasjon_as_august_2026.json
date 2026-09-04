@@ -41,6 +41,19 @@
       "updatedBy": "torstein.sagheim@minel.no",
       "updatedAt": "2026-09-04T10:08:20.911Z"
     },
+    "52832": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T10:42:14.205Z"
+    },
     "53324": {
       "dg": 0,
       "begrunnelse": "Kunden er ansatt",
