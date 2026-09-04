@@ -586,6 +586,19 @@
       "tmo": null,
       "updatedBy": "magnus.nyeggen@minel.no",
       "updatedAt": "2026-09-04T11:02:01.934Z"
+    },
+    "61876-1": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 50,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "magnus.nyeggen@minel.no",
+      "updatedAt": "2026-09-04T11:02:16.850Z"
     }
   },
   "status": {
