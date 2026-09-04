@@ -320,12 +320,12 @@
       "kommentar": "",
       "timer": 4,
       "timekost": null,
-      "material": 750,
+      "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kristian.bye@minel.no",
-      "updatedAt": "2026-09-04T07:49:45.119Z"
+      "updatedAt": "2026-09-04T08:29:36.335Z"
     },
     "32422": {
       "dg": null,
