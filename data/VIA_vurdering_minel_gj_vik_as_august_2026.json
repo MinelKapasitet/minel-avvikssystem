@@ -19,14 +19,14 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 0,
+      "timer": 65,
       "timekost": null,
-      "material": 0,
+      "material": 45000,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kenneth.olsen-solberg@minel.no",
-      "updatedAt": "2026-09-04T10:55:15.061Z"
+      "updatedAt": "2026-09-04T11:01:27.786Z"
     },
     "60040": {
       "dg": 0,
@@ -448,40 +448,40 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 2,
+      "timer": 0,
       "timekost": null,
-      "material": 4000,
+      "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kenneth.olsen-solberg@minel.no",
-      "updatedAt": "2026-09-04T10:53:00.250Z"
+      "updatedAt": "2026-09-04T11:00:21.619Z"
     },
     "51162-91": {
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 4,
+      "timer": 0,
       "timekost": null,
-      "material": 500,
+      "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kenneth.olsen-solberg@minel.no",
-      "updatedAt": "2026-09-04T10:52:18.683Z"
+      "updatedAt": "2026-09-04T11:00:20.139Z"
     },
     "51162-92": {
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 10,
+      "timer": 0,
       "timekost": null,
-      "material": 1000,
+      "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kenneth.olsen-solberg@minel.no",
-      "updatedAt": "2026-09-04T10:54:03.437Z"
+      "updatedAt": "2026-09-04T11:00:19.437Z"
     },
     "64397-5": {
       "dg": null,
@@ -500,14 +500,14 @@
       "dg": null,
       "begrunnelse": "",
       "kommentar": "",
-      "timer": 50,
+      "timer": 0,
       "timekost": null,
-      "material": 40000,
+      "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kenneth.olsen-solberg@minel.no",
-      "updatedAt": "2026-09-04T10:55:48.720Z"
+      "updatedAt": "2026-09-04T10:59:46.708Z"
     },
     "51162-85": {
       "dg": null,
@@ -515,12 +515,12 @@
       "kommentar": "",
       "timer": 0,
       "timekost": null,
-      "material": 400000,
+      "material": 0,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "kenneth.olsen-solberg@minel.no",
-      "updatedAt": "2026-09-04T10:56:23.501Z"
+      "updatedAt": "2026-09-04T10:59:39.315Z"
     }
   },
   "status": {
