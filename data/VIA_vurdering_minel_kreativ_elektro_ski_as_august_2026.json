@@ -431,6 +431,19 @@
       "updatedBy": "kristian.bye@minel.no",
       "updatedAt": "2026-09-04T08:06:22.784Z"
     },
+    "32482": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 0,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "kristian.sakariassen@minel.no",
+      "updatedAt": "2026-09-04T08:35:54.210Z"
+    },
     "32484": {
       "dg": 0,
       "begrunnelse": "priv",
