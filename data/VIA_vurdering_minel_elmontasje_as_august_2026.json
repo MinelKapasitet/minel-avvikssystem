@@ -3714,7 +3714,7 @@
     },
     "42786-9": {
       "dg": 47,
-      "begrunnelse": "ok",
+      "begrunnelse": "ajoufakturert T&M avtalte rater",
       "kommentar": "",
       "timer": null,
       "timekost": null,
@@ -3723,7 +3723,7 @@
       "kv": null,
       "tmo": null,
       "updatedBy": "bjornar.sleppen@minel.no",
-      "updatedAt": "2026-09-03T12:42:30.205Z"
+      "updatedAt": "2026-09-04T07:01:49.758Z"
     },
     "42786-8": {
       "dg": 69,
