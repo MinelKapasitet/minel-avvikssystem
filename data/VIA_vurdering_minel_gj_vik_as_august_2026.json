@@ -313,6 +313,19 @@
       "tmo": null,
       "updatedBy": "kenneth.olsen-solberg@minel.no",
       "updatedAt": "2026-09-04T10:52:18.683Z"
+    },
+    "51162-92": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 10,
+      "timekost": null,
+      "material": 0,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "kenneth.olsen-solberg@minel.no",
+      "updatedAt": "2026-09-04T10:53:58.306Z"
     }
   },
   "status": {
