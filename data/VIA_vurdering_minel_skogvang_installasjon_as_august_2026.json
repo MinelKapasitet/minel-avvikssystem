@@ -80,6 +80,19 @@
       "updatedBy": "jon.hulberg@minel.no",
       "updatedAt": "2026-09-04T05:25:52.207Z"
     },
+    "53721": {
+      "dg": 30,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "rune.skogheim@minel.no",
+      "updatedAt": "2026-09-04T11:02:24.717Z"
+    },
     "53848": {
       "dg": 1,
       "begrunnelse": "Kunde er ansatt",
