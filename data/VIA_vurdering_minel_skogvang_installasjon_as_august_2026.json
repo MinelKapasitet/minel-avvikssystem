@@ -2,6 +2,19 @@
   "period": "august 2026",
   "company": "Minel Skogvang Installasjon AS",
   "items": {
+    "52025": {
+      "dg": 58,
+      "begrunnelse": "Innkasso",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "torstein.sagheim@minel.no",
+      "updatedAt": "2026-09-04T10:07:14.400Z"
+    },
     "52801": {
       "dg": 60,
       "begrunnelse": "",
