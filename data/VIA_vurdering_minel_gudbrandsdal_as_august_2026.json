@@ -3281,6 +3281,19 @@
       "tmo": null,
       "updatedBy": "erling.lid@minel.no",
       "updatedAt": "2026-09-04T06:29:16.166Z"
+    },
+    "85157-1": {
+      "dg": null,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": 0,
+      "timekost": null,
+      "material": 4150000,
+      "fg": null,
+      "kv": null,
+      "tmo": null,
+      "updatedBy": "erling.lid@minel.no",
+      "updatedAt": "2026-09-04T06:39:24.571Z"
     }
   },
   "status": {
