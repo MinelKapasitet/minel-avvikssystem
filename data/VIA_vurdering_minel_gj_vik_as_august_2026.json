@@ -203,12 +203,12 @@
       "kommentar": "",
       "timer": 10,
       "timekost": null,
-      "material": 0,
+      "material": 1500,
       "fg": null,
       "kv": null,
       "tmo": null,
       "updatedBy": "vegard.haugerud@minel.no",
-      "updatedAt": "2026-09-04T10:55:00.382Z"
+      "updatedAt": "2026-09-04T10:55:05.592Z"
     },
     "64656": {
       "dg": 30,
