@@ -291,5 +291,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T05:30:15.205Z",
+    "bruker": "Øyvind Teigen",
+    "epost": "oyvind.teigen@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
