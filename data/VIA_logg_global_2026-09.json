@@ -302,5 +302,16 @@
     "detaljer": {
       "metode": "redirect"
     }
+  },
+  {
+    "tidspunkt": "2026-09-04T05:55:53.259Z",
+    "bruker": "Christian Bang Lauesen",
+    "epost": "christian.lauesen@minel.no",
+    "rolle": "PL",
+    "selskap": "",
+    "hendelse": "Innlogget",
+    "detaljer": {
+      "metode": "redirect"
+    }
   }
 ]
