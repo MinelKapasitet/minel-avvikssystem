@@ -36,5 +36,18 @@
       "selskap": "Minel Land Elektriske AS",
       "period": "august 2026"
     }
+  },
+  {
+    "tidspunkt": "2026-09-06T16:28:48.083Z",
+    "bruker": "Lars Aamodt",
+    "epost": "lars.aamodt@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Land Elektriske AS",
+    "hendelse": "DataLastet",
+    "detaljer": {
+      "selskap": "Minel Land Elektriske AS",
+      "periode": "august 2026",
+      "antallOrdrer": 537
+    }
   }
 ]
