@@ -24,5 +24,17 @@
       "periode": "august 2026",
       "antallOrdrer": 537
     }
+  },
+  {
+    "tidspunkt": "2026-09-06T16:24:00.232Z",
+    "bruker": "Lars Aamodt",
+    "epost": "lars.aamodt@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Land Elektriske AS",
+    "hendelse": "Delt datasett",
+    "detaljer": {
+      "selskap": "Minel Land Elektriske AS",
+      "period": "august 2026"
+    }
   }
 ]
