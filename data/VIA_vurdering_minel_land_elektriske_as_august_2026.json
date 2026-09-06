@@ -1,0 +1,20 @@
+{
+  "period": "august 2026",
+  "company": "Minel Land Elektriske AS",
+  "items": {
+    "26104": {
+      "dg": 20,
+      "begrunnelse": "",
+      "kommentar": "",
+      "timer": null,
+      "timekost": null,
+      "material": null,
+      "fg": null,
+      "kv": null,
+      "tmo": 1,
+      "updatedBy": "lars.aamodt@minel.no",
+      "updatedAt": "2026-09-06T16:31:03.593Z"
+    }
+  },
+  "status": {}
+}
