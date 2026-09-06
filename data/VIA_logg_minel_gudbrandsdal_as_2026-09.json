@@ -230,5 +230,18 @@
       "periode": "august 2026",
       "ferdigSelskap": "Minel Gudbrandsdal AS"
     }
+  },
+  {
+    "tidspunkt": "2026-09-06T15:27:39.241Z",
+    "bruker": "Susann Endrestad",
+    "epost": "susann.endrestad@minel.no",
+    "rolle": "DL",
+    "selskap": "Minel Gudbrandsdal AS",
+    "hendelse": "DataLastet",
+    "detaljer": {
+      "selskap": "Minel Gudbrandsdal AS",
+      "periode": "august 2026",
+      "antallOrdrer": 596
+    }
   }
 ]
