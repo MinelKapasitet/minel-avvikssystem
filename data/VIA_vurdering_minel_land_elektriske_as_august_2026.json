@@ -3,7 +3,7 @@
   "company": "Minel Land Elektriske AS",
   "items": {
     "26104": {
-      "dg": 20,
+      "dg": 85,
       "begrunnelse": "",
       "kommentar": "",
       "timer": null,
@@ -11,9 +11,9 @@
       "material": null,
       "fg": null,
       "kv": null,
-      "tmo": 1,
+      "tmo": null,
       "updatedBy": "lars.aamodt@minel.no",
-      "updatedAt": "2026-09-06T16:31:03.593Z"
+      "updatedAt": "2026-09-06T16:31:08.422Z"
     }
   },
   "status": {}
